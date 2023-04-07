@@ -1,6 +1,9 @@
+<?php
+  include ('db_conn.php');
+  include ('initialize.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -11,22 +14,25 @@
     <title>Municipal Agriculture Office Jimenez</title>
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon.png">
+    <link rel="shortcut icon" href="<?php echo base_url ?>assets/img/system/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url ?>assets/img/system/favicon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url ?>assets/img/system/favicon.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="<?php echo base_url ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="<?php echo base_url ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="<?php echo base_url ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="<?php echo base_url ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Loading CSS -->
+    <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url ?>assets/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Lumia - v4.10.0
@@ -37,15 +43,18 @@
   </head>
 
   <body>
-
+    <!-- Loading Screen -->
+    <div id="loading">
+        <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />
+    </div>
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center bg-success">
       <div class="container d-flex align-items-center">
 
         <div class="logo me-auto">
           <h1>
-            <a href="index.php"><img src="assets/img/favicon.png" alt="" class="img-fluid"></a>
-            <a href="index.php" data-alttext="MAO Jimenez"><b>Municipal Agriculture Office Jimenez</b></a>
+            <a href="<?php echo base_url ?>"><img src="<?php echo base_url ?>assets/img/system/favicon.png" alt="" class="img-fluid"></a>
+            <a href="<?php echo base_url ?>" data-alttext="MAO Jimenez"><b>Municipal Agriculture Office Jimenez</b></a>
           </h1>
           <!-- Uncomment below if you prefer to use an image logo -->
           <!--== <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -57,7 +66,7 @@
             <li><a class="nav-link scrollto " href="#portfolio">Pictures</a></li>
             <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
             <li><a class="nav-link scrollto" href="#team">About Us</a></li>
-            <li><a class="nav-link " href="./login/index.php">LOGIN</a></li>
+            <li><a class="nav-link " href="<?php echo base_url ?>login">LOGIN</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -123,7 +132,7 @@
 
               <div class="row">
                 <div class="col-lg-6 text-center">
-                  <img src="assets/img/mao3.jpg" class="img-fluid">
+                  <img src="<?php echo base_url ?>assets/img/system/logo.png" class="img-fluid">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0">
                   <h3>Functions of Municipal Agriculture Office</h3>
@@ -166,8 +175,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/1.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/1.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/1.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/1.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -177,8 +186,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/2.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/2.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -189,8 +198,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/3.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/3.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -201,8 +210,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/4.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/4.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -213,8 +222,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/5.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/5.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/5.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/5.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -224,8 +233,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/6.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/6.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/6.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/6.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -236,8 +245,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/7.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/7.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/7.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/7.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -248,8 +257,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/8.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/8.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/8.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/8.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -260,8 +269,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="assets/img/portfolio/9.jpg" class="img-fluid" alt="">
-                    <a href="assets/img/portfolio/9.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
+                    <img src="<?php echo base_url ?>assets/img/portfolio/9.jpg" class="img-fluid" alt="">
+                    <a href="<?php echo base_url ?>assets/img/portfolio/9.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
                   
                   </figure>
 
@@ -357,7 +366,7 @@
             <div class="row">
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="assets/img/carlo.png" alt="">
+                  <img src="<?php echo base_url ?>assets/img/team/carlo.png" alt="">
                   <h4>Francis Carlo Manlangit</h4>
                   <span>Full Stack Developer</span>
                   <p>
@@ -373,7 +382,7 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img class="" src="assets/img/balmadres.jpg" alt="">
+                  <img class="" src="<?php echo base_url ?>assets/img/team/balmadres.jpg" alt="">
                   <h4>Christine Mae Balmadres</h4>
                   <span>Full Stack Developer</span>
                   <p>
@@ -389,7 +398,7 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="assets/img/cindy.jpg" alt="">
+                  <img src="<?php echo base_url ?>assets/img/team/cindy.jpg" alt="">
                   <h4>Cindy Sapalleda</h4>
                   <span>Full Stack Developer</span>
                   <p>
@@ -405,7 +414,7 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="assets/img/yvesh.jpg" alt="">
+                  <img src="<?php echo base_url ?>assets/img/team/yvesh.jpg" alt="">
                   <h4>Yvesh Laurent Hemororz</h4>
                   <span>System Designer</span>
                   <p>
@@ -458,16 +467,19 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Loading JS -->
+    <script src="<?php echo base_url ?>assets/js/loader.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="<?php echo base_url ?>assets/js/main.js"></script>
 
   </body>
 
