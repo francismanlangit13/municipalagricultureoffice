@@ -17,20 +17,26 @@
             <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Status</th>
-                        <th>ACTION</th>
+                        <th style="width:5%">No.</th>
+                        <th style="width:10%">Refernce Number</th>
+                        <th style="width:25%">Farmer Name</th>
+                        <th style="width:10%">Barangay</th>
+                        <th style="width:20%">Product Name</th>
+                        <th style="width:10%">Quantity</th>
+                        <th style="width:10%">Status</th>
+                        <th style="width:10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         $query = "SELECT
-                        request.request_id, 
+                        request.request_id,
                         user.fname, 
                         user.lname,
-                        user.mname, 
+                        user.mname,
+                        user.suffix,
+                        user.reference_number,
+                        user.barangay, 
                         product.product_name, 
                         request.request_quantity, 
                         request.request_date, 
@@ -54,42 +60,52 @@
                         request.request_status = 1";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
+                            $number = 1; // Define a variable to keep track of the iterations
                             foreach($query_run as $row){
                     ?>
                     <tr>
-                        <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?></td>
+                        <td><?= $number++ ?></td>
+                        <td><?= $row['reference_number']; ?></td>
+                        <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?> <?= $row['suffix']; ?></td>
+                        <td><?= $row['barangay']; ?></td>
                         <td><?= $row['product_name']; ?></td>
                         <td><?= $row['request_quantity']; ?></td>
                         <td><?= $row['request_name']; ?></td>
-                        <td class="text-center">
+                        <!-- <td class="text-center">
 
-                        <div class="dropdown show">
-                        <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Action
-                        </a>
+                            <div class="dropdown show">
+                            <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                            </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="request_view.php?id=<?=$row['request_id'];?>">View</a>
-                        <form action="code.php" method="post">
-                        <button type="submit" class="dropdown-item"  name="req_deny" value="<?=$row['request_id'];?>">Deny</button>
-                        </form>
-                        </div>
-                        </div>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="request_view.php?id=<?=$row['request_id'];?>">View</a>
+                            <form action="code.php" method="post">
+                            <button type="submit" class="dropdown-item"  name="req_deny" value="<?=$row['request_id'];?>">Deny</button>
+                            </form>
+                            </div>
+                            </div>
+                        </td> -->
+                        <td> 
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-12 mb-1" style="zoom:95%">
+                                    <a href="request_view.php?id=<?=$row['request_id'];?>" class="btn btn-info btn-icon-split"> 
+                                        <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                        <span class="text ml-2 mr-2">View</span>
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                     
                     </tr>
-                <?php
-            }
-        }
-        else
-        {
-        ?>
-            <tr>
-                <td colspan="8">No Record Found</td>
-            </tr>
-        <?php
-        }
-        ?>
+                    <?php
+                            }
+                        } else{
+                    ?>
+                        <tr>
+                            <td colspan="8">No Record Found</td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

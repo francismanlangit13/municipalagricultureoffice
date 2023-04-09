@@ -18,77 +18,77 @@
                 <?php
                     if(isset($_GET['id'])) {
                         $id = $_GET['id'];
-                        $users = "SELECT * FROM user WHERE user_id='$id' ";
-                        $users_run = mysqli_query($con, $users);
+                        $sql = "SELECT * FROM user WHERE user_id='$id' ";
+                        $sql_run = mysqli_query($con, $sql);
 
-                        if(mysqli_num_rows($users_run) > 0) {
-                            foreach($users_run as $user){
+                        if(mysqli_num_rows($sql_run) > 0) {
+                            foreach($sql_run as $row){
                 ?>
 
-                <input type="hidden" name="user_id" value="<?=$user['user_id'];?>">
+                <input type="hidden" name="user_id" value="<?=$row['user_id'];?>">
                 <div class="row"> 
                     <div class="col-md-3 mb-3">
                         <label for="">First Name</label>
-                        <input disabled  type="text" value="<?=$user['fname'];?>" class="form-control">
+                        <input disabled  type="text" value="<?=$row['fname'];?>" class="form-control">
                     </div> 
                 
                     <div class="col-md-3 mb-3">
                         <label for="">Middle Name</label>
-                        <input disabled type="text" value="<?=$user['mname'];?>"class="form-control">
+                        <input disabled type="text" value="<?=$row['mname'];?>"class="form-control">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="">Last Name</label>
-                        <input disabled  type="text" value="<?=$user['lname'];?>" class="form-control">
+                        <input disabled  type="text" value="<?=$row['lname'];?>" class="form-control">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="suffix">Suffix</label>
-                        <input disabled  type="text" value="<?=$user['suffix'];?>" class="form-control">
+                        <input disabled  type="text" value="<?=$row['suffix'];?>" class="form-control">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="suffix">Gender</label>
-                        <input disabled  type="text" value="<?=$user['gender'];?>" class="form-control">
+                        <input disabled  type="text" value="<?=$row['gender'];?>" class="form-control">
                     </div>
 
                     <div class="col-md-5 mb-3">
                         <label for="">Religion</label>
-                        <input disabled type="text" value="<?=$user['religion'];?>" class="form-control">
+                        <input disabled type="text" value="<?=$row['religion'];?>" class="form-control">
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label for="date">Date of Birth</label>
-                        <input disabled class="form-control" value="<?=$user['birthday'];?>" placeholder="MM/DD/YYY" type="date"/>
+                        <input disabled class="form-control" value="<?=$row['birthday'];?>" placeholder="MM/DD/YYY" type="date"/>
                     </div>
 
                     <div class="col-md-9 mb-3">
                         <label for="">Place of Birth</label>
-                        <input disabled type="text" value="<?=$user['birthplace'];?>" class="form-control">
+                        <input disabled type="text" value="<?=$row['birthplace'];?>" class="form-control">
                     </div> 
 
                     <div class="col-md-3 mb-3">
                         <label for="">Civil Status</label>
-                        <input disabled type="text" value="<?=$user['civil_status'];?>" class="form-control">
+                        <input disabled type="text" value="<?=$row['civil_status'];?>" class="form-control">
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label for="">Email</label>
-                        <input disabled type="email" name="email" value="<?=$user['email'];?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control">
+                        <input disabled type="email" name="email" value="<?=$row['email'];?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control">
                     </div>
                 
                     <div class="col-md-4 mb-3">
                         <label for="">Phone Number</label>
-                        <input disabled type="text" name="phone" value="<?=$user['phone'];?>" pattern="09[0-9]{9}" maxlength="11" class="form-control">
+                        <input disabled type="text" name="phone" value="<?=$row['phone'];?>" pattern="09[0-9]{9}" maxlength="11" class="form-control">
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label for="">Role</label>
                         <?php
-                        if ($user['user_type'] == 1) { ?>
+                        if ($row['user_type'] == 1) { ?>
                             <input disabled type="text" value="Admin" class="form-control">
                         <?php } 
-                        if ($user['user_type'] == 2) { ?>
+                        if ($row['user_type'] == 2) { ?>
                             <input disabled type="text" value="Staff" class="form-control">
                         <?php } ?>
                     </div>
@@ -102,13 +102,21 @@
                     <div class="col-md-5 text-center">
                         <br>
                         <h5>Current Picture</h5>
-                        <img class="mt-2" id="frame"
+                        <a href="
                             <?php
-                                if(isset($user['picture'])){
-                                    echo 'src ="data:image;base64,'.base64_encode($user['picture']).'"';
-                                } else { echo 'src ="'.base_url.'assets/img/system/no-image.png"'; }
-                            ?>
-                        alt="Profile Picture" width="240px" height="180px"/>
+                                if(isset($row['picture'])){
+                                    echo base_url . 'assets/img/users/' . $row['picture'];
+                                } else { echo base_url . 'assets/img/system/no-image.png'; }
+                            ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery">
+                            <img class="zoom img-fluid img-bordered-sm"
+                            src="
+                                <?php
+                                    if(isset($row['picture'])){
+                                        echo base_url . 'assets/img/users/' . $row['picture'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>
+                            " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
+                        </a>
                     </div>
                 </div>
 

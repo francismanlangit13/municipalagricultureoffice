@@ -103,7 +103,7 @@
 
                         <div class="col-md-6">
                             <label for="dp" class="required">Profile Picture</label>
-                            <input required type="file" name="userprofile" class="input-large btn btn-secondary" id="image1" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
+                            <input required type="file" name="image" class="input-large btn btn-secondary" id="image1" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
                         </div>
 
                         <div class="col-md-6">

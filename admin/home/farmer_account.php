@@ -67,7 +67,24 @@
                         <td><?= $number++ ?></td>
                         <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?> <?= $row['suffix']; ?></td>
                         <td><?= $row['gender']; ?></td>
-                        <td><?php echo '<img class="zoom img-fluid img-bordered-sm" src ="data:image;base64,'.base64_encode($row['picture']).'" alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">'; ?></td>
+                        <td>
+                            <a href="
+                                <?php
+                                    if(isset($row['picture'])){
+                                        echo base_url . 'assets/img/users/' . $row['picture'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['picture'])){
+                                            echo base_url . 'assets/img/users/' . $row['picture'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
+                            </a>
+                        </td>
+
                         <td><?= $row['email']; ?></td>
                         <td><?= $row['phone']; ?></td>
                         <td> 

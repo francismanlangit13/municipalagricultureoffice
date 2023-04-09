@@ -29,6 +29,7 @@
                 </div>
                 <div class="card-body"> 
                     <div class="row">
+                        <input type="text" name="user_id" value="<?=$user['user_id'];?>" hidden>
                         <div class="col-md-12 mb-3">
                             <label for="" class="required">Reference Number</label>
                             <input required placeholder="Enter Reference Number" type="text" name="reference_number" value="<?=$user['reference_number'];?>" pattern="\d*" minlength="15" maxlength="15" class="form-control">
@@ -224,7 +225,7 @@
                         <label for="" class="required">Member of any <strong>Farmers Association/Cooperative</strong>?</label>
                         <br>
                         <input required class="ml-2" type="radio" name="fac" value="Yes" <?php if($user['farmersassoc']=="Yes") {?> <?php echo "checked";?> <?php }?>> Yes
-                        <input required class="ml-2"  type="radio" name="fac" value="No" <?php if($user['farmersassoc']=="Yes") {?> <?php echo "checked";?> <?php }?>> No
+                        <input required class="ml-2"  type="radio" name="fac" value="No" <?php if($user['farmersassoc']=="No") {?> <?php echo "checked";?> <?php }?>> No
                         </div>
 
                         
@@ -377,7 +378,7 @@
             <br>
                 <div class="text-right">
                     <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                    <button type="submit" name="add_farmer" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                    <button type="submit" name="update_farmer" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
                 </div>
             <br>
         </div>

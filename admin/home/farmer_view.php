@@ -313,13 +313,21 @@
             <div class="col-md-5 text-center">
                 <br>
                 <h5>Current Picture</h5>
-                <img class="mt-2" id="frame"
+                <a href="
                     <?php
                         if(isset($user['picture'])){
-                            echo 'src ="data:image;base64,'.base64_encode($user['picture']).'"';
-                        } else { echo 'src ="../assets/img/no-image.png"'; }
-                    ?>
-                alt="Profile Picture" width="240px" height="180px"/>
+                            echo base_url . 'assets/img/users/' . $user['picture'];
+                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery">
+                    <img class="zoom img-fluid img-bordered-sm"
+                    src="
+                        <?php
+                            if(isset($user['picture'])){
+                                echo base_url . 'assets/img/users/' . $user['picture'];
+                            } else { echo base_url . 'assets/img/system/no-image.png'; }
+                        ?>
+                    " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
+                </a>
             </div>
             <br>
         </div>

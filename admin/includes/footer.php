@@ -46,6 +46,10 @@
     <!-- SCRIPT FOR SWEET ALERT -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <!-- Image viewer slider -->
+    <script src="<?php echo base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="<?php echo base_url ?>assets/js/main.js"></script>
+
   
 
 
