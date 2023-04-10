@@ -73,7 +73,7 @@
                                     if(isset($row['picture'])){
                                         echo base_url . 'assets/img/users/' . $row['picture'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php

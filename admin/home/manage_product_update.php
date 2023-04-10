@@ -16,21 +16,21 @@
                     <?php
                         if(isset($_GET['id'])){
                             $id = $_GET['id'];
-                            $users = "SELECT * FROM product WHERE product_id='$id' ";
-                            $users_run = mysqli_query($con, $users);
-                            if(mysqli_num_rows($users_run) > 0){
-                                foreach($users_run as $user){
+                            $sql = "SELECT * FROM product WHERE product_id='$id' ";
+                            $sql_run = mysqli_query($con, $sql);
+                            if(mysqli_num_rows($sql_run) > 0){
+                                foreach($sql_run as $row){
                     ?>
-                    <input type="hidden" name="product_id" value="<?=$user['product_id'];?>">
+                    <input type="hidden" name="product_id" value="<?=$row['product_id'];?>">
                     <div class="row"> 
                         <div class="col-md-6 mb-3">
                             <label for="" class="required">Name</label>
-                            <input required type="text" name="name"  value="<?= $user['product_name']; ?>" class="form-control">
+                            <input required type="text" name="name"  value="<?= $row['product_name']; ?>" class="form-control">
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="" class="required">Quantity</label>
-                            <input required type="text" name="quantity"  value="<?= $user['product_quantity']; ?>" class="form-control">
+                            <input required type="text" name="quantity"  value="<?= $row['product_quantity']; ?>" class="form-control">
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -60,22 +60,31 @@
                         
                         <div class="col-md-6 mb-3">
                             <label for="" class="required">Expiration Date</label>
-                            <input type="date" name="exp_date" value="<?= $user['exp_date']; ?>" class="form-control">
+                            <input type="date" name="exp_date" value="<?= $row['exp_date']; ?>" class="form-control">
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="image" class="required">Product Image</label>
+                            <label for="image">Product Image</label>
                             <br>
-                            <input required type="file" name="product_image" id="image1" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
+                            <input type="file" name="image" id="image1" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
+                            <input type="text" name="oldimage" value="<?= $row['product_image']; ?>" hidden>
                             <div class="text-center">
                                 <br>
-                                <img class="mt-2" id="frame1"
+                                <a href="
+                                    <?php
+                                        if(isset($row['product_image'])){
+                                            echo base_url . 'assets/img/products/' . $row['product_image'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
                                         <?php
-                                            if(isset($user['product_image'])){
-                                                echo 'src ="data:image;base64,'.base64_encode($user['product_image']).'"';
-                                            } else { echo 'src ="'.base_url.'assets/img/system/no-image.png"'; }
+                                            if(isset($row['product_image'])){
+                                                echo base_url . 'assets/img/products/' . $row['product_image'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; }
                                         ?>
-                                    alt="Profile Picture" width="240px" height="180px"/>
+                                    " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
+                                </a>
                                 <br>
                             </div>
                         </div>
@@ -84,8 +93,8 @@
                             <label for="" class="required"><strong>Status</strong></label>
                             <select name="status" required class="form-control">
                                 <option value="" selected disabled>Status</option>
-                                <option value="Available" <?= $user['product_status'] == 'Available' ? 'selected' :'' ?> >Available</option>
-                                <option value="Not Available" <?= $user['product_status'] == 'Not Available' ? 'selected' :'' ?> >Not Available</option>
+                                <option value="Available" <?= $row['product_status'] == 'Available' ? 'selected' :'' ?> >Available</option>
+                                <option value="Not Available" <?= $row['product_status'] == 'Not Available' ? 'selected' :'' ?> >Not Available</option>
                             </select>
                         </div>
         

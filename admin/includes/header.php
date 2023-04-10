@@ -38,9 +38,16 @@
     <!-- Image slider -->
     <link href="<?php echo base_url ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
+    <!-- Loading CSS -->
+    <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
+    <!-- Loading Screen -->
+    <div id="loading">
+        <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />
+    </div>
 <?php include('sidebar.php');?>
 
 <?php include('nav-top.php');?>

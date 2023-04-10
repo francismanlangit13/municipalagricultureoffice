@@ -16,20 +16,20 @@
                     <?php
                         if(isset($_GET['id'])){
                             $id = $_GET['id'];
-                            $users = "SELECT * FROM product WHERE product_id='$id' ";
-                            $users_run = mysqli_query($con, $users);
-                            if(mysqli_num_rows($users_run) > 0){
-                                foreach($users_run as $user){
+                            $sql = "SELECT * FROM product WHERE product_id='$id' ";
+                            $sql_run = mysqli_query($con, $sql);
+                            if(mysqli_num_rows($sql_run) > 0){
+                                foreach($sql_run as $row){
                     ?>
                     <div class="row"> 
                         <div class="col-md-6 mb-3">
                             <label for="">Name</label>
-                            <input disabled type="text" value="<?= $user['product_name']; ?>" class="form-control">
+                            <input disabled type="text" value="<?= $row['product_name']; ?>" class="form-control">
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="">Quantity</label>
-                            <input disabled type="text" value="<?= $user['product_quantity']; ?>" class="form-control">
+                            <input disabled type="text" value="<?= $row['product_quantity']; ?>" class="form-control">
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -59,20 +59,28 @@
                         
                         <div class="col-md-6 mb-3">
                             <label for="">Expiration Date</label>
-                            <input disabled type="text" value="<?= $user['exp_date']; ?>" class="form-control">
+                            <input disabled type="text" value="<?= $row['exp_date']; ?>" class="form-control">
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="image">Product Image</label>
                             <div class="text-center">
                                 <br>
-                                <img class="mt-2" id="frame1"
+                                <a href="
+                                    <?php
+                                        if(isset($row['product_image'])){
+                                            echo base_url . 'assets/img/products/' . $row['product_image'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
                                         <?php
-                                            if(isset($user['product_image'])){
-                                                echo 'src ="data:image;base64,'.base64_encode($user['product_image']).'"';
-                                            } else { echo 'src ="'.base_url.'assets/img/system/no-image.png"'; }
+                                            if(isset($row['product_image'])){
+                                                echo base_url . 'assets/img/products/' . $row['product_image'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; }
                                         ?>
-                                    alt="Profile Picture" width="240px" height="180px"/>
+                                    " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
+                                </a>
                                 <br>
                             </div>
                         </div>
@@ -81,8 +89,8 @@
                             <label for=""><strong>Status</strong></label>
                             <select disabled class="form-control form-select">
                                 <option value="" selected disabled>Status</option>
-                                <option value="Available" <?= $user['product_status'] == 'Available' ? 'selected' :'' ?> >Available</option>
-                                <option value="Not Available" <?= $user['product_status'] == 'Not Available' ? 'selected' :'' ?> >Not Available</option>
+                                <option value="Available" <?= $row['product_status'] == 'Available' ? 'selected' :'' ?> >Available</option>
+                                <option value="Not Available" <?= $row['product_status'] == 'Not Available' ? 'selected' :'' ?> >Not Available</option>
                             </select>
                         </div>
         

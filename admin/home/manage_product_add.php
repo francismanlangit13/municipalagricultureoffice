@@ -61,7 +61,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="image" class="required">Product Image</label>
                             <br>
-                            <input required type="file" name="product_image" id="image1" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
+                            <input required type="file" name="image" id="image1" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
                             <div class="text-center">
                                 <br>
                                 <img class="mt-2" id="frame1" src ="<?php echo base_url ?>assets/img/system/no-image.png" alt="Profile Picture" width="240px" height="180px"/>

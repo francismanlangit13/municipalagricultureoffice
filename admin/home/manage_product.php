@@ -56,7 +56,23 @@
                     <tr>
                         <td><?= $number++ ?></td>
                         <td><?= $row['product_name']; ?></td>
-                        <td><?php echo '<img class="zoom img-fluid img-bordered-sm" src ="data:image;base64,'.base64_encode($row['product_image']).'" alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">'; ?></td>
+                        <td>
+                            <a href="
+                                <?php
+                                    if(isset($row['product_image'])){
+                                        echo base_url . 'assets/img/products/' . $row['product_image'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name'];?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['product_image'])){
+                                            echo base_url . 'assets/img/products/' . $row['product_image'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
+                            </a>
+                        </td>
                         <td><?= $row['product_quantity']; ?></td>
                         <td><?= $row['category_name']; ?></td>
                         <td><?= $row['product_status']; ?></td>
@@ -76,7 +92,8 @@
                                     </a>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <form action="code.php" method="POST" style="zoom:105%;">  
+                                    <form action="code.php" method="POST" style="zoom:105%;">
+                                    <input type="text" name="oldimage" value="<?= $row['product_image']; ?>" hidden>
                                         <button type="submit" name="del_product" value="<?=$row['product_id'];?>" class="btn btn-danger btn-icon-split" href="#">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-trash"></i>

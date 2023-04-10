@@ -14,21 +14,10 @@
         <?php
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
-                $sql = "SELECT
-                *
-                FROM
-                request
-                INNER JOIN
-                user
-                ON 
-                request.id = user.user_id
-                INNER JOIN
-                product
-                ON 
-                request.product_id = product.product_id
-                WHERE
-                request.request_id = '$id'";
-                
+                $sql = "SELECT *
+                FROM report
+                INNER JOIN user
+                ON report.user_id = user.user_id";
                 $sql_run = mysqli_query($con, $sql);
                 if(mysqli_num_rows($sql_run) > 0){
                     foreach($sql_run as $row){
@@ -48,8 +37,7 @@
                 </div>
                 <div class="card-body">
                     
-                    <input hidden name="user_id" value="<?=$row['request_id'];?>">
-                    <input hidden name="product_id" value="<?=$row['product_id'];?>">
+                    <input hidden name="report_id" value="<?=$row['report_id'];?>">
                     <input hidden name="farmer_id" value="<?=$row['id'];?>">
                     <div class="row"> 
                         <div class="col-md-8 mb-3">
@@ -131,13 +119,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Request information</h5>
+                    <h5>Report information</h5>
                 </div>
                 <div class="card-body">
                     <div class="row"> 
-                        <div class="col-md-6 mb-3">
-                            <label for="">Request Product</label>
-                            <input class="form-control" type="text" value="<?= $row['product_name']; ?>" readonly>
+                        <div class="col-md-12 mb-3">
+                            <label for="">Report Message</label>
+                            <textarea class="form-control" type="text" rows="5" readonly><?= $row['message']; ?></textarea>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -160,17 +148,6 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="">Request Quantity</label>
-                            <input class="form-control"  name="quantity"  value="<?=$row['request_quantity']; ?>" readonly>
-                        </div>
-
-
-                        <div class="col-md-12 mb-3">
-                            <label for="Description">Description</label>
-                            <textarea placeholder="Enter Description" class="form-control" readonly rows="5"> <?= $row['description']; ?></textarea>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
                             <label for="">Request Date</label>
                             <input type="datetime" class="form-control" type="text" value="<?= $row['request_date']; ?>" readonly>
                         </div>
@@ -179,9 +156,9 @@
                             <label for="" class="required">Status</label>
                             <select required class="form-control" name="status" onchange="showTextarea()">
                                 <option value="" selected disabled>Select Status</option>
-                                <option value="1" <?= isset($row['status_id']) && $row['status_id'] == '1' ? 'hidden' : '' ?>>Pending</option>
-                                <option value="2" <?= isset($row['status_id']) && $row['status_id'] == '2' ? 'hidden' : '' ?>>Approved</option>
-                                <option value="3" <?= isset($row['status_id']) && $row['status_id'] == '3' ? 'hidden' : '' ?>>Deny</option>
+                                <option value="1" <?= isset($row['status']) && $row['status'] == '1' ? 'hidden' : '' ?>>Pending</option>
+                                <option value="2" <?= isset($row['status']) && $row['status'] == '2' ? 'hidden' : '' ?>>Approved</option>
+                                <option value="3" <?= isset($row['status']) && $row['status'] == '3' ? 'hidden' : '' ?>>Deny</option>
                             </select>
                         </div>
                         <div class="col-md-12 mb-3" id="textarea-container" style="display:none">
@@ -194,7 +171,7 @@
             <br>
                 <div class="text-right">
                 <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                    <button type="submit" name="request_save" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                    <button type="submit" name="approve_request" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
                 </div>
             <br>
         </div>
@@ -210,7 +187,7 @@
 <?php include('../includes/footer.php');?>
 <script>
     function showTextarea() {
-        var status = document.getElementsByName('status')[0].value;
+        var status = document.getElementsByName('request_status')[0].value;
         var container = document.getElementById('textarea-container');
         var textarea = container.getElementsByTagName('textarea')[0];
         if (status == 3) {

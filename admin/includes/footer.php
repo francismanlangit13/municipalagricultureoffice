@@ -50,34 +50,13 @@
     <script src="<?php echo base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="<?php echo base_url ?>assets/js/main.js"></script>
 
-  
+    <!-- Loading JS -->
+    <script src="<?php echo base_url ?>assets/js/loader.js"></script>
 
 
 <?php
-    if(isset($_SESSION['status']) && $_SESSION['status_code'] !='' ){
+    include ('message.php');
 ?>
-<script>
-    swal({
-    title: "<?php echo $_SESSION['status']; ?>",
-    icon: "<?php echo $_SESSION['status_code']; ?>",
-    timer: 5000,
-    button: "Close",
-    }).then(
-    function () {},
-    // handling the promise rejection
-    function (dismiss) {
-        if (dismiss === 'timer') {
-        //console.log('I was closed by the timer')
-        }
-    }
-    )
-</script>
-<?php
-    unset($_SESSION['status']);
-    unset($_SESSION['status_code']);
-    }
-?>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>

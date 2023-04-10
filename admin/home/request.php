@@ -40,8 +40,8 @@
                         product.product_name, 
                         request.request_quantity, 
                         request.request_date, 
-                        request_status.request_name, 
-                        request.request_status
+                        status.status_name, 
+                        request.status_id
                         FROM
                         request
                         INNER JOIN
@@ -53,11 +53,11 @@
                         ON 
                         request.product_id = product.product_id
                         INNER JOIN
-                        request_status
+                        status
                         ON 
-                        request.request_status = request_status.request_id
+                        request.status_id = status.status_id
                         WHERE
-                        request.request_status = 1";
+                        request.status_id = 1";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
                             $number = 1; // Define a variable to keep track of the iterations
@@ -70,7 +70,7 @@
                         <td><?= $row['barangay']; ?></td>
                         <td><?= $row['product_name']; ?></td>
                         <td><?= $row['request_quantity']; ?></td>
-                        <td><?= $row['request_name']; ?></td>
+                        <td><?= $row['status_name']; ?></td>
                         <!-- <td class="text-center">
 
                             <div class="dropdown show">
