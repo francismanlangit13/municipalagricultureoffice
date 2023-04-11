@@ -1,124 +1,140 @@
-<?php include('authentication.php'); ?>
-<?php include('includes/header.php');?>
-
-
-        <ol class="breadcrumb mb-4">    
-            <li class="breadcrumb-item">Dashboard</li>
-            <li class="breadcrumb-item">Account</li>
-            <li class="breadcrumb-item">Edit Account</li>
-        </ol>
-        <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                    <h5>My Account Information</h5>
-                    </div>
-                    <div class="card-body">
-                    <h2 hidden><?php echo $_SESSION['auth_user']['user_id']; ?></h2>
-
-                    <?php
-                 
-$user_id = $_SESSION['auth_user']['user_id'];
-$users = "SELECT * FROM `user` WHERE user_id=$user_id";
-$users_run = mysqli_query($con, $users);
-        ?>
-        <?php
-        if(mysqli_num_rows($users_run) > 0)
-        {
-            foreach($users_run as $user)
-            {
-         ?>
-
-            <form action="code.php" method="POST" enctype="multipart/form-data">  
-                    <div class="row"> 
-                    <input type="hidden" name="user_id" value="<?=$user['user_id'];?>">
-                    <div class="col-md-4 mb-3">
-                                    <label for="" class="required">First Name</label>
-                                    <input placeholder="Enter First Name" name="fname" value="<?=$user['fname'];?>" class="form-control" required>
-                                </div> 
-                            
-
-                                <div class="col-md-4 mb-3">
-                                    <label for="">Middle Name</label>
-                                    <input placeholder="Enter Middle Name" name="mname" value="<?=$user['mname'];?>" class="form-control">
-                                </div>
-
-
-                                <div class="col-md-4 mb-3">
-                                    <label for="" class="required">Last Name</label>
-                                    <input placeholder="Enter Last Name" name="lname" value="<?=$user['lname'];?>" class="form-control" required>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label for="" class="required">Email</label> 
-                                    <input placeholder="Enter Email Address" type="email" name="email" value="<?=$user['email'];?>" class="form-control" required>
-                                </div>
-
-
-                                
-                                <div class="col-md-6 mb-3">
-                                    <label for="" class="required">Password</label> 
-                                    <input placeholder="Enter Password" type="password" name="password" value="<?=$user['password'];?>" class="form-control" required>
-                                    <span><i>leave this if you dont wanna change password.</i></span>
-                                </div>
-
-                                
-                                <div class="col-md-6 mb-3">
-                                  
-                                </div>
-
-                                <div class="col-md-12 mb-3 text-center">                                   
-                                <hr> <h5>DOCUMENT</h5>  <hr>                                
-                                </div>
-                                
-                                <div class="col-md-6 text-center">
-                                <label for="dp">Current Profile:</label>
-                                <br>
-                                <?php 
-                                        echo '<img class="img-fluid img-bordered-sm" src = "data:image;base64,'.base64_encode($user['picture']).'" 
-                                        alt="image" style="height: 200px; max-width: 310px; object-fit: cover;">';
-                                        ?>
-                                </div>
-                               
-                                <div class="col-md-6">
-                                <label for="">Profile:</label>
-                                <br>
-                                <input type="file" name="userprofile"  accept=".jpg, .jpeg, .png">
-                                </div>
-
-                                </div>
-                                <div class="text-right">
-                                <a href="javascript:history.back()" class="btn btn-danger">Back</a>
-
-                                <button type="submit" name="update_account" class="btn btn-primary">Update</button>
-                                </div>
-                               
-
-                         
-                    </div>
-
-                    </form>
-
 <?php
-    }
-}
-else
-{
-    ?>
-    <h4>No Record Found!</h4>
-    <?php
-}
-
+    include('../includes/header.php');
 ?>
+<ol class="breadcrumb mb-4">    
+    <li class="breadcrumb-item">Dashboard</li>
+    <li class="breadcrumb-item">Account</li>
+    <li class="breadcrumb-item">Update Account</li>
+</ol>
+<form action="code.php" method="POST" enctype="multipart/form-data"> 
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>My Account Information</h5>
+                </div>
+                <div class="card-body">
+                    <h2 hidden><?php echo $_SESSION['auth_user']['user_id']; ?></h2>
+                    <?php
+                        $user_id = $_SESSION['auth_user']['user_id'];
+                        $sql = "SELECT * FROM `user` WHERE user_id=$user_id";
+                        $sql_run = mysqli_query($con, $sql);
+                        if(mysqli_num_rows($sql_run) > 0){
+                        foreach($sql_run as $row){
+                    ?>
+                    <div class="row"> 
+                        <input type="hidden" name="user_id" value="<?=$row['user_id'];?>">
+                        <div class="col-md-4 mb-3">
+                            <label for="" class="required">First Name</label>
+                            <input placeholder="Enter First Name" name="fname" value="<?=$row['fname'];?>" class="form-control" required>
+                        </div> 
+                        <div class="col-md-4 mb-3">
+                            <label for="">Middle Name</label>
+                            <input placeholder="Enter Middle Name" name="mname" value="<?=$row['mname'];?>" class="form-control">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="" class="required">Last Name</label>
+                            <input placeholder="Enter Last Name" name="lname" value="<?=$row['lname'];?>" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="" class="required">Email</label> 
+                            <input placeholder="Enter Email Address" type="email" name="email" value="<?=$row['email'];?>" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="password">New Password</label>
+                            <input type="password" name="password" class="form-control" minlength="8" placeholder="New Password" id="password">
+                            <a href="javascript:void(0)"  style="position: relative; top: -2rem; left: 89%; cursor: pointer; color: lightgray;">
+                                <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword">
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="password1">Confirm Password</label>
+                            <input type="password" name="confirm_password" class="form-control" minlength="8" placeholder="Confirm Password" id="password1">
+                            <a href="javascript:void(0)"  style="position: relative; top: -2rem; left: 89%; cursor: pointer; color: lightgray;">
+                                <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword1">
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-6 text-center">
+                            <label for="dp">Current Profile:</label>
+                            <br>
+                            <a href="
+                                <?php
+                                    if(isset($row['picture'])){
+                                        echo base_url . 'assets/img/users/' . $row['picture'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type'] == 1){ echo"ADMIN: ";} else{ echo"STAFF: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['picture'])){
+                                            echo base_url . 'assets/img/users/' . $row['picture'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="image">Profile</label>
+                            <br>
+                            <input type="file" name="image" id="image1" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
+                            <input type="text" name="oldimage" value="<?= $row['picture']; ?>" hidden>
+                            <div class="text-center">
+                                <br>
+                                    <img class="zoom img-fluid img-bordered-sm" id="frame1"
+                                    src="
+                                        <?php
+                                            if(isset($row['product_image'])){
+                                                echo base_url . 'assets/img/users/' . $row['product_image'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                        ?>
+                                    " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
+                                <br>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-right">
+                        <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                        <button type="submit" name="update_account" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
                     </div>
                 </div>
+                <?php
+                        }
+                    }
+                    else{
+                ?>
+                    <h4>No Record Found!</h4>
+                <?php } ?>
             </div>
         </div>
+    </div>
+</form>
 
+<?php include('../includes/footer.php');?>
 
+<script>
+  // Get references to the password fields and label
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('password1');
+  const confirmLabel = document.querySelector('label[for="password1"]');
 
+  // Function to check if passwords match and update required class
+  function checkPasswords() {
+    if (passwordInput.value) {
+      confirmLabel.classList.add('required');
+    } else {
+      confirmLabel.classList.remove('required');
+    }
 
+    if (passwordInput.value !== confirmPasswordInput.value) {
+      confirmPasswordInput.setCustomValidity("Passwords do not match");
+    } else {
+      confirmPasswordInput.setCustomValidity("");
+    }
+  }
 
-
-<?php include('includes/footer.php');?>
+  // Add event listeners to the password fields
+  passwordInput.addEventListener('input', checkPasswords);
+  confirmPasswordInput.addEventListener('input', checkPasswords);
+</script>

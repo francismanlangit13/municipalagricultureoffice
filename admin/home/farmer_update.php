@@ -200,8 +200,8 @@
                         <div class="col-md-4 mb-3">
                         <label for="" class="required">Member of an <strong>Indigenous Group</strong>?</label>
                         <br>
-                        <input required class="ml-2" type="radio" name="ig" value="Yes" <?php if($user['ig']=="Yes") {?> <?php echo "checked";?> <?php }?>> Yes
-                        <input required class="ml-2" type="radio" name="ig" value="No" <?php if($user['ig']=="No") {?> <?php echo "checked";?> <?php }?>> No
+                        <input required class="ml-2" type="radio" name="ig" id="igyes" value="Yes"> Yes
+                        <input required class="ml-2" type="radio" name="ig" id="igno" value="No"> No
                         </div>
 
                         <div class="col-md-8 mb-3">
@@ -212,8 +212,8 @@
                         <div class="col-md-4 mb-3">
                         <label for="" class="required">With <strong>Government ID</strong>?</label>
                         <br>
-                        <input required class="ml-2" type="radio" name="govid" value="Yes" <?php if($user['govid']=="Yes") {?> <?php echo "checked";?> <?php }?>> Yes
-                        <input required class="ml-2" type="radio" name="govid" value="No" <?php if($user['govid']=="No") {?> <?php echo "checked";?> <?php }?>> No
+                        <input required class="ml-2" type="radio" name="govid" id="govidyes" value="Yes"> Yes
+                        <input required class="ml-2" type="radio" name="govid" id="govidno" value="No"> No
                         </div>
 
                         <div class="col-md-8 mb-3">
@@ -224,8 +224,8 @@
                         <div class="col-md-4 mb-3">
                         <label for="" class="required">Member of any <strong>Farmers Association/Cooperative</strong>?</label>
                         <br>
-                        <input required class="ml-2" type="radio" name="fac" value="Yes" <?php if($user['farmersassoc']=="Yes") {?> <?php echo "checked";?> <?php }?>> Yes
-                        <input required class="ml-2"  type="radio" name="fac" value="No" <?php if($user['farmersassoc']=="No") {?> <?php echo "checked";?> <?php }?>> No
+                        <input required class="ml-2" type="radio" name="fac" id="facyes" value="Yes"> Yes
+                        <input required class="ml-2"  type="radio" name="fac" id="facno" value="No"> No
                         </div>
 
                         

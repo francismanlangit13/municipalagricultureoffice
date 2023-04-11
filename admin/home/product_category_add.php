@@ -18,11 +18,11 @@
                     <div class="row"> 
                         <div class="col-md-12 mb-3">
                             <label for="">Name</label>
-                            <input required placeholder="Enter Category Name" name="editcategory_name" class="form-control">
+                            <input required placeholder="Enter Category Name" name="name" class="form-control">
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="Description">Description</label>
-                            <textarea required placeholder="Enter Description" name="editdescription" class="form-control" rows="5"></textarea>
+                            <textarea required placeholder="Enter Description" name="description" class="form-control" rows="5"></textarea>
                         </div>
                     </div>
                 </div>

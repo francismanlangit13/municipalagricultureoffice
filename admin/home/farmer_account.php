@@ -12,7 +12,7 @@
             <span class="icon text-white-50">
                 <i class="fas fa-user"></i>
             </span>
-            <span class="text">Add User Account</span>
+            <span class="text">Add Farmer Account</span>
         </a>
     </div>
     <div class="card-body">

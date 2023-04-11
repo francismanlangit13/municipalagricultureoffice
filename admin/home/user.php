@@ -103,7 +103,8 @@
                                     </a>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <form action="code.php" method="POST" style="zoom:105%;">  
+                                    <form action="code.php" method="POST" style="zoom:105%;">
+                                        <input type="text" name="oldimage" value="<?= $row['picture']; ?>" hidden>
                                         <button type="submit" name="user_delete" value="<?=$row['user_id']; ?>" class="btn btn-danger btn-icon-split" href="#">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-trash"></i>

@@ -53,6 +53,9 @@
     <!-- Loading JS -->
     <script src="<?php echo base_url ?>assets/js/loader.js"></script>
 
+    <!-- Show PASSWORD JS -->
+    <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
+
 
 <?php
     include ('message.php');
@@ -157,6 +160,27 @@
         });
     });
     $(document).ready(function(){
+        if("<?php echo $user['ig']; ?>" == "Yes") {
+            $('#igyes').trigger('click');
+        }
+        if("<?php echo $user['ig']; ?>" == "No") {
+            $('#igno').trigger('click');
+        }
+        if("<?php echo $user['govid']; ?>" == "Yes") {
+            $('#govidyes').trigger('click');
+        }
+        if("<?php echo $user['govid']; ?>" == "No") {
+            $('#govidno').trigger('click');
+        }
+        if("<?php echo $user['farmersassoc']; ?>" == "Yes") {
+            $('#facyes').trigger('click');
+        }
+        if("<?php echo $user['farmersassoc']; ?>" == "No") {
+            $('#facno').trigger('click');
+        }
+        if("<?php echo $user['livestock']; ?>" == "Livestock") {
+            $('#livestock').trigger('click');
+        }
         if("<?php echo $user['livestock']; ?>" == "Livestock") {
             $('#livestock').trigger('click');
         }

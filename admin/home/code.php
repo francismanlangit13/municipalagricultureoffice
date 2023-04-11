@@ -45,7 +45,9 @@
 
   if(isset($_POST['user_delete'])){
     $user_id= $_POST['user_delete'];
-
+    $OLDfileImage = $_POST['oldimage'];
+    $uploadDir = '../../assets/img/users/';
+    unlink($uploadDir . $OLDfileImage);
     $query = "DELETE FROM `user` WHERE user_id = $user_id ";
     $query_run = mysqli_query($con, $query);
 
@@ -863,23 +865,82 @@
     $mname= $_POST['mname'];
     $lname= $_POST['lname'];
     $email= $_POST['email'];
-    $password= $_POST['password'];
-    $picture = addslashes(file_get_contents($_FILES["userprofile"]['tmp_name']));
+    $new_password= $_POST['password'];
+    $password = md5($new_password);
+    if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+      $fileImage = $_FILES['image'];
+      $OLDfileImage = $_POST['oldimage'];
+      $customFileName = 'user_' . date('Ymd_His'); // replace with your desired file name
+      $ext = pathinfo($fileImage['name'], PATHINFO_EXTENSION); // get the file extension
+      $fileName = $customFileName . '.' . $ext; // append the extension to the custom file name
+      $fileTmpname = $fileImage['tmp_name'];
+      $fileSize = $fileImage['size'];
+      $fileError = $fileImage['error'];
+      $fileExt = explode('.',$fileName);
+      $fileActExt = strtolower(end($fileExt));
+      $allowed = array('jpg','jpeg','png');
+      if(in_array($fileActExt, $allowed)){
+        if($fileError === 0){
+          if($fileSize < 10485760){
+            $uploadDir = '../../assets/img/users/';
+            $targetFile = $uploadDir . $fileName;
+            unlink($uploadDir . $OLDfileImage);
 
-    $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email',`password`='$password',`picture`='$picture' WHERE `user_id`='$user_id'";
-    $query_run = mysqli_query($con, $query);
+            if (move_uploaded_file($fileTmpname, $targetFile)) {
+              $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email',`password`='$password',`picture`='$fileName' WHERE `user_id`='$user_id'";
+              $query_run = mysqli_query($con, $query);
     
-    if($query_run){
-      $_SESSION['status'] = "Account Updated";
-      $_SESSION['status_code'] = "success";
-      header('Location: index.php');
-      header("Location: " . base_url . "admin/home");
-      exit(0);
+              if($query_run){
+                $_SESSION['status'] = "Account Updated";
+                $_SESSION['status_code'] = "success";
+                header('Location: index.php');
+                header("Location: " . base_url . "admin/home/settings.php");
+                exit(0);
+              }
+              else{
+                $_SESSION['status_code'] = "error";
+                header("Location: " . base_url . "admin/home/settings.php");
+                exit(0);
+              }
+            }
+          }
+          else{
+            $_SESSION['status']="File is too large file must be 10mb";
+            $_SESSION['status_code'] = "error"; 
+            header("Location: " . base_url . "admin/home/settings.php");
+          }
+        }
+        else{
+          $_SESSION['status']="File Error";
+          $_SESSION['status_code'] = "error"; 
+          header("Location: " . base_url . "admin/home/settings.php");
+        }
+      }
+      else{
+        $_SESSION['status']="Invalid file type";
+        $_SESSION['status_code'] = "error"; 
+        header("Location: " . base_url . "admin/home/settings.php");
+      }
     }
     else{
-      $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home");
-      exit(0);
+      $query = "UPDATE `product` SET `product_name`='$name',`product_quantity`='$quantity',`product_category_id`='$category',`product_status`='$status' WHERE `product_id`='$user_id'";
+      $query_run = mysqli_query($con, $query);
+
+      $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email',`password`='$password' WHERE `user_id`='$user_id'";
+      $query_run = mysqli_query($con, $query);
+
+      if($query_run){
+        $_SESSION['status'] = "Account Updated";
+        $_SESSION['status_code'] = "success";
+        header('Location: index.php');
+        header("Location: " . base_url . "admin/home/settings.php");
+        exit(0);
+      }
+      else{
+        $_SESSION['status_code'] = "error";
+        header("Location: " . base_url . "admin/home/settings.php");
+        exit(0);
+      }
     }
   }
 

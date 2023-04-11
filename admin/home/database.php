@@ -1,23 +1,15 @@
-<?php include('authentication.php');?>
-<?php include('includes/header.php');?>
-
-
+<?php
+    include('../includes/header.php');
+?>
 
 <ol class="breadcrumb mb-4">    
   <li class="breadcrumb-item">Dashboard</li>
   <li class="breadcrumb-item">Database</li>
 </ol>
 
-
 <div class="container">
     <h2><center>Database</center></h2>
-
-    <a class="mt-2" href="data_export.php" style="font-size: 30px;">Backup</a> <br>
-
-
 </div>
-
-
 
 <?php
 $conn = mysqli_connect("localhost", "root", "", "maojimenez");
@@ -38,8 +30,7 @@ if (! empty($_FILES)) {
     }
 }
 
-function restoreMysqlDB($filePath, $conn)
-{
+function restoreMysqlDB($filePath, $conn){
     $sql = '';
     $error = '';
 
@@ -100,75 +91,70 @@ function restoreMysqlDB($filePath, $conn)
 ?>
 <head>
 <style>
+    #frm-restore {
+        background: #aee5ef;
+        padding: 20px;
+        border-radius: 2px;
+        border: #a3d7e0 1px solid;
+    }
 
-#frm-restore {
-	background: #aee5ef;
-	padding: 20px;
-	border-radius: 2px;
-	border: #a3d7e0 1px solid;
-}
+    .form-row {
+        margin-bottom: 20px;
+    }
 
-.form-row {
-	margin-bottom: 20px;
-}
+    .input-file {
+        background: #FFF;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 2px;
+    }
 
-.input-file {
-	background: #FFF;
-	padding: 10px;
-	margin-top: 5px;
-	border-radius: 2px;
-}
+    .btn-action {
+        background: #333;
+        border: 0;
+        padding: 10px 40px;
+        color: #FFF;
+        border-radius: 2px;
+    }
 
-.btn-action {
-	background: #333;
-	border: 0;
-	padding: 10px 40px;
-	color: #FFF;
-	border-radius: 2px;
-}
+    .response {
+        padding: 10px;
+        margin-bottom: 20px;
+    border-radius: 2px;
+    }
 
-.response {
-	padding: 10px;
-	margin-bottom: 20px;
-  border-radius: 2px;
-}
+    .errordb {
+        background: #fbd3d3;
+        font-size: 16px;
+        border: #efc7c7 1px solid;
+    }
 
-.errordb {
-    background: #fbd3d3;
-    font-size: 16px;
-    border: #efc7c7 1px solid;
-}
-
-.success {
-    background: #cdf3e6;
-    border: #bee2d6 1px solid;
-}
-</style>
+    .success {
+        background: #cdf3e6;
+        border: #bee2d6 1px solid;
+    }
+    </style>
 </head>
-<?php
-if (! empty($response)) {
-    ?>
-<div class="response <?php echo $response["type"]; ?>">
-<?php echo nl2br($response["message"]); ?>
-</div>
-<?php
-}
-?>
-    <form method="post" action="" enctype="multipart/form-data"
-        id="frm-restore">
+    <?php if (! empty($response)) { ?>
+    <div class="response <?php echo $response["type"]; ?>">
+        <?php echo nl2br($response["message"]); ?>
+    </div>
+    <?php } ?>
+    <form method="post" action="" enctype="multipart/form-data" id="frm-restore">
         <div class="form-row">
-            <div>Choose Backup File</div>
+            <div class="mr-2">Choose Backup File</div>
             <div>
-                <input type="file" name="backup_file" class="input-file" />
+                <input type="file" name="backup_file" class="form-control-file btn btn-secondary" required>
             </div>
         </div>
         <div>
-            <input type="submit" name="restore" value="Restore"
-                class="btn-action" />
+            <input type="submit" name="restore" value="Restore" class="btn-action" />
+            <br>
+            <form method="post" action="data_export.php">
+                <input type="button" value="Backup" class="btn-action" />
+            </form>
         </div>
     </form>
 </html>
-         
 
-
-<?php include('includes/footer.php');?>
+<?php include('../includes/footer.php'); ?>

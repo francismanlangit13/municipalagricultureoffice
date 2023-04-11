@@ -17,7 +17,7 @@
         <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
+            <li class="nav-item d-none dropdown no-arrow d-sm-none">
                 <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-search fa-fw"></i>
@@ -45,20 +45,33 @@
 
             <?php if(isset($_SESSION['auth_user']))  ?>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom:-3.4rem; margin-left:6.8rem;">
                 <?php
                     $userID = $_SESSION['auth_user'] ['user_id'];
-                    $query = "SELECT user.picture FROM user where user_id = $userID";
+                    $query = "SELECT * FROM user where user_id = $userID";
                     $query_run = mysqli_query($con, $query);
                     $user = mysqli_num_rows($query_run) > 0;
 
                     if($user){
                         while($row = mysqli_fetch_assoc($query_run)){
                 ?>
-                    <img id="cimg" class="img-fluid card-img-top" src="data:image;base64,<?php echo base64_encode($row['picture']) ?>"  alt="user-avatar">
+                    <a style="text-decoration:none" href="
+                        <?php
+                            if(isset($row['picture'])){
+                                echo base_url . 'assets/img/users/' . $row['picture'];
+                            } else { echo base_url . 'assets/img/system/no-image.png'; }
+                        ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type'] == 1){ echo"ADMIN: ";} else{ echo"STAFF: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
+                        <img id="cimg" class="img-fluid card-img-top" id="frame1"
+                        src="
+                            <?php
+                                if(isset($row['picture'])){
+                                    echo base_url . 'assets/img/users/' . $row['picture'];
+                                } else { echo base_url . 'assets/img/system/no-image.png'; }
+                            ?>
+                        " alt="image">
+                    </a>
                     <?php } } ?>
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['auth_user'] ['user_name'];  ?></span>
+                    <span class="mr-2 d-lg-inline text-gray-600 small"> <?= $_SESSION['auth_user'] ['user_name'];  ?></span>
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
