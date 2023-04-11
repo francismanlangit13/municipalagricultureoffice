@@ -1,6 +1,6 @@
  
  <!-- Content Wrapper -->
-  <div id="content-wrapper" class="d-flex flex-column">
+ <div id="content-wrapper" class="d-flex flex-column">
 
 <!-- Main Content -->
 <div id="content">
@@ -13,12 +13,11 @@
             <i class="fa fa-bars"></i>
         </button>
 
-      
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
+            <li class="nav-item d-none dropdown no-arrow d-sm-none">
                 <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-search fa-fw"></i>
@@ -46,21 +45,26 @@
 
             <?php if(isset($_SESSION['auth_user']))  ?>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:6.8rem;">
                 <?php
                     $userID = $_SESSION['auth_user'] ['user_id'];
-                    $query = "SELECT farmer.profile FROM farmer where user_id = $userID";
+                    $query = "SELECT * FROM user where user_id = $userID";
                     $query_run = mysqli_query($con, $query);
                     $user = mysqli_num_rows($query_run) > 0;
 
                     if($user){
                         while($row = mysqli_fetch_assoc($query_run)){
                 ?>
-                    <img id="cimg" class="img-fluid card-img-top" src="data:image;base64,<?php echo base64_encode($row['profile']) ?>"  alt="user-avatar">
+                    <img id="cimg" class="img-fluid card-img-top" id="frame1"
+                    src="
+                        <?php
+                            if(isset($row['picture'])){
+                                echo base_url . 'assets/img/users/' . $row['picture'];
+                            } else { echo base_url . 'assets/img/system/no-image.png'; }
+                        ?>
+                    " alt="image">
                     <?php } } ?>
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['auth_user'] ['user_name'];  ?></span>
-                 
+                    <span class="mr-2 d-lg-inline text-gray-600 small"> <?= $_SESSION['auth_user'] ['user_name'];  ?></span>
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -109,7 +113,7 @@
       display:block;
       margin-top: -10px;
     }
-      img#cimg{
+    img#cimg{
       text-align: center;
       height: 2.3rem;
       width: 2.3rem;

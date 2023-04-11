@@ -337,17 +337,7 @@
                             <label for="">Others, Please Specify:</label>
                             <input placeholder="" type="text" name="other_agri_youth_specify" class="form-control">
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-            <div class="card mt-1">
-                <div class="card-header">
-                    <h5>PART III: FARM DOCUMENT</h5>
-                </div>
-                <div class="card-body"> 
-                    <div class="row">
+                        
                         <div class="col-md-6 mb-3 ml-4">                             
                             <label for="profilepicture" class="required">Upload 2x2 Picture </label> <br>
                             <input type="file" class="input-large btn btn-secondary" name="image" id="image1" accept=".jpg, .jpeg, .png" value="" onchange="previewImage('frame1', 'image1')" required>

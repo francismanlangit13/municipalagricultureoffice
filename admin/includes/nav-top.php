@@ -45,7 +45,7 @@
 
             <?php if(isset($_SESSION['auth_user']))  ?>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom:-3.4rem; margin-left:6.8rem;">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:6.8rem;">
                 <?php
                     $userID = $_SESSION['auth_user'] ['user_id'];
                     $query = "SELECT * FROM user where user_id = $userID";
@@ -55,21 +55,14 @@
                     if($user){
                         while($row = mysqli_fetch_assoc($query_run)){
                 ?>
-                    <a style="text-decoration:none" href="
+                    <img id="cimg" class="img-fluid card-img-top" id="frame1"
+                    src="
                         <?php
                             if(isset($row['picture'])){
                                 echo base_url . 'assets/img/users/' . $row['picture'];
                             } else { echo base_url . 'assets/img/system/no-image.png'; }
-                        ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type'] == 1){ echo"ADMIN: ";} else{ echo"STAFF: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
-                        <img id="cimg" class="img-fluid card-img-top" id="frame1"
-                        src="
-                            <?php
-                                if(isset($row['picture'])){
-                                    echo base_url . 'assets/img/users/' . $row['picture'];
-                                } else { echo base_url . 'assets/img/system/no-image.png'; }
-                            ?>
-                        " alt="image">
-                    </a>
+                        ?>
+                    " alt="image">
                     <?php } } ?>
                     <span class="mr-2 d-lg-inline text-gray-600 small"> <?= $_SESSION['auth_user'] ['user_name'];  ?></span>
                 </a>
