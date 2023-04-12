@@ -61,15 +61,17 @@
                             <a href="
                                 <?php
                                     if(isset($row['picture'])){
-                                        echo base_url . 'assets/img/users/' . $row['picture'];
-                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                        if(!empty($row['picture'])) {
+                                            echo base_url . 'assets/img/users/' . $row['picture'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                 ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
                                 <img class="icon-circle"
                                 src="
                                     <?php
                                         if(isset($row['picture'])){
+                                            if(!empty($row['picture'])) {
                                             echo base_url . 'assets/img/users/' . $row['picture'];
-                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                     ?>
                                 " alt="image" style="height:5rem !important; width:5rem !important; display:inline !important; margin-left:0.4rem;">
                             </a>

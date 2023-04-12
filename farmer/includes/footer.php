@@ -55,35 +55,11 @@
 
     <!-- Show PASSWORD JS -->
     <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
-  
-    <?php
-        if(isset($_SESSION['status']) && $_SESSION['status_code'] !='' )
-        {
-            ?>
-                <script>
-                swal({
-                title: "<?php echo $_SESSION['status']; ?>",
-                icon: "<?php echo $_SESSION['status_code']; ?>",
-                timer: 5000,
-                button: "Close",
-                }).then(
-                function () {},
-                // handling the promise rejection
-                function (dismiss) {
-                    if (dismiss === 'timer') {
-                    //console.log('I was closed by the timer')
-                    }
-                }
-                )
-                </script>
-                <?php
-                unset($_SESSION['status']);
-                unset($_SESSION['status_code']);
-        }
-                ?>
 
 
-
+<?php
+    include ('message.php');
+?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -96,6 +72,17 @@
                 $(`#${div}`).hide();
             }
         });
+    }
+    function previewImage(frameId, inputId) { // select multiple images viewer if user select desired image.
+        let image = document.getElementById(frameId);
+        let fileInput = document.getElementById(inputId);
+        
+        if (fileInput.files.length > 0) {
+            let file = fileInput.files[0];
+            image.src = URL.createObjectURL(file);
+        } else {
+            image.src = base_url + "assets/img/system/no-image.png";
+        }
     }
 </script>
 

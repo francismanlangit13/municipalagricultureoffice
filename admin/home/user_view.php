@@ -105,15 +105,17 @@
                         <a href="
                             <?php
                                 if(isset($row['picture'])){
-                                    echo base_url . 'assets/img/users/' . $row['picture'];
-                                } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    if(!empty($row['picture'])){ 
+                                        echo base_url . 'assets/img/users/' . $row['picture'];
+                                } else { echo base_url . 'assets/img/system/no-image.png'; } }
                             ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type'] == 1){ echo"ADMIN: ";} else{ echo"STAFF: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
                             <img class="zoom img-fluid img-bordered-sm"
                             src="
                                 <?php
                                     if(isset($row['picture'])){
-                                        echo base_url . 'assets/img/users/' . $row['picture'];
-                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                        if(!empty($row['picture'])){ 
+                                            echo base_url . 'assets/img/users/' . $row['picture'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                 ?>
                             " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
                         </a>

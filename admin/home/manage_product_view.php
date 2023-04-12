@@ -69,15 +69,17 @@
                                 <a href="
                                     <?php
                                         if(isset($row['product_image'])){
-                                            echo base_url . 'assets/img/products/' . $row['product_image'];
-                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                            if(!empty($row['product_image'])) {
+                                                echo base_url . 'assets/img/products/' . $row['product_image'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                     ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery">
                                     <img class="zoom img-fluid img-bordered-sm"
                                     src="
                                         <?php
                                             if(isset($row['product_image'])){
-                                                echo base_url . 'assets/img/products/' . $row['product_image'];
-                                            } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                                if(!empty($row['product_image'])) {
+                                                    echo base_url . 'assets/img/products/' . $row['product_image'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                         ?>
                                     " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
                                 </a>

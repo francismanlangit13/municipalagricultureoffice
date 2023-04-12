@@ -18,15 +18,15 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Message</th>
-                        <th>Photo #1</th>
-                        <th>Photo #2</th>
-                        <th>Status</th>
-                        <th>Date Reported</th>
+                        <th style="width:10%">ID</th>
+                        <th style="width:35%">Message</th>
+                        <th style="width:15%">Photo #1</th>
+                        <th style="width:15%">Photo #2</th>
+                        <th style="width:10%">Status</th>
+                        <th style="width:15%">Date Reported</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,17 +53,29 @@
                     <tr>
                         <td><?= $row['report_id']; ?></td>
                         <td><?= $row['message']; ?></td>
-                        <td> <?php 
-                        echo '<img class="img-fluid img-bordered-sm" src = "data:image;base64,'.base64_encode($row['photo']).'" 
-                        alt="image" style="height: 170px; max-width: 310px; object-fit: cover;">';
-                        ?></td>
-                        <td>
-                        <?php 
-                        echo '<img class="img-fluid img-bordered-sm" src = "data:image;base64,'.base64_encode($row['photo1']).'" 
-                        alt="image" style="height: 170px; max-width: 310px; object-fit: cover;">'; ?>
+                        <td> 
+                            <img class="zoom img-fluid img-bordered-sm"
+                            src="
+                                <?php
+                                    if(isset($row['photo'])){
+                                        echo base_url . 'assets/img/reports/' . $row['photo'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>
+                            " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
                         </td>
                         <td>
-                            <?php if($row['status']=="Pending"){ ?>
+                            <img class="zoom img-fluid img-bordered-sm"
+                            src="
+                                <?php
+                                if(isset($row['photo1'])){
+                                    if(!empty($row['photo1'])) {
+                                        echo base_url . 'assets/img/reports/' . $row['photo1'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                } ?>
+                            " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
+                        </td>
+                        <td>
+                            <?php if($row['status_id']=="1"){ ?>
                                 <p><span style="color: red;">Pending</span></p>
                             <?php } else{ ?>
                                 <p><span style="color: green;">Approved</span></p>

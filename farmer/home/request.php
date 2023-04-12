@@ -62,10 +62,17 @@
                     <tr>
                         <td><?= $row['request_id']; ?></td>
                         <td><?= $row['product_name']; ?></td>
-                        <td> <?php 
-                        echo '<img class="img-fluid img-bordered-sm" src = "data:image;base64,'.base64_encode($row['product_image']).'" 
-                        alt="image" style="height: 200px; object-fit: cover;">';
-                        ?></td>
+                        <td>
+                            <img class="icon-circle"
+                            src="
+                                <?php
+                                    if(isset($row['product_image'])){
+                                        if(!empty($row['product_image'])) {
+                                        echo base_url . 'assets/img/users/' . $row['product_image'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>
+                            " alt="image" style="height:5rem !important; width:5rem !important; display:inline !important; margin-left:0.4rem;">
+                        </td>
                         <td class="text-center"><?= $row['request_quantity']; ?></td>
                         <td><?= $row['description'];?></td>
                         <td> <?php if($row['status_id'] == "Pending"){ ?>

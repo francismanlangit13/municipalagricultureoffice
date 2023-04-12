@@ -23,7 +23,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Message</th>
-                        <th>Image</th>
+                        <th>Attachments</th>
                         <th>Status</th>
                         <th>Date Submitted</th>
                         <th>Action</th>
@@ -31,29 +31,57 @@
                 </thead>
                 <tbody>                 
                     <?php
-                        if(isset($_SESSION['auth_user'])) 
+                        if(isset($_SESSION['auth_user']))
                             $currentUSER = $_SESSION['auth_user']['user_id'];
-                            $query = "SELECT * FROM `concern` WHERE user_id= $currentUSER";
+                            $query = "SELECT * FROM `concern` 
+                                      INNER JOIN `user` ON concern.user_id = user.user_id 
+                                      WHERE user.user_id = $currentUSER";
                             $query_run = mysqli_query($con, $query);
                             if(mysqli_num_rows($query_run) > 0){
                                 foreach($query_run as $row){
                     ?>
                     <tr>
                         <td><?= $row['concern_id']; ?></td>
-                        <td><?= $row['concern_message']; ?></td>
+                        <td><?= $row['message']; ?></td>
                         <td class="text-center">
-                            <?php 
-                            echo '<img class="img-fluid img-bordered-sm" src = "data:image;base64,'.base64_encode($row['pic1']).'" 
-                            alt="image" style="height: 170px; max-width: 310px; object-fit: cover;">';
-                            ?>
-                            <?php 
-                            echo '<img class="img-fluid img-bordered-sm" src = "data:image;base64,'.base64_encode($row['pic2']).'" 
-                            alt="image" style="height: 170px; max-width: 310px; object-fit: cover;">';
-                            ?>
+                        <a href="
+                            <?php
+                                if(isset($row['photo'])){
+                                    if(!empty($row['photo'])) {
+                                        echo base_url . 'assets/img/concerns/' . $row['photo'];
+                                } } else { echo base_url . 'assets/img/system/no-image.png'; }
+                            ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?> <br> CONCERN MESSAGE: <?= $row['message']; ?>">
+                            <img class="zoom img-fluid img-bordered-sm"
+                            src="
+                                <?php
+                                    if(isset($row['photo'])){
+                                        if(!empty($row['photo1'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['photo'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>
+                            " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
+                        </a>
+                        <a href="
+                            <?php
+                                if(isset($row['photo1'])){
+                                    if(!empty($row['photo1'])) {
+                                        echo base_url . 'assets/img/concerns/' . $row['photo1'];
+                                } } else { echo base_url . 'assets/img/system/no-image.png'; }
+                            ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?> <br> CONCERN MESSAGE: <?= $row['message']; ?>">
+                            <img class="zoom img-fluid img-bordered-sm"
+                            src="
+                                <?php
+                                    if(isset($row['photo1'])){
+                                        if(!empty($row['photo1'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['photo1'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>
+                            " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
+                        </a>
                         </td>
 
                         <td>
-                            <?php if($row['status']=="Pending"){ ?>
+                            <?php if($row['status_id']==1){ ?>
                                 <p><span style="color: red;">Pending</span></p>
                             <?php } else{ ?>
                                 <p><span style="color: green;">Approved</span></p>
@@ -62,7 +90,7 @@
                         <td><?= $row['date_created']; ?></td>
                         <td>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-success dropdown-toggle" <?php if ($row['status'] == 'Approved') echo 'disabled'; ?> data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button type="button" class="btn btn-success dropdown-toggle" <?php if ($row['status_id'] == 'Approved') echo 'disabled'; ?> data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Action
                                 </button>
                                 <div class="dropdown-menu">

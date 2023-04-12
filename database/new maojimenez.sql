@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2023 at 08:12 PM
+-- Generation Time: Apr 12, 2023 at 11:20 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -54,12 +54,24 @@ INSERT INTO `announcement` (`ann_id`, `ann_title`, `ann_body`, `ann_publish`, `a
 CREATE TABLE `concern` (
   `concern_id` int(15) NOT NULL,
   `user_id` int(15) NOT NULL,
-  `concern_message` text NOT NULL,
-  `pic1` longblob NOT NULL,
-  `pic2` longblob NOT NULL,
+  `message` text NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `photo1` varchar(255) NOT NULL,
+  `photo2` varchar(255) NOT NULL,
+  `photo3` varchar(255) NOT NULL,
+  `photo4` varchar(255) NOT NULL,
+  `video` varchar(255) NOT NULL,
   `date_created` date NOT NULL,
   `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `concern`
+--
+
+INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`) VALUES
+(1, 13, 'asdasdasd', 'concern1_20230412_135052.png', 'concern2_20230412_135052.png', 'concern3_20230412_135052.png', 'concern4_20230412_135052.png', 'concern5_20230412_135052.png', 'concern6_20230412_135052.mp4', '2023-04-12', 1),
+(2, 13, 'asdsadsads', 'concern1_20230412_135646.png', 'concern2_20230412_135646.png', 'concern3_20230412_135646.png', 'concern4_20230412_135646.png', 'concern5_20230412_135646.png', 'concern6_20230412_135646.mp4', '2023-04-12', 1);
 
 -- --------------------------------------------------------
 
@@ -115,9 +127,20 @@ CREATE TABLE `report` (
   `message` text NOT NULL,
   `photo` varchar(255) NOT NULL,
   `photo1` varchar(255) NOT NULL,
+  `photo2` varchar(255) NOT NULL,
+  `photo3` varchar(255) NOT NULL,
+  `photo4` varchar(255) NOT NULL,
+  `video` varchar(255) NOT NULL,
   `date_created` datetime NOT NULL,
   `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `report`
+--
+
+INSERT INTO `report` (`report_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`) VALUES
+(2, 13, 'sadsad', 'report1_20230412_120315.png', 'report2_20230412_120315.png', 'report3_20230412_120315.png', 'report4_20230412_120315.png', 'report5_20230412_120315.png', 'report6_20230412_120315.mp4', '2023-04-12 04:03:15', 1);
 
 -- --------------------------------------------------------
 
@@ -229,7 +252,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `email`, `password`, `qrcode`, `reference_number`, `picture`, `purok`, `street`, `barangay`, `municipality`, `province`, `region`, `phone`, `religion`, `birthday`, `birthplace`, `civil_status`, `pwd`, `4ps`, `ig`, `ig_specify`, `govid`, `govid_specify`, `farmersassoc`, `farmersassoc_specify`, `livelihood`, `rice`, `corn`, `other_crops_specify`, `livestock`, `livestock_specify`, `poultry`, `poultry_specify`, `owner`, `land`, `planting`, `cultivation`, `harvesting`, `other_farmworker_specify`, `part_of_farming`, `attending_formal`, `attending_nonformal`, `participated`, `other_agri_youth_specify`, `user_type`, `user_status`) VALUES
 (3, 'User', '', 'Admin', '', 'Male', 'admin@gmail.com', '0192023a7bbd73250516f069df18b500', '', '0', 'user_20230411_181908.jpg', '', '', '', '', '', '', '09457664949', 'sddsds', '1999-12-11', 'asdadadasdd', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1),
-(13, 'Francis Carlo', 'Abcede', 'Manlangit', '', 'Male', 'ssdas@sdasd.com', '642c6e95d8795', '00020101021127600012com.p2pqrpay0111USMEPHM2XXX020899964403041301566281770015204601653036085802PH5913GRACE N AMBAG6007JIMENEZ6304D502', '222222222222222', 'user_20230411_181908.jpg', 'sad', 'sdasd', 'Adorable', 'Jimenez', 'Misamis Occidental', '10', '09382732834', 'sdsdasd', '1313-12-13', 'sdasdasd', 'Single', 'Yes', 'Yes', 'Yes', 'sdsad', 'Yes', 'sdsad', 'Yes', 'fdsfsdf', 'Farmer', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1);
+(13, 'Francis Carlo', 'Abcede', 'Manlangit', '', 'Male', 'farmer@gmail.com', '4b3bcc3fd4c3c0ac234af3b9fd81c899', '00020101021127600012com.p2pqrpay0111USMEPHM2XXX020899964403041301566281770015204601653036085802PH5913GRACE N AMBAG6007JIMENEZ6304D502', '222222222222222', 'user_20230411_181908.jpg', 'sad', 'sdasd', 'Adorable', 'Jimenez', 'Misamis Occidental', '10', '09382732834', 'sdsdasd', '1313-12-13', 'sdasdasd', 'Single', 'Yes', 'Yes', 'Yes', 'sdsad', 'Yes', 'sdsad', 'Yes', 'fdsfsdf', 'Farmer', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -358,7 +381,7 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `concern`
 --
 ALTER TABLE `concern`
-  MODIFY `concern_id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `concern_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -376,7 +399,7 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `request`

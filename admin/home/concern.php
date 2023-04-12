@@ -52,14 +52,15 @@
                             <a href="
                                 <?php
                                     if(isset($row['photo'])){
-                                        echo base_url . 'assets/img/reports/' . $row['photo'];
-                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                        if(!empty($row['photo'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['photo'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                 ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?> <br> REPORT MESSAGE: <?= $row['message']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
                                         if(isset($row['photo'])){
-                                            echo base_url . 'assets/img/reports/' . $row['photo'];
+                                            echo base_url . 'assets/img/concern/' . $row['photo'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; }
                                     ?>
                                 " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">

@@ -316,15 +316,17 @@
                 <a href="
                     <?php
                         if(isset($user['picture'])){
-                            echo base_url . 'assets/img/users/' . $user['picture'];
-                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                            if(!empty($user['picture'])) {
+                                echo base_url . 'assets/img/users/' . $user['picture'];
+                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
                     ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $user['fname'] . ' ' . $user['mname'] . ' ' . $user['lname'] . ' ' . $user['suffix']; ?>">
                     <img class="zoom img-fluid img-bordered-sm"
                     src="
                         <?php
                             if(isset($user['picture'])){
-                                echo base_url . 'assets/img/users/' . $user['picture'];
-                            } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                if(!empty($user['picture'])) {
+                                    echo base_url . 'assets/img/users/' . $user['picture'];
+                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
                         ?>
                     " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
                 </a>
