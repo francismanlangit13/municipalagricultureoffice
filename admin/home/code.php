@@ -803,6 +803,65 @@
     $query = "UPDATE `announcement` SET `ann_status`='$status' WHERE ann_id ='$user_id'";
     $query_run = mysqli_query($con, $query);
     if($query_run){
+      // $api_key = '4a98784e7c3a64890dfcb1cc9183f3ad'; // Replace with your Semaphore API key
+      // $sendername = 'Semaphore'; // Replace with your sender name
+      // $phone_numbers = array('09457664949', '09816208309'); // Replace with the phone numbers you want to send the message to
+      // $message = "Announcement!"; // Replace with your message
+
+      // // Encode the message for URL
+      // $message_encoded = urlencode($message);
+
+      // // Build the query string
+      // $params = http_build_query(array(
+      //     'apikey' => $api_key,
+      //     'number' => implode(',', $phone_numbers),
+      //     'message' => $message_encoded,
+      //     'sendername' => $sendername
+      // ));
+
+      // // Send the message
+      // $result = file_get_contents('https://semaphore.co/api/v4/messages?' . $params);
+
+      // // Handle the response
+      // $response = json_decode($result);
+
+      // if ($response->success) {
+      //     echo 'Messages sent successfully!';
+      // } else {
+      //     echo 'Error sending messages: ' . $response->error;
+      // }
+      $ch = curl_init();
+
+      // Array of phone numbers to send the message to
+      $numbers = array('09457664949', '09816208309');
+
+      // Set the common parameters for all the messages
+      $common_parameters = array(
+          'apikey' => 'api_key', // Your API KEY
+          'message' => 'Hi',
+          'sendername' => 'CabTom'
+      );
+
+      // Loop over each number and send the message
+      foreach ($numbers as $number) {
+          $parameters = $common_parameters;
+          $parameters['number'] = $number;
+
+          curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+          curl_setopt($ch, CURLOPT_POST, 1);
+
+          // Send the parameters set above with the request
+          curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+
+          // Receive response from server
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          $output = curl_exec($ch);
+
+          // Show the server response
+          echo $output;
+      }
+
+      curl_close($ch);
       $_SESSION['status'] = "The announcement has been successfully posted.";
       $_SESSION['status_code'] = "success";
       header("Location: " . base_url . "admin/home/announcement.php");
