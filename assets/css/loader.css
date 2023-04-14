@@ -18,3 +18,11 @@
 #loading.fade-out {
     opacity: 0;
 }
+@media print {
+    body {
+        margin-top: 50px;
+    }
+    .noprint {
+        display: none;
+    }
+}

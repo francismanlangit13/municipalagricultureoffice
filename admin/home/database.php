@@ -24,8 +24,8 @@ if (! empty($_FILES)) {
         );
     } else {
         if (is_uploaded_file($_FILES["backup_file"]["tmp_name"])) {
-            move_uploaded_file($_FILES["backup_file"]["tmp_name"],'../database/'.$_FILES["backup_file"]["name"]);
-            $response = restoreMysqlDB('../database/'.$_FILES["backup_file"]["name"], $conn);
+            move_uploaded_file($_FILES["backup_file"]["tmp_name"],'../../database/'.$_FILES["backup_file"]["name"]);
+            $response = restoreMysqlDB('../../database/'.$_FILES["backup_file"]["name"], $conn);
         }
     }
 }
@@ -34,10 +34,10 @@ function restoreMysqlDB($filePath, $conn){
     $sql = '';
     $error = '';
 
-    // SQL query to drop all tables
-    $qry = "SET FOREIGN_KEY_CHECKS = 0;";
-    $result = mysqli_query($conn, $qry);
+    // Disable foreign key checks
+    mysqli_query($conn, "SET FOREIGN_KEY_CHECKS=0");
 
+    // SQL query to drop all tables
     $qry = "SHOW TABLES";
     $result = mysqli_query($conn, $qry);
 
@@ -46,9 +46,8 @@ function restoreMysqlDB($filePath, $conn){
       mysqli_query($conn, $qry);
     }
 
-    $qry = "SET FOREIGN_KEY_CHECKS = 1;";
-    $result = mysqli_query($conn, $qry);
-    
+    // Enable foreign key checks
+    mysqli_query($conn, "SET FOREIGN_KEY_CHECKS=0");
 
     if (file_exists($filePath)) {
         $lines = file($filePath);
@@ -149,12 +148,12 @@ function restoreMysqlDB($filePath, $conn){
         </div>
         <div>
             <input type="submit" name="restore" value="Restore" class="btn-action" />
-            <br>
+    </form>
+            <br><br>
             <form method="post" action="data_export.php">
-                <input type="button" value="Backup" class="btn-action" />
+                <input type="submit" value="Backup" class="btn-action" />
             </form>
         </div>
-    </form>
 </html>
 
 <?php include('../includes/footer.php'); ?>

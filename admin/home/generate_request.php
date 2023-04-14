@@ -16,7 +16,7 @@
 <ol class="breadcrumb mb-4 noprint">    
   <li class="breadcrumb-item">Dashboard</li>
   <li class="breadcrumb-item">Generate</li>
-  <li class="breadcrumb-item">Concern</li>
+  <li class="breadcrumb-item">Request</li>
 </ol>
 
 <div class="col-xl-12 col-md-12 mb-4 noprint">
@@ -59,7 +59,7 @@
 		</div>
 		<div class="col-8">
 			<h4 class="text-center"><b>Municipal Agriculture Office Jimenez</b></h4>
-			<h3 class="text-center"><b>Concern</b></h3>
+			<h3 class="text-center"><b>Request</b></h3>
 			<h5 class="text-center"><b>as of</b></h5>
 			<h5 class="text-center"><b><?php echo date("F d, Y", strtotime($from)). " - ".date("F d, Y", strtotime($to)); ?></b></h5>
 		</div>
@@ -69,7 +69,9 @@
 		<colgroup>
 			<col width="5%">
 			<col width="20%">
-			<col width="50%">
+			<col width="30%">
+			<col width="10%">
+			<col width="10%">
 			<col width="25%">
 			<col width="25%">
 			<col width="10%">
@@ -79,6 +81,8 @@
 				<th>No.</th>
 				<th>Date/Time</th>
 				<th>Message</th>
+				<th>Product</th>
+				<th>Product Quantity</th>
 				<th>Farmer</th>
 				<th>Status</th>
 			</tr>
@@ -86,13 +90,15 @@
 		<tbody>
 			<?php 
 				$i = 1;
-				$qry = $con->query("SELECT `concern_id`, user.user_id, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`, fname, `mname`, `lname`, `suffix` FROM user INNER JOIN concern where user.user_id = concern.user_id AND date(date_created) between '{$from}' and '{$to}' order by unix_timestamp(date_created) asc");
+				$qry = $con->query("SELECT `request_id`, user.user_id, `description`, `request_quantity`, `request_date`, `status_id`, fname, `mname`, `lname`, `suffix`, `product_name` FROM user INNER JOIN request INNER JOIN product where user.user_id = request.id AND product.product_id = request_id AND date(request_date) between '{$from}' and '{$to}' order by unix_timestamp(request_date) asc");
 				while($row = $qry->fetch_assoc()):
 			?>
 				<tr>
 					<td class="text-center"><?php echo $i++; ?></td>
-					<td class=""><?php echo date("m-d-Y H:i",strtotime($row['date_created'])) ?></td>
-					<td class=""><p class="m-0"><?php echo $row['message'] ?></p></td>
+					<td class=""><?php echo date("m-d-Y H:i",strtotime($row['request_date'])) ?></td>
+					<td class=""><p class="m-0"><?php echo $row['description'] ?></p></td>
+					<td class=""><p class="m-0"><?php echo $row['product_name'] ?></p></td>
+					<td class=""><p class="m-0"><?php echo $row['request_quantity'] ?></p></td>
 					<td class=""><p class="m-0"><?php echo $row['fname'] ?> <?php echo $row['mname'] ?> <?php echo $row['lname'] ?> <?php echo $row['suffix'] ?></p></td>
 					<td class="text-center">
 						<?php 
