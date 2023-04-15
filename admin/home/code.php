@@ -81,51 +81,219 @@
     if(in_array($fileActExt, $allowed)){
       if($fileError === 0){
         if($fileSize < 10485760){
-          $reference_number = $_POST['reference_number'];
-          $lname = $_POST['lname'];
-          $mname = $_POST['mname'];
-          $fname = $_POST['fname'];
-          $suffix = $_POST['suffix'];
-          $gender = $_POST['gender'];
-          $email = $_POST['email'];
-          $purok = $_POST['purok'];
-          $street = $_POST['street'];
-          $barangay = $_POST['barangay'];
+          if(isset($_POST['reference_number'])) {
+            $reference_number = $_POST['reference_number'];
+          } else{
+            $reference_number = NULL;
+          }
+          if(isset($_POST['lname'])) {
+            $lname = $_POST['lname'];
+          } else{
+            $lname = NULL;
+          }
+          if(isset($_POST['mname'])) {
+            $mname = $_POST['mname'];
+          } else{
+            $mname = NULL;
+          }
+          if(isset($_POST['fname'])) {
+            $fname = $_POST['fname'];
+          } else{
+            $fname = NULL;
+          }
+          if(isset($_POST['suffix'])) {
+            $suffix = $_POST['suffix'];
+          } else{
+            $suffix = NULL;
+          }
+          if(isset($_POST['gender'])) {
+            $gender = $_POST['gender'];
+          } else{
+            $gender = NULL;
+          }
+          if(isset($_POST['email'])) {
+            $email = $_POST['email'];
+          } else{
+            $email = NULL;
+          }
+          if(isset($_POST['purok'])) {
+            $purok = $_POST['purok'];
+          } else{
+            $purok = NULL;
+          }
+          if(isset($_POST['street'])) {
+            $street = $_POST['street'];
+          } else{
+            $street = NULL;
+          }
+          if(isset($_POST['barangay'])) {
+            $barangay = $_POST['barangay'];
+          } else{
+            $barangay = NULL;
+          }
           $municipality = "Jimenez";
           $province = "Misamis Occidental";
           $region = "10";
-          $phone = $_POST['phone'];
-          $religion = $_POST['religion'];
-          $birthday = $_POST['dob'];
-          $placeofbirth = $_POST['placeofbirth'];
-          $civilstatus = $_POST['civilstatus'];
-          $pwd = $_POST['pwd'];
-          $fourps = $_POST['fourps'];
-          $ig = $_POST['ig'];
-          $igyes = $_POST['igyes'];
-          $govid = $_POST['govid'];
-          $govidyes = $_POST['govidyes'];
-          $fac = $_POST['fac'];
-          $facyes = $_POST['facyes'];
-          $livelihood = $_POST['livelihood'];
-          $rice = $_POST['rice'];
-          $corn = $_POST['corn'];
-          $other_crops_specify = $_POST['other_crops_specify'];
-          $livestock = $_POST['livestock'];
-          $livestock_specify = $_POST['livestock_specify'];
-          $poultry = $_POST['poultry'];
-          $poultry_specify = $_POST['poultry_specify'];
-          $owner = $_POST['owner'];
-          $land = $_POST['land'];
-          $cultivation = $_POST['cultivation'];
-          $planting = $_POST['planting'];
-          $harvesting = $_POST['harvesting'];
-          $other_farmworker_specify = $_POST['othersfarmworker'];
-          $part_of_farming = $_POST['part_of_farming'];
-          $attending_formal = $_POST['attending_formal'];
-          $attending_nonformal = $_POST['attending_nonformal'];
-          $participated = $_POST['participated'];
+          if(isset($_POST['phone'])) {
+            $phone = $_POST['phone'];
+          } else{
+            $phone = NULL;
+          }
+          if(isset($_POST['religion'])) {
+            $religion = $_POST['religion'];
+          } else{
+            $religion = NULL;
+          }
+          if(isset($_POST['dob'])) {
+            $birthday = $_POST['dob'];
+          } else{
+            $birthday = NULL;
+          }
+          if(isset($_POST['placeofbirth'])) {
+            $placeofbirth = $_POST['placeofbirth'];
+          } else{
+            $placeofbirth = NULL;
+          }
+          if(isset($_POST['civilstatus'])) {
+            $civilstatus = $_POST['civilstatus'];
+          } else{
+            $civilstatus = NULL;
+          }
+          if(isset($_POST['pwd'])) {
+            $pwd = $_POST['pwd'];
+          } else{
+            $pwd = NULL;
+          }
+          if(isset($_POST['fourps'])) {
+            $fourps = $_POST['fourps'];
+          } else{
+            $fourps = NULL;
+          }
+          if(isset($_POST['ig'])) {
+            $ig = $_POST['ig'];
+          } else{
+            $ig = NULL;
+          }
+          if(isset($_POST['igyes'])) {
+            $igyes = $_POST['igyes'];
+          } else{
+            $igyes = NULL;
+          }
+          if(isset($_POST['govid'])) {
+            $govid = $_POST['govid'];
+          } else{
+            $govid = NULL;
+          }
+          if(isset($_POST['govidyes'])) {
+            $govidyes = $_POST['govidyes'];
+          } else{
+            $govidyes = NULL;
+          }
+          if(isset($_POST['fac'])) {
+            $fac = $_POST['fac'];
+          } else{
+            $fac = NULL;
+          }
+          if(isset($_POST['facyes'])) {
+            $facyes = $_POST['facyes'];
+          } else{
+            $facyes = NULL;
+          }
+          if(isset($_POST['livelihood'])) {
+            $livelihood = $_POST['livelihood'];
+          } else{
+            $livelihood = NULL;
+          }
+          if(isset($_POST['rice'])) {
+            $rice = $_POST['rice'];
+          } else{
+            $rice = NULL;
+          }
+          if(isset($_POST['corn'])) {
+            $corn = $_POST['corn'];
+          } else{
+            $corn = NULL;
+          }
+          if(isset($_POST['other_crops_specify'])) {
+            $other_crops_specify = $_POST['other_crops_specify'];
+          } else{
+            $other_crops_specify = NULL;
+          }
+          if(isset($_POST['livestock'])) {
+            $livestock = $_POST['livestock'];
+          } else{
+            $livestock = NULL;
+          }
+          if(isset($_POST['livestock_specify'])) {
+            $livestock_specify = $_POST['livestock_specify'];
+          } else{
+            $livestock_specify = NULL;
+          }
+          if(isset($_POST['poultry'])) {
+            $poultry = $_POST['poultry'];
+          } else{
+            $poultry = NULL;
+          }
+          if(isset($_POST['poultry_specify'])) {
+            $poultry_specify = $_POST['poultry_specify'];
+          } else{
+            $poultry_specify = NULL;
+          }
+          if(isset($_POST['owner'])) {
+            $owner = $_POST['owner'];
+          } else{
+            $owner = NULL;
+          }
+          if(isset($_POST['land'])) {
+            $land = $_POST['land'];
+          } else{
+            $land = NULL;
+          }
+          if(isset($_POST['cultivation'])) {
+            $cultivation = $_POST['cultivation'];
+          } else{
+            $cultivation = NULL;
+          }
+          if(isset($_POST['planting'])) {
+            $planting = $_POST['planting'];
+          } else{
+            $planting = NULL;
+          }
+          if(isset($_POST['harvesting'])) {
+            $harvesting = $_POST['harvesting'];
+          } else{
+            $harvesting = NULL;
+          }
+          if(isset($_POST['othersfarmworker'])) {
+            $other_farmworker_specify = $_POST['othersfarmworker'];
+          } else{
+            $other_farmworker_specify = NULL;
+          }
+          if(isset($_POST['part_of_farming'])) {
+            $part_of_farming = $_POST['part_of_farming'];
+          } else{
+            $part_of_farming = NULL;
+          }
+          if(isset($_POST['attending_formal'])) {
+            $attending_formal = $_POST['attending_formal'];
+          } else{
+            $attending_formal = NULL;
+          }
+          if(isset($_POST['attending_nonformal'])) {
+            $attending_nonformal = $_POST['attending_nonformal'];
+          } else{
+            $attending_nonformal = NULL;
+          }
+          if(isset($_POST['participated'])) {
+            $participated = $_POST['participated'];
+          } else{
+            $participated = NULL;
+          }
+          if(isset($_POST['other_agri_youth_specify'])) {
           $other_agri_youth_specify = $_POST['other_agri_youth_specify'];
+          } else{
+            $other_agri_youth_specify = NULL;
+          }
           $qrcode = $_POST['qrcode_text'];
           $new_password = substr(md5(microtime()),rand(0,26),8);
           $password = md5($new_password);

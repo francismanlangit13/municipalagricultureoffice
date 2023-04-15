@@ -143,7 +143,7 @@ function restoreMysqlDB($filePath, $conn){
         <div class="form-row">
             <div class="mr-2">Choose Backup File</div>
             <div>
-                <input type="file" name="backup_file" class="form-control-file btn btn-secondary" required>
+                <input type="file" name="backup_file" class="form-control-file btn btn-secondary" required accept=".sql">
             </div>
         </div>
         <div>

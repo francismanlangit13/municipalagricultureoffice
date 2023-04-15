@@ -197,7 +197,7 @@
 
                         <div class="col-md-8 mb-3">
                             <label for="igyes" class="">If yes, specify:</label>
-                            <input  placeholder="" type="text" name="igyes" class="form-control" value="<?php echo (isset($_POST['ig']) && $_POST['ig'] == 'No') ? 'N/A' : ''; ?>">
+                            <input  placeholder="" type="text" name="igyes" class="form-control">
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -209,7 +209,7 @@
 
                         <div class="col-md-8 mb-3">
                             <label for="govidyes" class="">If yes, specify:</label>
-                            <input  placeholder="" type="text" name="govidyes" class="form-control" value="<?php echo (isset($_POST['govid']) && $_POST['govid'] == 'No') ? 'N/A' : ''; ?>">
+                            <input  placeholder="" type="text" name="govidyes" class="form-control">
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -222,7 +222,7 @@
                         
                         <div class="col-md-8 mb-3">
                             <label for="facyes" class="">If yes, specify:</label>
-                            <input  placeholder="" type="text" name="facyes" class="form-control" value="<?php echo (isset($_POST['yesfac']) && $_POST['yesfac'] == 'No') ? 'N/A' : ''; ?>">
+                            <input  placeholder="" type="text" name="facyes" class="form-control">
                         </div>
                     </div>
                 </div>
