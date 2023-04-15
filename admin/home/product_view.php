@@ -68,20 +68,71 @@
                                 <br>
                                 <a href="
                                     <?php
-                                        if(isset($row['product_image'])){
-                                            if(!empty($row['product_image'])) {
-                                                echo base_url . 'assets/img/products/' . $row['product_image'];
+                                        if(isset($row['photo'])){
+                                            if(!empty($row['photo'])) {
+                                                echo base_url . 'assets/img/products/' . $row['photo'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery">
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT IMAGE1">
                                     <img class="zoom img-fluid img-bordered-sm"
                                     src="
                                         <?php
-                                            if(isset($row['product_image'])){
-                                                if(!empty($row['product_image'])) {
-                                                    echo base_url . 'assets/img/products/' . $row['product_image'];
+                                            if(isset($row['photo'])){
+                                                if(!empty($row['photo'])) {
+                                                    echo base_url . 'assets/img/products/' . $row['photo'];
                                             } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                         ?>
-                                    " alt="image" style="height: 180px; max-width: 240px; object-fit: cover;">
+                                    " alt="image" style="height: 120px; max-width: 180px; object-fit: cover; margin-top:0.5rem;">
+                                </a>
+                                <a href="
+                                    <?php
+                                        if(isset($row['photo1'])){
+                                            if(!empty($row['photo1'])) {
+                                                echo base_url . 'assets/img/products/' . $row['photo1'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT IMAGE2">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['photo1'])){
+                                                if(!empty($row['photo1'])) {
+                                                    echo base_url . 'assets/img/products/' . $row['photo1'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height: 120px; max-width: 180px; object-fit: cover; margin-top:0.5rem;">
+                                </a>
+                                <a href="
+                                    <?php
+                                        if(isset($row['photo2'])){
+                                            if(!empty($row['photo2'])) {
+                                                echo base_url . 'assets/img/products/' . $row['photo2'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT IMAGE3">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['photo2'])){
+                                                if(!empty($row['photo2'])) {
+                                                    echo base_url . 'assets/img/products/' . $row['photo2'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height: 120px; max-width: 180px; object-fit: cover; margin-top:0.5rem;">
+                                </a>
+                                <a href="
+                                    <?php
+                                        if(isset($row['photo3'])){
+                                            if(!empty($row['photo3'])) {
+                                                echo base_url . 'assets/img/products/' . $row['photo3'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT IMAGE4">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['photo3'])){
+                                                if(!empty($row['photo3'])) {
+                                                    echo base_url . 'assets/img/products/' . $row['photo3'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height: 120px; max-width: 180px; object-fit: cover; margin-top:0.5rem;">
                                 </a>
                                 <br>
                             </div>

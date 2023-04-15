@@ -21,11 +21,12 @@
                 <thead class="text-center">
                     <tr>
                         <th width="5%">No.</th>
+                        <th width="15%">Reference Number</th>
                         <th width="25%">Name</th>
                         <th width="10%">Gender</th>
                         <th width="10%">Picture</th>
-                        <th width="20%">Email</th>
-                        <th width="15%">Phone</th>
+                        <th width="15%">Email</th>
+                        <th width="10%">Phone</th>
                         <th width="10%">Action</th>
 
                     </tr>
@@ -42,7 +43,8 @@
                             `user`.email,
                             `user`.phone,
                             `user`.`password`, 
-                            `user`.picture, 
+                            `user`.picture,
+                            `user`.reference_number,
                             user_type.user_name, 
                             user_status.user_status_name,
                             user_type.user_name
@@ -65,6 +67,7 @@
                     ?>
                     <tr class="text-center">
                         <td><?= $number++ ?></td>
+                        <td><?= $row['reference_number']; ?></td>
                         <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?> <?= $row['suffix']; ?></td>
                         <td><?= $row['gender']; ?></td>
                         <td>

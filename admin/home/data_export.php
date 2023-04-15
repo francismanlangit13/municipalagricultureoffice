@@ -1,4 +1,4 @@
-<?php include('../../db_conn.php'); 
+<?php include('../includes/authentication.php'); 
     
     // Database configuration
     // $host = "localhost";

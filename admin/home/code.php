@@ -32,13 +32,13 @@
     if($query_run){
       $_SESSION['status'] = "The Product has been successfully deleted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/manage_product.php");
+      header("Location: " . base_url . "admin/home/product.php");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Something is wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/manage_product.php");
+      header("Location: " . base_url . "admin/home/product.php");
       exit(0);
     } 
   }
@@ -716,126 +716,254 @@
             if($query_run){
               $_SESSION['status'] = "Product added successfully";
               $_SESSION['status_code'] = "success";
-              header("Location: " . base_url . "admin/home/manage_product.php");
+              header("Location: " . base_url . "admin/home/product.php");
               exit(0);
             }
             else{
               $_SESSION['status'] = "Product was not added";
               $_SESSION['status_code'] = "error";
-              header("Location: " . base_url . "admin/home/manage_product.php");
+              header("Location: " . base_url . "admin/home/product.php");
               exit(0);
             }
           }
           else{
             $_SESSION['status']="Error uploading image.";
             $_SESSION['status_code'] = "error";
-            header("Location: " . base_url . "admin/home/manage_product.php");
+            header("Location: " . base_url . "admin/home/product.php");
           }
         }
         else{
             $_SESSION['status']="File is too large file must be 10mb";
             $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "admin/home/manage_product.php");
+            header("Location: " . base_url . "admin/home/product.php");
         }
       }
       else{
           $_SESSION['status']="File Error";
           $_SESSION['status_code'] = "error"; 
-          header("Location: " . base_url . "admin/home/manage_product.php");
+          header("Location: " . base_url . "admin/home/product.php");
       }
     }
     else{
       $_SESSION['status']="Invalid file type";
       $_SESSION['status_code'] = "error"; 
-      header("Location: " . base_url . "admin/home/manage_product.php");
+      header("Location: " . base_url . "admin/home/product.php");
+    }
+  }
+
+  if(isset($_POST["add_product"])){
+    
+    $photo = $_FILES['photo'];
+      $customFileName = 'product1_' . date('Ymd_His'); // replace with your desired file name
+      $ext = pathinfo($photo['name'], PATHINFO_EXTENSION); // get the file extension
+      $fileName = $customFileName . '.' . $ext; // append the extension to the custom file name
+      $fileTmpname = $photo['tmp_name'];
+      $fileSize = $photo['size'];
+      $fileError = $photo['error'];
+      $fileExt = explode('.',$fileName);
+      $fileActExt = strtolower(end($fileExt));
+      $allowed = array('jpg','jpeg','png');
+
+    $photo1 = $_FILES['photo1'];
+      $customFileName1 = 'product2_' . date('Ymd_His'); // replace with your desired file name
+      $ext1 = pathinfo($photo1['name'], PATHINFO_EXTENSION); // get the file extension
+      $fileName1 = $customFileName1 . '.' . $ext1; // append the extension to the custom file name
+      $fileTmpname1 = $photo1['tmp_name'];
+      $fileSize1 = $photo1['size'];
+      $fileError1 = $photo1['error'];
+      $fileExt1 = explode('.',$fileName1);
+      $fileActExt1 = strtolower(end($fileExt1));
+      $allowed1 = array('jpg','jpeg','png');
+
+    $photo2 = $_FILES['photo2'];
+      $customFileName2 = 'product3_' . date('Ymd_His'); // replace with your desired file name
+      $ext2 = pathinfo($photo2['name'], PATHINFO_EXTENSION); // get the file extension
+      $fileName2 = $customFileName2 . '.' . $ext2; // append the extension to the custom file name
+      $fileTmpname2 = $photo2['tmp_name'];
+      $fileSize2 = $photo2['size'];
+      $fileError2 = $photo2['error'];
+      $fileExt2 = explode('.',$fileName2);
+      $fileActExt2 = strtolower(end($fileExt2));
+      $allowed2 = array('jpg','jpeg','png');
+
+    $photo3 = $_FILES['photo3'];
+      $customFileName3 = 'product4_' . date('Ymd_His'); // replace with your desired file name
+      $ext3 = pathinfo($photo3['name'], PATHINFO_EXTENSION); // get the file extension
+      $fileName3 = $customFileName3 . '.' . $ext3; // append the extension to the custom file name
+      $fileTmpname3 = $photo3['tmp_name'];
+      $fileSize3 = $photo3['size'];
+      $fileError3 = $photo3['error'];
+      $fileExt3 = explode('.',$fileName3);
+      $fileActExt3 = strtolower(end($fileExt3));
+      $allowed3 = array('jpg','jpeg','png');
+  
+    if(in_array($fileActExt, $allowed) && in_array($fileActExt1, $allowed1) && in_array($fileActExt2, $allowed2) && in_array($fileActExt3, $allowed3)){
+      if($fileError === 0 && $fileError1 === 0 && $fileError2 === 0 && $fileError3 === 0){
+          if($fileSize < 10485760 && $fileSize1 < 10485760 && $fileSize2 < 10485760 && $fileSize3 < 10485760){
+
+            $uploadDir = '../../assets/img/products/';
+            $name = $_POST['name'];
+            $quantity = $_POST['quantity'];
+            $category = $_POST['category'];
+            $exp_date = $_POST['exp_date'];
+            $status = '1';
+            
+            $targetFile = $uploadDir . $fileName;
+            $targetFile1 = $uploadDir . $fileName1;
+            $targetFile2 = $uploadDir . $fileName2;
+            $targetFile3 = $uploadDir . $fileName3;
+            if (move_uploaded_file($fileTmpname, $targetFile) && move_uploaded_file($fileTmpname1, $targetFile1) && move_uploaded_file($fileTmpname2, $targetFile2) && move_uploaded_file($fileTmpname3, $targetFile3)) {
+              $query = "INSERT INTO `product` (`product_name`, `photo`, `photo1`, `photo2`, `photo3`, `product_quantity`, `exp_date`, `product_category_id`, `product_status`) VALUES ('$name', '$fileName', '$fileName1', '$fileName2', '$fileName3', '$quantity', '$exp_date', '$category', '$status')";
+              $query_run = mysqli_query($con, $query);
+
+              if($query_run){
+                $_SESSION['status'] = "Product added successfully";
+                $_SESSION['status_code'] = "success";
+                header("Location: " . base_url . "admin/home/product.php");
+                exit(0);
+              }
+              else{
+                $_SESSION['status'] = "Product was not added";
+                $_SESSION['status_code'] = "error";
+                header("Location: " . base_url . "admin/home/product.php");
+                exit(0);
+              }
+            }
+            else{
+                $_SESSION['status']="Error uploading image.";
+                $_SESSION['status_code'] = "error";
+                header("Location: " . base_url . "admin/home/product.php");
+            }
+          }
+          else{
+            $_SESSION['status']="File is too large file must be 10mb";
+            $_SESSION['status_code'] = "error"; 
+            header("Location: " . base_url . "admin/home/product.php");
+          }
+      }
+      else{
+        $_SESSION['status']="File Error";
+        $_SESSION['status_code'] = "error"; 
+        header("Location: " . base_url . "admin/home/product.php");
+      }
+    }
+    else{
+      $_SESSION['status']="Invalid file type";
+      $_SESSION['status_code'] = "error"; 
+      header("Location: " . base_url . "admin/home/product.php");
     }
   }
 
   // Update product
   if(isset($_POST["update_product"])){
-    $user_id = $_POST['product_id'];
-    $name = $_POST['name'];
-    $quantity = $_POST['quantity'];
-    $category = $_POST['category'];
-    $status = $_POST['status'];
-    if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-      $fileImage = $_FILES['image'];
+    
+    $photo = $_FILES['photo'];
       $OLDfileImage = $_POST['oldimage'];
-      $customFileName = 'product_' . date('Ymd_His'); // replace with your desired file name
-      $ext = pathinfo($fileImage['name'], PATHINFO_EXTENSION); // get the file extension
+      $customFileName = 'product1_' . date('Ymd_His'); // replace with your desired file name
+      $ext = pathinfo($photo['name'], PATHINFO_EXTENSION); // get the file extension
       $fileName = $customFileName . '.' . $ext; // append the extension to the custom file name
-      $fileTmpname = $fileImage['tmp_name'];
-      $fileSize = $fileImage['size'];
-      $fileError = $fileImage['error'];
+      $fileTmpname = $photo['tmp_name'];
+      $fileSize = $photo['size'];
+      $fileError = $photo['error'];
       $fileExt = explode('.',$fileName);
       $fileActExt = strtolower(end($fileExt));
       $allowed = array('jpg','jpeg','png');
-    
-      if(in_array($fileActExt, $allowed)){
-        if($fileError === 0){
-          if($fileSize < 10485760){
-            $uploadDir = '../../assets/img/products/';
-            $targetFile = $uploadDir . $fileName;
-            unlink($uploadDir . $OLDfileImage);
 
-            if (move_uploaded_file($fileTmpname, $targetFile)) {
-              $query = "UPDATE `product` SET `product_name`='$name',`product_image`='$fileName',`product_quantity`='$quantity',`product_category_id`='$category',`product_status`='$status' WHERE `product_id`='$user_id'";
+    $photo1 = $_FILES['photo1'];
+      $OLDfileImage1 = $_POST['oldimage1'];
+      $customFileName1 = 'product2_' . date('Ymd_His'); // replace with your desired file name
+      $ext1 = pathinfo($photo1['name'], PATHINFO_EXTENSION); // get the file extension
+      $fileName1 = $customFileName1 . '.' . $ext1; // append the extension to the custom file name
+      $fileTmpname1 = $photo1['tmp_name'];
+      $fileSize1 = $photo1['size'];
+      $fileError1 = $photo1['error'];
+      $fileExt1 = explode('.',$fileName1);
+      $fileActExt1 = strtolower(end($fileExt1));
+      $allowed1 = array('jpg','jpeg','png');
+
+    $photo2 = $_FILES['photo2'];
+      $OLDfileImage2 = $_POST['oldimage2'];
+      $customFileName2 = 'product3_' . date('Ymd_His'); // replace with your desired file name
+      $ext2 = pathinfo($photo2['name'], PATHINFO_EXTENSION); // get the file extension
+      $fileName2 = $customFileName2 . '.' . $ext2; // append the extension to the custom file name
+      $fileTmpname2 = $photo2['tmp_name'];
+      $fileSize2 = $photo2['size'];
+      $fileError2 = $photo2['error'];
+      $fileExt2 = explode('.',$fileName2);
+      $fileActExt2 = strtolower(end($fileExt2));
+      $allowed2 = array('jpg','jpeg','png');
+
+    $photo3 = $_FILES['photo3'];
+      $OLDfileImage3 = $_POST['oldimage3'];
+      $customFileName3 = 'product4_' . date('Ymd_His'); // replace with your desired file name
+      $ext3 = pathinfo($photo3['name'], PATHINFO_EXTENSION); // get the file extension
+      $fileName3 = $customFileName3 . '.' . $ext3; // append the extension to the custom file name
+      $fileTmpname3 = $photo3['tmp_name'];
+      $fileSize3 = $photo3['size'];
+      $fileError3 = $photo3['error'];
+      $fileExt3 = explode('.',$fileName3);
+      $fileActExt3 = strtolower(end($fileExt3));
+      $allowed3 = array('jpg','jpeg','png');
+  
+    if(in_array($fileActExt, $allowed) && in_array($fileActExt1, $allowed1) && in_array($fileActExt2, $allowed2) && in_array($fileActExt3, $allowed3)){
+      if($fileError === 0 && $fileError1 === 0 && $fileError2 === 0 && $fileError3 === 0){
+          if($fileSize < 10485760 && $fileSize1 < 10485760 && $fileSize2 < 10485760 && $fileSize3 < 10485760){
+
+            $uploadDir = '../../assets/img/products/';
+            unlink($uploadDir . $OLDfileImage);
+            unlink($uploadDir . $OLDfileImage1);
+            unlink($uploadDir . $OLDfileImage2);
+            unlink($uploadDir . $OLDfileImage3);
+            $product_id = $_POST['product_id'];
+            $name = $_POST['name'];
+            $quantity = $_POST['quantity'];
+            $category = $_POST['category'];
+            $exp_date = $_POST['exp_date'];
+            $status = $_POST['status'];
+            
+            $targetFile = $uploadDir . $fileName;
+            $targetFile1 = $uploadDir . $fileName1;
+            $targetFile2 = $uploadDir . $fileName2;
+            $targetFile3 = $uploadDir . $fileName3;
+            if (move_uploaded_file($fileTmpname, $targetFile) && move_uploaded_file($fileTmpname1, $targetFile1) && move_uploaded_file($fileTmpname2, $targetFile2) && move_uploaded_file($fileTmpname3, $targetFile3)) {
+              $query = "UPDATE `product` SET `product_name` = '$name', `photo` = '$fileName', `photo1` = '$fileName1', `photo2` = '$fileName2', `photo3` = '$fileName3', `product_quantity` = '$quantity', `exp_date` = '$exp_date', `product_category_id` = '$category', `product_status` = '$status' WHERE `product_id` = '$product_id'";
               $query_run = mysqli_query($con, $query);
 
               if($query_run){
                 $_SESSION['status'] = "Product updated successfully";
                 $_SESSION['status_code'] = "success";
-                header("Location: " . base_url . "admin/home/manage_product.php");
+                header("Location: " . base_url . "admin/home/product.php");
                 exit(0);
               }
               else{
                 $_SESSION['status'] = "Product was not updated";
                 $_SESSION['status_code'] = "error";
-                header("Location: " . base_url . "admin/home/manage_product.php");
+                header("Location: " . base_url . "admin/home/product.php");
                 exit(0);
               }
             }
             else{
-              $_SESSION['status']="Error uploading image.";
-              $_SESSION['status_code'] = "error";
-              header("Location: " . base_url . "admin/home/manage_product.php");
+                $_SESSION['status']="Error uploading image.";
+                $_SESSION['status_code'] = "error";
+                header("Location: " . base_url . "admin/home/product.php");
             }
-
           }
           else{
             $_SESSION['status']="File is too large file must be 10mb";
             $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "admin/home/manage_product.php");
+            header("Location: " . base_url . "admin/home/product.php");
           }
-        }
-        else{
-          $_SESSION['status']="File Error";
-          $_SESSION['status_code'] = "error"; 
-          header("Location: " . base_url . "admin/home/manage_product.php");
-        }
       }
       else{
-        $_SESSION['status']="Invalid file type";
+        $_SESSION['status']="File Error";
         $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "admin/home/manage_product.php");
+        header("Location: " . base_url . "admin/home/product.php");
       }
     }
     else{
-      $query = "UPDATE `product` SET `product_name`='$name',`product_quantity`='$quantity',`product_category_id`='$category',`product_status`='$status' WHERE `product_id`='$user_id'";
-      $query_run = mysqli_query($con, $query);
-
-      if($query_run){
-        $_SESSION['status'] = "Product updated successfully";
-        $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "admin/home/manage_product.php");
-        exit(0);
-      }
-      else{
-        $_SESSION['status'] = "Product was not updated";
-        $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "admin/home/manage_product.php");
-        exit(0);
-      }
+      $_SESSION['status']="Invalid file type";
+      $_SESSION['status_code'] = "error"; 
+      header("Location: " . base_url . "admin/home/product.php");
     }
   }
 
@@ -894,7 +1022,7 @@
     $query_run = mysqli_query($con,$query);
 
     if($query_run){
-      $sql = "SELECT email FROM farmer";
+      $sql = "SELECT email FROM user WHERE user_type = 3";
       $result = mysqli_query($con, $sql);
 
       if (mysqli_num_rows($result) > 0) {
@@ -1092,8 +1220,15 @@
     $mname= $_POST['mname'];
     $lname= $_POST['lname'];
     $email= $_POST['email'];
-    $new_password= $_POST['password'];
-    $password = md5($new_password);
+    if(isset($_POST['barangay'])) {
+      $new_password= $_POST['password'];
+      $password = md5($new_password);
+    } else {
+      $sql = "SELECT `password` FROM `user` WHERE user_id = $user_id";
+      $sql_run = $con->query($sql);
+      $data = $sql_run->fetch_assoc();
+      $password = $data['password'];
+    }
     if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
       $fileImage = $_FILES['image'];
       $OLDfileImage = $_POST['oldimage'];

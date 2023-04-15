@@ -12,17 +12,21 @@
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
   }
-#loading-image {
+#loading-image{
     z-index: 100;
 }
-#loading.fade-out {
+#loading.fade-out{
     opacity: 0;
 }
-@media print {
-    body {
+@media print{
+    body{
         margin-top: 50px;
     }
-    .noprint {
+    .noprint{
         display: none;
+    }
+    @page {
+        size: auto;
+        margin: 0mm;
     }
 }

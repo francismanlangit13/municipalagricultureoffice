@@ -14,7 +14,6 @@
 
 <?php
     //$conn = mysqli_connect("localhost", "root", "", "maojimenez");
-    include('../../db_conn.php'); 
     if (! empty($_FILES)) {
         // Validating SQL file type by extensions
         if (! in_array(strtolower(pathinfo($_FILES["backup_file"]["name"], PATHINFO_EXTENSION)), array(
@@ -81,7 +80,7 @@
                 $response = array(
                     // "type" => "success",
                     // "message" => "Database Restore Completed Successfully."
-                    $_SESSION['status'] = "Database Restore Completed Successfully.",
+                    $_SESSION['status'] = "Database restore completed successfully.",
                     $_SESSION['status_code'] = "success"
                 );
             }

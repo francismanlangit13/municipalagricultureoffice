@@ -10,7 +10,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="manage_product_add.php" class="btn btn-success btn-icon-split"> 
+        <a href="product_add.php" class="btn btn-success btn-icon-split"> 
             <span class="icon text-white-50">
             <i class="fas fa-archive"></i>
             </span>
@@ -35,13 +35,7 @@
                 <tbody>
                     <?php
                         $query = "SELECT
-                        product.product_id, 
-                        product.product_name, 
-                        product.product_image, 
-                        product.product_quantity, 
-                        product.exp_date, 
-                        product_category.category_name, 
-                        product.product_status
+                        *
                         FROM
                         product_category
                         INNER JOIN
@@ -59,17 +53,17 @@
                         <td>
                             <a href="
                                 <?php
-                                    if(isset($row['product_image'])){
-                                        if(!empty($row['product_image'])) {
-                                            echo base_url . 'assets/img/products/' . $row['product_image'];
+                                    if(isset($row['photo'])){
+                                        if(!empty($row['photo'])) {
+                                            echo base_url . 'assets/img/products/' . $row['photo'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                 ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name'];?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
-                                        if(isset($row['product_image'])){
-                                            if(!empty($row['product_image'])) {
-                                                echo base_url . 'assets/img/products/' . $row['product_image'];
+                                        if(isset($row['photo'])){
+                                            if(!empty($row['photo'])) {
+                                                echo base_url . 'assets/img/products/' . $row['photo'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                     ?>
                                 " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
@@ -82,20 +76,20 @@
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">
-                                    <a href="manage_product_view.php?id=<?=$row['product_id'];?>" class="btn btn-info btn-icon-split"> 
+                                    <a href="product_view.php?id=<?=$row['product_id'];?>" class="btn btn-info btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
                                         <span class="text ml-2 mr-2">View</span>
                                     </a>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <a href="manage_product_update.php?id=<?=$row['product_id'];?>" class="btn btn-success btn-icon-split"> 
+                                    <a href="product_update.php?id=<?=$row['product_id'];?>" class="btn btn-success btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-save"></i></span>
                                         <span class="text">Update</span>
                                     </a>
                                 </div>
                                 <div class="col-md-12 mb-1">
                                     <form action="code.php" method="POST" style="zoom:105%;">
-                                    <input type="text" name="oldimage" value="<?= $row['product_image']; ?>" hidden>
+                                    <input type="text" name="oldimage" value="<?= $row['photo']; ?>" hidden>
                                         <button type="submit" name="del_product" value="<?=$row['product_id'];?>" class="btn btn-danger btn-icon-split" href="#">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-trash"></i>
