@@ -4,6 +4,7 @@
 
 <ol class="breadcrumb mb-4">    
   <li class="breadcrumb-item">Dashboard</li>
+  <li class="breadcrumb-item">Maintenance</li>
   <li class="breadcrumb-item">Database</li>
 </ol>
 
@@ -12,80 +13,83 @@
 </div>
 
 <?php
-$conn = mysqli_connect("localhost", "root", "", "maojimenez");
-if (! empty($_FILES)) {
-    // Validating SQL file type by extensions
-    if (! in_array(strtolower(pathinfo($_FILES["backup_file"]["name"], PATHINFO_EXTENSION)), array(
-        "sql"
-    ))) {
-        $response = array(
-            "type" => "error",
-            "message" => "Invalid File Type"
-        );
-    } else {
-        if (is_uploaded_file($_FILES["backup_file"]["tmp_name"])) {
-            move_uploaded_file($_FILES["backup_file"]["tmp_name"],'../../database/'.$_FILES["backup_file"]["name"]);
-            $response = restoreMysqlDB('../../database/'.$_FILES["backup_file"]["name"], $conn);
-        }
-    }
-}
-
-function restoreMysqlDB($filePath, $conn){
-    $sql = '';
-    $error = '';
-
-    // Disable foreign key checks
-    mysqli_query($conn, "SET FOREIGN_KEY_CHECKS=0");
-
-    // SQL query to drop all tables
-    $qry = "SHOW TABLES";
-    $result = mysqli_query($conn, $qry);
-
-    while($row = mysqli_fetch_row($result)) {
-      $qry = "DROP TABLE IF EXISTS $row[0]";
-      mysqli_query($conn, $qry);
-    }
-
-    // Enable foreign key checks
-    mysqli_query($conn, "SET FOREIGN_KEY_CHECKS=0");
-
-    if (file_exists($filePath)) {
-        $lines = file($filePath);
-        
-        foreach ($lines as $line) {
-            
-            // Ignoring comments from the SQL script
-            if (substr($line, 0, 2) == '--' || $line == '') {
-                continue;
-            }
-            
-            $sql .= $line;
-            
-            if (substr(trim($line), - 1, 1) == ';') {
-                $result = mysqli_query($conn, $sql);
-                if (! $result) {
-                    $error .= mysqli_error($conn) . "\n";
-                }
-                $sql = '';
-            }
-        } // end foreach
-        
-        if ($error) {
+    //$conn = mysqli_connect("localhost", "root", "", "maojimenez");
+    include('../../db_conn.php'); 
+    if (! empty($_FILES)) {
+        // Validating SQL file type by extensions
+        if (! in_array(strtolower(pathinfo($_FILES["backup_file"]["name"], PATHINFO_EXTENSION)), array(
+            "sql"
+        ))) {
             $response = array(
-                "type" => "errordb",
-                "message" => $error
+                "type" => "error",
+                "message" => "Invalid File Type"
             );
         } else {
-            $response = array(
-                "type" => "success",
-                "message" => "Database Restore Completed Successfully."
-            );
+            if (is_uploaded_file($_FILES["backup_file"]["tmp_name"])) {
+                move_uploaded_file($_FILES["backup_file"]["tmp_name"],'../../database/'.$_FILES["backup_file"]["name"]);
+                $response = restoreMysqlDB('../../database/'.$_FILES["backup_file"]["name"], $con);
+            }
         }
-        exec('rm ' . $filePath);
-    } // end if file exists
-    
-    return $response;
-}
+    }
+
+    function restoreMysqlDB($filePath, $con){
+        $sql = '';
+        $error = '';
+
+        // Disable foreign key checks
+        mysqli_query($con, "SET FOREIGN_KEY_CHECKS=0");
+
+        // SQL query to drop all tables
+        $qry = "SHOW TABLES";
+        $result = mysqli_query($con, $qry);
+
+        while($row = mysqli_fetch_row($result)) {
+        $qry = "DROP TABLE IF EXISTS $row[0]";
+        mysqli_query($con, $qry);
+        }
+
+        // Enable foreign key checks
+        mysqli_query($con, "SET FOREIGN_KEY_CHECKS=0");
+
+        if (file_exists($filePath)) {
+            $lines = file($filePath);
+            
+            foreach ($lines as $line) {
+                
+                // Ignoring comments from the SQL script
+                if (substr($line, 0, 2) == '--' || $line == '') {
+                    continue;
+                }
+                
+                $sql .= $line;
+                
+                if (substr(trim($line), - 1, 1) == ';') {
+                    $result = mysqli_query($con, $sql);
+                    if (! $result) {
+                        $error .= mysqli_error($con) . "\n";
+                    }
+                    $sql = '';
+                }
+            } // end foreach
+            
+            if ($error) {
+                $response = array(
+                    "type" => "errordb",
+                    "message" => $error
+                );
+            } else {
+                $response = array(
+                    // "type" => "success",
+                    // "message" => "Database Restore Completed Successfully."
+                    $_SESSION['status'] = "Database Restore Completed Successfully.",
+                    $_SESSION['status_code'] = "success"
+                );
+            }
+            exec('rm ' . $filePath);
+        } // end if file exists
+        
+        return $response;
+    }
 
 ?>
 <head>
@@ -134,13 +138,8 @@ function restoreMysqlDB($filePath, $conn){
     }
     </style>
 </head>
-    <?php if (! empty($response)) { ?>
-    <div class="response <?php echo $response["type"]; ?>">
-        <?php echo nl2br($response["message"]); ?>
-    </div>
-    <?php } ?>
     <form method="post" action="" enctype="multipart/form-data" id="frm-restore">
-        <div class="form-row">
+        <div class="form-row col-md-5">
             <div class="mr-2">Choose Backup File</div>
             <div>
                 <input type="file" name="backup_file" class="form-control-file btn btn-secondary" required accept=".sql">

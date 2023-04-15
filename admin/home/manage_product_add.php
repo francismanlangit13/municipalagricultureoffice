@@ -3,7 +3,6 @@
 <ol class="breadcrumb mb-4">    
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Products</li>
-    <li class="breadcrumb-item">Manage Products</li>
     <li class="breadcrumb-item">Add Products</li>
 </ol>
 <form action="code.php" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -11,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Add Product</h5>
+                    <h5>Product information</h5>
                 </div>
                 <div class="card-body">
                     <div class="row"> 

@@ -4,6 +4,7 @@
 
 <ol class="breadcrumb mb-4">    
     <li class="breadcrumb-item">Dashboard</li>
+    <li class="breadcrumb-item">Accounts</li>
     <li class="breadcrumb-item">User</li>
     <li class="breadcrumb-item">Update User Account</li>
 </ol>
@@ -12,7 +13,7 @@
         <div class="col-md-12">
             <div class="card mt-5">
                 <div class="card-header">
-                    <h5>User Information</h5>
+                    <h5>User information</h5>
                 </div>
                 <div class="card-body">
 

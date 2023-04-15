@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Add Category</h5>
+                    <h5>Update Category</h5>
                 </div>
                 <div class="card-body">
                     <?php
@@ -26,11 +26,11 @@
                     <input type="hidden" name="user_id" value="<?=$user['product_category_id'];?>">
                     <div class="row"> 
                         <div class="col-md-12 mb-3">
-                            <label for="">Name</label>
+                            <label for="" class="required">Name</label>
                             <input required placeholder="Enter Category Name" name="editcategory_name" value="<?= $user['category_name']; ?>" class="form-control">
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="Description">Description</label>
+                            <label for="Description" class="required">Description</label>
                             <textarea placeholder="Enter Description" name="editdescription" required  value="<?= $user['category_description']; ?>" class="form-control" rows="5"><?= $user['category_description']; ?></textarea>
                         </div>
                     </div>

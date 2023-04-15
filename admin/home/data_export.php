@@ -1,20 +1,20 @@
-<?php
-
+<?php include('../../db_conn.php'); 
+    
     // Database configuration
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database_name = "maojimenez";
+    // $host = "localhost";
+    // $username = "root";
+    // $password = "";
+    // $database_name = "maojimenez";
 
-    // Get connection object and set the charset
-    $conn = mysqli_connect($host, $username, $password, $database_name);
-    $conn->set_charset("utf8");
+    // // Get connection object and set the charset
+    // $conn = mysqli_connect($host, $username, $password, $database_name);
 
+    $con->set_charset("utf8");
 
     // Get All Table Names From the Database
     $tables = array();
     $sql = "SHOW TABLES";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($con, $sql);
 
     while ($row = mysqli_fetch_row($result)) {
         $tables[] = $row[0];
@@ -25,14 +25,14 @@
         
         // Prepare SQLscript for creating table structure
         $query = "SHOW CREATE TABLE $table";
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($con, $query);
         $row = mysqli_fetch_row($result);
         
         $sqlScript .= "\n\n" . $row[1] . ";\n\n";
         
         
         $query = "SELECT * FROM $table";
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($con, $query);
         
         $columnCount = mysqli_num_fields($result);
         
@@ -62,7 +62,7 @@
     if(!empty($sqlScript))
     {
         // Save the SQL script to a backup file in the backups/ directory
-        $backup_file_name = '../../assets/database/' . $database_name . '_backup_' . time() . '.sql';
+        $backup_file_name = '../../assets/database/' . DB_NAME . '_backup_' . time() . '.sql';
         $fileHandler = fopen($backup_file_name, 'w+');
         $number_of_lines = fwrite($fileHandler, $sqlScript);
         fclose($fileHandler); 

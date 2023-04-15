@@ -17,11 +17,11 @@
                 <div class="card-body">
                     <div class="row"> 
                         <div class="col-md-12 mb-3">
-                            <label for="">Name</label>
+                            <label for="" class="required">Name</label>
                             <input required placeholder="Enter Category Name" name="name" class="form-control">
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="Description">Description</label>
+                            <label for="Description" class="required">Description</label>
                             <textarea required placeholder="Enter Description" name="description" class="form-control" rows="5"></textarea>
                         </div>
                     </div>

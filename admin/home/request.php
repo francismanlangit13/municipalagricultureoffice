@@ -71,21 +71,6 @@
                         <td><?= $row['product_name']; ?></td>
                         <td><?= $row['request_quantity']; ?></td>
                         <td><?= $row['status_name']; ?></td>
-                        <!-- <td class="text-center">
-
-                            <div class="dropdown show">
-                            <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Action
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="request_view.php?id=<?=$row['request_id'];?>">View</a>
-                            <form action="code.php" method="post">
-                            <button type="submit" class="dropdown-item"  name="req_deny" value="<?=$row['request_id'];?>">Deny</button>
-                            </form>
-                            </div>
-                            </div>
-                        </td> -->
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">

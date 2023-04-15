@@ -6,13 +6,13 @@
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Other</li>
     <li class="breadcrumb-item">Announcement</li>
-    <li class="breadcrumb-item">Edit Announcement</li>
+    <li class="breadcrumb-item">View Announcement</li>
 </ol>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h5>View Announcement</h5>
+                <h5>Announcement information</h5>
             </div>
             <div class="card-body">
                 <?php

@@ -14,29 +14,28 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Concern #</th>
                         <th>Name</th>
                         <th>Images</th>
                         <th>Message</th>
-                        <th>Date Filed</th>    
+                        <th>Date Filed</th>
+                        <th>Status</th>
+                        <th>Action</th>    
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         $query = "SELECT
-                        concern.concern_id, 
-                        user.lname, 
-                        user.mname, 
-                        user.fname, 
-                        concern.pic1, 
-                        concern.pic2, 
-                        concern.date_created, 
-                        concern.concern_message
+                        *
                         FROM
                         concern
+                        INNER JOIN
+                        status
+                        ON 
+                        concern.status_id = status.status_id
                         INNER JOIN
                         user
                         ON 
@@ -66,8 +65,19 @@
                                 " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
                             </a>
                         </td>
-                        <td><?= $row['concern_message']; ?></td>
+                        <td><?= $row['message']; ?></td>
                         <td><?= $row['date_created']; ?></td>
+                        <td><?= $row['status_name']; ?></td>
+                        <td> 
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-12 mb-1" style="zoom:95%">
+                                    <a href="concern_view.php?id=<?=$row['concern_id'];?>" class="btn btn-info btn-icon-split"> 
+                                        <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                        <span class="text ml-2 mr-2">View</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     <?php
                             }

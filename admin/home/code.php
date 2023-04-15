@@ -1171,4 +1171,44 @@
     }
   }
 
+  if(isset($_POST['concern_save'])){
+    $farmer_id = $_POST['farmer_id'];
+    $reason = $_POST['reason'];
+    $status = $_POST['status'];
+
+    if(isset($_POST['status']) && $_POST['status'] == 2) {
+      $query = "UPDATE `concern` SET `status_id`='$status' WHERE `concern_id`= '$farmer_id'";
+      $query_run = mysqli_query($con, $query);
+
+      if($query_run){
+        $_SESSION['status'] = "Concern has been approved!";
+        $_SESSION['status_code'] = "success";
+        header("Location: " . base_url . "admin/home/concern.php");
+        exit(0);
+      }
+      else{
+        $_SESSION['status'] = "Something went wrong!";
+        $_SESSION['status_code'] = "error";
+        header("Location: " . base_url . "admin/home/concern.php");
+        exit(0);
+      }
+    }
+    else{
+      $query = "UPDATE `concern` SET `status_id`='$status', `reason` = '$reason' WHERE `concern_id`= '$farmer_id'";
+      $query_run = mysqli_query($con, $query);
+
+      if($query_run && $query){
+        $_SESSION['status'] = "Request has been deny!";
+        $_SESSION['status_code'] = "success";
+        header("Location: " . base_url . "admin/home/concern.php");
+        exit(0);
+      }
+      else{
+        $_SESSION['status'] = "Something went wrong!";
+        $_SESSION['status_code'] = "error";
+        header("Location: " . base_url . "admin/home/concern.php");
+        exit(0);
+      }
+    }
+  }
 ?>
