@@ -32,13 +32,13 @@
     if($query_run){
       $_SESSION['status'] = "The Product has been successfully deleted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/product.php");
+      header("Location: " . base_url . "admin/home/product");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Something is wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/product.php");
+      header("Location: " . base_url . "admin/home/product");
       exit(0);
     } 
   }
@@ -54,13 +54,13 @@
     if($query_run){
       $_SESSION['status'] = "The user has been successfully deleted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/user.php");
+      header("Location: " . base_url . "admin/home/user");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Something is wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/user.php");
+      header("Location: " . base_url . "admin/home/user");
       exit(0);
     } 
   }
@@ -329,38 +329,38 @@
         
               $_SESSION['status'] = "Farmer added successfully, Credentials was sent to their email!";
               $_SESSION['status_code'] = "success";
-              header("Location: " . base_url . "admin/home/farmer_account.php");
+              header("Location: " . base_url . "admin/home/farmer_account");
               exit(0);
             }
             else{
               $_SESSION['status'] = "Farmer was not added";
               $_SESSION['status_code'] = "error";
-              header("Location: " . base_url . "admin/home/farmer_account.php");
+              header("Location: " . base_url . "admin/home/farmer_account");
               exit(0);
             }
           } 
           else{
             $_SESSION['status']="Error uploading image.";
             $_SESSION['status_code'] = "error";
-            header("Location: " . base_url . "admin/home/farmer_account.php");
+            header("Location: " . base_url . "admin/home/farmer_account");
           }
         }
         else{
           $_SESSION['status']="File is too large file must be 10mb";
           $_SESSION['status_code'] = "error"; 
-          header("Location: " . base_url . "admin/home/farmer_account.php");
+          header("Location: " . base_url . "admin/home/farmer_account");
         }
       }
       else{
         $_SESSION['status']="File Error";
         $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "admin/home/farmer_account.php");
+        header("Location: " . base_url . "admin/home/farmer_account");
       }
     }
     else{
       $_SESSION['status']="Invalid file type";
       $_SESSION['status_code'] = "error"; 
-      header("Location: " . base_url . "admin/home/farmer_account.php");
+      header("Location: " . base_url . "admin/home/farmer_account");
     }
   }
 
@@ -421,13 +421,13 @@
 
       $_SESSION['status'] = "Farmer updated successfully";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/farmer_account.php");
+      header("Location: " . base_url . "admin/home/farmer_account");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Farmer was not updated";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/farmer_account.php");
+      header("Location: " . base_url . "admin/home/farmer_account");
       exit(0);
     }
   }
@@ -442,13 +442,13 @@
     if($query_run){
       $_SESSION['status'] = "The farmer has been successfully deleted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/farmer_account.php");
+      header("Location: " . base_url . "admin/home/farmer_account");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Something is wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/farmer_account.php");
+      header("Location: " . base_url . "admin/home/farmer_account");
       exit(0);
     } 
   }
@@ -464,12 +464,12 @@
       if($query_run){
         $_SESSION['status'] = "Request has been denied!";
         $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "admin/home/request.php");
+        header("Location: " . base_url . "admin/home/request");
         exit(0);
       }
       else{
         $_SESSION['message'] = "Something went wrong!";
-        header("Location: " . base_url . "admin/home/request.php");
+        header("Location: " . base_url . "admin/home/request");
         exit(0);
       }
   }
@@ -502,20 +502,20 @@
         if($query_run && $query1){
           $_SESSION['status'] = "Request has been approved!";
           $_SESSION['status_code'] = "success";
-          header("Location: " . base_url . "admin/home/request.php");
+          header("Location: " . base_url . "admin/home/request");
           exit(0);
         }
         else{
           $_SESSION['status'] = "Something went wrong!";
           $_SESSION['status_code'] = "error";
-          header("Location: " . base_url . "admin/home/request.php");
+          header("Location: " . base_url . "admin/home/request");
           exit(0);
         }
       }
       else{
         $_SESSION['status'] = "Insufficient Stocks";
         $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "admin/home/request.php");
+        header("Location: " . base_url . "admin/home/request");
         exit(0);
       }
     }
@@ -526,13 +526,13 @@
       if($query_run && $query){
         $_SESSION['status'] = "Request has been deny!";
         $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "admin/home/request.php");
+        header("Location: " . base_url . "admin/home/request");
         exit(0);
       }
       else{
         $_SESSION['status'] = "Something went wrong!";
         $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "admin/home/request.php");
+        header("Location: " . base_url . "admin/home/request");
         exit(0);
       }
     }
@@ -600,39 +600,39 @@
         
               $_SESSION['status'] = "User Added Successfully, Credentials was sent to their email!";
               $_SESSION['status_code'] = "success";
-              header("Location: " . base_url . "admin/home/user.php");
+              header("Location: " . base_url . "admin/home/user");
               exit(0);
             }
             else{
               $_SESSION['status'] = "User was not added";
               $_SESSION['status_code'] = "error";
-              header("Location: " . base_url . "admin/home/user.php");
+              header("Location: " . base_url . "admin/home/user");
               exit(0);
             }
           }
           else{
             $_SESSION['status']="Error uploading image.";
             $_SESSION['status_code'] = "error";
-            header("Location: " . base_url . "admin/home/user.php");
+            header("Location: " . base_url . "admin/home/user");
           }
 
         }
         else{
           $_SESSION['status']="File is too large file must be 10mb";
           $_SESSION['status_code'] = "error"; 
-          header("Location: " . base_url . "admin/home/user.php");
+          header("Location: " . base_url . "admin/home/user");
         }
       }
       else{
         $_SESSION['status']="File Error";
         $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "admin/home/user.php");
+        header("Location: " . base_url . "admin/home/user");
       }
     }
     else{
       $_SESSION['status']="Invalid file type";
       $_SESSION['status_code'] = "error"; 
-      header("Location: " . base_url . "admin/home/user.php");
+      header("Location: " . base_url . "admin/home/user");
     }
   }
 
@@ -673,13 +673,13 @@
     if($query_run){
       $_SESSION['status'] = "User updated successfully";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/user.php");
+      header("Location: " . base_url . "admin/home/user");
       exit(0);
     }
     else{
       $_SESSION['status'] = "User was not updated";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/user.php");
+      header("Location: " . base_url . "admin/home/user");
       exit(0);
     }
   }
@@ -716,38 +716,38 @@
             if($query_run){
               $_SESSION['status'] = "Product added successfully";
               $_SESSION['status_code'] = "success";
-              header("Location: " . base_url . "admin/home/product.php");
+              header("Location: " . base_url . "admin/home/product");
               exit(0);
             }
             else{
               $_SESSION['status'] = "Product was not added";
               $_SESSION['status_code'] = "error";
-              header("Location: " . base_url . "admin/home/product.php");
+              header("Location: " . base_url . "admin/home/product");
               exit(0);
             }
           }
           else{
             $_SESSION['status']="Error uploading image.";
             $_SESSION['status_code'] = "error";
-            header("Location: " . base_url . "admin/home/product.php");
+            header("Location: " . base_url . "admin/home/product");
           }
         }
         else{
             $_SESSION['status']="File is too large file must be 10mb";
             $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "admin/home/product.php");
+            header("Location: " . base_url . "admin/home/product");
         }
       }
       else{
           $_SESSION['status']="File Error";
           $_SESSION['status_code'] = "error"; 
-          header("Location: " . base_url . "admin/home/product.php");
+          header("Location: " . base_url . "admin/home/product");
       }
     }
     else{
       $_SESSION['status']="Invalid file type";
       $_SESSION['status_code'] = "error"; 
-      header("Location: " . base_url . "admin/home/product.php");
+      header("Location: " . base_url . "admin/home/product");
     }
   }
 
@@ -819,45 +819,48 @@
               if($query_run){
                 $_SESSION['status'] = "Product added successfully";
                 $_SESSION['status_code'] = "success";
-                header("Location: " . base_url . "admin/home/product.php");
+                header("Location: " . base_url . "admin/home/product");
                 exit(0);
               }
               else{
                 $_SESSION['status'] = "Product was not added";
                 $_SESSION['status_code'] = "error";
-                header("Location: " . base_url . "admin/home/product.php");
+                header("Location: " . base_url . "admin/home/product");
                 exit(0);
               }
             }
             else{
                 $_SESSION['status']="Error uploading image.";
                 $_SESSION['status_code'] = "error";
-                header("Location: " . base_url . "admin/home/product.php");
+                header("Location: " . base_url . "admin/home/product");
             }
           }
           else{
             $_SESSION['status']="File is too large file must be 10mb";
             $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "admin/home/product.php");
+            header("Location: " . base_url . "admin/home/product");
           }
       }
       else{
         $_SESSION['status']="File Error";
         $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "admin/home/product.php");
+        header("Location: " . base_url . "admin/home/product");
       }
     }
     else{
       $_SESSION['status']="Invalid file type";
       $_SESSION['status_code'] = "error"; 
-      header("Location: " . base_url . "admin/home/product.php");
+      header("Location: " . base_url . "admin/home/product");
     }
   }
 
   // Update product
   if(isset($_POST["update_product"])){
-    
-    $photo = $_FILES['photo'];
+    $product_id = $_POST['product_id'];
+    $uploadDir = '../../assets/img/products/';
+
+    if(isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+      $photo = $_FILES['photo'];
       $OLDfileImage = $_POST['oldimage'];
       $customFileName = 'product1_' . date('Ymd_His'); // replace with your desired file name
       $ext = pathinfo($photo['name'], PATHINFO_EXTENSION); // get the file extension
@@ -868,8 +871,37 @@
       $fileExt = explode('.',$fileName);
       $fileActExt = strtolower(end($fileExt));
       $allowed = array('jpg','jpeg','png');
+      if(in_array($fileActExt, $allowed)){
+        if($fileError === 0){
+          if($fileSize < 10485760){
+            unlink($uploadDir . $OLDfileImage);
+            $targetFile = $uploadDir . $fileName;
 
-    $photo1 = $_FILES['photo1'];
+            if (move_uploaded_file($fileTmpname, $targetFile)) {
+              $sql1 = "UPDATE `product` SET `photo` = '$fileName' WHERE `product_id` = '$product_id'";
+              $sql1_run = mysqli_query($con, $sql1);
+            }
+          }
+          else{
+            $_SESSION['status']="Product image1 file is too large file must be 10mb";
+            $_SESSION['status_code'] = "error"; 
+            header("Location: " . base_url . "admin/home/product");
+          }
+        }
+        else{
+          $_SESSION['status']="Product image1 file error";
+          $_SESSION['status_code'] = "error"; 
+          header("Location: " . base_url . "admin/home/product");
+        }
+      }
+      else{
+        $_SESSION['status']="Product image1 invalid file type";
+        $_SESSION['status_code'] = "error"; 
+        header("Location: " . base_url . "admin/home/product");
+      }
+    }
+    if(isset($_FILES['photo1']) && $_FILES['photo1']['error'] === UPLOAD_ERR_OK) {
+      $photo1 = $_FILES['photo1'];
       $OLDfileImage1 = $_POST['oldimage1'];
       $customFileName1 = 'product2_' . date('Ymd_His'); // replace with your desired file name
       $ext1 = pathinfo($photo1['name'], PATHINFO_EXTENSION); // get the file extension
@@ -880,8 +912,37 @@
       $fileExt1 = explode('.',$fileName1);
       $fileActExt1 = strtolower(end($fileExt1));
       $allowed1 = array('jpg','jpeg','png');
+      if(in_array($fileActExt1, $allowed1)){
+        if($fileError1 === 0){
+          if($fileSize1 < 10485760){
+            unlink($uploadDir . $OLDfileImage1);
+            $targetFile1 = $uploadDir . $fileName1;
 
-    $photo2 = $_FILES['photo2'];
+            if (move_uploaded_file($fileTmpname1, $targetFile1)) {
+              $sql2 = "UPDATE `product` SET `photo1` = '$fileName1' WHERE `product_id` = '$product_id'";
+              $sql2_run = mysqli_query($con, $sql2);
+            }
+          }
+          else{
+            $_SESSION['status']="Product image2 file is too large file must be 10mb";
+            $_SESSION['status_code'] = "error"; 
+            header("Location: " . base_url . "admin/home/product");
+          }
+        }
+        else{
+          $_SESSION['status']="Product image2 file error";
+          $_SESSION['status_code'] = "error"; 
+          header("Location: " . base_url . "admin/home/product");
+        }
+      }
+      else{
+        $_SESSION['status']="Product image2 invalid file type";
+        $_SESSION['status_code'] = "error"; 
+        header("Location: " . base_url . "admin/home/product");
+      }
+    }
+    if(isset($_FILES['photo2']) && $_FILES['photo2']['error'] === UPLOAD_ERR_OK) {
+      $photo2 = $_FILES['photo2'];
       $OLDfileImage2 = $_POST['oldimage2'];
       $customFileName2 = 'product3_' . date('Ymd_His'); // replace with your desired file name
       $ext2 = pathinfo($photo2['name'], PATHINFO_EXTENSION); // get the file extension
@@ -892,8 +953,37 @@
       $fileExt2 = explode('.',$fileName2);
       $fileActExt2 = strtolower(end($fileExt2));
       $allowed2 = array('jpg','jpeg','png');
+      if(in_array($fileActExt2, $allowed2)){
+        if($fileError2 === 0){
+          if($fileSize2 < 10485760){
+            unlink($uploadDir . $OLDfileImage2);
+            $targetFile2 = $uploadDir . $fileName2;
 
-    $photo3 = $_FILES['photo3'];
+            if (move_uploaded_file($fileTmpname2, $targetFile2)) {
+              $sql3 = "UPDATE `product` SET `photo2` = '$fileName2' WHERE `product_id` = '$product_id'";
+              $sql3_run = mysqli_query($con, $sql3);
+            }
+          }
+          else{
+            $_SESSION['status']="Product image3 file is too large file must be 10mb";
+            $_SESSION['status_code'] = "error"; 
+            header("Location: " . base_url . "admin/home/product");
+          }
+        }
+        else{
+          $_SESSION['status']="Product image3 file error";
+          $_SESSION['status_code'] = "error"; 
+          header("Location: " . base_url . "admin/home/product");
+        }
+      }
+      else{
+        $_SESSION['status']="Product image3 invalid file type";
+        $_SESSION['status_code'] = "error"; 
+        header("Location: " . base_url . "admin/home/product");
+      }
+    }
+    if(isset($_FILES['photo3']) && $_FILES['photo3']['error'] === UPLOAD_ERR_OK) {
+      $photo3 = $_FILES['photo3'];
       $OLDfileImage3 = $_POST['oldimage3'];
       $customFileName3 = 'product4_' . date('Ymd_His'); // replace with your desired file name
       $ext3 = pathinfo($photo3['name'], PATHINFO_EXTENSION); // get the file extension
@@ -904,68 +994,58 @@
       $fileExt3 = explode('.',$fileName3);
       $fileActExt3 = strtolower(end($fileExt3));
       $allowed3 = array('jpg','jpeg','png');
-  
-    if(in_array($fileActExt, $allowed) && in_array($fileActExt1, $allowed1) && in_array($fileActExt2, $allowed2) && in_array($fileActExt3, $allowed3)){
-      if($fileError === 0 && $fileError1 === 0 && $fileError2 === 0 && $fileError3 === 0){
-          if($fileSize < 10485760 && $fileSize1 < 10485760 && $fileSize2 < 10485760 && $fileSize3 < 10485760){
-
-            $uploadDir = '../../assets/img/products/';
-            unlink($uploadDir . $OLDfileImage);
-            unlink($uploadDir . $OLDfileImage1);
-            unlink($uploadDir . $OLDfileImage2);
+      if(in_array($fileActExt3, $allowed3)){
+        if($fileError3 === 0){
+          if($fileSize3 < 10485760){
             unlink($uploadDir . $OLDfileImage3);
-            $product_id = $_POST['product_id'];
-            $name = $_POST['name'];
-            $quantity = $_POST['quantity'];
-            $category = $_POST['category'];
-            $exp_date = $_POST['exp_date'];
-            $status = $_POST['status'];
-            
-            $targetFile = $uploadDir . $fileName;
-            $targetFile1 = $uploadDir . $fileName1;
-            $targetFile2 = $uploadDir . $fileName2;
             $targetFile3 = $uploadDir . $fileName3;
-            if (move_uploaded_file($fileTmpname, $targetFile) && move_uploaded_file($fileTmpname1, $targetFile1) && move_uploaded_file($fileTmpname2, $targetFile2) && move_uploaded_file($fileTmpname3, $targetFile3)) {
-              $query = "UPDATE `product` SET `product_name` = '$name', `photo` = '$fileName', `photo1` = '$fileName1', `photo2` = '$fileName2', `photo3` = '$fileName3', `product_quantity` = '$quantity', `exp_date` = '$exp_date', `product_category_id` = '$category', `product_status` = '$status' WHERE `product_id` = '$product_id'";
-              $query_run = mysqli_query($con, $query);
 
-              if($query_run){
-                $_SESSION['status'] = "Product updated successfully";
-                $_SESSION['status_code'] = "success";
-                header("Location: " . base_url . "admin/home/product.php");
-                exit(0);
-              }
-              else{
-                $_SESSION['status'] = "Product was not updated";
-                $_SESSION['status_code'] = "error";
-                header("Location: " . base_url . "admin/home/product.php");
-                exit(0);
-              }
-            }
-            else{
-                $_SESSION['status']="Error uploading image.";
-                $_SESSION['status_code'] = "error";
-                header("Location: " . base_url . "admin/home/product.php");
+            if (move_uploaded_file($fileTmpname3, $targetFile3)) {
+              $sql4 = "UPDATE `product` SET `photo3` = '$fileName3' WHERE `product_id` = '$product_id'";
+              $sql4_run = mysqli_query($con, $sql4);
             }
           }
           else{
-            $_SESSION['status']="File is too large file must be 10mb";
+            $_SESSION['status']="Product image4 file is too large file must be 10mb";
             $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "admin/home/product.php");
+            header("Location: " . base_url . "admin/home/product");
           }
+        }
+        else{
+          $_SESSION['status']="Product image4 file error";
+          $_SESSION['status_code'] = "error"; 
+          header("Location: " . base_url . "admin/home/product");
+        }
       }
       else{
-        $_SESSION['status']="File Error";
+        $_SESSION['status']="Product image4 invalid file type";
         $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "admin/home/product.php");
+        header("Location: " . base_url . "admin/home/product");
       }
     }
-    else{
-      $_SESSION['status']="Invalid file type";
-      $_SESSION['status_code'] = "error"; 
-      header("Location: " . base_url . "admin/home/product.php");
+    $product_id = $_POST['product_id'];
+    $name = $_POST['name'];
+    $quantity = $_POST['quantity'];
+    $category = $_POST['category'];
+    $exp_date = $_POST['exp_date'];
+    $status = $_POST['status'];
+    
+    $query = "UPDATE `product` SET `product_name` = '$name', `product_quantity` = '$quantity', `exp_date` = '$exp_date', `product_category_id` = '$category', `product_status` = '$status' WHERE `product_id` = '$product_id'";
+    $query_run = mysqli_query($con, $query);
+
+    if($query_run){
+      $_SESSION['status'] = "Product updated successfully";
+      $_SESSION['status_code'] = "success";
+      header("Location: " . base_url . "admin/home/product");
+      exit(0);
     }
-  }
+    else{
+      $_SESSION['status'] = "Product was not updated";
+      $_SESSION['status_code'] = "error";
+      header("Location: " . base_url . "admin/home/product");
+      exit(0);
+    }
+  } 
 
   if(isset($_POST['category_delete'])){
     $user_id= $_POST['category_delete'];
@@ -976,13 +1056,13 @@
     if($query_run){
       $_SESSION['status'] = "The Category has been successfully deleted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/product_category.php");
+      header("Location: " . base_url . "admin/home/product_category");
       exit(0);
     } 
     else{
       $_SESSION['status'] = "There is a product under this category. Please delete the product first before deleting this category!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/product_category.php");
+      header("Location: " . base_url . "admin/home/product_category");
       exit(0);
     } 
   }
@@ -999,13 +1079,13 @@
     if($query_run){
         $_SESSION['status'] = "New Category Added";
         $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "admin/home/product_category.php");
+        header("Location: " . base_url . "admin/home/product_category");
         exit(0);
     }
     else{
         $_SESSION['status'] = "Something went wrong!";
         $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "admin/home/product_category.php");
+        header("Location: " . base_url . "admin/home/product_category");
         exit(0);
     }
   }
@@ -1055,7 +1135,7 @@
           $mail->send();
           $_SESSION['status'] = "Announcement";
           $_SESSION['status_code'] = "success";
-          header('Location: announcement.php');
+          header('Location: announcement');
           exit(0);
         }
         catch (Exception $e) {
@@ -1080,13 +1160,13 @@
     if($query_run){
       $_SESSION['status'] = "Category Update";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/product_category.php");
+      header("Location: " . base_url . "admin/home/product_category");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Someting went wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/product_category.php");
+      header("Location: " . base_url . "admin/home/product_category");
       exit(0);
     }
   }
@@ -1160,13 +1240,13 @@
       curl_close($ch);
       $_SESSION['status'] = "The announcement has been successfully posted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/announcement.php");
+      header("Location: " . base_url . "admin/home/announcement");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Something went wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/announcement.php");
+      header("Location: " . base_url . "admin/home/announcement");
       exit(0);
     }
   }
@@ -1179,13 +1259,13 @@
     if($query_run){
       $_SESSION['status'] = "The announcement has been successfully deleted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/announcement.php");
+      header("Location: " . base_url . "admin/home/announcement");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Something went wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/announcement.php");
+      header("Location: " . base_url . "admin/home/announcement");
       exit(0);
     }
   }
@@ -1203,13 +1283,13 @@
     if($query_run){
       $_SESSION['status'] = "The announcement has been successfully updated!";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/announcement.php");
+      header("Location: " . base_url . "admin/home/announcement");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Error! SOMETHING WENT WRONG!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/announcement.php");
+      header("Location: " . base_url . "admin/home/announcement");
       exit(0);
     }
   }
@@ -1255,13 +1335,13 @@
               if($query_run){
                 $_SESSION['status'] = "Account Updated";
                 $_SESSION['status_code'] = "success";
-                header('Location: index.php');
-                header("Location: " . base_url . "admin/home/settings.php");
+                header('Location: index');
+                header("Location: " . base_url . "admin/home/");
                 exit(0);
               }
               else{
                 $_SESSION['status_code'] = "error";
-                header("Location: " . base_url . "admin/home/settings.php");
+                header("Location: " . base_url . "admin/home/");
                 exit(0);
               }
             }
@@ -1269,19 +1349,19 @@
           else{
             $_SESSION['status']="File is too large file must be 10mb";
             $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "admin/home/settings.php");
+            header("Location: " . base_url . "admin/home/settings");
           }
         }
         else{
           $_SESSION['status']="File Error";
           $_SESSION['status_code'] = "error"; 
-          header("Location: " . base_url . "admin/home/settings.php");
+          header("Location: " . base_url . "admin/home/settings");
         }
       }
       else{
         $_SESSION['status']="Invalid file type";
         $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "admin/home/settings.php");
+        header("Location: " . base_url . "admin/home/settings");
       }
     }
     else{
@@ -1294,13 +1374,12 @@
       if($query_run){
         $_SESSION['status'] = "Account Updated";
         $_SESSION['status_code'] = "success";
-        header('Location: index.php');
-        header("Location: " . base_url . "admin/home/settings.php");
+        header("Location: " . base_url . "admin/home/");
         exit(0);
       }
       else{
         $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "admin/home/settings.php");
+        header("Location: " . base_url . "admin/home/");
         exit(0);
       }
     }
@@ -1318,13 +1397,13 @@
       if($query_run){
         $_SESSION['status'] = "Concern has been approved!";
         $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "admin/home/concern.php");
+        header("Location: " . base_url . "admin/home/concern");
         exit(0);
       }
       else{
         $_SESSION['status'] = "Something went wrong!";
         $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "admin/home/concern.php");
+        header("Location: " . base_url . "admin/home/concern");
         exit(0);
       }
     }
@@ -1335,13 +1414,13 @@
       if($query_run && $query){
         $_SESSION['status'] = "Request has been deny!";
         $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "admin/home/concern.php");
+        header("Location: " . base_url . "admin/home/concern");
         exit(0);
       }
       else{
         $_SESSION['status'] = "Something went wrong!";
         $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "admin/home/concern.php");
+        header("Location: " . base_url . "admin/home/concern");
         exit(0);
       }
     }

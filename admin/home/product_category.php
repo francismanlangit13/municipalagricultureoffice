@@ -10,7 +10,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="product_category_add.php" class="btn btn-success btn-icon-split"> 
+        <a href="product_category_add" class="btn btn-success btn-icon-split"> 
             <span class="icon text-white-50">
                 <i class="fas fa-clipboard-list"></i>
             </span>
@@ -46,13 +46,13 @@
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">
-                                    <a href="product_category_view.php?id=<?=$row['product_category_id'];?>" class="btn btn-info btn-icon-split"> 
+                                    <a href="product_category_view?id=<?=$row['product_category_id'];?>" class="btn btn-info btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
                                         <span class="text ml-2 mr-2">View</span>
                                     </a>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <a href="product_category_update.php?id=<?=$row['product_category_id'];?>" class="btn btn-success btn-icon-split"> 
+                                    <a href="product_category_update?id=<?=$row['product_category_id'];?>" class="btn btn-success btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-save"></i></span>
                                         <span class="text">Update</span>
                                     </a>

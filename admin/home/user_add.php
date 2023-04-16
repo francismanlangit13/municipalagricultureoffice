@@ -85,12 +85,14 @@
 
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Email</label>
-                            <input required placeholder="Enter Email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control">
+                            <input required placeholder="Enter Email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="email-input">
+                            <div id="email-error"></div>
                         </div>
                     
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Phone Number</label>
-                            <input required placeholder="Enter Phone Number" type="text" name="phone" pattern="09[0-9]{9}" maxlength="11" class="form-control">
+                            <input required placeholder="Enter Phone Number" type="text" name="phone" pattern="09[0-9]{9}" maxlength="11" class="form-control" id="phone-input">
+                            <div id="phone-error"></div>
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -123,9 +125,108 @@
     <br>
         <div class="text-right">
             <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-            <button type="submit" name="add_user" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
+            <button type="submit" name="add_user" id="submit-btn" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
         </div>
     <br>
 </form>
 
 <?php include('../includes/footer.php');?>
+
+<script>
+    $(document).ready(function() {
+    // disable submit button by default
+    $('#submit-btn').prop('disabled', true);
+
+    // debounce functions for each input field
+    var debouncedCheckEmail = _.debounce(checkEmail, 500);
+    var debouncedCheckPhone = _.debounce(checkPhone, 500);
+    //var debouncedCheckRefNumber = _.debounce(checkRefNumber, 500);
+
+    // attach event listeners for each input field
+    $('#email-input').on('input', debouncedCheckEmail);
+    $('#phone-input').on('input', debouncedCheckPhone);
+    //$('#refnumber-input').on('input', debouncedCheckRefNumber);
+
+    function checkEmail() {
+        var email = $('#email-input').val();
+        $.ajax({
+        url: 'ajax.php', // replace with the actual URL to check email
+        method: 'POST', // use the appropriate HTTP method
+        data: { email: email },
+        success: function(response) {
+            if (response.exists) {
+                // disable submit button if email is taken
+                $('#submit-btn').prop('disabled', true);
+                $('#email-error').text('Email already taken').css('color', 'red');
+                $('#email-input').addClass('is-invalid');
+            } else {
+            $('#email-error').empty();
+            $('#email-input').removeClass('is-invalid');
+            // enable submit button if email is valid
+            checkIfAllFieldsValid();
+            }
+        },
+        error: function() {
+            $('#email-error').text('Error checking email');
+        }
+        });
+    }
+
+    function checkPhone() {
+        var phone = $('#phone-input').val();
+        $.ajax({
+        url: 'ajax.php', // replace with the actual URL to check phone
+        method: 'POST', // use the appropriate HTTP method
+        data: { phone: phone },
+        success: function(response) {
+            if (response.exists) {
+            $('#phone-error').text('Phone number already taken').css('color', 'red');
+            $('#phone-input').addClass('is-invalid');
+            // disable submit button if phone number is taken
+            $('#submit-btn').prop('disabled', true);
+            } else {
+            $('#phone-error').empty();
+            $('#phone-input').removeClass('is-invalid');
+            // enable submit button if phone number is valid
+            checkIfAllFieldsValid();
+            }
+        },
+        error: function() {
+            $('#phone-error').text('Error checking phone number');
+        }
+        });
+    }
+
+    //   function checkRefNumber() {
+    //     var refNumber = $('#refnumber-input').val();
+    //     $.ajax({
+    //       url: 'ajax.php', // replace with the actual URL to check reference number
+    //       method: 'POST', // use the appropriate HTTP method
+    //       data: { refnumber: refNumber },
+    //       success: function(response) {
+    //         if (response.exists) {
+    //           $('#refnumber-error').text('Reference number already taken').css('color', 'red');
+    //           $('#refnumber-input').addClass('is-invalid');
+    //           // disable submit button if reference number is taken
+    //           $('#submit-btn').prop('disabled', true);
+    //         } else {
+    //           $('#refnumber-error').empty();
+    //           $('#refnumber-input').removeClass('is-invalid');
+    //           // enable submit button if reference number is valid
+    //           checkIfAllFieldsValid();
+    //         }
+    //       },
+    //       error: function() {
+    //         $('#refnumber-error').text('Error checking reference number');
+    //       }
+    //     });
+    //   }
+
+    function checkIfAllFieldsValid() {
+        // check if all input fields are valid and enable submit button if so
+        if ($('#email-error').is(':empty') && $('#phone-error').is(':empty')) {
+        $('#submit-btn').prop('disabled', false);
+        }
+    }
+    });
+</script>

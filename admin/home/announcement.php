@@ -10,7 +10,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="announcement_add.php" class="btn btn-success btn-icon-split"> 
+        <a href="announcement_add" class="btn btn-success btn-icon-split"> 
             <span class="icon text-white-50">
                 <i class="fas fa-bullhorn"></i>
             </span>
@@ -51,14 +51,14 @@
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">
-                                    <a href="announcement_view.php?id=<?=$row['ann_id'];?>" class="btn btn-info btn-icon-split"> 
+                                    <a href="announcement_view?id=<?=$row['ann_id'];?>" class="btn btn-info btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
                                         <span class="text ml-2 mr-2">View</span>
                                     </a>
                                 </div>
                                 <?php if ($row['ann_status'] != 'Posted'){ ?>
                                     <div class="col-md-12 mb-1">
-                                        <a href="announcement_update.php?id=<?=$row['ann_id'];?>" class="btn btn-success btn-icon-split"> 
+                                        <a href="announcement_update?id=<?=$row['ann_id'];?>" class="btn btn-success btn-icon-split"> 
                                             <span class="icon text-white-50"><i class="fas fa-save"></i></span>
                                             <span class="text">Update</span>
                                         </a>

@@ -8,7 +8,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="farmer_add.php" class="btn btn-success btn-icon-split"> 
+        <a href="farmer_add" class="btn btn-success btn-icon-split"> 
             <span class="icon text-white-50">
                 <i class="fas fa-user"></i>
             </span>
@@ -95,13 +95,13 @@
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">
-                                    <a href="farmer_view.php?id=<?=$row['user_id'];?>" class="btn btn-info btn-icon-split"> 
+                                    <a href="farmer_view?id=<?=$row['user_id'];?>" class="btn btn-info btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
                                         <span class="text ml-2 mr-2">View</span>
                                     </a>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <a href="farmer_update.php?id=<?=$row['user_id'];?>" class="btn btn-success btn-icon-split"> 
+                                    <a href="farmer_update?id=<?=$row['user_id'];?>" class="btn btn-success btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-save"></i></span>
                                         <span class="text">Update</span>
                                     </a>
@@ -120,8 +120,8 @@
                         </td>
                     </tr>
                     <?php } } else{ ?>
-                        <tr>
-                            <td colspan="6">No Record Found</td>
+                        <tr class="text-center">
+                            <td colspan="10">No Record Found</td>
                         </tr>
                     <?php } ?>
                 </tbody>

@@ -90,7 +90,7 @@
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">
-                                    <a href="report_view.php?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
+                                    <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
                                         <span class="text ml-2 mr-2">View</span>
                                     </a>
@@ -104,8 +104,8 @@
                         }
                         else{
                     ?>
-                        <tr>
-                            <td colspan="7">No Record Found</td>
+                        <tr class="text-center">
+                            <td colspan="10">No Record Found</td>
                         </tr>
                     <?php } ?>
                 </tbody>

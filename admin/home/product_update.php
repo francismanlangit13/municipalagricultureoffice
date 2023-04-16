@@ -60,13 +60,13 @@
                         
                         <div class="col-md-6 mb-3">
                             <label for="" class="required">Expiration Date</label>
-                            <input type="date" required name="exp_date" class="form-control" min="<?php echo date('Y-m-d'); ?>">
+                            <input type="date" required name="exp_date" class="form-control" min="<?php echo date('Y-m-d'); ?>" value="<?= $row['exp_date']; ?>">
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="image" class="required">Product Image1</label>
+                            <label for="image1" id="image1-label">Product Image1</label>
                             <br>
-                            <input required type="file" name="photo" id="image1" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
+                            <input type="file" name="photo" id="image1" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame1', 'image1')">
                             <input type="text" name="oldimage" value="<?= $row['photo']; ?>" hidden>
                             <div class="text-center">
                                 <br>
@@ -92,9 +92,9 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="image" class="required">Product Image2</label>
+                            <label for="image2" id="image2-label" class="">Product Image2</label>
                             <br>
-                            <input required type="file" name="photo1" id="image2" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame2', 'image2')">
+                            <input type="file" name="photo1" id="image2" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame2', 'image2')">
                             <input type="text" name="oldimage1" value="<?= $row['photo1']; ?>" hidden>
                             <div class="text-center">
                                 <br>
@@ -120,9 +120,9 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="image" class="required">Product Image3</label>
+                            <label for="image3" id="image3-label">Product Image3</label>
                             <br>
-                            <input required type="file" name="photo2" id="image3" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame3', 'image3')">
+                            <input type="file" name="photo2" id="image3" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame3', 'image3')">
                             <input type="text" name="oldimage2" value="<?= $row['photo2']; ?>" hidden>
                             <div class="text-center">
                                 <br>
@@ -148,9 +148,9 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="image" class="required">Product Image4</label>
+                            <label for="image4" id="image4-label">Product Image4</label>
                             <br>
-                            <input required type="file" name="photo3" id="image4" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame4', 'image4')">
+                            <input type="file" name="photo3" id="image4" class="form-control-file btn btn-secondary" accept=".jpg, .jpeg, .png" onchange="previewImage('frame4', 'image4')">
                             <input type="text" name="oldimage3" value="<?= $row['photo3']; ?>" hidden>
                             <div class="text-center">
                                 <br>
@@ -209,3 +209,53 @@
 </form>
 
 <?php include('../includes/footer.php');?>
+
+<script>
+  var fileInput1 = document.getElementById('image1');
+  var label1 = document.getElementById('image1-label');
+  fileInput1.addEventListener('change', function() {
+    if (fileInput1.value) {
+      label1.classList.add('required');
+      fileInput1.required = true;
+    } else {
+      label1.classList.remove('required');
+      fileInput1.required = false;
+    }
+  });
+
+  var fileInput2 = document.getElementById('image2');
+  var label2 = document.getElementById('image2-label');
+  fileInput2.addEventListener('change', function() {
+    if (fileInput2.value) {
+      label2.classList.add('required');
+      fileInput2.required = true;
+    } else {
+      label2.classList.remove('required');
+      fileInput2.required = false;
+    }
+  });
+
+  var fileInput3 = document.getElementById('image3');
+  var label3 = document.getElementById('image3-label');
+  fileInput3.addEventListener('change', function() {
+    if (fileInput3.value) {
+      label3.classList.add('required');
+      fileInput3.required = true;
+    } else {
+      label3.classList.remove('required');
+      fileInput3.required = false;
+    }
+  });
+
+  var fileInput4 = document.getElementById('image4');
+  var label4 = document.getElementById('image4-label');
+  fileInput4.addEventListener('change', function() {
+    if (fileInput4.value) {
+      label4.classList.add('required');
+      fileInput4.required = true;
+    } else {
+      label4.classList.remove('required');
+      fileInput4.required = false;
+    }
+  });
+</script>

@@ -23,7 +23,8 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="" class="required">Reference Number</label>
-                            <input required placeholder="Enter Reference Number" type="text" name="reference_number" pattern="\d*" minlength="15" maxlength="15" class="form-control">
+                            <input required placeholder="Enter Reference Number" type="text" name="reference_number" pattern="\d*" minlength="15" maxlength="15" class="form-control" id="reference_number-input">
+                            <div id="reference_number-error"></div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Last Name</label>
@@ -66,7 +67,8 @@
 
                         <div class="col-md-9 mb-3">
                             <label for="" class="required">Email Address</label>
-                            <input required placeholder="Enter Email Address" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control">
+                            <input required placeholder="Enter Email Address" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="email-input">
+                            <div id="email-error"></div>
                         </div>
 
                         <div class="col-md-12 mb-3">
@@ -75,7 +77,7 @@
 
                         <div class="col-md-4 mb-3">   
                             <label for="" class="required">Purok</label>
-                            <input required placeholder="Enter Purok No." type="text" name="purok" class="form-control">
+                            <input required placeholder="Enter Purok No." type="number" name="purok" pattern="\d*" minlength="1" maxlength="2"  class="form-control">
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -137,7 +139,8 @@
 
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Mobile Number</label>
-                            <input required placeholder="Enter Mobile Number" type="text" pattern="09[0-9]{9}" maxlength="11" name="phone" class="form-control">
+                            <input required placeholder="Enter Mobile Number" type="text" pattern="09[0-9]{9}" maxlength="11" name="phone" class="form-control" id="phone-input">
+                            <div id="phone-error"></div>
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -348,7 +351,7 @@
                             <div class="qrcode">
                                 <label class="required">
                                     SCAN QR CODE HERE
-                                    <input required type="text" name="qrcode_text" id="qrscan" readonyy="" style="opacity:1%; margin:-6.2rem;">
+                                    <input required type="text" name="qrcode_text" id="qrscan" readonyy="" style="opacity:1%; margin:-6.2rem; zoom:1%;">
                                 </label>
                                 <video id="preview" width="100%"></video>
                             </div>
@@ -365,7 +368,7 @@
             <br>
                 <div class="text-right">
                     <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                    <button type="submit" name="add_farmer" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
+                    <button type="submit" name="add_farmer" id="submit-btn" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
                 </div>
             <br>
         </div>
@@ -373,3 +376,102 @@
 </form>
 
 <?php include('../includes/footer.php');?>
+
+<script>
+    $(document).ready(function() {
+    // disable submit button by default
+    //$('#submit-btn').prop('disabled', true);
+
+    // debounce functions for each input field
+    var debouncedCheckEmail = _.debounce(checkEmail, 500);
+    var debouncedCheckPhone = _.debounce(checkPhone, 500);
+    var debouncedCheckRefNumber = _.debounce(checkRefNumber, 500);
+
+    // attach event listeners for each input field
+    $('#email-input').on('input', debouncedCheckEmail);
+    $('#phone-input').on('input', debouncedCheckPhone);
+    $('#reference_number-input').on('input', debouncedCheckRefNumber);
+
+    function checkEmail() {
+        var email = $('#email-input').val();
+        $.ajax({
+        url: 'ajax.php', // replace with the actual URL to check email
+        method: 'POST', // use the appropriate HTTP method
+        data: { email: email },
+        success: function(response) {
+            if (response.exists) {
+                // disable submit button if email is taken
+                $('#submit-btn').prop('disabled', true);
+                $('#email-error').text('Email already taken').css('color', 'red');
+                $('#email-input').addClass('is-invalid');
+            } else {
+            $('#email-error').empty();
+            $('#email-input').removeClass('is-invalid');
+            // enable submit button if email is valid
+            checkIfAllFieldsValid();
+            }
+        },
+        error: function() {
+            $('#email-error').text('Error checking email');
+        }
+        });
+    }
+
+    function checkPhone() {
+        var phone = $('#phone-input').val();
+        $.ajax({
+        url: 'ajax.php', // replace with the actual URL to check phone
+        method: 'POST', // use the appropriate HTTP method
+        data: { phone: phone },
+        success: function(response) {
+            if (response.exists) {
+            $('#phone-error').text('Phone number already taken').css('color', 'red');
+            $('#phone-input').addClass('is-invalid');
+            // disable submit button if phone number is taken
+            $('#submit-btn').prop('disabled', true);
+            } else {
+            $('#phone-error').empty();
+            $('#phone-input').removeClass('is-invalid');
+            // enable submit button if phone number is valid
+            checkIfAllFieldsValid();
+            }
+        },
+        error: function() {
+            $('#phone-error').text('Error checking phone number');
+        }
+        });
+    }
+
+    function checkRefNumber() {
+    var reference_number = $('#reference_number-input').val();
+    $.ajax({
+        url: 'ajax.php', // replace with the actual URL to check reference number
+        method: 'POST', // use the appropriate HTTP method
+        data: { reference_number: reference_number },
+        success: function(response) {
+        if (response.exists) {
+            $('#reference_number-error').text('Reference number already taken').css('color', 'red');
+            $('#reference_number-input').addClass('is-invalid');
+            // disable submit button if reference number is taken
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#reference_number-error').empty();
+            $('#reference_number-input').removeClass('is-invalid');
+            // enable submit button if reference number is valid
+            checkIfAllFieldsValid();
+        }
+        },
+        error: function() {
+        $('#reference_number-error').text('Error checking reference number');
+        }
+    });
+    }
+
+    function checkIfAllFieldsValid() {
+        // check if all input fields are valid and enable submit button if so
+        if ($('#email-error').is(':empty') && $('#phone-error').is(':empty') && $('#reference_number-error').is(':empty')) {
+            $('#submit-btn').prop('disabled', false);
+        }
+    }
+    });
+</script>
