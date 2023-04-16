@@ -17,7 +17,8 @@
                 $sql = "SELECT *
                 FROM report
                 INNER JOIN user
-                ON report.user_id = user.user_id";
+                ON report.user_id = user.user_id
+                WHERE report.report_id = $id";
                 $sql_run = mysqli_query($con, $sql);
                 if(mysqli_num_rows($sql_run) > 0){
                     foreach($sql_run as $row){
@@ -25,7 +26,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" style="border-bottom:0px !important">
-                    <h5>View Farmer Request</h5>
+                    <h5>View Farmer Report</h5>
                 </div>
             </div>
             <br>
@@ -260,7 +261,7 @@
             <br>
                 <div class="text-right">
                 <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                    <button type="submit" name="approve_request" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                    <button type="submit" name="report_save" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
                 </div>
             <br>
         </div>

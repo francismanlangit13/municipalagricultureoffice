@@ -27,6 +27,7 @@
                         <th style="width:15%">Photo #2</th>
                         <th style="width:10%">Status</th>
                         <th style="width:15%">Date Reported</th>
+                        <th style="width:15%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,12 +77,43 @@
                         </td>
                         <td>
                             <?php if($row['status_id']=="1"){ ?>
-                                <p><span style="color: red;">Pending</span></p>
-                            <?php } else{ ?>
+                                <p><span style="color: grey;">Pending</span></p>
+                            <?php } else if($row['status_id']=="2"){ ?>
                                 <p><span style="color: green;">Approved</span></p>
+                            <?php } else{ ?>
+                                <p><span style="color: red;">Deny</span></p>
                             <?php } ?>
                         </td>
                         <td><?= $row['date_created']; ?></td>
+                        <td> 
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-12 mb-1" style="zoom:95%">
+                                    <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
+                                        <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                        <span class="text ml-2 mr-2">View</span>
+                                    </a>
+                                </div>
+                                <?php if($row['status_id']=="1"){ ?>
+                                    <div class="col-md-12 mb-1">
+                                        <a href="report_update?id=<?=$row['report_id'];?>" class="btn btn-success btn-icon-split"> 
+                                            <span class="icon text-white-50"><i class="fas fa-save"></i></span>
+                                            <span class="text">Update</span>
+                                        </a>
+                                    </div>
+                                <?php } ?>
+                                <div class="col-md-12 mb-1">
+                                    <form action="code.php" method="POST" style="zoom:105%;">
+                                    <input type="text" name="oldimage" value="<?= $row['photo']; ?>" hidden>
+                                        <button type="submit" name="del_report" value="<?=$row['report_id'];?>" class="btn btn-danger btn-icon-split" href="#">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Delete</span>
+                                        </button> 
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
                         
                     </tr>
                     <?php

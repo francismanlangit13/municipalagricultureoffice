@@ -1425,4 +1425,45 @@
       }
     }
   }
+  // Report
+  if(isset($_POST['report_save'])){
+    $report_id = $_POST['report_id'];
+    $reason = $_POST['reason'];
+    $status = $_POST['status'];
+
+    if(isset($_POST['status']) && $_POST['status'] == 2) {
+      $query = "UPDATE `report` SET `status_id`='$status' WHERE `report_id`= '$report_id'";
+      $query_run = mysqli_query($con, $query);
+
+      if($query_run){
+        $_SESSION['status'] = "Report has been approved!";
+        $_SESSION['status_code'] = "success";
+        header("Location: " . base_url . "admin/home/report");
+        exit(0);
+      }
+      else{
+        $_SESSION['status'] = "Something went wrong!";
+        $_SESSION['status_code'] = "error";
+        header("Location: " . base_url . "admin/home/report");
+        exit(0);
+      }
+    }
+    else{
+      $sql = "UPDATE `report` SET `status_id`='$status', `reason` = '$reason' WHERE `report_id`= '$report_id'";
+      $sql_run = mysqli_query($con, $sql);
+
+      if($sql_run){
+        $_SESSION['status'] = "Report has been deny!";
+        $_SESSION['status_code'] = "success";
+        header("Location: " . base_url . "admin/home/report");
+        exit(0);
+      }
+      else{
+        $_SESSION['status'] = "Something went wrong!";
+        $_SESSION['status_code'] = "error";
+        header("Location: " . base_url . "admin/home/report");
+        exit(0);
+      }
+    }
+  }
 ?>
