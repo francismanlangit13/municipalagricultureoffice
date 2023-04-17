@@ -135,7 +135,7 @@
 <script>
     $(document).ready(function() {
     // disable submit button by default
-    $('#submit-btn').prop('disabled', true);
+    //$('#submit-btn').prop('disabled', true);
 
     // debounce functions for each input field
     var debouncedCheckEmail = _.debounce(checkEmail, 500);
