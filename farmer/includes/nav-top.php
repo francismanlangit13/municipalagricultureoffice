@@ -45,7 +45,7 @@
 
             <?php if(isset($_SESSION['auth_user']))  ?>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:6.8rem;">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:6.8rem; margin-bottom: 1.6rem;">
                 <?php
                     $userID = $_SESSION['auth_user'] ['user_id'];
                     $query = "SELECT * FROM user where user_id = $userID";
@@ -55,7 +55,7 @@
                     if($user){
                         while($row = mysqli_fetch_assoc($query_run)){
                 ?>
-                    <img id="cimg" class="img-fluid card-img-top" id="frame1"
+                    <img id="cimg" class="img-fluid card-img-top" id="frame1" style="margin-top: 1.5rem;"
                     src="
                         <?php
                             if(isset($row['picture'])){
@@ -64,11 +64,10 @@
                         ?>
                     " alt="image">
                     <?php } } ?>
-                    <span class="mr-2 d-lg-inline text-gray-600 small"> <?= $_SESSION['auth_user'] ['user_name'];  ?></span>
+                    <span class="mr-2 d-lg-inline text-gray-600 small" style="margin-top: 1.8rem;"> <?= $_SESSION['auth_user'] ['user_name'];  ?></span>
                 </a>
                 <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="userDropdown">
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="margin-top:-1.5rem; margin-right:1rem;">
                     <a class="dropdown-item" href="settings.php">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile

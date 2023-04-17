@@ -10,40 +10,34 @@ if(isset($_POST['logout_btn']))
 
     $_SESSION['status'] = "You have successfully disconnected from your account.";
     $_SESSION['status_code'] = "success";
-    header("Location: ../login/index.php");
+    header("Location: " . base_url . "login");
     exit(0);
 }
 
 
 
-if(isset($_POST['add_request']))
-{
-
-    $date = new DateTime();
-    $date->setTimezone(new DateTimeZone('UTC'));
-    $request_date = $date->format('Y-m-d H:i:s');
+if(isset($_POST['add_request'])){
 
     $user_id = $_POST['user_id'];
-    $quantity = $_POST['quantity'];
     $product_id = $_POST['product'];
+    $quantity = $_POST['quantity'];
     $description = $_POST['description'];
-    $request = $_POST['quantity'];
+    $request_date = date;
     $status = 1;
 
-    $query = "INSERT INTO `request`(`id`, `product_id`, `request_quantity`, `description`, `request_date`, `request_status`) VALUES ('$user_id', '$product_id','$quantity','$description','$request_date', '$status')";
-    $query_run = mysqli_query($con,$query);
+    $query = "INSERT INTO `request`(`user_id`, `product_id`, `request_quantity`, `description`, `request_date`, `status_id`) VALUES ('$user_id', '$product_id','$quantity','$description','$request_date', '$status')";
+    $query_run = mysqli_query($con, $query);
 
-    if($query_run)
-    {
+    if($query_run){
         $_SESSION['status'] = "Your Request has been submitted!";
         $_SESSION['status_code'] = "success";
-        header('Location: request.php');
+        header("Location: " . base_url . "farmer/home/request");
         exit(0);
     }
     else{
-        $_SESSION['status'] = "Error! SOMETHING WENT WRONG!";
+        $_SESSION['status'] = "Error! Something went wrong!";
         $_SESSION['status_code'] = "error";
-        header('Location: request.php');
+        header("Location: " . base_url . "farmer/home/request");
         exit(0);
     }
 }
@@ -141,34 +135,34 @@ if(isset($_POST["add_concern"])){
                     if($query_run){
                         $_SESSION['status'] = "Concern Submitted!";
                         $_SESSION['status_code'] = "success";
-                        header("Location: " . base_url . "farmer/home/concern.php");
+                        header("Location: " . base_url . "farmer/home/concern");
                         exit(0);
                     } else{
                         $_SESSION['status'] = "Something went wrong!";
                         $_SESSION['status_code'] = "error";
-                        header("Location: " . base_url . "farmer/home/concern.php");
+                        header("Location: " . base_url . "farmer/home/concern");
                         exit(0);
                     }
                 }
                 else{
                     $_SESSION['status']="Error uploading image.";
                     $_SESSION['status_code'] = "error";
-                    header("Location: " . base_url . "farmer/home/concern.php");
+                    header("Location: " . base_url . "farmer/home/concern");
                 }
             } else{
                 $_SESSION['status']="File is too large file must be 10mb";
                 $_SESSION['status_code'] = "error"; 
-                header("Location: " . base_url . "farmer/home/concern.php");
+                header("Location: " . base_url . "farmer/home/concern");
             }
         } else{
             $_SESSION['status']="File Error";
             $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "farmer/home/concern.php");
+            header("Location: " . base_url . "farmer/home/concern");
         }
     } else{
         $_SESSION['status']="File Error";
         $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "farmer/home/concern.php");
+        header("Location: " . base_url . "farmer/home/concern");
     }
 }
 
@@ -312,13 +306,13 @@ if(isset($_POST['concern_update'])){
       {
           $_SESSION['status'] = "Concern Updated Successfully";
           $_SESSION['status_code'] = "success";
-          header('Location: concern.php');
+          header("Location: " . base_url . "farmer/home/concern");
           exit(0);
       }
       else{
           $_SESSION['status'] = "SOMETHING WENT WRONG!";
           $_SESSION['status_code'] = "error";
-          header('Location: concern.php');
+          header("Location: " . base_url . "farmer/home/concern");
           exit(0);
       }
   }
@@ -338,13 +332,13 @@ if(isset($_POST['delete_request'])){
       {
           $_SESSION['status'] = "Request Deleted Successfully";
           $_SESSION['status_code'] = "success";
-          header('Location: request.php');
+          header("Location: " . base_url . "farmer/home/request");
           exit(0);
       }
       else{
           $_SESSION['status'] = "SOMETHING WENT WRONG!";
           $_SESSION['status_code'] = "error";
-          header('Location: request.php');
+          header("Location: " . base_url . "farmer/home/request");
           exit(0);
       }
   }
@@ -366,13 +360,13 @@ if(isset($_POST['delete_request'])){
       {
           $_SESSION['status'] = "Request Updated Successfully";
           $_SESSION['status_code'] = "success";
-          header('Location: request.php');
+          header("Location: " . base_url . "farmer/home/request");
           exit(0);
       }
       else{
           $_SESSION['status'] = "SOMETHING WENT WRONG!";
           $_SESSION['status_code'] = "error";
-          header('Location: request.php');
+          header("Location: " . base_url . "farmer/home/request");
           exit(0);
       }
   }
@@ -389,13 +383,13 @@ if(isset($_POST['delete_request'])){
       {
           $_SESSION['status'] = "Concern Deleted Successfully";
           $_SESSION['status_code'] = "success";
-          header('Location: concern.php');
+          header("Location: " . base_url . "farmer/home/concern");
           exit(0);
       }
       else{
           $_SESSION['status'] = "SOMETHING WENT WRONG!";
           $_SESSION['status_code'] = "error";
-          header('Location: concern.php');
+          header("Location: " . base_url . "farmer/home/concern");
           exit(0);
       }
   }
@@ -435,12 +429,12 @@ if(isset($_POST['update_account'])){
                 $_SESSION['status'] = "Account Updated";
                 $_SESSION['status_code'] = "success";
                 header('Location: index.php');
-                header("Location: " . base_url . "farmer/home/settings.php");
+                header("Location: " . base_url . "farmer/home/settings");
                 exit(0);
               }
               else{
                 $_SESSION['status_code'] = "error";
-                header("Location: " . base_url . "farmer/home/settings.php");
+                header("Location: " . base_url . "farmer/home/settings");
                 exit(0);
               }
             }
@@ -448,19 +442,19 @@ if(isset($_POST['update_account'])){
           else{
             $_SESSION['status']="File is too large file must be 10mb";
             $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "farmer/home/settings.php");
+            header("Location: " . base_url . "farmer/home/settings");
           }
         }
         else{
           $_SESSION['status']="File Error";
           $_SESSION['status_code'] = "error"; 
-          header("Location: " . base_url . "farmer/home/settings.php");
+          header("Location: " . base_url . "farmer/home/settings");
         }
       }
       else{
         $_SESSION['status']="Invalid file type";
         $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "farmer/home/settings.php");
+        header("Location: " . base_url . "farmer/home/settings");
       }
     }
     else{
@@ -474,12 +468,12 @@ if(isset($_POST['update_account'])){
         $_SESSION['status'] = "Account Updated";
         $_SESSION['status_code'] = "success";
         header('Location: index.php');
-        header("Location: " . base_url . "farmer/home/settings.php");
+        header("Location: " . base_url . "farmer/home/settings");
         exit(0);
       }
       else{
         $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "farmer/home/settings.php");
+        header("Location: " . base_url . "farmer/home/settings");
         exit(0);
       }
     }
