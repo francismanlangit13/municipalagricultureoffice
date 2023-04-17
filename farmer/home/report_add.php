@@ -1,6 +1,11 @@
 <?php
     include('../includes/header.php');
 ?>
+<ol class="breadcrumb mb-4">    
+    <li class="breadcrumb-item">Dashboard</li>
+    <li class="breadcrumb-item">Report</li>
+    <li class="breadcrumb-item">Add Report</li>
+</ol>
 <form action="code.php" method="POST" enctype="multipart/form-data">  
     <div class="row">
         <div class="col-md-12">
@@ -67,10 +72,9 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <a href="report.php" class="btn btn-danger">Back</a>
-                        <button type="submit" name="add_report" class="btn btn-primary">Add</button>
+                      <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                      <button type="submit" name="add_report" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
                     </div>
-                
                 </div>
             </div>
         </div>

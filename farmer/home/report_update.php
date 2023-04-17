@@ -28,6 +28,7 @@
                 foreach($sql_run as $row){
           ?>
           <div class="row"> 
+            <input type="hidden" name="report_id" value="<?=$row['report_id'];?>">
             <div class="col-md-12 mb-3">
                 <label for="Description" class="required">Message</label>
                 <textarea placeholder="Enter Message" name="message" required type="text" class="form-control" rows="3"><?=$row['message']; ?></textarea>
@@ -184,7 +185,7 @@
               <label for="image6" id="image6-label">Video</label>
               <br>
               <input type="file" name="video" id="image6" class="form-control-file btn btn-secondary" accept=".mp4, .3gp, .mov" onchange="previewImage('frame6', 'image6')">
-              <input type="text" name="oldimage6" value="<?= $row['video']; ?>" hidden>
+              <input type="text" name="oldimage5" value="<?= $row['video']; ?>" hidden>
               <div class="text-center">
                 <br>
                 <a href="
@@ -194,7 +195,7 @@
                                 echo base_url . 'assets/img/reports/' . $row['video'];
                         } else { echo base_url . 'assets/img/system/no-video.mp4'; } }
                     ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT VIDEO">
-                    <video class="zoom img-fluid img-bordered-sm" id="frame1"
+                    <video class="zoom img-fluid img-bordered-sm" id="frame6"
                     src="
                         <?php
                             if(isset($row['video'])){
@@ -219,7 +220,7 @@
       <br>
         <div class="text-right">
           <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-            <button type="submit" name="update_report" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+          <button type="submit" name="update_report" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
         </div>
       <br>
     </div>

@@ -13,12 +13,7 @@
         <div class="card-group">
             <?php
                 $query = "SELECT
-                product.product_id, 
-                product.product_name, 
-                product.product_image, 
-                product.product_quantity, 
-                product_category.category_name, 
-                product.product_status
+                *
                 FROM
                 product
                 INNER JOIN
@@ -31,14 +26,16 @@
                     while($row = mysqli_fetch_assoc($query_run)){
             ?>
             <div class="col-12 col-md-6 col-lg-3 mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="<?php echo base_url ?>assets/img/products/<?php echo $row['product_image'];?>"  alt="user-avatar" style= "height:250px; width: 100%; object-fit: cover;">
-                    <div class="card-body">
-                        <h3 class="card-title text-center" style="font-size: 22px;"><?php echo $row['product_name']; ?></h3>
-                        <p class="card-text text-center"> <?php echo $row['product_quantity'];?> PCS REMAINING</p>
-                        <p class="card-text text-center"> <?php echo $row['category_name'];?> </p>
+                <a href="product_view?id=<?=$row['product_id'];?>" style="text-decoration:none; color:black;">
+                    <div class="card h-100">
+                        <img class="img-fluid card-img-top" src="<?php echo base_url ?>assets/img/products/<?php echo $row['photo'];?>"  alt="user-avatar" style= "height:250px; width: 100%; object-fit: cover;">
+                        <div class="card-body">
+                            <h3 class="card-title text-center" style="font-size: 22px;"><?php echo $row['product_name']; ?></h3>
+                            <p class="card-text text-center"> <?php echo $row['product_quantity'];?> PCS REMAINING</p>
+                            <p class="card-text text-center"> <?php echo $row['category_name'];?> </p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <?php
                     }
