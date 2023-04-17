@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Send a Report</h5>
+                    <h5>Report information</h5>
                 </div>
                 <div class="card-body">
                     <div class="row"> 

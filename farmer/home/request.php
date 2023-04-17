@@ -9,7 +9,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="request_add.php" class="btn btn-success btn-icon-split"> 
+        <a href="request_add" class="btn btn-success btn-icon-split"> 
             <span class="icon text-white-50">
             <i class="fas fa-archive"></i>
             </span>
@@ -85,14 +85,14 @@
                                 </div>
                                 <?php if($row['status_id']=="1"){ ?>
                                     <div class="col-md-12 mb-1">
-                                        <a href="request_update.php?id=<?=$row['request_id'];?>" class="btn btn-success btn-icon-split"> 
-                                            <span class="icon text-white-50"><i class="fas fa-save"></i></span>
+                                        <a href="request_update?id=<?=$row['request_id'];?>" class="btn btn-success btn-icon-split" style="zoom:95%"> 
+                                            <span class="icon text-white-50"><i class="fas fa-edit"></i></span>
                                             <span class="text">Update</span>
                                         </a>
                                     </div>
                                 <?php } ?>
                                 <div class="col-md-12 mb-1">
-                                    <form action="code.php" method="POST" style="zoom:105%;">
+                                    <form action="code.php" method="POST" style="zoom:103%;">
                                     <input type="text" name="oldimage" value="<?= $row['photo']; ?>" hidden>
                                         <button type="submit" name="delete_request" value="<?=$row['request_id'];?>" class="btn btn-danger btn-icon-split" href="#">
                                             <span class="icon text-white-50">

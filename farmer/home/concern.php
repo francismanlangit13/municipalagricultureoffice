@@ -9,7 +9,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="concern_add.php" class="btn btn-success btn-icon-split"> 
+        <a href="concern_add" class="btn btn-success btn-icon-split"> 
             <span class="icon text-white-50">
                 <i class="fas fa-archive"></i>
             </span>
@@ -18,15 +18,15 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Message</th>
-                        <th>Attachments</th>
-                        <th>Status</th>
-                        <th>Date Submitted</th>
-                        <th>Action</th>
+                        <th style="width:5%;">No.</th>
+                        <th style="width:45%;">Message</th>
+                        <th style="width:25%;">Attachments</th>
+                        <th style="width:5%;">Status</th>
+                        <th style="width:10%;">Date Submitted</th>
+                        <th style="width:10%;">Action</th>
                     </tr>
                 </thead>
                 <tbody>                 
@@ -61,23 +61,6 @@
                                 ?>
                             " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
                         </a>
-                        <a href="
-                            <?php
-                                if(isset($row['photo1'])){
-                                    if(!empty($row['photo1'])) {
-                                        echo base_url . 'assets/img/concerns/' . $row['photo1'];
-                                } } else { echo base_url . 'assets/img/system/no-image.png'; }
-                            ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?> <br> CONCERN MESSAGE: <?= $row['message']; ?>">
-                            <img class="zoom img-fluid img-bordered-sm"
-                            src="
-                                <?php
-                                    if(isset($row['photo1'])){
-                                        if(!empty($row['photo1'])) {
-                                            echo base_url . 'assets/img/concerns/' . $row['photo1'];
-                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>
-                            " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
-                        </a>
                         </td>
 
                         <td>
@@ -88,16 +71,32 @@
                             <?php } ?>
                         </td>
                         <td><?= $row['date_created']; ?></td>
-                        <td>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-success dropdown-toggle" <?php if ($row['status_id'] == 'Approved') echo 'disabled'; ?> data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Action
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="concern_update.php?id=<?=$row['concern_id'];?>">UPDATE</a>
-                                    <form action="code.php" method="post"> 
-                                        <button class="dropdown-item" type="submit" name="delete_concern" value="<?= $row['concern_id']; ?>" >DELETE</button>
-                                    </form> 
+                        <td> 
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-12 mb-1" style="zoom:95%">
+                                    <a href="concern_view?id=<?=$row['concern_id'];?>" class="btn btn-info btn-icon-split"> 
+                                        <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                        <span class="text ml-2 mr-2">View</span>
+                                    </a>
+                                </div>
+                                <?php if($row['status_id']=="1"){ ?>
+                                    <div class="col-md-12 mb-1">
+                                        <a href="concern_update?id=<?=$row['concern_id'];?>" class="btn btn-success btn-icon-split" style="zoom:95%"> 
+                                            <span class="icon text-white-50"><i class="fas fa-edit"></i></span>
+                                            <span class="text">Update</span>
+                                        </a>
+                                    </div>
+                                <?php } ?>
+                                <div class="col-md-12 mb-1">
+                                    <form action="code.php" method="POST" style="zoom:103%;">
+                                    <input type="text" name="oldimage" value="<?= $row['photo']; ?>" hidden>
+                                        <button type="submit" name="delete_concern" value="<?=$row['report_id'];?>" class="btn btn-danger btn-icon-split" href="#">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Delete</span>
+                                        </button> 
+                                    </form>
                                 </div>
                             </div>
                         </td>
@@ -106,7 +105,7 @@
                         <tr>
                             <td colspan="7">No Record Found</td>
                         </tr>
-                <?php } ?>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

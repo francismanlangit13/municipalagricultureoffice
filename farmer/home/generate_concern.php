@@ -16,7 +16,7 @@
 <ol class="breadcrumb mb-4 noprint">    
   <li class="breadcrumb-item">Dashboard</li>
   <li class="breadcrumb-item">Generate</li>
-  <li class="breadcrumb-item">Report</li>
+  <li class="breadcrumb-item">Concern</li>
 </ol>
 
 <div class="col-xl-12 col-md-12 mb-4 noprint">
@@ -59,7 +59,7 @@
 		</div>
 		<div class="col-8">
 			<h4 class="text-center"><b>Municipal Agriculture Office Jimenez</b></h4>
-			<h3 class="text-center"><b>Report</b></h3>
+			<h3 class="text-center"><b>Concern</b></h3>
 			<h5 class="text-center"><b>as of</b></h5>
 			<h5 class="text-center"><b><?php echo date("F d, Y", strtotime($from)). " - ".date("F d, Y", strtotime($to)); ?></b></h5>
 		</div>
@@ -84,10 +84,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php
+			<?php 
 				$user_id = $_SESSION['auth_user']['user_id'];
 				$i = 1;
-				$qry = $con->query("SELECT `report_id`, user.user_id, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`, fname, `mname`, `lname`, `suffix` FROM user INNER JOIN report where user.user_id = report.user_id AND report.user_id = $user_id AND date(date_created) between '{$from}' and '{$to}' order by unix_timestamp(date_created) asc");
+				$qry = $con->query("SELECT `concern_id`, user.user_id, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`, fname, `mname`, `lname`, `suffix` FROM user INNER JOIN concern where user.user_id = concern.user_id AND concern.user_id = $user_id AND date(date_created) between '{$from}' and '{$to}' order by unix_timestamp(date_created) asc");
 				while($row = $qry->fetch_assoc()):
 			?>
 				<tr>

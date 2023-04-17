@@ -48,21 +48,21 @@
     </li>
 
 
-    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false)  { echo 'active'; } ?>">
+    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_update.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/request">
             <i class="fa fa-archive"></i>
             <span>Request</span>
         </a>
     </li>
 
-    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_update.php') !== false)  { echo 'active'; } ?>">
+    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_update.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/report">
             <i class="fa fa-pencil-square"></i>
             <span>Report</span>
         </a>
     </li>
 
-    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false)  { echo 'active'; } ?>">
+    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_update.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/concern">
             <i class="fa fa-comment"></i>
             <span>Concern</span>
@@ -76,12 +76,24 @@
         </a>
     </li>
 
-    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false)  { echo 'active'; } ?>">
-        <a class="nav-link" href="<?php echo base_url ?>farmer/home/generate_report">
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'active'; } ?>">
+        <a class="nav-link <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'show'; } else { echo 'collapsed'; } ?>" href="#" data-toggle="collapse" data-target="#collapseGenerate"
+            aria-expanded="true" aria-controls="collapseGenerate">
             <i class="fas fa-newspaper"></i>
-            <span>Generate Report</span>
+            <span>Generate</span>
         </a>
+        <div id="collapseGenerate" class="collapse <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'show'; } else { } ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Manage:</h6>
+                <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>farmer/home/generate_concern"><i class="fa fa-file-text" aria-hidden="true"></i> Concern</a>
+                <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>farmer/home/generate_report"><i class="fa fa-file-text" aria-hidden="true"></i> Report</a>
+                <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>farmer/home/generate_request"><i class="fa fa-file-text" aria-hidden="true"></i> Request</a>
+            </div>
+        </div>
     </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 

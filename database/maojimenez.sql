@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 11:09 AM
+-- Generation Time: Apr 17, 2023 at 08:11 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -56,6 +56,13 @@ CREATE TABLE `concern` (
   `date_created` date NOT NULL,
   `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `concern`
+--
+
+INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`) VALUES
+(2, 4, 'NA GUBA AMONG TANOM!! PLEASE!!!', 'concern1_20230418_010207.jpeg', 'concern2_20230417_234723.jpeg', 'concern3_20230417_234723.', 'concern4_20230417_234723.', 'concern5_20230417_234723.', 'concern6_20230417_234723.mp4', '2023-04-17', 1);
 
 -- --------------------------------------------------------
 
@@ -380,7 +387,7 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `concern`
 --
 ALTER TABLE `concern`
-  MODIFY `concern_id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `concern_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product`

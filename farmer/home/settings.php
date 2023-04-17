@@ -38,7 +38,8 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Email</label> 
-                            <input placeholder="Enter Email Address" type="email" name="email" value="<?=$row['email'];?>" class="form-control" required>
+                            <input placeholder="Enter Email Address" type="email" name="email" value="<?=$row['email'];?>" class="form-control" required id="email-input">
+                            <div id="email-error"></div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="password">New Password</label>
@@ -96,7 +97,7 @@
                     </div>
                     <div class="text-right">
                         <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                        <button type="submit" name="update_account" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                        <button type="submit" name="update_account" id="submit-btn" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
                     </div>
                 </div>
                 <?php
@@ -137,4 +138,49 @@
   // Add event listeners to the password fields
   passwordInput.addEventListener('input', checkPasswords);
   confirmPasswordInput.addEventListener('input', checkPasswords);
+</script>
+
+<script>
+    $(document).ready(function() {
+    // disable submit button by default
+    //$('#submit-btn').prop('disabled', true);
+
+    // debounce functions for each input field
+    var debouncedCheckEmail = _.debounce(checkEmail, 500);
+
+    // attach event listeners for each input field
+    $('#email-input').on('input', debouncedCheckEmail);
+
+    function checkEmail() {
+        var email = $('#email-input').val();
+        $.ajax({
+        url: 'ajax1.php', // replace with the actual URL to check email
+        method: 'POST', // use the appropriate HTTP method
+        data: { email: email },
+        success: function(response) {
+            if (response.exists) {
+                // disable submit button if email is taken
+                $('#submit-btn').prop('disabled', true);
+                $('#email-error').text('Email already taken').css('color', 'red');
+                $('#email-input').addClass('is-invalid');
+            } else {
+            $('#email-error').empty();
+            $('#email-input').removeClass('is-invalid');
+            // enable submit button if email is valid
+            checkIfAllFieldsValid();
+            }
+        },
+        error: function() {
+            $('#email-error').text('Error checking email');
+        }
+        });
+    }
+
+    function checkIfAllFieldsValid() {
+        // check if all input fields are valid and enable submit button if so
+        if ($('#email-error').is(':empty')) {
+        $('#submit-btn').prop('disabled', false);
+        }
+    }
+    });
 </script>

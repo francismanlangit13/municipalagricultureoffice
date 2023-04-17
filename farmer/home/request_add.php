@@ -1,11 +1,16 @@
 <?php include('../includes/header.php');?>
 
+<ol class="breadcrumb mb-4">    
+    <li class="breadcrumb-item">Dashboard</li>
+    <li class="breadcrumb-item">Request</li>
+    <li class="breadcrumb-item">Add Request</li>
+</ol>
 <form action="code.php" method="POST">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Request Product</h5>
+                    <h5>Request information</h5>
                 </div>
                 <div class="card-body">  
                     <div class="row"> 
@@ -54,7 +59,7 @@
             <br>
                 <div class="text-right">
                     <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                    <button type="submit" name="add_request" class="btn btn-primary"><i class="fa fa-plus"></i> Update</button>
+                    <button type="submit" name="add_request" id="submit-btn" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
                 </div>
             <br>
         </div>
@@ -65,90 +70,44 @@
 <script>
     $(document).ready(function() {
 
-    // debounce functions for each input field
-    var debouncedCheckQuantity = _.debounce(checkQuantity, 500);
+        // debounce functions for each input field
+        var debouncedCheckQuantity = _.debounce(checkQuantity, 500);
 
-    // attach event listeners for each input field
-    $('#product_quantity-input').on('input', debouncedCheckQuantity);
-    $('#product_id').on('change', debouncedCheckQuantity);
+        // attach event listeners for each input field
+        $('#product_quantity-input').on('input', debouncedCheckQuantity);
+        $('#product_id').on('change', debouncedCheckQuantity);
 
-    function checkQuantity() {
-        var product_id = $('#product_id').val();
-        var product_quantity = $('#product_quantity-input').val();
-        $.ajax({
-        url: 'ajax.php', // replace with the actual URL to check quantity
-        method: 'POST', // use the appropriate HTTP method
-        data: { product_id: product_id, product_quantity: product_quantity },
-        success: function(response) {
-            if (response.exists) {
-                // disable submit button if quantity is taken
-                $('#submit-btn').prop('disabled', true);
-                $('#product_quantity-error').text('Out of stock').css('color', 'red');
-                $('#product_quantity-input').addClass('is-invalid');
-            } else {
-            $('#product_quantity-error').empty();
-            $('#product_quantity-input').removeClass('is-invalid');
-            // enable submit button if quantity is valid
-            checkIfAllFieldsValid();
+        function checkQuantity() {
+            var product_id = $('#product_id').val();
+            var product_quantity = $('#product_quantity-input').val();
+            $.ajax({
+            url: 'ajax.php', // replace with the actual URL to check quantity
+            method: 'POST', // use the appropriate HTTP method
+            data: { product_id: product_id, product_quantity: product_quantity },
+            success: function(response) {
+                if (response.exists) {
+                    // disable submit button if quantity is taken
+                    $('#submit-btn').prop('disabled', true);
+                    $('#product_quantity-error').text('Out of stock').css('color', 'red');
+                    $('#product_quantity-input').addClass('is-invalid');
+                } else {
+                $('#product_quantity-error').empty();
+                $('#product_quantity-input').removeClass('is-invalid');
+                // enable submit button if quantity is valid
+                checkIfAllFieldsValid();
+                }
+            },
+            error: function() {
+                $('#product_quantity-error').text('Error checking quantity');
             }
-        },
-        error: function() {
-            $('#product_quantity-error').text('Error checking quantity');
+            });
         }
-        });
-    }
 
-    function checkIfAllFieldsValid() {
-        // check if all input fields are valid and enable submit button if so
-        if ($('#product_quantity-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#product_quantity-error').is(':empty')) {
+            $('#submit-btn').prop('disabled', false);
+            }
         }
-    }
     });
 </script>
-
-<!-- <script>
-    $(document).ready(function() {
-    // debounce functions for each input field
-    var debouncedCheckQuantity = _.debounce(checkQuantity, 500);
-    var debouncedCheckProduct = _.debounce(checkProduct, 500);
-
-    // attach event listeners for each input field
-    $('#product_quantity-input').on('input', debouncedCheckQuantity);
-    $('#product_id').on('change', debouncedCheckQuantity);
-
-    function checkQuantity() {
-        var product_id = $('#product_id').val();
-        var product_quantity = $('#product_quantity-input').val();
-        $.ajax({
-        url: 'ajax.php',
-        method: 'POST',
-        data: {
-            product_id: product_id,
-            product_quantity: product_quantity
-        },
-        success: function(response) {
-            if (response.exists) {
-            $('#submit-btn').prop('disabled', true);
-            $('#product_quantity-error').text('Quantity not available').css('color', 'red');
-            $('#product_quantity-input').addClass('is-invalid');
-            } else {
-            $('#product_quantity-error').empty();
-            $('#product_quantity-input').removeClass('is-invalid');
-            checkIfAllFieldsValid();
-            }
-        },
-        error: function() {
-            $('#product_quantity-error').text('Error checking quantity');
-        }
-        });
-    }
-
-    function checkIfAllFieldsValid() {
-        // check if all input fields are valid and enable submit button if so
-        if ($('#product_quantity-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-        }
-    }
-    });
-</script> -->

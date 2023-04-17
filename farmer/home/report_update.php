@@ -1,12 +1,17 @@
 <?php
     include('../includes/header.php');
 ?>
+<ol class="breadcrumb mb-4">    
+    <li class="breadcrumb-item">Dashboard</li>
+    <li class="breadcrumb-item">Report</li>
+    <li class="breadcrumb-item">Update Report</li>
+</ol>
 <form action="code.php" method="POST" enctype="multipart/form-data">  
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-            <h5>Send a Report</h5>
+            <h5>Report information</h5>
         </div>
         <div class="card-body">
           <?php
@@ -38,7 +43,7 @@
             <input required type="text" hidden name="user_id" value="<?=  $_SESSION['auth_user']['user_id']; ?>" class="form-control">
             
             <div class="col-md-12 mb-3 text-center">                                   
-                <hr> <h5>ADD PICTURE</h5><hr>                                
+                <hr> <h5>Attachments</h5><hr>                                
             </div>
 
             <div class="col-md-4 mb-3">
