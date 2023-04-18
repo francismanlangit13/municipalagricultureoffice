@@ -19,7 +19,7 @@
                     <tr>
                         <th style="width:5%">No.</th>
                         <th style="width:10%">Refernce Number</th>
-                        <th style="width:25%">Farmer Name</th>
+                        <th style="width:25%">Full Name</th>
                         <th style="width:10%">Barangay</th>
                         <th style="width:20%">Product Name</th>
                         <th style="width:10%">Quantity</th>
@@ -47,7 +47,7 @@
                         INNER JOIN
                         user
                         ON 
-                        request.id = user.user_id
+                        request.user_id = user.user_id
                         INNER JOIN
                         product
                         ON 
@@ -70,7 +70,15 @@
                         <td><?= $row['barangay']; ?></td>
                         <td><?= $row['product_name']; ?></td>
                         <td><?= $row['request_quantity']; ?></td>
-                        <td><?= $row['status_name']; ?></td>
+                        <td>
+                            <?php if($row['status_id'] == 1){ ?>
+                                <span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>
+                            <?php }  else if($row['status_id'] == 2){ ?>
+                                <span class="rounded-pill badge badge-success bg-gradient-success px-3">Approved</span>
+                            <?php } else { ?>
+                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>
+                            <?php } ?>
+                        </td>
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">

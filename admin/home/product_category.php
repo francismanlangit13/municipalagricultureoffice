@@ -45,7 +45,7 @@
                         <td><?= $row['category_description']; ?></td>
                         <td> 
                             <div class="row d-flex justify-content-center">
-                                <div class="col-md-12 mb-1" style="zoom:95%">
+                                <div class="col-md-12 mb-1" style="zoom:97%">
                                     <a href="product_category_view?id=<?=$row['product_category_id'];?>" class="btn btn-info btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
                                         <span class="text ml-2 mr-2">View</span>

@@ -20,13 +20,33 @@
   }
 
 
+  // if(isset($_POST['del_product'])){
+  //   $user_id = $_POST['del_product'];
+  //   $OLDfileImage = $_POST['oldimage'];
+  //   $uploadDir = '../../assets/img/products/';
+  //   unlink($uploadDir . $OLDfileImage);
+
+  //   $query = "DELETE FROM `product` WHERE product_id = $user_id ";
+  //   $query_run = mysqli_query($con, $query);
+
+  //   if($query_run){
+  //     $_SESSION['status'] = "The Product has been successfully deleted.";
+  //     $_SESSION['status_code'] = "success";
+  //     header("Location: " . base_url . "admin/home/product");
+  //     exit(0);
+  //   }
+  //   else{
+  //     $_SESSION['status'] = "Something is wrong!";
+  //     $_SESSION['status_code'] = "error";
+  //     header("Location: " . base_url . "admin/home/product");
+  //     exit(0);
+  //   } 
+  // }
+
   if(isset($_POST['del_product'])){
     $user_id = $_POST['del_product'];
-    $OLDfileImage = $_POST['oldimage'];
-    $uploadDir = '../../assets/img/products/';
-    unlink($uploadDir . $OLDfileImage);
 
-    $query = "DELETE FROM `product` WHERE product_id = $user_id ";
+    $query = "UPDATE `product` SET  WHERE product_id = $user_id ";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -43,12 +63,32 @@
     } 
   }
 
+  // if(isset($_POST['user_delete'])){
+  //   $user_id= $_POST['user_delete'];
+  //   $OLDfileImage = $_POST['oldimage'];
+  //   $uploadDir = '../../assets/img/users/';
+  //   unlink($uploadDir . $OLDfileImage);
+  //   $query = "DELETE FROM `user` WHERE user_id = $user_id ";
+  //   $query_run = mysqli_query($con, $query);
+
+  //   if($query_run){
+  //     $_SESSION['status'] = "The user has been successfully deleted.";
+  //     $_SESSION['status_code'] = "success";
+  //     header("Location: " . base_url . "admin/home/user");
+  //     exit(0);
+  //   }
+  //   else{
+  //     $_SESSION['status'] = "Something is wrong!";
+  //     $_SESSION['status_code'] = "error";
+  //     header("Location: " . base_url . "admin/home/user");
+  //     exit(0);
+  //   } 
+  // }
+
+  //Delete user
   if(isset($_POST['user_delete'])){
     $user_id= $_POST['user_delete'];
-    $OLDfileImage = $_POST['oldimage'];
-    $uploadDir = '../../assets/img/users/';
-    unlink($uploadDir . $OLDfileImage);
-    $query = "DELETE FROM `user` WHERE user_id = $user_id ";
+    $query = "UPDATE `user` SET user_status = 3 WHERE user_id = $user_id ";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -433,22 +473,41 @@
   }
 
   // Delete Farmer
+  // if(isset($_POST['farmer_delete'])){
+  //   $user_id= $_POST['farmer_delete'];
+
+  //   $query = "DELETE FROM `user` WHERE user_id = $user_id ";
+  //   $query_run = mysqli_query($con, $query);
+
+  //   if($query_run){
+  //     $_SESSION['status'] = "The farmer has been successfully deleted.";
+  //     $_SESSION['status_code'] = "success";
+  //     header("Location: " . base_url . "admin/home/farmer_account");
+  //     exit(0);
+  //   }
+  //   else{
+  //     $_SESSION['status'] = "Something is wrong!";
+  //     $_SESSION['status_code'] = "error";
+  //     header("Location: " . base_url . "admin/home/farmer_account");
+  //     exit(0);
+  //   } 
+  // }
+
   if(isset($_POST['farmer_delete'])){
     $user_id= $_POST['farmer_delete'];
-
-    $query = "DELETE FROM `user` WHERE user_id = $user_id ";
+    $query = "UPDATE `user` SET user_status = 3 WHERE user_id = $user_id ";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
       $_SESSION['status'] = "The farmer has been successfully deleted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/farmer_account");
+      header("Location: " . base_url . "admin/home/user");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Something is wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/farmer_account");
+      header("Location: " . base_url . "admin/home/user");
       exit(0);
     } 
   }

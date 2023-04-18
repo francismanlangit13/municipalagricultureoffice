@@ -15,78 +15,46 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Full Name</th>
-                        <th>Message</th>
-                        <th>Photo #1</th>
-                        <th>Photo #2</th>
-                        <th>Date</th>
-                        <th>Action</th>
+                        <th style="width:5%">No.</th>
+                        <th style="width:10%">Refernce Number</th>
+                        <th style="width:20%">Full Name</th>
+                        <th style="width:30%">Message</th>
+                        <th style="width:15%">Date</th>
+                        <th style="width:10%">Status</th>
+                        <th style="width:10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         $query = "SELECT
-                        report.report_id,
-                        user.fname,
-                        user.mname,
-                        user.lname,
-                        user.suffix,
-                        report.message,
-                        report.photo,
-                        report.photo1,
-                        report.date_created,
-                        report.status_id
+                        *
                         FROM
                         user
                         INNER JOIN report ON report.user_id = user.user_id
                         ";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
+                            $number = 1; // Define a variable to keep track of the iterations
                             foreach($query_run as $row){
                     ?>
                     <tr>
+                        <td><?= $number++ ?></td>
+                        <td><?= $row['reference_number']; ?></td>
                         <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?></td>
                         <td><?= $row['message']; ?></td>
-                        <td>
-                            <a href="
-                                <?php
-                                    if(isset($row['photo'])){
-                                        echo base_url . 'assets/img/reports/' . $row['photo'];
-                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?> <br> REPORT MESSAGE: <?= $row['message']; ?>">
-                                <img class="zoom img-fluid img-bordered-sm"
-                                src="
-                                    <?php
-                                        if(isset($row['photo'])){
-                                            if(!empty($row['photo'])) {
-                                                echo base_url . 'assets/img/reports/' . $row['photo'];
-                                        } } else { echo base_url . 'assets/img/system/no-image.png'; }
-                                    ?>
-                                " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="
-                                <?php
-                                    if(isset($row['photo1'])){
-                                        if(!empty($row['photo1'])) {
-                                            echo base_url . 'assets/img/reports/' . $row['photo1'];
-                                    } } else { echo base_url . 'assets/img/system/no-image.png'; }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?> <br> REPORT MESSAGE: <?= $row['message']; ?>">
-                                <img class="zoom img-fluid img-bordered-sm"
-                                src="
-                                    <?php
-                                        if(isset($row['photo1'])){
-                                            echo base_url . 'assets/img/reports/' . $row['photo1'];
-                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
-                                    ?>
-                                " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
-                            </a>
-                        </td>
                         <td><?= $row['date_created']; ?></td>
+                        <td>
+                            <?php if($row['status_id'] == 1){ ?>
+                                <span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>
+                            <?php }  else if($row['status_id'] == 2){ ?>
+                                <span class="rounded-pill badge badge-success bg-gradient-success px-3">Approved</span>
+                            <?php } else { ?>
+                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>
+                            <?php } ?>
+                        </td>
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">
@@ -97,7 +65,6 @@
                                 </div>
                             </div>
                         </td>
-                    
                     </tr>
                     <?php
                             }

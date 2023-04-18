@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 08:11 PM
+-- Generation Time: Apr 18, 2023 at 11:07 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -37,6 +37,13 @@ CREATE TABLE `announcement` (
   `ann_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `announcement`
+--
+
+INSERT INTO `announcement` (`ann_id`, `ann_title`, `ann_body`, `ann_publish`, `ann_status`, `ann_date`) VALUES
+(2, 'HOI', 'ASA NAMO', '09457664949', 'Pending', '2023-04-18 04:51:11');
+
 -- --------------------------------------------------------
 
 --
@@ -53,7 +60,7 @@ CREATE TABLE `concern` (
   `photo3` varchar(255) NOT NULL,
   `photo4` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
-  `date_created` date NOT NULL,
+  `date_created` datetime NOT NULL,
   `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -62,7 +69,7 @@ CREATE TABLE `concern` (
 --
 
 INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`) VALUES
-(2, 4, 'NA GUBA AMONG TANOM!! PLEASE!!!', 'concern1_20230418_010207.jpeg', 'concern2_20230417_234723.jpeg', 'concern3_20230417_234723.', 'concern4_20230417_234723.', 'concern5_20230417_234723.', 'concern6_20230417_234723.mp4', '2023-04-17', 1);
+(2, 4, 'NA GUBA AMONG TANOM!! PLEASE!!!', 'concern1_20230418_010207.jpeg', 'concern2_20230417_234723.jpeg', 'concern3_20230417_234723.', 'concern4_20230417_234723.', 'concern5_20230417_234723.', 'concern6_20230417_234723.mp4', '2023-04-17 02:12:09', 1);
 
 -- --------------------------------------------------------
 
@@ -257,7 +264,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `email`, `password`, `qrcode`, `reference_number`, `picture`, `purok`, `street`, `barangay`, `municipality`, `province`, `region`, `phone`, `religion`, `birthday`, `birthplace`, `civil_status`, `pwd`, `4ps`, `ig`, `ig_specify`, `govid`, `govid_specify`, `farmersassoc`, `farmersassoc_specify`, `livelihood`, `rice`, `corn`, `other_crops_specify`, `livestock`, `livestock_specify`, `poultry`, `poultry_specify`, `owner`, `land`, `planting`, `cultivation`, `harvesting`, `other_farmworker_specify`, `part_of_farming`, `attending_formal`, `attending_nonformal`, `participated`, `other_agri_youth_specify`, `user_type`, `user_status`) VALUES
 (1, 'User', '', 'Admin', '', 'Male', 'admin@gmail.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230416_133835.jpg', '', '', '', '', '', '', '09457664949', '', '2000-11-13', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1),
-(4, 'Francis Carlo', '', 'Manlangit', '', 'Male', 'franzcarl13@yahoo.com', '0192023a7bbd73250516f069df18b500', '00020101021127600012com.p2pqrpay0111USMEPHM2XXX020899964403041301566281770015204601653036085802PH5913GRACE N AMBAG6007JIMENEZ6304D502', '123456789101112', 'user_20230416_193834.jpg', '5', 'Villamor', 'Gata', 'Jimenez', 'Misamis Occidental', '10', '09457664949', 'Catholic', '2000-12-11', 'Pakil, Laguna', 'Single', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmer', 'Rice', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1);
+(4, 'Francis Carlo', '', 'Manlangit', '', 'Male', 'franzcarl13@yahoo.com', '0192023a7bbd73250516f069df18b500', '00020101021127600012com.p2pqrpay0111USMEPHM2XXX020899964403041301566281770015204601653036085802PH5913GRACE N AMBAG6007JIMENEZ6304D502', '123456789101112', 'user_20230416_193834.jpg', '5', 'Villamor', 'Gata', 'Jimenez', 'Misamis Occidental', '10', '09457664949', 'Catholic', '2000-12-11', 'Pakil, Laguna', 'Single', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmer', 'Rice', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1),
+(5, 'Francis Carlo', 'Abcede', 'Manlangit', '', 'Male', 'francismanlangit13@gmail.com', '9b493afc99e02b43c337bae0ccefd592', '', '', 'user_20230418_170052.png', '', '', '', '', '', '', '09457664948', 'Catholic', '2000-11-13', 'Catholic', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -381,7 +389,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `concern`
@@ -423,7 +431,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_status`

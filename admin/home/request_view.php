@@ -21,7 +21,7 @@
                 INNER JOIN
                 user
                 ON 
-                request.id = user.user_id
+                request.user_id = user.user_id
                 INNER JOIN
                 product
                 ON 
@@ -143,18 +143,64 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="" style="position:inherit;left:-7px; top:-38px;">Product Image</label>
+                            <label for="">Product Image</label>
+                            <br>
                             <a href="
                                 <?php
-                                    if(isset($row['product_image'])){
-                                        echo base_url . 'assets/img/products/' . $row['product_image'];
+                                    if(isset($row['photo'])){
+                                        echo base_url . 'assets/img/products/' . $row['photo'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; }
                                 ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
-                                        if(isset($row['product_image'])){
-                                            echo base_url . 'assets/img/products/' . $row['product_image'];
+                                        if(isset($row['photo'])){
+                                            echo base_url . 'assets/img/products/' . $row['photo'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo1'])){
+                                        echo base_url . 'assets/img/products/' . $row['photo1'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo1'])){
+                                            echo base_url . 'assets/img/products/' . $row['photo1'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo2'])){
+                                        echo base_url . 'assets/img/products/' . $row['photo2'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo2'])){
+                                            echo base_url . 'assets/img/products/' . $row['photo2'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo3'])){
+                                        echo base_url . 'assets/img/products/' . $row['photo3'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo3'])){
+                                            echo base_url . 'assets/img/products/' . $row['photo3'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; }
                                     ?>
                                 " alt="image" style="height: 100px; max-width: 160px; object-fit: cover;">

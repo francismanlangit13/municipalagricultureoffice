@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                            <i class="fas fa-user-alt fa-2x text-gray-300"></i>
+                            <i class="fas fa-archive fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                <i class="fa fa-list-alt fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>

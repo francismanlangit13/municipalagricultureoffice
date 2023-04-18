@@ -16,14 +16,14 @@
         <div class="table-responsive">
             <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
-                        <th>Concern #</th>
-                        <th>Name</th>
-                        <th>Images</th>
-                        <th>Message</th>
-                        <th>Date Filed</th>
-                        <th>Status</th>
-                        <th>Action</th>    
+                    <tr>  
+                        <th style="width:5%">No.</th>
+                        <th style="width:10%">Refernce Number</th>
+                        <th style="width:20%">Full Name</th>
+                        <th style="width:35%">Message</th>
+                        <th style="width:15%">Date Filed</th>
+                        <th style="width:5%">Status</th>
+                        <th style="width:10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,32 +42,24 @@
                         concern.user_id = user.user_id";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
+                            $number = 1; // Define a variable to keep track of the iterations
                             foreach($query_run as $row){
                     ?>
                     <tr>
-                        <td><?= $row['concern_id']; ?></td>
+                        <td><?= $number++ ?></td>
+                        <td><?= $row['reference_number']; ?></td>
                         <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?></td>
-                        <td>
-                            <a href="
-                                <?php
-                                    if(isset($row['photo'])){
-                                        if(!empty($row['photo'])) {
-                                            echo base_url . 'assets/img/concerns/' . $row['photo'];
-                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?> <br> REPORT MESSAGE: <?= $row['message']; ?>">
-                                <img class="zoom img-fluid img-bordered-sm"
-                                src="
-                                    <?php
-                                        if(isset($row['photo'])){
-                                            echo base_url . 'assets/img/concern/' . $row['photo'];
-                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
-                                    ?>
-                                " alt="image" style="height: 120px; max-width: 120px; object-fit: cover;">
-                            </a>
-                        </td>
                         <td><?= $row['message']; ?></td>
                         <td><?= $row['date_created']; ?></td>
-                        <td><?= $row['status_name']; ?></td>
+                        <td>
+                            <?php if($row['status_id'] == 1){ ?>
+                                <span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>
+                            <?php }  else if($row['status_id'] == 2){ ?>
+                                <span class="rounded-pill badge badge-success bg-gradient-success px-3">Approved</span>
+                            <?php } else { ?>
+                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>
+                            <?php } ?>
+                        </td>
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">
