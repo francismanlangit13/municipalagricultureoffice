@@ -100,8 +100,19 @@
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <button class="rounded-circle border-0" onclick="myDashboard()" id="sidebarToggle"></button>
     </div>
 
 </ul>
 <!-- End of Sidebar -->
+
+<script>
+function myDashboard() {
+    var x = document.getElementById("myDashboard");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
