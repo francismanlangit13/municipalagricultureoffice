@@ -27,8 +27,8 @@
                         <th width="10%">Product Image</th>
                         <th width="5">Quantity</th>
                         <th width="10%">Category</th>
-                        <th width="10%">Status</th>
                         <th width="15%">Expiration Date</th>
+                        <th width="10%">Status</th>
                         <th width="10%">Action</th>
                     </tr>
                 </thead>
@@ -71,8 +71,20 @@
                         </td>
                         <td><?= $row['product_quantity']; ?></td>
                         <td><?= $row['category_name']; ?></td>
-                        <td><?php if($row['product_status'] == 1){ echo "Available";} else { echo "Not Available";} ?></td>
-                        <td><?= $row['exp_date']; ?></td>
+                        <td>
+                            <?php if($row['exp_date'] < date) { ?>
+                                <span style="color:red;"><?= $row['exp_date']; ?><br> Expired</span>
+                            <?php } else { ?>
+                                <span><?= $row['exp_date'];?></span>
+                            <?php } ?>
+                        </td>
+                        <td>
+                            <?php if($row['product_status'] == 1){ ?>
+                                <span class="rounded-pill badge badge-success bg-gradient-success px-3">Available</span>
+                            <?php } else { ?>
+                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Not Available</span>
+                            <?php } ?>
+                        </td>
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:97%">

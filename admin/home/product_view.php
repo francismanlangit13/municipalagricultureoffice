@@ -139,11 +139,11 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for=""><strong>Status</strong></label>
+                            <label for="">Status</label>
                             <select disabled class="form-control form-select">
                                 <option value="" selected disabled>Status</option>
-                                <option value="Available" <?= $row['product_status'] == 'Available' ? 'selected' :'' ?> >Available</option>
-                                <option value="Not Available" <?= $row['product_status'] == 'Not Available' ? 'selected' :'' ?> >Not Available</option>
+                                <option value="1" <?= $row['product_status'] == '1' ? 'selected' :'' ?> >Available</option>
+                                <option value="2" <?= $row['product_status'] == '2' ? 'selected' :'' ?> >Not Available</option>
                             </select>
                         </div>
         

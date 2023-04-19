@@ -47,10 +47,21 @@
         </div>
     </li>
 
+    <?php
+        // Count the number of records that have a "expired" status
+        $sql0 = "SELECT COUNT(*) AS num_expired FROM product WHERE product_status = 'Available' AND exp_date < NOW()";
+        $result0 = mysqli_query($con, $sql0);
+        $row0 = mysqli_fetch_assoc($result0);
+        $num_expired = $row0['num_expired'];
+    ?>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_update.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_edit.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_view.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link <?php if (strpos($_SERVER['PHP_SELF'], 'home/product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_update.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_edit.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_view.php') !== false)  { echo 'show'; } else { echo 'collapsed'; } ?>" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
+            <?php if($num_expired == 0) { } else{ ?>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter count-product"><?php if ($num_expired >= 99){ echo "99+";} else { echo $num_expired; } ?></span>
+            <?php } ?>
             <i class="fas fa-shopping-cart"></i>
             <span>Product</span>
         </a>
@@ -106,8 +117,10 @@
     <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_view.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link <?php if (strpos($_SERVER['PHP_SELF'], 'home/announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_view.php') !== false)  { echo 'show'; } else { echo 'collapsed'; } ?>" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
-            <!-- Counter - Alerts -->
-            <span class="badge badge-danger badge-counter count"><?php if ($total_notification >= 99){ echo "99+";} else { echo $total_notification; } ?></span>
+            <?php if($total_notification == 0) { } else{ ?>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter count"><?php if ($total_notification >= 99){ echo "99+";} else { echo $total_notification; } ?></span>
+            <?php } ?>
             <i class="fas fa-cog"></i>
             <span>Other</span>
         </a>
@@ -116,16 +129,22 @@
                 <h6 class="collapse-header">Manage:</h6>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_add.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/announcement"><i class="fa fa-bullhorn" aria-hidden="true"></i> Announcement</a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/request"><i class="fa fa-archive" aria-hidden="true"></i> Request
-                    <!-- Counter - Alerts -->
-                    <span class="badge badge-danger badge-counter count-title"><?php echo $num_request; ?></span>
+                    <?php if($num_request == 0) { } else{ ?>
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_request >= 99){ echo "99+";} else { echo $num_request; } ?></span>
+                    <?php } ?>
                 </a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/report"><i class="fa fa-pencil-square" aria-hidden="true"></i> Report
-                    <!-- Counter - Alerts -->
-                    <span class="badge badge-danger badge-counter count-title"><?php echo $num_report; ?></span>
+                    <?php if($num_report == 0) { } else{ ?>
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_report >= 99){ echo "99+";} else { echo $num_report; } ?></span>
+                    <?php } ?>
                 </a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/concern"><i class="fa fa-comment" aria-hidden="true"></i> Concern
-                    <!-- Counter - Alerts -->
-                    <span class="badge badge-danger badge-counter count-title"><?php echo $num_concern; ?></span>
+                    <?php if($num_concern == 0) { } else{ ?>
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_concern >= 99){ echo "99+";} else { echo $num_concern; } ?></span>
+                    <?php } ?>
                 </a>
             </div>
         </div>

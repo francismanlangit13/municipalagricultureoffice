@@ -176,12 +176,12 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="" class="required"><strong>Status</strong></label>
-                            <select name="status" required class="form-control">
-                                <option value="" selected disabled>Status</option>
-                                <option value="Available" <?= $row['product_status'] == 'Available' ? 'selected' :'' ?> >Available</option>
-                                <option value="Not Available" <?= $row['product_status'] == 'Not Available' ? 'selected' :'' ?> >Not Available</option>
-                            </select>
+                            <label for="" class="required">Status (<input type="text" class="form-control-plaintext" id="myValueName"></input>)</label>
+                            <label class="switch-new">
+                                <input type="checkbox" id="mySwitch" <?php if($row['product_status']=="1") {?> <?php echo "checked";?> <?php }?>>
+                                <span class="slider-new round-new"></span>
+                            </label>
+                            <input type="hidden" name="status" id="myValue" name="myValue" value="<?= $row['product_status']; ?>">
                         </div>
         
                     </div>
@@ -258,4 +258,18 @@
       fileInput4.required = false;
     }
   });
+</script>
+<script>
+    var mySwitch = document.getElementById("mySwitch");
+    var myValue = document.getElementById("myValue");
+    var myValueName = document.getElementById("myValueName");
+    mySwitch.addEventListener("change", function() {
+        if(this.checked) {
+            myValue.value = "1";
+            myValueName.value = "Available";
+        } else {
+            myValue.value = "2";
+            myValueName.value = "Not Available";
+        }
+    });
 </script>
