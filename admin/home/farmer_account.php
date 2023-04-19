@@ -27,6 +27,7 @@
                         <th width="10%">Picture</th>
                         <th width="15%">Email</th>
                         <th width="10%">Phone</th>
+                        <th width="10%">Status</th>
                         <th width="10%">Action</th>
 
                     </tr>
@@ -45,6 +46,7 @@
                             `user`.`password`, 
                             `user`.picture,
                             `user`.reference_number,
+                            `user`.user_status,
                             user_type.user_name, 
                             user_status.user_status_name,
                             user_type.user_name
@@ -59,7 +61,7 @@
                         ON 
                             `user`.user_status = user_status.user_status_id
                         WHERE
-                            `user`.user_status = 1 && `user`.user_type = 3";
+                            `user`.user_status != 3 && `user`.user_type = 3";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
                             $number = 1; // Define a variable to keep track of the iterations
@@ -92,6 +94,13 @@
 
                         <td><?= $row['email']; ?></td>
                         <td><?= $row['phone']; ?></td>
+                        <td>
+                            <?php if($row['user_status'] == 1){ ?>
+                                <span class="rounded-pill badge badge-success bg-gradient-success px-3">Active</span>
+                            <?php } else { ?>
+                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">In active</span>
+                            <?php } ?>
+                        </td>
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">

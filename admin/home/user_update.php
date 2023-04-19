@@ -100,19 +100,30 @@
                             <div id="email-error"></div>
                         </div>
                     
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="" class="required">Phone Number</label>
                             <input required type="text" name="phone" value="<?=$row['phone'];?>" pattern="09[0-9]{9}" maxlength="11" class="form-control" id="phone-input">
                             <div id="phone-error"></div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-2 mb-3">
                             <label for="" class="required">Role</label>
                             <select name="role" required class="form-control">
                                 <option value="" selected disabled>Select Role</option>
                                 <option value="1" <?= isset($row['user_type']) && $row['user_type'] == '1' ? 'selected' : '' ?>>Admin</option>
                                 <option value="2" <?= isset($row['user_type']) && $row['user_type'] == '2' ? 'selected' : '' ?>>Staff</option>
                             </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div style="margin-left:2rem;">
+                                <label for="" class="required">User Status (<label id="myValueName"><?php if($row['user_status']=="1") { echo "Active"; } else { echo "In active"; } ?></label>)</label>
+                                <br>
+                                <label class="switch-new" style="margin-left:3.3rem;">
+                                    <input type="checkbox" id="mySwitch" <?php if($row['user_status']=="1") {?> <?php echo "checked";?> <?php }?>>
+                                    <span class="slider-new round-new"></span>
+                                </label>
+                                <input type="hidden" name="status" id="myValue" value="<?= $row['user_status']; ?>">
+                            </div>
                         </div>
                     </div>
 
@@ -207,5 +218,20 @@
         $('#submit-btn').prop('disabled', false);
         }
     }
+    });
+</script>
+
+<script>
+    var mySwitch = document.getElementById("mySwitch");
+    var myValue = document.getElementById("myValue");
+    var myValueName = document.getElementById("myValueName");
+    mySwitch.addEventListener("change", function() {
+        if(this.checked) {
+            myValue.value = "1";
+            myValueName.innerHTML = "Active";
+        } else {
+            myValue.value = "2";
+            myValueName.innerHTML = "In active";
+        }
     });
 </script>

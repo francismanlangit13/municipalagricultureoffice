@@ -176,12 +176,13 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="" class="required">Status (<input type="text" class="form-control-plaintext" id="myValueName"></input>)</label>
-                            <label class="switch-new">
+                            <label for="" class="required">Product Status (<label id="myValueName"><?php if($row['product_status']=="1") { echo "Available"; } else { echo "Not Available"; } ?></label>)</label>
+                            <br>
+                            <label class="switch-new" style="margin-left:4rem;">
                                 <input type="checkbox" id="mySwitch" <?php if($row['product_status']=="1") {?> <?php echo "checked";?> <?php }?>>
                                 <span class="slider-new round-new"></span>
                             </label>
-                            <input type="hidden" name="status" id="myValue" name="myValue" value="<?= $row['product_status']; ?>">
+                            <input type="hidden" name="status" id="myValue" value="<?= $row['product_status']; ?>">
                         </div>
         
                     </div>
@@ -266,10 +267,10 @@
     mySwitch.addEventListener("change", function() {
         if(this.checked) {
             myValue.value = "1";
-            myValueName.value = "Available";
+            myValueName.innerHTML = "Available";
         } else {
             myValue.value = "2";
-            myValueName.value = "Not Available";
+            myValueName.innerHTML = "Not Available";
         }
     });
 </script>

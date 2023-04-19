@@ -21,21 +21,10 @@
                             <label for="" class="required">Title</label>
                             <input required placeholder="Enter Announcement Title" type="text" name="announcement_title" class="form-control">
                         </div>
-
                         <div class="col-md-12 mb-3">
-                        <label for="Description" class="required">Body</label>
-                        <textarea placeholder="Enter Message" required type="text"  name="announcement_message" class="form-control" rows="3"></textarea>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="" class="required">Sender</label>
-                            <input required placeholder="Enter Sender" type="text" name="announcement_sender" class="form-control">
-                        </div>
-
-                        <div class="col-md-6 mb-3" >
-                        <label for="">Date</label>
-                        <input type="input" name="announcement_dt" id="date" value="<?php echo date ?>" class="form-control">
-                        </div>       
+                            <label for="Description" class="required">Body</label>
+                            <textarea placeholder="Enter Message" required type="text"  name="announcement_message" class="form-control" rows="3"></textarea>
+                        </div>      
                     </div>
                 </div>
             </div>

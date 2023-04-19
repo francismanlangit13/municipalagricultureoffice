@@ -453,8 +453,9 @@
     $participated = $_POST['participated'];
     $other_agri_youth_specify = $_POST['other_agri_youth_specify'];
     $qrcode = $_POST['qrcode_text'];
+    $user_status = $_POST['status'];
 
-    $query = "UPDATE `user` SET `fname`='$fname', `mname`='$mname', `lname`='$lname', `suffix`='$suffix', `gender`='$gender', `email`='$email', `qrcode`='$qrcode', `reference_number`='$reference_number', `purok`='$purok', `street`='$street', `barangay`='$barangay', `municipality`='$municipality', `province`='$province', `region`='$region', `phone`='$phone', `religion`='$religion', `birthday`='$birthday', `birthplace`='$placeofbirth', `civil_status`='$civilstatus', `pwd`='$pwd', `4ps`='$fourps', `ig`='$ig', `ig_specify`='$igyes', `govid`='$govid', `govid_specify`='$govidyes', `farmersassoc`='$fac', `farmersassoc_specify`='$facyes', `livelihood`='$livelihood', `rice`='$rice', `corn`='$corn', `other_crops_specify`='$other_crops_specify', `livestock`='$livestock', `livestock_specify`='$livestock_specify', `poultry`='$poultry', `poultry_specify`='$poultry_specify', `owner`='$owner', `land`='$land', `planting`='$planting', `cultivation`='$cultivation', `harvesting`='$harvesting', `other_farmworker_specify`='$other_farmworker_specify', `part_of_farming`='$part_of_farming', `attending_formal`='$attending_formal', `attending_nonformal`='$attending_nonformal', `participated`='$participated', `other_agri_youth_specify`='$other_agri_youth_specify' WHERE `user_id`=$user_id";
+    $query = "UPDATE `user` SET `fname`='$fname', `mname`='$mname', `lname`='$lname', `suffix`='$suffix', `gender`='$gender', `email`='$email', `qrcode`='$qrcode', `reference_number`='$reference_number', `purok`='$purok', `street`='$street', `barangay`='$barangay', `municipality`='$municipality', `province`='$province', `region`='$region', `phone`='$phone', `religion`='$religion', `birthday`='$birthday', `birthplace`='$placeofbirth', `civil_status`='$civilstatus', `pwd`='$pwd', `4ps`='$fourps', `ig`='$ig', `ig_specify`='$igyes', `govid`='$govid', `govid_specify`='$govidyes', `farmersassoc`='$fac', `farmersassoc_specify`='$facyes', `livelihood`='$livelihood', `rice`='$rice', `corn`='$corn', `other_crops_specify`='$other_crops_specify', `livestock`='$livestock', `livestock_specify`='$livestock_specify', `poultry`='$poultry', `poultry_specify`='$poultry_specify', `owner`='$owner', `land`='$land', `planting`='$planting', `cultivation`='$cultivation', `harvesting`='$harvesting', `other_farmworker_specify`='$other_farmworker_specify', `part_of_farming`='$part_of_farming', `attending_formal`='$attending_formal', `attending_nonformal`='$attending_nonformal', `participated`='$participated', `other_agri_youth_specify`='$other_agri_youth_specify', `user_status`='$user_status' WHERE `user_id`=$user_id";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -710,7 +711,7 @@
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $user_type = $_POST['role'];
-    $user_status = '1';
+    $user_status = $_POST['status'];
 
     $query = "UPDATE `user` SET 
     `fname`='$fname',
@@ -1087,11 +1088,10 @@
   if(isset($_POST['add_announcement'])){
     $title = $_POST['announcement_title'];
     $body = $_POST['announcement_message'];
-    $event_dt = $_POST['announcement_dt'];
-    $sender = $_POST['announcement_sender'];
     $ann_status = "Pending";
+    $ann_date = date('Y-m-d H:i:s');
 
-    $query = "INSERT INTO `announcement`(`ann_title`, `ann_body`, `ann_publish`,`ann_status`, `ann_date`) VALUES ('$title','$body','$sender', '$ann_status','$event_dt')";
+    $query = "INSERT INTO `announcement`(`ann_title`, `ann_body`,`ann_status`, `ann_date`) VALUES ('$title','$body','$ann_status','$ann_date')";
     $query_run = mysqli_query($con,$query);
 
     if($query_run){
@@ -1126,7 +1126,7 @@
           $mail->AltBody = "$sender";
 
           $mail->send();
-          $_SESSION['status'] = "Announcement";
+          $_SESSION['status'] = "Announcement add successfully";
           $_SESSION['status_code'] = "success";
           header('Location: announcement');
           exit(0);
@@ -1172,69 +1172,96 @@
     $query = "UPDATE `announcement` SET `ann_status`='$status' WHERE ann_id ='$user_id'";
     $query_run = mysqli_query($con, $query);
     if($query_run){
-      // $api_key = '4a98784e7c3a64890dfcb1cc9183f3ad'; // Replace with your Semaphore API key
-      // $sendername = 'Semaphore'; // Replace with your sender name
-      // $phone_numbers = array('09457664949', '09816208309'); // Replace with the phone numbers you want to send the message to
-      // $message = "Announcement!"; // Replace with your message
+      $sql0 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
+      $ann_result = mysqli_query($con, $sql0);
+      $sql = "SELECT email FROM user WHERE user_type = 3 AND user_status = 1";
+      $result = $con->query($sql);
 
-      // // Encode the message for URL
-      // $message_encoded = urlencode($message);
+      // Create a new PHPMailer instance
+      $mail = new PHPMailer;
 
-      // // Build the query string
-      // $params = http_build_query(array(
-      //     'apikey' => $api_key,
-      //     'number' => implode(',', $phone_numbers),
-      //     'message' => $message_encoded,
-      //     'sendername' => $sendername
-      // ));
+      // Set the SMTP settings
+      $mail->SMTPDebug = 0;
+      $mail->isSMTP();
+      $mail->Host = 'smtp.gmail.com';
+      $mail->SMTPAuth = true;
+      $mail->Username = 'contactmaojimenez@gmail.com';
+      $mail->Password = 'kcexdtybjptxgizm';
+      $mail->SMTPSecure = 'ssl';
+      $mail->Port = 465;
 
-      // // Send the message
-      // $result = file_get_contents('https://semaphore.co/api/v4/messages?' . $params);
-
-      // // Handle the response
-      // $response = json_decode($result);
-
-      // if ($response->success) {
-      //     echo 'Messages sent successfully!';
-      // } else {
-      //     echo 'Error sending messages: ' . $response->error;
-      // }
-      $ch = curl_init();
-
-      // Array of phone numbers to send the message to
-      $numbers = array('09457664949', '09816208309');
-
-      // Set the common parameters for all the messages
-      $common_parameters = array(
-          'apikey' => 'api_key', // Your API KEY
-          'message' => 'Hi',
-          'sendername' => 'CabTom'
-      );
-
-      // Loop over each number and send the message
-      foreach ($numbers as $number) {
-          $parameters = $common_parameters;
-          $parameters['number'] = $number;
-
-          curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
-          curl_setopt($ch, CURLOPT_POST, 1);
-
-          // Send the parameters set above with the request
-          curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
-
-          // Receive response from server
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-          $output = curl_exec($ch);
-
-          // Show the server response
-          echo $output;
+      if(mysqli_num_rows($ann_result) > 0){
+        foreach($ann_result as $row){
+          // Set the email content
+          $mail->setFrom('contactmaojimenez@gmail.com', 'MAO JIMENEZ');
+          $mail->addReplyTo('reply-to@example.com', 'DO NO REPLY!');
+          $mail->Subject = $row['ann_title'];
+          $mail->Body = $row['ann_body'];
+        }
       }
 
-      curl_close($ch);
-      $_SESSION['status'] = "The announcement has been successfully posted.";
-      $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/announcement");
-      exit(0);
+      // Add recipients
+      while ($row = $result->fetch_assoc()) {
+          $mail->addAddress($row["email"]);
+      }
+
+      // Send the email
+      if (!$mail->send()) {
+          echo 'Message could not be sent.';
+          echo 'Mailer Error: ' . $mail->ErrorInfo;
+      } else {
+        // Prepare the SQL statement to select phone numbers based on user type and status
+        $sql = "SELECT phone FROM user WHERE user_type = 3 AND user_status = 1";
+        $sql1 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
+        $ann_result1 = mysqli_query($con, $sql1);
+
+        // Execute the SQL statement and get the result set
+        $result = mysqli_query($con, $sql);
+        $numbers = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $numbers[] = $row['phone'];
+        }
+
+        if(mysqli_num_rows($ann_result1) > 0){
+          foreach($ann_result1 as $row1){
+            // Set the common parameters for all the messages
+            $common_parameters = array(
+                'apikey' => 'your_api_key', // Your API KEY
+                'message' => $row1['ann_title'] . '<br><br>' . $row1['ann_body'],
+                'sendername' => 'CabTom'
+            );
+          }
+        }
+
+        // Initialize the cURL handle
+        $ch = curl_init();
+
+        // Loop over each number and send the message
+        foreach ($numbers as $number) {
+            $parameters = $common_parameters;
+            $parameters['number'] = $number;
+
+            // Set the cURL options for sending the request to Semaphore API
+            curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // Send the request and get the response
+            $output = curl_exec($ch);
+
+            // Show the response from the server
+            echo $output;
+        }
+
+        // Close the cURL handle
+        curl_close($ch);
+
+        $_SESSION['status'] = "The announcement has been successfully posted.";
+        $_SESSION['status_code'] = "success";
+        header("Location: " . base_url . "admin/home/announcement");
+        exit(0);
+      }
     }
     else{
       $_SESSION['status'] = "Something went wrong!";

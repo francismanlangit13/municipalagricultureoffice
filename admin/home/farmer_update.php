@@ -375,6 +375,15 @@
                                 <button type="button" id="rescan-btn" class="btn btn-warning"><i class="fa fa-qrcode"></i> Rescan QR Code</button>
                             </div>
                         </div>
+                        <div class="col-md-3 mb-3" style="margin-left:15rem;">
+                            <label for="" class="required">User Status (<label id="myValueName"><?php if($user['user_status']=="1") { echo "Active"; } else { echo "In active"; } ?></label>)</label>
+                            <br>
+                            <label class="switch-new" style="margin-left:3.3rem;">
+                                <input type="checkbox" id="mySwitch" <?php if($user['user_status']=="1") {?> <?php echo "checked";?> <?php }?>>
+                                <span class="slider-new round-new"></span>
+                            </label>
+                            <input type="hidden" name="status" id="myValue" value="<?= $user['user_status']; ?>">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -494,5 +503,20 @@
             $('#submit-btn').prop('disabled', false);
         }
     }
+    });
+</script>
+
+<script>
+    var mySwitch = document.getElementById("mySwitch");
+    var myValue = document.getElementById("myValue");
+    var myValueName = document.getElementById("myValueName");
+    mySwitch.addEventListener("change", function() {
+        if(this.checked) {
+            myValue.value = "1";
+            myValueName.innerHTML = "Active";
+        } else {
+            myValue.value = "2";
+            myValueName.innerHTML = "In active";
+        }
     });
 </script>

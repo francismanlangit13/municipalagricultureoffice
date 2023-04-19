@@ -25,8 +25,8 @@
                         <th style="width:5%">No.</th>
                         <th style="width:15%">Title</th>
                         <th style="width:40%">Body</th>
-                        <th style="width:10%">Status</th>
                         <th style="width:20%">Date Announced</th>
+                        <th style="width:10%">Status</th>
                         <th style="width:10%">Action</th>
                     </tr>
                 </thead>
@@ -46,8 +46,14 @@
                         <td><?= $number++ ?></td>
                         <td><?= $row['ann_title']; ?></td>
                         <td><?= $row['ann_body']; ?></td>
-                        <td><?= $row['ann_status']; ?></td>
                         <td><?= $row['ann_date']; ?></td>
+                        <td>
+                            <?php if($row['ann_status'] == 'Pending'){ ?>
+                                <span class="rounded-pill badge badge-success bg-gradient-info px-3">Pending</span>
+                            <?php } else{ ?>
+                                <span class="rounded-pill badge badge-success bg-gradient-success px-3">Posted</span>
+                            <?php } ?>
+                        </td>
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:95%">

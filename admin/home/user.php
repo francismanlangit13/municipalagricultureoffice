@@ -27,6 +27,7 @@
                         <th width="20%">Email</th>
                         <th width="15%">Phone</th>
                         <th width="5%">Role</th>
+                        <th width="10%">Status</th>
                         <th width="10%">Action</th>
 
                     </tr>
@@ -43,7 +44,8 @@
                             `user`.email,
                             `user`.phone,
                             `user`.`password`, 
-                            `user`.picture, 
+                            `user`.picture,
+                            `user`.user_status,
                             user_type.user_name, 
                             user_status.user_status_name,
                             user_type.user_name
@@ -90,6 +92,13 @@
                         <td><?= $row['email']; ?></td>
                         <td><?= $row['phone']; ?></td>
                         <td><?= $row['user_name']; ?></td>
+                        <td>
+                            <?php if($row['user_status'] == 1){ ?>
+                                <span class="rounded-pill badge badge-success bg-gradient-success px-3">Active</span>
+                            <?php } else { ?>
+                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">In active</span>
+                            <?php } ?>
+                        </td>
                         <td> 
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-12 mb-1" style="zoom:97%">
