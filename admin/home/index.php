@@ -147,9 +147,7 @@
 
     </div>
     <!-- /.container-fluid -->
-    <div class="col-xl-12 mb-4">
-        <div class="my-element" id="myChart"></div>
-    </div>
+    <div class="my-element" id="myChart"></div>
     <script>
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);

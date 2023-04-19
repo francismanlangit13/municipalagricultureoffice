@@ -49,7 +49,7 @@
 
     <?php
         // Count the number of records that have a "expired" status
-        $sql0 = "SELECT COUNT(*) AS num_expired FROM product WHERE product_status = 'Available' AND exp_date < NOW()";
+        $sql0 = "SELECT COUNT(*) AS num_expired FROM product WHERE product_status = '1' AND exp_date < NOW()";
         $result0 = mysqli_query($con, $sql0);
         $row0 = mysqli_fetch_assoc($result0);
         $num_expired = $row0['num_expired'];
@@ -69,7 +69,12 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage:</h6>
-                <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_update.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/product"><i class="fas fa-box" aria-hidden="true"></i> Products</a>
+                <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_update.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/product"><i class="fas fa-box" aria-hidden="true"></i> Products
+                <?php if($num_expired == 0) { } else{ ?>
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter"><?php if ($num_expired >= 99){ echo "99+";} else { echo $num_expired; } ?></span>
+                <?php } ?>
+                </a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/product_category.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_edit.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/product_category"><i class="fa fa-list-alt" aria-hidden="true"></i> Product Category</a>
             </div>
         </div>
@@ -209,11 +214,17 @@ function myDashboard() {
             .count{
                 margin-right: 7.8rem;
             }
+            .count-product{
+                margin-right: 7rem;
+            }
         }
         @media only screen and (min-width: 600px) {
             /* For tablets: */
             .count{
                 margin-right: 7.8rem;
+            }
+            .count-product{
+                margin-right: 7rem;
             }
         }
         @media only screen and (min-width: 300px) {
@@ -221,12 +232,18 @@ function myDashboard() {
             .count{
                 margin-right: 1.5rem;
             }
+            .count-product{
+                margin-right: 1.3rem;
+            }
         }
     </style> 
 <?php } else { ?>
     <style type="text/css">
         .count{
             margin-right: 7.8rem;
+        }
+        .count-product{
+            margin-right: 7rem;
         }
     </style> 
 <?php } ?>

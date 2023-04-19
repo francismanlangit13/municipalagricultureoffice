@@ -176,9 +176,9 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="" class="required">Product Status (<label id="myValueName"><?php if($row['product_status']=="1") { echo "Available"; } else { echo "Not Available"; } ?></label>)</label>
+                            <label for="" class="required">Status</label>
                             <br>
-                            <label class="switch-new" style="margin-left:4rem;">
+                            <label class="switch-new">
                                 <input type="checkbox" id="mySwitch" <?php if($row['product_status']=="1") {?> <?php echo "checked";?> <?php }?>>
                                 <span class="slider-new round-new"></span>
                             </label>
