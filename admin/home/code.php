@@ -1168,8 +1168,9 @@
   if(isset($_POST['ann_post'])){
     $user_id= $_POST['ann_post'];
     $status = "Posted";
+    $ann_date = date('Y-m-d H:i:s');
 
-    $query = "UPDATE `announcement` SET `ann_status`='$status' WHERE ann_id ='$user_id'";
+    $query = "UPDATE `announcement` SET `ann_status`='$status', `ann_date`='$ann_date' WHERE ann_id ='$user_id'";
     $query_run = mysqli_query($con, $query);
     if($query_run){
       $sql0 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
