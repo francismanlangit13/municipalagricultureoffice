@@ -43,7 +43,7 @@
                     <h5>Farmer information</h5>
                 </div>
                 <div class="card-body">
-                    <input hidden name="farmer_id" value="<?=$row['id'];?>">
+                    <input hidden name="farmer_id" value="<?=$row['concern_id'];?>">
                     <div class="row"> 
                         <div class="col-md-8 mb-3">
                             <label for="reference_number">Reference Number</label>

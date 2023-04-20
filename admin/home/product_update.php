@@ -175,14 +175,16 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-3">
-                            <label for="" class="required">Status</label>
-                            <br>
-                            <label class="switch-new">
-                                <input type="checkbox" id="mySwitch" <?php if($row['product_status']=="1") {?> <?php echo "checked";?> <?php }?>>
-                                <span class="slider-new round-new"></span>
-                            </label>
-                            <input type="hidden" name="status" id="myValue" value="<?= $row['product_status']; ?>">
+                        <div class="col-md-3 mb-3">
+                            <div style="margin-left:2rem;">
+                                <label for="" class="required">Product Status (<label id="myValueName"><?php if($row['product_status']=="1") { echo "Available"; } else { echo "Not available"; } ?></label>)</label>
+                                <br>
+                                <label class="switch-new" style="margin-left:3.3rem;">
+                                    <input type="checkbox" id="mySwitch" <?php if($row['product_status']=="1") {?> <?php echo "checked";?> <?php }?>>
+                                    <span class="slider-new round-new"></span>
+                                </label>
+                                <input type="hidden" name="status" id="myValue" value="<?= $row['product_status']; ?>">
+                            </div>
                         </div>
         
                     </div>

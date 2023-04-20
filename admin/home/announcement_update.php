@@ -34,14 +34,6 @@
                             <label for="Description">Body</label>
                             <textarea placeholder="Enter Message" required type="text"  name="edit_announcement_message" class="form-control" rows="3"><?= $user['ann_body']; ?></textarea>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="">Sender</label>
-                            <input required placeholder="Enter Sender" type="text" name="edit_announcement_sender" class="form-control" value="<?=$user['ann_publish'];?>">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="">Date and Time Announced</label>
-                            <input type="datetime-local" name="edit_announcement_dt" class="form-control" value="<?=$user['ann_date'];?>">
-                        </div>
                     </div>
                     <?php
                             }

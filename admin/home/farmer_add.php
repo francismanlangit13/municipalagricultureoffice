@@ -344,6 +344,7 @@
                         <div class="col-md-6 mb-3 ml-4">                             
                             <label for="profilepicture" class="required">Upload 2x2 Picture </label> <br>
                             <input type="file" class="input-large btn btn-secondary" name="image" id="image1" accept=".jpg, .jpeg, .png" value="" onchange="previewImage('frame1', 'image1')" required>
+                            <br>
                             <img class="mt-2 ml-5" id="frame1" src="<?php echo base_url ?>assets/img/system/no-image.png" alt="Profile Picture" width="240px" height="180px"/>
                         </div>
 

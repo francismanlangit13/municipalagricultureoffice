@@ -46,7 +46,7 @@
   if(isset($_POST['del_product'])){
     $user_id = $_POST['del_product'];
 
-    $query = "UPDATE `product` SET  WHERE product_id = $user_id ";
+    $query = "UPDATE `product` SET `product_status` = 3  WHERE product_id = $user_id ";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -502,13 +502,13 @@
     if($query_run){
       $_SESSION['status'] = "The farmer has been successfully deleted.";
       $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/user");
+      header("Location: " . base_url . "admin/home/farmer_account");
       exit(0);
     }
     else{
       $_SESSION['status'] = "Something is wrong!";
       $_SESSION['status_code'] = "error";
-      header("Location: " . base_url . "admin/home/user");
+      header("Location: " . base_url . "admin/home/farmer_account");
       exit(0);
     } 
   }
@@ -1095,49 +1095,16 @@
     $query_run = mysqli_query($con,$query);
 
     if($query_run){
-      $sql = "SELECT email FROM user WHERE user_type = 3";
-      $result = mysqli_query($con, $sql);
-
-      if (mysqli_num_rows($result) > 0) {
-        // Create a new PHPMailer object
-        $mail = new PHPMailer(true);
-        try {
-          $mail->SMTPDebug = 0;                                
-          $mail->isSMTP();                                    
-          $mail->Host = 'smtp.gmail.com';            
-          $mail->SMTPAuth = true;                        
-          $mail->Username = 'contactmaojimenez@gmail.com';     
-          $mail->Password = 'kcexdtybjptxgizm';                      
-          $mail->Port = 465;
-          $mail->SMTPSecure = 'ssl';
-
-          // Recipients
-          $mail->setFrom('contactmaojimenez@gmail.com', 'MAO JIMENEZ');
-          $mail->addReplyTo('reply-to@example.com', 'DO NO REPLY!');
-
-          // Add all email addresses from the database as BCC recipients
-          while($row = mysqli_fetch_assoc($result)) {
-            $mail->addBCC($row['email']);
-          }
-
-          $mail->isHTML(true);                                 
-          $mail->Subject = "$title";
-          $mail->Body    = "$body";
-          $mail->AltBody = "$sender";
-
-          $mail->send();
-          $_SESSION['status'] = "Announcement add successfully";
-          $_SESSION['status_code'] = "success";
-          header('Location: announcement');
-          exit(0);
-        }
-        catch (Exception $e) {
-          echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
-      }
-      else {
-        echo "No email addresses found in the database.";
-      }
+      $_SESSION['status'] = "Announcement added successfully";
+      $_SESSION['status_code'] = "success";
+      header("Location: " . base_url . "admin/home/announcement");
+      exit(0);
+    }
+    else{
+      $_SESSION['status'] = "Someting went wrong!";
+      $_SESSION['status_code'] = "error";
+      header("Location: " . base_url . "admin/home/announcement");
+      exit(0);
     }
   }
 
@@ -1272,10 +1239,30 @@
     }
   }
 
+  // if(isset($_POST['ann_delete'])){
+  //   $user_id= $_POST['ann_delete'];
+
+  //   $query = "DELETE FROM announcement WHERE ann_id ='$user_id' ";
+  //   $query_run = mysqli_query($con, $query);
+  //   if($query_run){
+  //     $_SESSION['status'] = "The announcement has been successfully deleted.";
+  //     $_SESSION['status_code'] = "success";
+  //     header("Location: " . base_url . "admin/home/announcement");
+  //     exit(0);
+  //   }
+  //   else{
+  //     $_SESSION['status'] = "Something went wrong!";
+  //     $_SESSION['status_code'] = "error";
+  //     header("Location: " . base_url . "admin/home/announcement");
+  //     exit(0);
+  //   }
+  // }
+
   if(isset($_POST['ann_delete'])){
     $user_id= $_POST['ann_delete'];
+    $ann_status = "Archive";
 
-    $query = "DELETE FROM announcement WHERE ann_id ='$user_id' ";
+    $query = "UPDATE `announcement` SET `ann_status` = '$ann_status' WHERE ann_id ='$user_id' ";
     $query_run = mysqli_query($con, $query);
     if($query_run){
       $_SESSION['status'] = "The announcement has been successfully deleted.";
@@ -1295,10 +1282,9 @@
     $user_id = $_POST['user_id'];
     $edit_title = $_POST['edit_announcement_title'];
     $edit_body = $_POST['edit_announcement_message'];
-    $edit_event_dt = $_POST['edit_announcement_dt'];
-    $edit_sender = $_POST['edit_announcement_sender'];
+    $edit_event_dt = date('Y-m-d H:i:s');
 
-    $query = "UPDATE `announcement` SET `ann_title`='$edit_title',`ann_body`='$edit_body',`ann_publish`='$edit_sender',`ann_date`='$edit_event_dt' WHERE `ann_id` = '$user_id'";
+    $query = "UPDATE `announcement` SET `ann_title`='$edit_title',`ann_body`='$edit_body',`ann_date`='$edit_event_dt' WHERE `ann_id` = '$user_id'";
     $query_run = mysqli_query($con,$query);
 
     if($query_run){
@@ -1410,9 +1396,11 @@
     $farmer_id = $_POST['farmer_id'];
     $reason = $_POST['reason'];
     $status = $_POST['status'];
+    $date_response = date('Y-m-d H:i:s');
+    $person =  $_SESSION['auth_user']['user_id'];
 
-    if(isset($_POST['status']) && $_POST['status'] == 2) {
-      $query = "UPDATE `concern` SET `status_id`='$status' WHERE `concern_id`= '$farmer_id'";
+    if(isset($_POST['status']) == 2) {
+      $query = "UPDATE `concern` SET `status_id`='$status', `date_updated`='$date_response', `person`='$person' WHERE `concern_id`= '$farmer_id'";
       $query_run = mysqli_query($con, $query);
 
       if($query_run){
@@ -1432,8 +1420,8 @@
       $query = "UPDATE `concern` SET `status_id`='$status', `reason` = '$reason' WHERE `concern_id`= '$farmer_id'";
       $query_run = mysqli_query($con, $query);
 
-      if($query_run && $query){
-        $_SESSION['status'] = "Request has been deny!";
+      if($query_run){
+        $_SESSION['status'] = "Concern has been deny!";
         $_SESSION['status_code'] = "success";
         header("Location: " . base_url . "admin/home/concern");
         exit(0);

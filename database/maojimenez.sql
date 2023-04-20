@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 11:07 AM
+-- Generation Time: Apr 20, 2023 at 11:32 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -30,19 +30,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `announcement` (
   `ann_id` int(15) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `ann_title` varchar(50) NOT NULL,
   `ann_body` text NOT NULL,
-  `ann_publish` varchar(50) NOT NULL,
   `ann_status` varchar(255) NOT NULL,
   `ann_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `announcement`
---
-
-INSERT INTO `announcement` (`ann_id`, `ann_title`, `ann_body`, `ann_publish`, `ann_status`, `ann_date`) VALUES
-(2, 'HOI', 'ASA NAMO', '09457664949', 'Pending', '2023-04-18 04:51:11');
 
 -- --------------------------------------------------------
 
@@ -60,7 +53,10 @@ CREATE TABLE `concern` (
   `photo3` varchar(255) NOT NULL,
   `photo4` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
+  `reason` varchar(255) NOT NULL,
   `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  `person_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -68,8 +64,8 @@ CREATE TABLE `concern` (
 -- Dumping data for table `concern`
 --
 
-INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`) VALUES
-(2, 4, 'NA GUBA AMONG TANOM!! PLEASE!!!', 'concern1_20230418_010207.jpeg', 'concern2_20230417_234723.jpeg', 'concern3_20230417_234723.', 'concern4_20230417_234723.', 'concern5_20230417_234723.', 'concern6_20230417_234723.mp4', '2023-04-17 02:12:09', 1);
+INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `person_id`, `status_id`) VALUES
+(2, 4, 'NA GUBA AMONG TANOM!! PLEASE!!!', 'concern1_20230418_010207.jpeg', 'concern2_20230417_234723.jpeg', 'concern3_20230417_234723.', 'concern4_20230417_234723.', 'concern5_20230417_234723.', 'concern6_20230417_234723.mp4', '', '2023-04-17 02:12:09', '2023-04-20 16:26:42', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -96,7 +92,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_description`, `photo`, `photo1`, `photo2`, `photo3`, `product_quantity`, `exp_date`, `product_category_id`, `product_status`) VALUES
-(1, 'RAMGO UREA', 'Used for fertilizer products', 'product1_20230416_182626.jpg', 'product2_20230416_184820.jpeg', 'product3_20230416_182527.png', 'product4_20230416_182527.png', 23, '2023-08-29', 1, 'Not Available');
+(1, 'RAMGO UREA', 'Used for fertilizer products', 'product1_20230416_182626.jpg', 'product2_20230416_184820.jpeg', 'product3_20230416_182527.png', 'product4_20230416_182527.png', 18, '2023-04-30', 1, '1'),
+(2, 'RAMBOTAN', '', 'product1_20230420_150716.png', 'product2_20230420_150716.png', 'product3_20230420_150911.png', 'product4_20230420_150716.png', 50, '2024-12-25', 1, '3');
 
 -- --------------------------------------------------------
 
@@ -138,6 +135,8 @@ CREATE TABLE `report` (
   `video` varchar(255) NOT NULL,
   `reason` varchar(255) NOT NULL,
   `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  `person_id` int(100) NOT NULL,
   `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -145,14 +144,14 @@ CREATE TABLE `report` (
 -- Dumping data for table `report`
 --
 
-INSERT INTO `report` (`report_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `status_id`) VALUES
-(1, 4, 'AMBOT!!!', 'report1_20230417_124207.png', 'report2_20230417_124222.png', '', '', '', 'report6_20230417_124154.mp4', '', '2023-04-16 14:32:19', 1),
-(2, 4, 'ambot oi', 'report1_20230416_223521.jpeg', 'report2_20230416_223521.jpeg', 'report3_20230416_223521.jpeg', 'report4_20230416_223521.jpeg', 'report5_20230416_223521.jpeg', 'report6_20230416_223522.mp4', '', '2023-04-16 14:35:22', 1),
-(3, 4, 'dkasdkjahdjkashdjkhdsd', 'report1_20230416_224358.jpeg', 'report2_20230416_224358.png', '', '', '', 'report6_20230416_224358.mp4', '', '2023-04-16 14:43:58', 1),
-(4, 4, 'askdjaskldjalkdjkld', 'report1_20230416_224715.jpg', 'report2_20230416_224715.png', '', '', '', 'report6_20230416_224715.mp4', '', '2023-04-16 14:47:15', 1),
-(5, 4, 'sdfdsfsdfsdf', 'report1_20230416_224839.jpg', 'report2_20230416_224839.png', '', '', '', 'report6_20230416_224839.mp4', '', '2023-04-16 14:48:39', 1),
-(6, 4, 'wesdfsdfsdfdsff', 'report1_20230416_225101.jpg', 'report2_20230416_225101.jpg', '', '', '', 'report6_20230416_225101.mp4', '', '2023-04-16 14:51:01', 1),
-(7, 4, 'sadasdasdasd', 'report1_20230416_230005.png', 'report2_20230416_230005.jpg', '', '', '', 'report6_20230416_230005.mp4', 'sdasdasdd', '2023-04-16 15:00:05', 3);
+INSERT INTO `report` (`report_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `person_id`, `status_id`) VALUES
+(1, 4, 'AMBOT!!!', 'report1_20230417_124207.png', 'report2_20230417_124222.png', '', '', '', 'report6_20230417_124154.mp4', 'asdasdasdasddasd', '2023-04-16 14:32:19', '0000-00-00 00:00:00', 0, 3),
+(2, 4, 'ambot oi', 'report1_20230416_223521.jpeg', 'report2_20230416_223521.jpeg', 'report3_20230416_223521.jpeg', 'report4_20230416_223521.jpeg', 'report5_20230416_223521.jpeg', 'report6_20230416_223522.mp4', '', '2023-04-16 14:35:22', '0000-00-00 00:00:00', 0, 1),
+(3, 4, 'dkasdkjahdjkashdjkhdsd', 'report1_20230416_224358.jpeg', 'report2_20230416_224358.png', '', '', '', 'report6_20230416_224358.mp4', '', '2023-04-16 14:43:58', '0000-00-00 00:00:00', 0, 1),
+(4, 4, 'askdjaskldjalkdjkld', 'report1_20230416_224715.jpg', 'report2_20230416_224715.png', '', '', '', 'report6_20230416_224715.mp4', '', '2023-04-16 14:47:15', '0000-00-00 00:00:00', 0, 1),
+(5, 4, 'sdfdsfsdfsdf', 'report1_20230416_224839.jpg', 'report2_20230416_224839.png', '', '', '', 'report6_20230416_224839.mp4', '', '2023-04-16 14:48:39', '0000-00-00 00:00:00', 0, 1),
+(6, 4, 'wesdfsdfsdfdsff', 'report1_20230416_225101.jpg', 'report2_20230416_225101.jpg', '', '', '', 'report6_20230416_225101.mp4', '', '2023-04-16 14:51:01', '0000-00-00 00:00:00', 0, 1),
+(7, 4, 'sadasdasdasd', 'report1_20230416_230005.png', 'report2_20230416_230005.jpg', '', '', '', 'report6_20230416_230005.mp4', 'sdasdasdd', '2023-04-16 15:00:05', '0000-00-00 00:00:00', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -168,6 +167,8 @@ CREATE TABLE `request` (
   `description` text NOT NULL,
   `reason` varchar(255) NOT NULL,
   `request_date` datetime NOT NULL,
+  `request_updated` datetime NOT NULL,
+  `person_id` int(11) NOT NULL,
   `status_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -175,8 +176,8 @@ CREATE TABLE `request` (
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`request_id`, `user_id`, `product_id`, `request_quantity`, `description`, `reason`, `request_date`, `status_id`) VALUES
-(1, 4, 1, 5, 'BASTA!', '', '2023-04-17 04:56:39', 1);
+INSERT INTO `request` (`request_id`, `user_id`, `product_id`, `request_quantity`, `description`, `reason`, `request_date`, `request_updated`, `person_id`, `status_id`) VALUES
+(1, 4, 1, 5, 'BASTA!', '', '2023-04-17 04:56:39', '0000-00-00 00:00:00', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -265,7 +266,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `email`, `password`, `qrcode`, `reference_number`, `picture`, `purok`, `street`, `barangay`, `municipality`, `province`, `region`, `phone`, `religion`, `birthday`, `birthplace`, `civil_status`, `pwd`, `4ps`, `ig`, `ig_specify`, `govid`, `govid_specify`, `farmersassoc`, `farmersassoc_specify`, `livelihood`, `rice`, `corn`, `other_crops_specify`, `livestock`, `livestock_specify`, `poultry`, `poultry_specify`, `owner`, `land`, `planting`, `cultivation`, `harvesting`, `other_farmworker_specify`, `part_of_farming`, `attending_formal`, `attending_nonformal`, `participated`, `other_agri_youth_specify`, `user_type`, `user_status`) VALUES
 (1, 'User', '', 'Admin', '', 'Male', 'admin@gmail.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230416_133835.jpg', '', '', '', '', '', '', '09457664949', '', '2000-11-13', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1),
 (4, 'Francis Carlo', '', 'Manlangit', '', 'Male', 'franzcarl13@yahoo.com', '0192023a7bbd73250516f069df18b500', '00020101021127600012com.p2pqrpay0111USMEPHM2XXX020899964403041301566281770015204601653036085802PH5913GRACE N AMBAG6007JIMENEZ6304D502', '123456789101112', 'user_20230416_193834.jpg', '5', 'Villamor', 'Gata', 'Jimenez', 'Misamis Occidental', '10', '09457664949', 'Catholic', '2000-12-11', 'Pakil, Laguna', 'Single', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmer', 'Rice', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1),
-(5, 'Francis Carlo', 'Abcede', 'Manlangit', '', 'Male', 'francismanlangit13@gmail.com', '9b493afc99e02b43c337bae0ccefd592', '', '', 'user_20230418_170052.png', '', '', '', '', '', '', '09457664948', 'Catholic', '2000-11-13', 'Catholic', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3);
+(5, 'Francis Carlo', 'Abcede', 'Manlangit', '', 'Male', 'francismanlangit13@gmail.com', '9b493afc99e02b43c337bae0ccefd592', '', '', 'user_20230418_170052.png', '', '', '', '', '', '', '09457664948', 'Catholic', '2000-11-13', 'Catholic', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3),
+(6, 'ambot', 'sdasdHATDOG', 'asdasdsadKA', 'Sr', 'Male', 'franzcarl13@gmail.com', '817341573e2d56a72c5314b9492b01c1', '', '', 'user_20230420_144327.png', '', '', '', '', '', '', '09457664947', '5555555', '2000-11-13', '4444444', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -315,7 +317,8 @@ INSERT INTO `user_type` (`user_id`, `user_name`) VALUES
 -- Indexes for table `announcement`
 --
 ALTER TABLE `announcement`
-  ADD PRIMARY KEY (`ann_id`);
+  ADD PRIMARY KEY (`ann_id`),
+  ADD KEY `user_id` (`user_id`) USING BTREE;
 
 --
 -- Indexes for table `concern`
@@ -323,7 +326,7 @@ ALTER TABLE `announcement`
 ALTER TABLE `concern`
   ADD PRIMARY KEY (`concern_id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `status` (`status_id`);
+  ADD KEY `status_id` (`status_id`) USING BTREE;
 
 --
 -- Indexes for table `product`
@@ -344,7 +347,7 @@ ALTER TABLE `product_category`
 ALTER TABLE `report`
   ADD PRIMARY KEY (`report_id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `status` (`status_id`);
+  ADD KEY `status_id` (`status_id`) USING BTREE;
 
 --
 -- Indexes for table `request`
@@ -352,8 +355,7 @@ ALTER TABLE `report`
 ALTER TABLE `request`
   ADD PRIMARY KEY (`request_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `request_status` (`status_id`),
-  ADD KEY `id` (`user_id`);
+  ADD KEY `status_id` (`status_id`) USING BTREE;
 
 --
 -- Indexes for table `status`
@@ -389,7 +391,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `concern`
@@ -401,7 +403,7 @@ ALTER TABLE `concern`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_category`
@@ -431,7 +433,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_status`
@@ -448,6 +450,12 @@ ALTER TABLE `user_type`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `announcement`
+--
+ALTER TABLE `announcement`
+  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `concern`

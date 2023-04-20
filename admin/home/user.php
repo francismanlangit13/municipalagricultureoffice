@@ -60,7 +60,7 @@
                         ON 
                             `user`.user_status = user_status.user_status_id
                         WHERE
-                            `user`.user_status = 1 && `user`.user_type != 3";
+                            `user`.user_status != 3 && `user`.user_type != 3";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
                             $number = 1; // Define a variable to keep track of the iterations

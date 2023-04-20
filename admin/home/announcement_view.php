@@ -33,10 +33,6 @@
                         <textarea disabled type="text" class="form-control" rows="3"><?= $user['ann_body']; ?></textarea>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Sender</label>
-                        <input disabled type="text" class="form-control" value="<?=$user['ann_publish'];?>">
-                    </div>
-                    <div class="col-md-6 mb-3">
                         <label for="">Date and Time Announced</label>
                         <input disabled type="datetime-local" class="form-control" value="<?=$user['ann_date'];?>">
                     </div>
