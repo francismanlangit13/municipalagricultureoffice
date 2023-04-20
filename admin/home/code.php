@@ -1195,7 +1195,6 @@
           foreach($ann_result1 as $row1){
             $string = <<<EOD
             {$row1['ann_title']}
-
             {$row1['ann_body']}
             EOD;
             // Set the common parameters for all the messages
