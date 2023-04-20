@@ -22,7 +22,7 @@
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up" style="margin-top: 0.7rem;"></i>
+        <i class="fa fa-arrow-up" style="margin-top: 0.7rem;"></i>
     </a>
 
 
@@ -53,11 +53,13 @@
     <!-- Loading JS -->
     <script src="<?php echo base_url ?>assets/js/loader.js"></script>
 
-    <!-- Show PASSWORD JS -->
-    <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
+    <?php if (strpos($_SERVER['PHP_SELF'], 'home/settings.php') !== false){ ?>
+        <!-- Show PASSWORD JS -->
+        <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
+    <?php } ?>
 
     <!-- Ajax Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 
 
@@ -196,81 +198,6 @@
             $(".succqrcode").show();
         }
     });
-    // Camera scan for QR Code
-    let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
-    Instascan.Camera.getCameras().then(function(cameras){
-        if(cameras.length > 0 ){
-            scanner.start(cameras[0]);
-        } else{
-            alert('No cameras found');
-        }
-
-    }).catch(function(e) {
-        console.error(e);
-    });
-
-    scanner.addListener('scan',function(c){
-        document.getElementById('qrscan').value=c;
-        //document.forms[0].submit();
-        $(document).ready(function() {
-            $(".qrcode").hide();
-            $(".succqrcode").show();
-        });
-    });
-    
-    document.getElementById('rescan-btn').addEventListener('click', function() {
-        scanner.start();
-        document.getElementById('qrscan').value = ''; // clear the input field
-        $(".qrcode").show();
-        $(".succqrcode").hide();
-    });
-
-    // This is for checkbox button
-    function handleCheckboxChange(checkbox, checkboxField, requiredLabel) {
-        // Add event listener to the checkbox
-        checkbox.addEventListener('change', function() {
-            // If checkbox is checked, make the text input field required and enable it
-            checkboxField.required = this.checked;
-            checkboxField.disabled = !this.checked;
-            requiredLabel.classList.add('required');
-
-            // If checkbox is unchecked, clear the input field
-            if (!this.checked) {
-                checkboxField.value = '';
-                requiredLabel.classList.remove('required');
-            }
-        });
-    }
-
-    // Usage:
-    handleCheckboxChange(document.getElementById('livestock'), document.getElementById('livestock_specify'), document.querySelector('label[for="livestock_specify"]'));
-    handleCheckboxChange(document.getElementById('poultry'), document.getElementById('poultry_specify'), document.querySelector('label[for="poultry_specify"]'));
-
-    function handleRadioChange(radioGroup, radioYesField, requiredLabel) {
-        // Add event listener to the radio buttons
-        for (var i = 0; i < radioGroup.length; i++) {
-            radioGroup[i].addEventListener('change', function() {
-                // If "Yes" radio button is selected, make the text input field required and enable it
-                if (this.value === 'Yes') {
-                    radioYesField.required = true;
-                    radioYesField.disabled = false;
-                    requiredLabel.classList.add('required');
-                } else {
-                    // If "No" radio button is selected, make the text input field not required and disable it
-                    radioYesField.required = false;
-                    radioYesField.disabled = true;
-                    radioYesField.value = ''; // clear the input field
-                    requiredLabel.classList.remove('required');
-                }
-            });
-        }
-    }
-
-    // Usage:
-    handleRadioChange(document.getElementsByName('ig'), document.getElementsByName('igyes')[0], document.querySelector('label[for="igyes"]'));
-    handleRadioChange(document.getElementsByName('govid'), document.getElementsByName('govidyes')[0], document.querySelector('label[for="govidyes"]'));
-    handleRadioChange(document.getElementsByName('fac'), document.getElementsByName('facyes')[0], document.querySelector('label[for="facyes"]'));
-
 </script>
 
 </body>

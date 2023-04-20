@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2023 at 11:32 AM
+-- Generation Time: Apr 20, 2023 at 08:05 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -36,6 +36,13 @@ CREATE TABLE `announcement` (
   `ann_status` varchar(255) NOT NULL,
   `ann_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `announcement`
+--
+
+INSERT INTO `announcement` (`ann_id`, `user_id`, `ann_title`, `ann_body`, `ann_status`, `ann_date`) VALUES
+(3, 1, 'Annoucement to all farmers', 'Adunay kitay fertilizer diris office kung kinsa man mo kuha palihog og gamit sa system og request kamo sa product, daghang salamat...', 'Posted', '2023-04-21 01:50:09');
 
 -- --------------------------------------------------------
 
@@ -355,7 +362,8 @@ ALTER TABLE `report`
 ALTER TABLE `request`
   ADD PRIMARY KEY (`request_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `status_id` (`status_id`) USING BTREE;
+  ADD KEY `status_id` (`status_id`) USING BTREE,
+  ADD KEY `request_ibfk_4` (`user_id`);
 
 --
 -- Indexes for table `status`
@@ -391,7 +399,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `concern`

@@ -1090,8 +1090,9 @@
     $body = $_POST['announcement_message'];
     $ann_status = "Pending";
     $ann_date = date('Y-m-d H:i:s');
+    $person =  $_SESSION['auth_user']['user_id'];
 
-    $query = "INSERT INTO `announcement`(`ann_title`, `ann_body`,`ann_status`, `ann_date`) VALUES ('$title','$body','$ann_status','$ann_date')";
+    $query = "INSERT INTO `announcement`(`user_id`,`ann_title`,`ann_body`,`ann_status`, `ann_date`) VALUES ('$person','$title','$body','$ann_status','$ann_date')";
     $query_run = mysqli_query($con,$query);
 
     if($query_run){
@@ -1192,10 +1193,15 @@
 
         if(mysqli_num_rows($ann_result1) > 0){
           foreach($ann_result1 as $row1){
+            $string = <<<EOD
+            {$row1['ann_title']}
+
+            {$row1['ann_body']}
+            EOD;
             // Set the common parameters for all the messages
             $common_parameters = array(
                 'apikey' => 'your_api_key', // Your API KEY
-                'message' => $row1['ann_title'] . '<br><br>' . $row1['ann_body'],
+                'message' => $string,
                 'sendername' => 'CabTom'
             );
           }
