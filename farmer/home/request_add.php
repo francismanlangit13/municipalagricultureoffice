@@ -71,7 +71,7 @@
     $(document).ready(function() {
 
         // debounce functions for each input field
-        var debouncedCheckQuantity = _.debounce(checkQuantity, 500);
+        var debouncedCheckQuantity = _.debounce(checkQuantity, 100);
 
         // attach event listeners for each input field
         $('#product_quantity-input').on('input', debouncedCheckQuantity);

@@ -22,7 +22,7 @@ if(isset($_POST['add_request'])){
     $product_id = $_POST['product'];
     $quantity = $_POST['quantity'];
     $description = $_POST['description'];
-    $request_date = date;
+    $request_date = $ann_date = date('Y-m-d H:i:s');
     $status = 1;
 
     $query = "INSERT INTO `request`(`user_id`, `product_id`, `request_quantity`, `description`, `request_date`, `status_id`) VALUES ('$user_id', '$product_id','$quantity','$description','$request_date', '$status')";

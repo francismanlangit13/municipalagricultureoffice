@@ -146,7 +146,7 @@
     //$('#submit-btn').prop('disabled', true);
 
     // debounce functions for each input field
-    var debouncedCheckEmail = _.debounce(checkEmail, 500);
+    var debouncedCheckEmail = _.debounce(checkEmail, 100);
 
     // attach event listeners for each input field
     $('#email-input').on('input', debouncedCheckEmail);

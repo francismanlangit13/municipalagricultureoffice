@@ -23,9 +23,10 @@
                     <tr>
                         <th style="width:5%">ID</th>
                         <th style="width:15%">Product Name</th>
-                        <th style="width:20%">Image</th>
+                        <th style="width:20%">Product Image</th>
                         <th style="width:10%">Quantity</th>
                         <th style="width:25%">Description</th>
+                        <th style="width:10%">Date request</th>
                         <th style="width:10%">Status</th>
                         <th style="width:15%">Action</th>
                     </tr>
@@ -44,10 +45,10 @@
                             request.product_id = product.product_id
                             INNER JOIN
                             user
-                            ON 
+                            ON
                             request.user_id = user.user_id
                             WHERE
-                            request.user_id = $currentUSER";
+                            request.user_id = $currentUSER ORDER BY request.request_date DESC";
                             $query_run = mysqli_query($con, $query);
                             if(mysqli_num_rows($query_run) > 0){
                                 foreach($query_run as $row){
@@ -67,6 +68,7 @@
                         </td>
                         <td class="text-center"><?= $row['request_quantity']; ?></td>
                         <td><?= $row['description'];?></td>
+                        <td class="text-center"><?= $row['request_date']; ?></td>
                         <td> <?php if($row['status_id'] == "1"){ ?>
                                 <p> <span style="color: blue;">Pending</span></p>
                             <?php } elseif($row['status_id'] == "2"){ ?>

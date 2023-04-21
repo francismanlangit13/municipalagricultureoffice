@@ -53,11 +53,13 @@
     <!-- Loading JS -->
     <script src="<?php echo base_url ?>assets/js/loader.js"></script>
 
-    <!-- Show PASSWORD JS -->
-    <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
+    <?php if (strpos($_SERVER['PHP_SELF'], 'home/settings.php') !== false){ ?>
+        <!-- Show PASSWORD JS -->
+        <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
+    <?php } ?>
 
     <!-- Ajax Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 
 <?php

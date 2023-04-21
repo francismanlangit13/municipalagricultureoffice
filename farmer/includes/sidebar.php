@@ -32,9 +32,18 @@
     <div class="sidebar-heading">
         Interface
     </div>
-
+    <?php
+        $sql0 = "SELECT COUNT(*) AS num_ann FROM announcement WHERE ann_date >= DATE_SUB(NOW(), INTERVAL 2 DAY)";
+        $result0 = mysqli_query($con, $sql0);
+        $row0 = mysqli_fetch_assoc($result0);
+        $num_ann = $row0['num_ann'];        
+    ?>
     <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/announcement.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/announcement">
+            <?php if($num_ann == 0) { } else{ ?>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter count-ann"><?php if ($num_ann >= 99){ echo "99+";} else { echo $num_ann; } ?></span>
+            <?php } ?>
             <i class="fa fa-bullhorn"></i>
             <span>View Announcement</span>
         </a>
@@ -115,4 +124,49 @@ function myDashboard() {
         x.style.display = "none";
     }
 }
+// Get the announcement link and the counter alerts element
+const announcementLink = document.querySelector('.nav-link[href="<?php echo base_url ?>farmer/home/announcement"]');
+const counterAlerts = document.querySelector('.count-ann');
+
+// Check if the user has clicked the announcement before
+if (localStorage.getItem('announcementClicked')) {
+  counterAlerts.style.display = 'none';
+}
+
+// Add a click event listener to the announcement link
+announcementLink.addEventListener('click', function() {
+  // Hide the counter alerts element
+  counterAlerts.style.display = 'none';
+  
+  // Save the user's click in localStorage
+  localStorage.setItem('announcementClicked', true);
+});
 </script>
+<?php if(is_mobile){ ?> 
+    <style type="text/css">
+        @media only screen and (min-width: 900px) {
+            /* For tablets: */
+            .count-ann{
+                margin-right: 2rem;
+            }
+        }
+        @media only screen and (min-width: 600px) {
+            /* For tablets: */
+            .count-ann{
+                margin-right: 2rem;
+            }
+        }
+        @media only screen and (min-width: 300px) {
+            /* For mobiles: */
+            .count-ann{
+                margin-right: 1.5rem;
+            }
+        }
+    </style> 
+<?php } else { ?>
+    <style type="text/css">
+        .count-ann{
+            margin-right: 2rem;
+        }
+    </style> 
+<?php } ?>

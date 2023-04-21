@@ -11,8 +11,8 @@
   INNER JOIN
   product_category
   ON 
-  product.product_category_id = product_category.product_category_id";
-  
+  product.product_category_id = product_category.product_category_id
+  WHERE product.product_id = $id";
   $sql_run = mysqli_query($con, $sql);
   if(mysqli_num_rows($sql_run) > 0){
       foreach($sql_run as $row){
