@@ -1137,11 +1137,13 @@
     $user_id= $_POST['ann_post'];
     $status = "Posted";
     $ann_date = date('Y-m-d H:i:s');
+    $person =  $_SESSION['auth_user']['user_id'];
 
-    $query = "UPDATE `announcement` SET `ann_status`='$status', `ann_date`='$ann_date' WHERE ann_id ='$user_id'";
+    $query = "UPDATE `announcement` SET `ann_status`='$status', `ann_date`='$ann_date', `user_id` = '$person' WHERE ann_id ='$user_id'";
     $query_run = mysqli_query($con, $query);
     if($query_run){
-      $sql0 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
+      //$sql0 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
+      $sql0 = "SELECT announcement.ann_title, announcement.ann_body, user.fname, user.lname FROM announcement INNER JOIN user ON announcement.user_id = user.user_id WHERE announcement.ann_id = '$user_id'";
       $ann_result = mysqli_query($con, $sql0);
       $sql = "SELECT email FROM user WHERE user_type = 3 AND user_status = 1";
       $result = $con->query($sql);
@@ -1165,7 +1167,15 @@
           $mail->setFrom('contactmaojimenez@gmail.com', 'MAO JIMENEZ');
           $mail->addReplyTo('reply-to@example.com', 'DO NO REPLY!');
           $mail->Subject = $row['ann_title'];
-          $mail->Body = $row['ann_body'];
+          $output = <<<EOD
+            {$row['ann_body']}
+            \n
+            \n
+            Thanks,
+            Municipal Agriculture Office Jimenez
+            Announced by: {$row['fname']} {$row['lname']}
+            EOD;
+          $mail->Body = $output;
         }
       }
 
@@ -1181,7 +1191,8 @@
       } else {
         // Prepare the SQL statement to select phone numbers based on user type and status
         $sql = "SELECT phone FROM user WHERE user_type = 3 AND user_status = 1";
-        $sql1 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
+        //$sql1 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
+        $sql1 = "SELECT announcement.ann_title, announcement.ann_body, user.fname, user.lname FROM announcement INNER JOIN user ON announcement.user_id = user.user_id WHERE announcement.ann_id = '$user_id'";
         $ann_result1 = mysqli_query($con, $sql1);
 
         // Execute the SQL statement and get the result set
@@ -1196,6 +1207,7 @@
             $string = <<<EOD
             {$row1['ann_title']}
             {$row1['ann_body']}
+            Announced by: {$row1['fname']} {$row1['lname']}
             EOD;
             // Set the common parameters for all the messages
             $common_parameters = array(

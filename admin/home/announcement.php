@@ -26,16 +26,17 @@
                         <th style="width:15%">Title</th>
                         <th style="width:40%">Body</th>
                         <th style="width:20%">Date Announced</th>
+                        <th style="width:20%">Posted By</th>
                         <th style="width:10%">Status</th>
                         <th style="width:10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        $query = "SELECT
-                        announcement.*
-                        FROM
-                        announcement
+                        $query = "SELECT announcement.*, user.*
+                        FROM announcement
+                        INNER JOIN user
+                        ON announcement.user_id = user.user_id
                         WHERE ann_status != 'Archive'";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
@@ -47,6 +48,7 @@
                         <td><?= $row['ann_title']; ?></td>
                         <td><?= $row['ann_body']; ?></td>
                         <td><?= $row['ann_date']; ?></td>
+                        <td><?= $row['fname']; ?> <?= $row['lname']; ?></td>
                         <td>
                             <?php if($row['ann_status'] == 'Pending'){ ?>
                                 <span class="rounded-pill badge badge-success bg-gradient-info px-3">Pending</span>
