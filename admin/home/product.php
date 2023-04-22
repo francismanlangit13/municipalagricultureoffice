@@ -45,11 +45,10 @@
                         WHERE product_status != 3";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
-                            $number = 1; // Define a variable to keep track of the iterations
                             foreach($query_run as $row){
                     ?>
                     <tr>
-                        <td><?= $number++ ?></td>
+                        <td><?= $row['product_id']; ?></td>
                         <td><?= $row['product_name']; ?></td>
                         <td>
                             <a href="
@@ -100,7 +99,7 @@
                                         <span class="text">Update</span>
                                     </a>
                                 </div>
-                                <div class="col-md-12 mb-1">
+                                <!-- <div class="col-md-12 mb-1">
                                     <form action="code.php" method="POST" style="zoom:105%;">
                                     <input type="text" name="oldimage" value="<?= $row['photo']; ?>" hidden>
                                         <button type="submit" name="del_product" value="<?=$row['product_id'];?>" class="btn btn-danger btn-icon-split" href="#">
@@ -110,6 +109,14 @@
                                             <span class="text">Delete</span>
                                         </button> 
                                     </form>
+                                </div> -->
+                                <div class="col-md-12 mb-1" style="zoom:103%;">
+                                    <button type="button" data-toggle="modal" value="<?=$row['product_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Delete</span>
+                                    </button>
                                 </div>
                             </div>
                         </td>
@@ -129,3 +136,36 @@
 </div>
 
 <?php include('../includes/footer.php');?>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this item number <label id="label"></label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="code.php" method="POST">
+            <input type="hidden" id="delete_id" name="del_product" value="">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    function deleteModal(button) {
+        var id = button.value;
+        document.getElementById("delete_id").value = id;
+        document.getElementById("label").innerHTML = id;
+    }
+</script>

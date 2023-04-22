@@ -1050,24 +1050,54 @@
     }
   } 
 
+  // if(isset($_POST['category_delete'])){
+  //   $user_id= $_POST['category_delete'];
+    
+  //   $query = "DELETE FROM product_category WHERE product_category_id ='$user_id' ";
+  //   $query_run = mysqli_query($con, $query);
+
+  //   if($query_run){
+  //     $_SESSION['status'] = "The Category has been successfully deleted.";
+  //     $_SESSION['status_code'] = "success";
+  //     header("Location: " . base_url . "admin/home/product_category");
+  //     exit(0);
+  //   } 
+  //   else{
+  //     $_SESSION['status'] = "There is a product under this category. Please delete the product first before deleting this category!";
+  //     $_SESSION['status_code'] = "error";
+  //     header("Location: " . base_url . "admin/home/product_category");
+  //     exit(0);
+  //   } 
+  // }
+
   if(isset($_POST['category_delete'])){
     $user_id= $_POST['category_delete'];
+    $product_category_status = '2';
     
-    $query = "DELETE FROM product_category WHERE product_category_id ='$user_id' ";
-    $query_run = mysqli_query($con, $query);
-
-    if($query_run){
-      $_SESSION['status'] = "The Category has been successfully deleted.";
-      $_SESSION['status_code'] = "success";
-      header("Location: " . base_url . "admin/home/product_category");
-      exit(0);
-    } 
-    else{
+    $sql = "SELECT * FROM product WHERE `product_category_id` = '$user_id'";
+    $sql_run = mysqli_query($con, $sql);
+    if(mysqli_num_rows($sql_run) > 0){
       $_SESSION['status'] = "There is a product under this category. Please delete the product first before deleting this category!";
       $_SESSION['status_code'] = "error";
       header("Location: " . base_url . "admin/home/product_category");
       exit(0);
-    } 
+    }
+    else{
+      $query = "UPDATE product_category SET `product_category_status` = '$product_category_status' WHERE product_category_id ='$user_id' ";
+      $query_run = mysqli_query($con, $query);
+      if($query_run){
+        $_SESSION['status'] = "The Category has been successfully deleted.";
+        $_SESSION['status_code'] = "success";
+        header("Location: " . base_url . "admin/home/product_category");
+        exit(0);
+      } 
+      else{
+        $_SESSION['status'] = "There is a product under this category. Please delete the product first before deleting this category!";
+        $_SESSION['status_code'] = "error";
+        header("Location: " . base_url . "admin/home/product_category");
+        exit(0);
+      }
+    }
   }
 
 
@@ -1419,7 +1449,7 @@
   }
 
   if(isset($_POST['concern_save'])){
-    $farmer_id = $_POST['farmer_id'];
+    $farmer_id = $_POST['concern_id'];
     $reason = $_POST['reason'];
     $status = $_POST['status'];
     $date_response = date('Y-m-d H:i:s');
@@ -1432,7 +1462,7 @@
       }
     } 
 
-    if(isset($_POST['status']) == 2) {
+    if($status == 2) {
       $query = "UPDATE `concern` SET `status_id`='$status', `date_updated`='$date_response', `person`='$person' WHERE `concern_id`= '$farmer_id'";
       $query_run = mysqli_query($con, $query);
 
@@ -1450,10 +1480,10 @@
       }
     }
     else{
-      $query = "UPDATE `concern` SET `status_id`='$status', `reason` = '$reason', `date_updated`='$date_response', `person`='$person' WHERE `concern_id`= '$farmer_id'";
-      $query_run = mysqli_query($con, $query);
+      $query1 = "UPDATE `concern` SET `status_id`='$status', `reason` = '$reason', `date_updated`='$date_response', `person`='$person' WHERE `concern_id`= '$farmer_id'";
+      $query_run1 = mysqli_query($con, $query1);
 
-      if($query_run){
+      if($query_run1){
         $_SESSION['status'] = "Concern has been deny!";
         $_SESSION['status_code'] = "success";
         header("Location: " . base_url . "admin/home/concern");
@@ -1515,6 +1545,93 @@
         header("Location: " . base_url . "admin/home/report");
         exit(0);
       }
+    }
+  }
+
+  if(isset($_POST['delete_concern'])){
+    $concern_id = $_POST['delete_concern'];
+    $concern_status = '2';
+    $date_deleted = date('Y-m-d H:i:s');
+    $person_id =  $_SESSION['auth_user']['user_id'];
+    $sql = "SELECT * FROM user WHERE user_id='$person_id' ";
+    $sql_run = mysqli_query($con, $sql);
+    if(mysqli_num_rows($sql_run) > 0) {
+      foreach($sql_run as $row){
+        $person = $row['fname'] .' '. $row['lname'];
+      }
+    } 
+    $query = "UPDATE `concern` SET `date_deleted`='$date_deleted', `deleted_by`='$person', `concern_status` = '$concern_status' WHERE `concern_id`= '$concern_id'";
+    $query_run = mysqli_query($con, $query);
+
+    if($query_run){
+      $_SESSION['status'] = "Concern deleted successfully!";
+      $_SESSION['status_code'] = "success";
+      header("Location: " . base_url . "admin/home/concern");
+      exit(0);
+    }
+    else{
+      $_SESSION['status'] = "Something went wrong!";
+      $_SESSION['status_code'] = "error";
+      header("Location: " . base_url . "admin/home/concern");
+      exit(0);
+    }
+  }
+
+  if(isset($_POST['delete_report'])){
+    $report_id = $_POST['delete_report'];
+    $report_status = '2';
+    $date_deleted = date('Y-m-d H:i:s');
+    $person_id =  $_SESSION['auth_user']['user_id'];
+    $sql = "SELECT * FROM user WHERE user_id='$person_id' ";
+    $sql_run = mysqli_query($con, $sql);
+    if(mysqli_num_rows($sql_run) > 0) {
+      foreach($sql_run as $row){
+        $person = $row['fname'] .' '. $row['lname'];
+      }
+    } 
+    $query = "UPDATE `report` SET `date_deleted`='$date_deleted', `deleted_by`='$person', `report_status` = '$report_status' WHERE `report_id`= '$report_id'";
+    $query_run = mysqli_query($con, $query);
+
+    if($query_run){
+      $_SESSION['status'] = "Report deleted successfully!";
+      $_SESSION['status_code'] = "success";
+      header("Location: " . base_url . "admin/home/report");
+      exit(0);
+    }
+    else{
+      $_SESSION['status'] = "Something went wrong!";
+      $_SESSION['status_code'] = "error";
+      header("Location: " . base_url . "admin/home/report");
+      exit(0);
+    }
+  }
+
+  if(isset($_POST['delete_request'])){
+    $request_id = $_POST['delete_request'];
+    $request_status = '2';
+    $date_deleted = date('Y-m-d H:i:s');
+    $person_id =  $_SESSION['auth_user']['user_id'];
+    $sql = "SELECT * FROM user WHERE user_id='$person_id' ";
+    $sql_run = mysqli_query($con, $sql);
+    if(mysqli_num_rows($sql_run) > 0) {
+      foreach($sql_run as $row){
+        $person = $row['fname'] .' '. $row['lname'];
+      }
+    } 
+    $query = "UPDATE `request` SET `date_deleted`='$date_deleted', `deleted_by`='$person', `request_status` = '$request_status' WHERE `request_id`= '$request_id'";
+    $query_run = mysqli_query($con, $query);
+
+    if($query_run){
+      $_SESSION['status'] = "Request deleted successfully!";
+      $_SESSION['status_code'] = "success";
+      header("Location: " . base_url . "admin/home/request");
+      exit(0);
+    }
+    else{
+      $_SESSION['status'] = "Something went wrong!";
+      $_SESSION['status_code'] = "error";
+      header("Location: " . base_url . "admin/home/request");
+      exit(0);
     }
   }
 ?>

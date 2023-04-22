@@ -26,7 +26,7 @@
 
                         <div class="col-md-6 mb-3">
                             <?php
-                                $sql = "SELECT * FROM `product_category`";
+                                $sql = "SELECT * FROM `product_category` WHERE product_category_status !=2";
                                 $all_categories = mysqli_query($con,$sql);
                             ?>
                             <label for="" class="required">Category</label>

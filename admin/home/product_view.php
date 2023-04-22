@@ -16,7 +16,7 @@
                     <?php
                         if(isset($_GET['id'])){
                             $id = $_GET['id'];
-                            $sql = "SELECT * FROM product WHERE product_id='$id' ";
+                            $sql = "SELECT * FROM product WHERE product_id='$id' AND product_status != 3";
                             $sql_run = mysqli_query($con, $sql);
                             if(mysqli_num_rows($sql_run) > 0){
                                 foreach($sql_run as $row){
@@ -34,7 +34,7 @@
 
                         <div class="col-md-6 mb-3">
                             <?php
-                                $sql = "SELECT * FROM `product_category`";
+                                $sql = "SELECT * FROM `product_category` WHERE product_category_status !=2";
                                 $all_categories = mysqli_query($con,$sql);
                             ?>
                             <label for="">Category</label>

@@ -18,7 +18,7 @@
                     <?php
                         if(isset($_GET['id'])){
                             $id = $_GET['id'];
-                            $users = "SELECT * FROM product_category WHERE product_category_id='$id' ";
+                            $users = "SELECT * FROM product_category WHERE product_category_id='$id' AND product_category_status !=2";
                             $users_run = mysqli_query($con, $users);
                             if(mysqli_num_rows($users_run) > 0){
                                 foreach($users_run as $user){

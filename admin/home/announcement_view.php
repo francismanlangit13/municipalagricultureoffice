@@ -18,7 +18,7 @@
                 <?php
                     if(isset($_GET['id'])){
                         $id = $_GET['id'];
-                        $users = "SELECT * FROM announcement WHERE ann_id='$id' ";
+                        $users = "SELECT *, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y %h:%i:%s %p') as short_date FROM announcement WHERE ann_id='$id' AND ann_status != 'Archive'";
                         $users_run = mysqli_query($con, $users);
                         if(mysqli_num_rows($users_run) > 0){
                             foreach($users_run as $user){
@@ -32,10 +32,22 @@
                         <label for="Description">Body</label>
                         <textarea disabled type="text" class="form-control" rows="3"><?= $user['ann_body']; ?></textarea>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">Date and Time Announced</label>
-                        <input disabled type="datetime-local" class="form-control" value="<?=$user['ann_date'];?>">
-                    </div>
+
+                    <?php if($user['ann_status'] == 'Posted'){ ?>
+                        <div class="col-md-6 mb-3">
+                            <label for="">Date and Time Announced</label>
+                            <input disabled type="date-local" class="form-control" value="<?=$user['short_date'];?>">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="">Status</label>
+                            <input disabled type="text" class="form-control" value="Posted">
+                        </div>
+                    <?php } else{ ?>
+                        <div class="col-md-6 mb-3">
+                            <label for="">Status</label>
+                            <input disabled type="text" class="form-control" value="Pending">
+                        </div>
+                    <?php } ?>
                 </div>
                 <?php
                         }

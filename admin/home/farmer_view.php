@@ -15,7 +15,7 @@
 <?php
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $users = "SELECT * FROM user WHERE user_id='$id' ";
+        $users = "SELECT * FROM user WHERE user_id='$id' AND user_status != 3 AND user_type NOT IN (1, 2)";
         $users_run = mysqli_query($con, $users);
 
         if(mysqli_num_rows($users_run) > 0){

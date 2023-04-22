@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2023 at 08:05 PM
+-- Generation Time: Apr 22, 2023 at 08:11 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`ann_id`, `user_id`, `ann_title`, `ann_body`, `ann_status`, `ann_date`) VALUES
-(3, 1, 'Annoucement to all farmers', 'Adunay kitay fertilizer diris office kung kinsa man mo kuha palihog og gamit sa system og request kamo sa product, daghang salamat...', 'Posted', '2023-04-21 01:50:09');
+(3, 1, 'Annoucement to all farmers', 'Adunay kitay fertilizer diris office kung kinsa man mo kuha palihog og gamit sa system og request kamo sa product, daghang salamat...', 'Posted', '2023-04-22 08:53:26');
 
 -- --------------------------------------------------------
 
@@ -63,16 +63,19 @@ CREATE TABLE `concern` (
   `reason` varchar(255) NOT NULL,
   `date_created` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
-  `person_id` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL
+  `date_deleted` datetime NOT NULL,
+  `deleted_by` varchar(255) NOT NULL,
+  `person` varchar(255) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `concern_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `concern`
 --
 
-INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `person_id`, `status_id`) VALUES
-(2, 4, 'NA GUBA AMONG TANOM!! PLEASE!!!', 'concern1_20230418_010207.jpeg', 'concern2_20230417_234723.jpeg', 'concern3_20230417_234723.', 'concern4_20230417_234723.', 'concern5_20230417_234723.', 'concern6_20230417_234723.mp4', '', '2023-04-17 02:12:09', '2023-04-20 16:26:42', 1, 3);
+INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `date_deleted`, `deleted_by`, `person`, `status_id`, `concern_status`) VALUES
+(2, 4, 'NA GUBA AMONG TANOM!! PLEASE!!!', 'concern1_20230418_010207.jpeg', 'concern2_20230417_234723.jpeg', '', '', '', 'concern6_20230417_234723.mp4', 'AMBOT SA IMONG CONCERN!!!', '2023-04-17 02:12:09', '2023-04-22 23:12:30', '2023-04-23 01:18:23', 'User Admin', 'User Admin', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,7 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_description`, `photo`, `photo1`, `photo2`, `photo3`, `product_quantity`, `exp_date`, `product_category_id`, `product_status`) VALUES
 (1, 'RAMGO UREA', 'Used for fertilizer products', 'product1_20230416_182626.jpg', 'product2_20230416_184820.jpeg', 'product3_20230416_182527.png', 'product4_20230416_182527.png', 18, '2023-04-30', 1, '1'),
-(2, 'RAMBOTAN', '', 'product1_20230420_150716.png', 'product2_20230420_150716.png', 'product3_20230420_150911.png', 'product4_20230420_150716.png', 50, '2024-12-25', 1, '3');
+(2, 'RAMBOTAN', '', 'product1_20230420_150716.png', 'product2_20230420_150716.png', 'product3_20230420_150911.png', 'product4_20230420_150716.png', 50, '2024-12-25', 1, '1');
 
 -- --------------------------------------------------------
 
@@ -111,18 +114,19 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_description`, `pho
 CREATE TABLE `product_category` (
   `product_category_id` int(11) NOT NULL,
   `category_name` varchar(90) NOT NULL,
-  `category_description` varchar(255) NOT NULL
+  `category_description` varchar(255) NOT NULL,
+  `product_category_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product_category`
 --
 
-INSERT INTO `product_category` (`product_category_id`, `category_name`, `category_description`) VALUES
-(1, 'Fertilizer', 'Any material, organic or inorganic, natural or synthetic, which supplies one or more of the chemical elements required for the plant growth.'),
-(2, 'Seeds', 'It is an undeveloped plant embryo and food reserve enclosed in a protective outer covering called a seed coat.'),
-(3, 'Pesticide', 'Insecticides kill insects and other arthropods. Miticides (also called acaricides) kill mites that feed on plants and animals.'),
-(4, 'Equipments', 'Equipment, machinery, and repair parts manufactured for use on farms in connection with the production or preparation for market use of food resources.');
+INSERT INTO `product_category` (`product_category_id`, `category_name`, `category_description`, `product_category_status`) VALUES
+(1, 'Fertilizer', 'Any material, organic or inorganic, natural or synthetic, which supplies one or more of the chemical elements required for the plant growth.', 1),
+(2, 'Seeds', 'It is an undeveloped plant embryo and food reserve enclosed in a protective outer covering called a seed coat.', 2),
+(3, 'Pesticide', 'Insecticides kill insects and other arthropods. Miticides (also called acaricides) kill mites that feed on plants and animals.', 1),
+(4, 'Equipments', 'Equipment, machinery, and repair parts manufactured for use on farms in connection with the production or preparation for market use of food resources.', 1);
 
 -- --------------------------------------------------------
 
@@ -143,22 +147,25 @@ CREATE TABLE `report` (
   `reason` varchar(255) NOT NULL,
   `date_created` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
-  `person_id` int(100) NOT NULL,
-  `status_id` int(11) NOT NULL
+  `date_deleted` datetime NOT NULL,
+  `deleted_by` varchar(255) NOT NULL,
+  `person` varchar(255) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `report_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `report`
 --
 
-INSERT INTO `report` (`report_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `person_id`, `status_id`) VALUES
-(1, 4, 'AMBOT!!!', 'report1_20230417_124207.png', 'report2_20230417_124222.png', '', '', '', 'report6_20230417_124154.mp4', 'asdasdasdasddasd', '2023-04-16 14:32:19', '0000-00-00 00:00:00', 0, 3),
-(2, 4, 'ambot oi', 'report1_20230416_223521.jpeg', 'report2_20230416_223521.jpeg', 'report3_20230416_223521.jpeg', 'report4_20230416_223521.jpeg', 'report5_20230416_223521.jpeg', 'report6_20230416_223522.mp4', '', '2023-04-16 14:35:22', '0000-00-00 00:00:00', 0, 1),
-(3, 4, 'dkasdkjahdjkashdjkhdsd', 'report1_20230416_224358.jpeg', 'report2_20230416_224358.png', '', '', '', 'report6_20230416_224358.mp4', '', '2023-04-16 14:43:58', '0000-00-00 00:00:00', 0, 1),
-(4, 4, 'askdjaskldjalkdjkld', 'report1_20230416_224715.jpg', 'report2_20230416_224715.png', '', '', '', 'report6_20230416_224715.mp4', '', '2023-04-16 14:47:15', '0000-00-00 00:00:00', 0, 1),
-(5, 4, 'sdfdsfsdfsdf', 'report1_20230416_224839.jpg', 'report2_20230416_224839.png', '', '', '', 'report6_20230416_224839.mp4', '', '2023-04-16 14:48:39', '0000-00-00 00:00:00', 0, 1),
-(6, 4, 'wesdfsdfsdfdsff', 'report1_20230416_225101.jpg', 'report2_20230416_225101.jpg', '', '', '', 'report6_20230416_225101.mp4', '', '2023-04-16 14:51:01', '0000-00-00 00:00:00', 0, 1),
-(7, 4, 'sadasdasdasd', 'report1_20230416_230005.png', 'report2_20230416_230005.jpg', '', '', '', 'report6_20230416_230005.mp4', 'sdasdasdd', '2023-04-16 15:00:05', '0000-00-00 00:00:00', 0, 3);
+INSERT INTO `report` (`report_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `date_deleted`, `deleted_by`, `person`, `status_id`, `report_status`) VALUES
+(1, 4, 'AMBOT!!!', 'report1_20230417_124207.png', 'report2_20230417_124222.png', '', '', '', 'report6_20230417_124154.mp4', 'asdasdasdasddasd', '2023-04-16 14:32:19', '0000-00-00 00:00:00', '2023-04-22 22:22:18', 'User Admin', '', 3, 2),
+(2, 4, 'ambot oi', 'report1_20230416_223521.jpeg', 'report2_20230416_223521.jpeg', 'report3_20230416_223521.jpeg', 'report4_20230416_223521.jpeg', 'report5_20230416_223521.jpeg', 'report6_20230416_223522.mp4', '', '2023-04-16 14:35:22', '0000-00-00 00:00:00', '2023-04-22 22:24:31', 'User Admin', '', 1, 2),
+(3, 4, 'dkasdkjahdjkashdjkhdsd', 'report1_20230416_224358.jpeg', 'report2_20230416_224358.png', '', '', '', 'report6_20230416_224358.mp4', '', '2023-04-16 14:43:58', '0000-00-00 00:00:00', '2023-04-22 22:29:48', 'User Admin', '', 1, 2),
+(4, 4, 'askdjaskldjalkdjkld', 'report1_20230416_224715.jpg', 'report2_20230416_224715.png', '', '', '', 'report6_20230416_224715.mp4', 'BAHALA KA THESIS', '2023-04-16 14:47:15', '2023-04-22 23:00:26', '2023-04-22 23:03:32', 'User Admin', 'User Admin', 2, 1),
+(5, 4, 'sdfdsfsdfsdf', 'report1_20230416_224839.jpg', 'report2_20230416_224839.png', '', '', '', 'report6_20230416_224839.mp4', '', '2023-04-16 14:48:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(6, 4, 'wesdfsdfsdfdsff', 'report1_20230416_225101.jpg', 'report2_20230416_225101.jpg', '', '', '', 'report6_20230416_225101.mp4', '', '2023-04-16 14:51:01', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(7, 4, 'sadasdasdasd', 'report1_20230416_230005.png', 'report2_20230416_230005.jpg', '', '', '', 'report6_20230416_230005.mp4', 'sdasdasdd', '2023-04-16 15:00:05', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -175,16 +182,19 @@ CREATE TABLE `request` (
   `reason` varchar(255) NOT NULL,
   `request_date` datetime NOT NULL,
   `request_updated` datetime NOT NULL,
-  `person_id` int(11) NOT NULL,
-  `status_id` int(50) NOT NULL
+  `date_deleted` datetime NOT NULL,
+  `deleted_by` varchar(255) NOT NULL,
+  `person` varchar(255) NOT NULL,
+  `status_id` int(50) NOT NULL,
+  `request_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`request_id`, `user_id`, `product_id`, `request_quantity`, `description`, `reason`, `request_date`, `request_updated`, `person_id`, `status_id`) VALUES
-(1, 4, 1, 5, 'BASTA!', '', '2023-04-17 04:56:39', '0000-00-00 00:00:00', 0, 1);
+INSERT INTO `request` (`request_id`, `user_id`, `product_id`, `request_quantity`, `description`, `reason`, `request_date`, `request_updated`, `date_deleted`, `deleted_by`, `person`, `status_id`, `request_status`) VALUES
+(2, 4, 1, 1, 'fsfsdfsdfsdf', '', '2023-04-22 23:55:33', '0000-00-00 00:00:00', '2023-04-23 00:24:04', 'User Admin', '', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -363,7 +373,7 @@ ALTER TABLE `request`
   ADD PRIMARY KEY (`request_id`),
   ADD KEY `product_id` (`product_id`),
   ADD KEY `status_id` (`status_id`) USING BTREE,
-  ADD KEY `request_ibfk_4` (`user_id`);
+  ADD KEY `user_id` (`user_id`) USING BTREE;
 
 --
 -- Indexes for table `status`
@@ -399,7 +409,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `concern`
@@ -429,7 +439,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `request_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `request_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `status`

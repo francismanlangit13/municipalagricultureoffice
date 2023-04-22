@@ -1,7 +1,7 @@
 <?php
   include('../includes/header.php');
 
-    $from = isset($_POST['from']) ? $_POST['from'] : date("Y-m-d",strtotime(date("Y-m-d")." -1 week")); 
+    $from = isset($_POST['from']) ? $_POST['from'] : date("Y-m-d",strtotime(date("Y-m-d"))); 
     $to = isset($_POST['to']) ? $_POST['to'] : date("Y-m-d",strtotime(date("Y-m-d"))); 
     function duration($dur = 0){
         if($dur == 0){
@@ -35,7 +35,7 @@
 							<input type="date" name="to" id="to" value="<?= $to ?>" class="form-control form-control-sm rounded-0">
 						</div>
 						<div class="form-group col-md-4">
-							<button class="btn btn-primary btn-flat btn-sm"><i class="fa fa-filter"></i> Filter</button>
+							<button class="btn btn-primary btn-flat btn-sm" id="submit-btn"><i class="fa fa-filter"></i> Filter</button>
 							<button class="btn btn-sm btn-flat btn-success" type="button" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
 						</div>
 					</div>
@@ -68,32 +68,57 @@
 	<table class="table text-center table-hover table-striped">
 		<colgroup>
 			<col width="5%">
-			<col width="20%">
-			<col width="50%">
-			<col width="25%">
-			<col width="25%">
+			<col width="10%">
+			<col width="15%">
+			<col width="10%">
+			<col width="10%">
+			<col width="10%">
+			<col width="10%">
+			<col width="10%">
 			<col width="10%">
 		</colgroup>
 		<thead>
 			<tr class="bg-success text-light">
 				<th>No.</th>
-				<th>Date/Time</th>
-				<th>Message</th>
+				<th>Date/Time Concern</th>
+				<th>Concern Message</th>
 				<th>Farmer</th>
+				<th>Action by</th>
+				<th>Action by date</th>
+				<th>Delete by</th>
+				<th>Delete by date</th>
 				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
 				$i = 1;
-				$qry = $con->query("SELECT `concern_id`, user.user_id, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`, `status_id`, fname, `mname`, `lname`, `suffix` FROM user INNER JOIN concern where user.user_id = concern.user_id AND date(date_created) between '{$from}' and '{$to}' order by unix_timestamp(date_created) asc");
+				$qry = $con->query("SELECT concern.*, user.*,
+				DATE_FORMAT(concern.date_created, '%m-%d-%Y %h:%i:%s %p') as short_date_created,
+				DATE_FORMAT(concern.date_updated, '%m-%d-%Y %h:%i:%s %p') as short_date_updated,
+				DATE_FORMAT(concern.date_deleted, '%m-%d-%Y %h:%i:%s %p') as short_date_deleted
+				FROM user INNER JOIN concern where user.user_id = concern.user_id AND date(date_created) between '{$from}' and '{$to}' order by unix_timestamp(date_created) asc");
 				while($row = $qry->fetch_assoc()):
 			?>
 				<tr>
-					<td class="text-center"><?php echo $i++; ?></td>
-					<td class=""><?php echo date("m-d-Y H:i",strtotime($row['date_created'])) ?></td>
+					<td class="text-center"><?php echo $row['concern_id'] ?></td>
+					<td class=""><?php echo $row['short_date_created'] ?></td>
 					<td class=""><p class="m-0"><?php echo $row['message'] ?></p></td>
 					<td class=""><p class="m-0"><?php echo $row['fname'] ?> <?php echo $row['mname'] ?> <?php echo $row['lname'] ?> <?php echo $row['suffix'] ?></p></td>
+					<td class=""><p class="m-0"><?php echo $row['person'] ?></p></td>
+					<td class="">
+						<p class="m-0">
+							<?php if($row['date_updated'] == '0000-00-00 00:00:00'){
+							} else{ echo $row['short_date_updated']; } ?>
+						</p>
+					</td>
+					<td class=""><p class="m-0"><?php echo $row['deleted_by'] ?></p></td>
+					<td class="">
+						<p class="m-0">
+							<?php if($row['date_deleted'] == '0000-00-00 00:00:00'){
+							} else{ echo $row['short_date_deleted']; } ?>
+						</p>
+					</td>
 					<td class="text-center">
 						<?php 
 							switch ($row['status_id']){
@@ -113,7 +138,7 @@
 			<?php endwhile; ?>
 			<?php if($qry->num_rows <= 0): ?>
 				<tr>
-					<th class="py-1 text-center" colspan="6">No Data.</th>
+					<th class="py-1 text-center" colspan="12">No Data.</th>
 				</tr>
 			<?php endif; ?>
 		</tbody>
@@ -143,4 +168,28 @@
 		newWin.focus();
 		setTimeout(function(){newWin.print();},1000);
 	}
+</script>
+
+<script>
+	const fromInput = document.querySelector('#from');
+	const toInput = document.querySelector('#to');
+
+	// Attach an event listener to the "from" input field
+	fromInput.addEventListener('change', () => {
+		// Get the selected date in the "from" input field
+		const selectedDate = new Date(fromInput.value);
+
+		// Set the minimum value of the "to" input field to be the selected date in the "from" input field
+		toInput.min = selectedDate.toISOString().split('T')[0];
+
+		// Disable the "to" input field and the "Filter" button if the selected date is greater than or equal to today's date
+		const today = new Date();
+		if (selectedDate >= today) {
+		toInput.disabled = true;
+		$('#submit-btn').prop('disabled', true);
+		} else {
+		toInput.disabled = false;
+		$('#submit-btn').prop('disabled', false);
+		}
+	});
 </script>

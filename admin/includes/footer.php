@@ -21,7 +21,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded noprint" href="#page-top">
         <i class="fa fa-arrow-up" style="margin-top: 0.7rem;"></i>
     </a>
 

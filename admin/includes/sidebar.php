@@ -99,19 +99,19 @@
 
     <?php
         // Count the number of records that have a "pending" status
-        $sql = "SELECT COUNT(*) AS num_concern FROM concern WHERE status_id = '1'";
+        $sql = "SELECT COUNT(*) AS num_concern FROM concern WHERE status_id = '1' AND concern_status = 1";
         $result = mysqli_query($con, $sql);
         $row = mysqli_fetch_assoc($result);
         $num_concern = $row['num_concern'];
 
         // Count the number of records that have a "pending" status
-        $sql1 = "SELECT COUNT(*) AS num_report FROM report WHERE status_id = '1'";
+        $sql1 = "SELECT COUNT(*) AS num_report FROM report WHERE status_id = '1' AND report_status = 1";
         $result1 = mysqli_query($con, $sql1);
         $row1 = mysqli_fetch_assoc($result1);
         $num_report = $row1['num_report'];
 
         // Count the number of records that have a "pending" status
-        $sql2 = "SELECT COUNT(*) AS num_request FROM request WHERE status_id = '1'";
+        $sql2 = "SELECT COUNT(*) AS num_request FROM request WHERE status_id = '1' AND request_status = 1";
         $result2 = mysqli_query($con, $sql2);
         $row2 = mysqli_fetch_assoc($result2);
         $num_request = $row2['num_request'];

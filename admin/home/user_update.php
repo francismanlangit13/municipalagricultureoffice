@@ -20,7 +20,7 @@
                     <?php
                         if(isset($_GET['id'])) {
                             $id = $_GET['id'];
-                            $sql = "SELECT * FROM user WHERE user_id='$id' ";
+                            $sql = "SELECT * FROM user WHERE user_id='$id' AND user_status != 3 AND user_type != 3";
                             $sql_run = mysqli_query($con, $sql);
 
                             if(mysqli_num_rows($sql_run) > 0) {

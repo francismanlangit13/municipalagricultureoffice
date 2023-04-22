@@ -9,30 +9,274 @@
     <li class="breadcrumb-item">View</li>
     
 </ol>
-<form action="code.php" method="POST">
+<?php
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $sql = "SELECT *, DATE_FORMAT(concern.date_created, '%m-%d-%Y %h:%i:%s %p') as short_date_created,
+		DATE_FORMAT(concern.date_updated, '%m-%d-%Y %h:%i:%s %p') as short_date_updated
+        FROM concern
+        INNER JOIN user
+        ON concern.user_id = user.user_id
+        WHERE concern.concern_id = $id AND concern_status != 2";
+        $sql_run = mysqli_query($con, $sql);
+        if(mysqli_num_rows($sql_run) > 0){
+            foreach($sql_run as $row){
+?>
+<?php if ($row['status_id'] == 1){ ?>
+    <form action="code.php" method="POST">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" style="border-bottom:0px !important">
+                        <h5>View Farmer Report</h5>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Farmer information</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                        <input hidden name="concern_id" value="<?=$row['concern_id'];?>">
+                        <input hidden name="farmer_id" value="<?=$row['id'];?>">
+                        <div class="row"> 
+                            <div class="col-md-8 mb-3">
+                                <label for="reference_number">Reference Number</label>
+                                <input disabled type="text" value="<?=$row['reference_number'];?>" class="form-control">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="Farmer Picture" style="position:inherit;left:-7px; top:-27px;">Farmer Picture</label>
+                                <a href="
+                                    <?php
+                                        if(isset($row['picture'])){
+                                            if(!empty($row['picture'])) {
+                                                echo base_url . 'assets/img/users/' . $row['picture'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
+                                    <img class="icon-circle"
+                                    src="
+                                        <?php
+                                            if(isset($row['picture'])){
+                                                if(!empty($row['picture'])) {
+                                                    echo base_url . 'assets/img/users/' . $row['picture'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height:5rem !important; width:5rem !important; display:inline !important; margin-left:0.4rem;">
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="Last Name">Last Name</label>
+                                <input disabled type="text" value="<?=$row['lname'];?>" class="form-control">
+                            </div> 
+                        
+                            <div class="col-md-3 mb-3">
+                                <label for="Middle Name">Middle Name</label>
+                                <input disabled type="text" value="<?=$row['mname'];?>" class="form-control">
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label for="First Name">First Name</label>
+                                <input disabled type="text" value="<?=$row['fname'];?>" class="form-control">
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label for="suffix">Suffix</label>
+                                <input disabled type="text" value="<?=$row['suffix'];?>" class="form-control">
+                            </div>
+
+                            <div class="col-md-4 mb-3">   
+                                <label for="Purok">Purok</label>
+                                <input disabled type="text" value="<?=$row['purok'];?>" class="form-control">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="Sreet">Street</label>
+                                <input disabled type="text" value="<?=$row['street'];?>" class="form-control">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="Barangay">Barangay</label>
+                                <input disabled type="text" value="<?=$row['barangay'];?>" class="form-control">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="Municipality/City">Municipality/City</label>
+                                <input disabled type="text" value="<?=$row['municipality'];?>" class="form-control">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="Province">Province</label>
+                                <input disabled type="text" value="<?=$row['province'];?>" class="form-control">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="Region">Region</label>
+                                <input disabled type="text" value="<?=$row['region'];?>" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Report information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row"> 
+                            <div class="col-md-12 mb-3">
+                                <label for="">Report Message</label>
+                                <textarea class="form-control" type="text" rows="5" readonly><?= $row['message']; ?></textarea>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="" style="position:inherit;left:-7px;">Report Images</label>
+                                <br>
+                                <a href="
+                                    <?php
+                                        if(isset($row['photo'])){
+                                            if(!empty($row['photo'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['photo'])){
+                                                if(!empty($row['photo'])) {
+                                                    echo base_url . 'assets/img/concerns/' . $row['photo'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                                </a>
+                                <a href="
+                                    <?php
+                                        if(isset($row['photo1'])){
+                                            if(!empty($row['photo1'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo1'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['photo1'])){
+                                                if(!empty($row['photo1'])) {
+                                                    echo base_url . 'assets/img/concerns/' . $row['photo1'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                                </a>
+                                <a href="
+                                    <?php
+                                        if(isset($row['photo2'])){
+                                            if(!empty($row['photo2'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo2'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['photo2'])){
+                                                if(!empty($row['photo2'])) {
+                                                    echo base_url . 'assets/img/concerns/' . $row['photo2'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                                </a>
+                                <a href="
+                                    <?php
+                                        if(isset($row['photo3'])){
+                                            if(!empty($row['photo3'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo3'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['photo3'])){
+                                                if(!empty($row['photo3'])) {
+                                                    echo base_url . 'assets/img/concerns/' . $row['photo3'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                                </a>
+                                <a href="
+                                    <?php
+                                        if(isset($row['photo4'])){
+                                            if(!empty($row['photo4'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo4'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    <img class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['photo4'])){
+                                                if(!empty($row['photo4'])) {
+                                                    echo base_url . 'assets/img/concerns/' . $row['photo4'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                                </a>
+                                <a href="
+                                    <?php
+                                        if(isset($row['video'])){
+                                            if(!empty($row['video'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['video'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    <video class="zoom img-fluid img-bordered-sm"
+                                    src="
+                                        <?php
+                                            if(isset($row['video'])){
+                                                if(!empty($row['video'])) {
+                                                    echo base_url . 'assets/img/concerns/' . $row['video'];
+                                            } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                        ?>
+                                    " alt="video" type="video/mp4" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:-2.5rem;">
+                                </a>
+                                <br><br>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label for="">Date of Report</label>
+                                <input type="datetime" class="form-control" type="text" value="<?= $row['short_date_created']; ?>" readonly>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label for="" class="required">Status</label>
+                                <select required class="form-control" name="status" onchange="showTextarea()">
+                                    <option value="" selected disabled>Select Status</option>
+                                    <option value="1" <?= isset($row['status_id']) && $row['status_id'] == '1' ? 'hidden' : '' ?>>Pending</option>
+                                    <option value="2" <?= isset($row['status_id']) && $row['status_id'] == '2' ? 'hidden' : '' ?>>Approved</option>
+                                    <option value="3" <?= isset($row['status_id']) && $row['status_id'] == '3' ? 'hidden' : '' ?>>Deny</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-3" id="textarea-container" style="display:none">
+                                <label for="" class="required">Reason why deny</label>
+                                <textarea placeholder="Enter reason why deny" class="form-control" name="reason" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                    <div class="text-right">
+                    <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                        <button type="submit" name="concern_save" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </form>
+<?php } else{ ?>
     <div class="row">
-        <?php
-            if(isset($_GET['id'])){
-                $id = $_GET['id'];
-                $sql = "SELECT
-                *, DATE_FORMAT(concern.date_created, '%m-%d-%Y %h:%i:%s %p') as short_date
-                FROM
-                concern
-                INNER JOIN
-                user
-                ON 
-                concern.user_id = user.user_id
-                WHERE
-                concern.concern_id = '$id'";
-                
-                $sql_run = mysqli_query($con, $sql);
-                if(mysqli_num_rows($sql_run) > 0){
-                    foreach($sql_run as $row){
-        ?>
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" style="border-bottom:0px !important">
-                    <h5>View Farmer Concern</h5>
+                    <h5>View Farmer Report</h5>
                 </div>
             </div>
             <br>
@@ -43,7 +287,6 @@
                     <h5>Farmer information</h5>
                 </div>
                 <div class="card-body">
-                    <input hidden name="farmer_id" value="<?=$row['concern_id'];?>">
                     <div class="row"> 
                         <div class="col-md-8 mb-3">
                             <label for="reference_number">Reference Number</label>
@@ -63,7 +306,7 @@
                                     <?php
                                         if(isset($row['picture'])){
                                             if(!empty($row['picture'])) {
-                                            echo base_url . 'assets/img/users/' . $row['picture'];
+                                                echo base_url . 'assets/img/users/' . $row['picture'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
                                     ?>
                                 " alt="image" style="height:5rem !important; width:5rem !important; display:inline !important; margin-left:0.4rem;">
@@ -126,13 +369,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Concern information</h5>
+                    <h5>Report information</h5>
                 </div>
                 <div class="card-body">
                     <div class="row"> 
                         <div class="col-md-12 mb-3">
-                            <label for="Description">Message</label>
-                            <textarea placeholder="Enter Description" class="form-control" readonly rows="5"> <?= $row['message']; ?></textarea>
+                            <label for="">Report Message</label>
+                            <textarea class="form-control" type="text" rows="5" readonly><?= $row['message']; ?></textarea>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -244,41 +487,62 @@
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <label for="">Date of Concern</label>
-                            <input type="datetime" class="form-control" type="text" value="<?= $row['short_date']; ?>" readonly>
+                            <label for="">Date of Report</label>
+                            <input type="datetime" class="form-control" type="text" value="<?= $row['short_date_created']; ?>" readonly>
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <label for="" class="required">Status</label>
-                            <select required class="form-control" name="status" onchange="showTextarea()">
+                            <label for="">Status</label>
+                            <select disabled class="form-control" onchange="showTextarea()">
                                 <option value="" selected disabled>Select Status</option>
-                                <option value="1" <?= isset($row['status_id']) && $row['status_id'] == '1' ? 'hidden' : '' ?>>Pending</option>
-                                <option value="2" <?= isset($row['status_id']) && $row['status_id'] == '2' ? 'hidden' : '' ?>>Approved</option>
-                                <option value="3" <?= isset($row['status_id']) && $row['status_id'] == '3' ? 'hidden' : '' ?>>Deny</option>
+                                <option value="1" <?= isset($row['status_id']) && $row['status_id'] == '1' ? 'selected' : '' ?>>Pending</option>
+                                <option value="2" <?= isset($row['status_id']) && $row['status_id'] == '2' ? 'selected' : '' ?>>Approved</option>
+                                <option value="3" <?= isset($row['status_id']) && $row['status_id'] == '3' ? 'selected' : '' ?>>Deny</option>
                             </select>
                         </div>
-                        <div class="col-md-12 mb-3" id="textarea-container" style="display:none">
-                            <label for="" class="required">Reason why deny</label>
-                            <textarea placeholder="Enter reason why deny" class="form-control" name="reason" rows="5"></textarea>
-                        </div>
+                        <?php if ($row['status_id'] == 3){ ?>
+                            <div class="col-md-12 mb-3" id="textarea-container">
+                                <label for="">Reason why deny</label>
+                                <textarea disabled placeholder="Enter reason why deny" class="form-control" rows="5"><?= $row['reason']; ?></textarea>
+                            </div>
+                        <?php } ?>
+                        <?php if ($row['status_id'] == 2){ ?>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Approved Date</label>
+                                <input type="datetime" class="form-control"  value="<?=$row['short_date_updated']; ?>" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Approved By</label>
+                                <input type="datetime" class="form-control"  value="<?=$row['person']; ?>" readonly>
+                            </div>
+                        <?php } ?>
+                        <?php if ($row['status_id'] == 3){ ?>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Deny Date</label>
+                                <input type="datetime" class="form-control"  value="<?=$row['short_date_updated']; ?>" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Deny By</label>
+                                <input type="datetime" class="form-control"  value="<?=$row['person']; ?>" readonly>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
             <br>
                 <div class="text-right">
                 <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                    <button type="submit" name="concern_save" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
                 </div>
             <br>
         </div>
-        <?php
-            } }
-            else{
-        ?>
-            <h4>No Record Found!</h4>
-        <?php } } ?>
     </div>
-</form>
+<?php } ?>
+<?php
+    } }
+    else{
+?>
+    <h4>No Record Found!</h4>
+<?php } } ?>
 
 <?php include('../includes/footer.php');?>
 <script>
