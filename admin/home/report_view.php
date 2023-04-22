@@ -14,7 +14,7 @@
         <?php
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
-                $sql = "SELECT *
+                $sql = "SELECT *, DATE_FORMAT(report.date_created, '%m-%d-%Y %h:%i:%s %p') as short_date
                 FROM report
                 INNER JOIN user
                 ON report.user_id = user.user_id
@@ -132,24 +132,6 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="">Date of Report</label>
-                            <input type="datetime" class="form-control" type="text" value="<?= $row['date_created']; ?>" readonly>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="" class="required">Status</label>
-                            <select required class="form-control" name="status" onchange="showTextarea()">
-                                <option value="" selected disabled>Select Status</option>
-                                <option value="1" <?= isset($row['status_id']) && $row['status_id'] == '1' ? 'hidden' : '' ?>>Pending</option>
-                                <option value="2" <?= isset($row['status_id']) && $row['status_id'] == '2' ? 'hidden' : '' ?>>Approved</option>
-                                <option value="3" <?= isset($row['status_id']) && $row['status_id'] == '3' ? 'hidden' : '' ?>>Deny</option>
-                            </select>
-                        </div>
-                        <div class="col-md-12 mb-3" id="textarea-container" style="display:none">
-                            <label for="" class="required">Reason why deny</label>
-                            <textarea placeholder="Enter reason why deny" class="form-control" name="reason" rows="5"></textarea>
-                        </div>
-                        <div class="col-md-6 mb-3">
                             <label for="" style="position:inherit;left:-7px;">Report Images</label>
                             <br>
                             <a href="
@@ -254,6 +236,26 @@
                                     ?>
                                 " alt="video" type="video/mp4" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:-2.5rem;">
                             </a>
+                            <br><br>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="">Date of Report</label>
+                            <input type="datetime" class="form-control" type="text" value="<?= $row['short_date']; ?>" readonly>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="" class="required">Status</label>
+                            <select required class="form-control" name="status" onchange="showTextarea()">
+                                <option value="" selected disabled>Select Status</option>
+                                <option value="1" <?= isset($row['status_id']) && $row['status_id'] == '1' ? 'hidden' : '' ?>>Pending</option>
+                                <option value="2" <?= isset($row['status_id']) && $row['status_id'] == '2' ? 'hidden' : '' ?>>Approved</option>
+                                <option value="3" <?= isset($row['status_id']) && $row['status_id'] == '3' ? 'hidden' : '' ?>>Deny</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-3" id="textarea-container" style="display:none">
+                            <label for="" class="required">Reason why deny</label>
+                            <textarea placeholder="Enter reason why deny" class="form-control" name="reason" rows="5"></textarea>
                         </div>
                     </div>
                 </div>

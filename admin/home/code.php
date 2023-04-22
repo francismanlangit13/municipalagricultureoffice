@@ -542,6 +542,15 @@
     $quantity = $_POST['quantity'];
     $reason = $_POST['reason'];
     $status = $_POST['status'];
+    $date = date('Y-m-d H:i:s');
+    $person_id =  $_SESSION['auth_user']['user_id'];
+    $sql = "SELECT * FROM user WHERE user_id='$person_id' ";
+    $sql_run = mysqli_query($con, $sql);
+    if(mysqli_num_rows($sql_run) > 0) {
+      foreach($sql_run as $row){
+        $person = $row['fname'] .' '. $row['lname'];
+      }
+    }  
 
     $query= "SELECT product_quantity FROM product WHERE product_id = '$product_id' ";
     $query_run = $con->query($query);
@@ -556,7 +565,7 @@
         $query1 = "UPDATE `product` SET `product_quantity`='$newpq' WHERE `product_id`='$product_id'";
         $query1_run1 = mysqli_query($con, $query1);
 
-        $query = "UPDATE `request` SET `status_id`='$status' WHERE `request_id`= '$request_id'";
+        $query = "UPDATE `request` SET `status_id`='$status', `person` ='$person', `request_updated` = '$date' WHERE `request_id`= '$request_id'";
         $query_run = mysqli_query($con, $query);
 
         if($query_run && $query1){
@@ -580,7 +589,7 @@
       }
     }
     else{
-      $query = "UPDATE `request` SET `status_id`='$status', `reason` = '$reason' WHERE `request_id`= '$request_id'";
+      $query = "UPDATE `request` SET `status_id`='$status', `reason` = '$reason', `person` ='$person', `request_updated` = '$date' WHERE `request_id`= '$request_id'";
       $query_run = mysqli_query($con, $query);
 
       if($query_run && $query){
@@ -1137,9 +1146,8 @@
     $user_id= $_POST['ann_post'];
     $status = "Posted";
     $ann_date = date('Y-m-d H:i:s');
-    $person =  $_SESSION['auth_user']['user_id'];
-
-    $query = "UPDATE `announcement` SET `ann_status`='$status', `ann_date`='$ann_date', `user_id` = '$person' WHERE ann_id ='$user_id'";
+    $person_id =  $_SESSION['auth_user']['user_id'];
+    $query = "UPDATE `announcement` SET `ann_status`='$status', `ann_date`='$ann_date', `user_id` = '$person_id' WHERE ann_id ='$user_id'";
     $query_run = mysqli_query($con, $query);
     if($query_run){
       //$sql0 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
@@ -1300,8 +1308,9 @@
     $edit_title = $_POST['edit_announcement_title'];
     $edit_body = $_POST['edit_announcement_message'];
     $edit_event_dt = date('Y-m-d H:i:s');
+    $person_id =  $_SESSION['auth_user']['user_id'];
 
-    $query = "UPDATE `announcement` SET `ann_title`='$edit_title',`ann_body`='$edit_body',`ann_date`='$edit_event_dt' WHERE `ann_id` = '$user_id'";
+    $query = "UPDATE `announcement` SET `user_id`='$person_id',`ann_title`='$edit_title',`ann_body`='$edit_body',`ann_date`='$edit_event_dt' WHERE `ann_id` = '$user_id'";
     $query_run = mysqli_query($con,$query);
 
     if($query_run){
@@ -1414,7 +1423,14 @@
     $reason = $_POST['reason'];
     $status = $_POST['status'];
     $date_response = date('Y-m-d H:i:s');
-    $person =  $_SESSION['auth_user']['user_id'];
+    $person_id =  $_SESSION['auth_user']['user_id'];
+    $sql = "SELECT * FROM user WHERE user_id='$person_id' ";
+    $sql_run = mysqli_query($con, $sql);
+    if(mysqli_num_rows($sql_run) > 0) {
+      foreach($sql_run as $row){
+        $person = $row['fname'] .' '. $row['lname'];
+      }
+    } 
 
     if(isset($_POST['status']) == 2) {
       $query = "UPDATE `concern` SET `status_id`='$status', `date_updated`='$date_response', `person`='$person' WHERE `concern_id`= '$farmer_id'";
@@ -1434,7 +1450,7 @@
       }
     }
     else{
-      $query = "UPDATE `concern` SET `status_id`='$status', `reason` = '$reason' WHERE `concern_id`= '$farmer_id'";
+      $query = "UPDATE `concern` SET `status_id`='$status', `reason` = '$reason', `date_updated`='$date_response', `person`='$person' WHERE `concern_id`= '$farmer_id'";
       $query_run = mysqli_query($con, $query);
 
       if($query_run){
@@ -1456,9 +1472,18 @@
     $report_id = $_POST['report_id'];
     $reason = $_POST['reason'];
     $status = $_POST['status'];
+    $date_response = date('Y-m-d H:i:s');
+    $person_id =  $_SESSION['auth_user']['user_id'];
+    $sql = "SELECT * FROM user WHERE user_id='$person_id' ";
+    $sql_run = mysqli_query($con, $sql);
+    if(mysqli_num_rows($sql_run) > 0) {
+      foreach($sql_run as $row){
+        $person = $row['fname'] .' '. $row['lname'];
+      }
+    } 
 
     if(isset($_POST['status']) && $_POST['status'] == 2) {
-      $query = "UPDATE `report` SET `status_id`='$status' WHERE `report_id`= '$report_id'";
+      $query = "UPDATE `report` SET `status_id`='$status', `date_updated`='$date_response', `person`='$person' WHERE `report_id`= '$report_id'";
       $query_run = mysqli_query($con, $query);
 
       if($query_run){
@@ -1475,7 +1500,7 @@
       }
     }
     else{
-      $sql = "UPDATE `report` SET `status_id`='$status', `reason` = '$reason' WHERE `report_id`= '$report_id'";
+      $sql = "UPDATE `report` SET `status_id`='$status', `reason` = '$reason', `date_updated`='$date_response', `person`='$person' WHERE `report_id`= '$report_id'";
       $sql_run = mysqli_query($con, $sql);
 
       if($sql_run){

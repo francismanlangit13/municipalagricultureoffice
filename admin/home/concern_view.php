@@ -15,7 +15,7 @@
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
                 $sql = "SELECT
-                *
+                *, DATE_FORMAT(concern.date_created, '%m-%d-%Y %h:%i:%s %p') as short_date
                 FROM
                 concern
                 INNER JOIN
@@ -136,11 +136,119 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="">Date of Concern</label>
-                            <input type="datetime" class="form-control" type="text" value="<?= $row['date_created']; ?>" readonly>
+                            <label for="" style="position:inherit;left:-7px;">Report Images</label>
+                            <br>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo'])){
+                                        if(!empty($row['photo'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['photo'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo'])){
+                                            if(!empty($row['photo'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo1'])){
+                                        if(!empty($row['photo1'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['photo1'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo1'])){
+                                            if(!empty($row['photo1'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo1'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo2'])){
+                                        if(!empty($row['photo2'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['photo2'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo2'])){
+                                            if(!empty($row['photo2'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo2'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo3'])){
+                                        if(!empty($row['photo3'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['photo3'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo3'])){
+                                            if(!empty($row['photo3'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo3'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo4'])){
+                                        if(!empty($row['photo4'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['photo4'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo4'])){
+                                            if(!empty($row['photo4'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['photo4'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:0.5rem;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['video'])){
+                                        if(!empty($row['video'])) {
+                                            echo base_url . 'assets/img/concerns/' . $row['video'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                <video class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['video'])){
+                                            if(!empty($row['video'])) {
+                                                echo base_url . 'assets/img/concerns/' . $row['video'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; } }
+                                    ?>
+                                " alt="video" type="video/mp4" style="height: 100px; max-width: 160px; object-fit: cover; margin-bottom:-2.5rem;">
+                            </a>
+                            <br><br>
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-3 mb-3">
+                            <label for="">Date of Concern</label>
+                            <input type="datetime" class="form-control" type="text" value="<?= $row['short_date']; ?>" readonly>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
                             <label for="" class="required">Status</label>
                             <select required class="form-control" name="status" onchange="showTextarea()">
                                 <option value="" selected disabled>Select Status</option>

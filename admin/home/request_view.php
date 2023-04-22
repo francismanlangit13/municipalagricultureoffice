@@ -15,7 +15,7 @@
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
                 $sql = "SELECT
-                *
+                *, DATE_FORMAT(request.request_date, '%m-%d-%Y %h:%i:%s %p') as short_date
                 FROM
                 request
                 INNER JOIN
@@ -220,7 +220,7 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="">Request Date</label>
-                            <input type="datetime" class="form-control" type="text" value="<?= $row['request_date']; ?>" readonly>
+                            <input type="datetime" class="form-control" type="text" value="<?= $row['short_date']; ?>" readonly>
                         </div>
 
                         <div class="col-md-6 mb-3">
