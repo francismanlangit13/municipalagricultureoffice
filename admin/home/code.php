@@ -1372,14 +1372,11 @@
     $mname= $_POST['mname'];
     $lname= $_POST['lname'];
     $email= $_POST['email'];
-    if(isset($_POST['barangay'])) {
+    if(isset($_POST['confirm_password']) && !empty($_POST['confirm_password'])){
       $new_password= $_POST['password'];
       $password = md5($new_password);
-    } else {
-      $sql = "SELECT `password` FROM `user` WHERE user_id = $user_id";
-      $sql_run = $con->query($sql);
-      $data = $sql_run->fetch_assoc();
-      $password = $data['password'];
+      $sql0 = "UPDATE `user` SET `password` = '$password' WHERE `user_id` = '$user_id'";
+      $sql0_run = mysqli_query($con, $sql0);
     }
     if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
       $fileImage = $_FILES['image'];
@@ -1401,17 +1398,18 @@
             unlink($uploadDir . $OLDfileImage);
 
             if (move_uploaded_file($fileTmpname, $targetFile)) {
-              $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email',`password`='$password',`picture`='$fileName' WHERE `user_id`='$user_id'";
+              $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email',`picture`='$fileName' WHERE `user_id`='$user_id'";
               $query_run = mysqli_query($con, $query);
     
               if($query_run){
-                $_SESSION['status'] = "Account Updated";
+                $_SESSION['status'] = "Account updated sucessfully";
                 $_SESSION['status_code'] = "success";
                 header('Location: index');
                 header("Location: " . base_url . "admin/home/");
                 exit(0);
               }
               else{
+                $_SESSION['status'] = "Something went wrong!";
                 $_SESSION['status_code'] = "error";
                 header("Location: " . base_url . "admin/home/");
                 exit(0);
@@ -1437,21 +1435,19 @@
       }
     }
     else{
-      $query = "UPDATE `product` SET `product_name`='$name',`product_quantity`='$quantity',`product_category_id`='$category',`product_status`='$status' WHERE `product_id`='$user_id'";
-      $query_run = mysqli_query($con, $query);
-
-      $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email',`password`='$password' WHERE `user_id`='$user_id'";
+      $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email' WHERE `user_id`='$user_id'";
       $query_run = mysqli_query($con, $query);
 
       if($query_run){
-        $_SESSION['status'] = "Account Updated";
+        $_SESSION['status'] = "Account updated sucessfully";
         $_SESSION['status_code'] = "success";
         header("Location: " . base_url . "admin/home/");
         exit(0);
       }
       else{
+        $_SESSION['status'] = "Something went wrong!";
         $_SESSION['status_code'] = "error";
-        header("Location: " . base_url . "admin/home/");
+        header("Location: " . base_url . "admin/home/settings");
         exit(0);
       }
     }
