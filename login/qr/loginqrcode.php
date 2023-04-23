@@ -11,7 +11,7 @@ include('../../db_conn.php');
 
 		$qrcode_text = validate($_POST['qrcode_text']);
 
-		$qr_login_query = "SELECT * FROM user WHERE qrcode='$qrcode_text'";
+		$qr_login_query = "SELECT * FROM user WHERE qrcode='$qrcode_text' AND user_status = 1";
 		$qr_login_query_run = mysqli_query($con, $qr_login_query);
 
 		if(mysqli_num_rows($qr_login_query_run) > 0){

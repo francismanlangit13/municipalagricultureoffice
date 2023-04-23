@@ -10,7 +10,7 @@
 
     if(isset($_POST['forgot_btn'])){
         $email = mysqli_real_escape_string($con, $_POST['email']);
-        $check_mail = "SELECT `email` FROM user WHERE email = '$email'";
+        $check_mail = "SELECT `email` FROM user WHERE email = '$email' AND user_status = 1";
         $check_mail_run = mysqli_query($con, $check_mail);
 
         if(mysqli_num_rows($check_mail_run) > 0){
