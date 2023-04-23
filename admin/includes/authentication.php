@@ -10,7 +10,7 @@
         if ($_SESSION['auth_role'] != "1"){
             $_SESSION['status'] = "You are not authorized as ADMIN";
             $_SESSION['status_code'] = "error";
-            header("Location: " . base_url . "farmer");
+            header("Location: " . base_url . "login");
             exit(0);
         }
     }
