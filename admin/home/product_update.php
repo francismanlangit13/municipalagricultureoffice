@@ -175,7 +175,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-4 mb-3">
                             <div style="margin-left:2rem;">
                                 <label for="" class="required">Product Status (<label id="myValueName"><?php if($row['product_status']=="1") { echo "Available"; } else { echo "Not available"; } ?></label>)</label>
                                 <br>

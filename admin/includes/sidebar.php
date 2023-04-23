@@ -60,7 +60,7 @@
             aria-expanded="true" aria-controls="collapseUtilities">
             <?php if($num_expired == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter count-product"><?php if ($num_expired >= 99){ echo "99+";} else { echo $num_expired; } ?></span>
+                <span class="badge badge-danger badge-counter new-product count-product"><?php if ($num_expired >= 99){ echo "99+";} else { echo $num_expired; } ?></span>
             <?php } ?>
             <i class="fas fa-shopping-cart"></i>
             <span>Product</span>
@@ -124,7 +124,7 @@
             aria-expanded="true" aria-controls="collapsePages">
             <?php if($total_notification == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter count"><?php if ($total_notification >= 99){ echo "99+";} else { echo $total_notification; } ?></span>
+                <span class="badge-new badge-danger badge-counter count"><?php if ($total_notification >= 99){ echo "99+";} else { echo $total_notification; } ?></span>
             <?php } ?>
             <i class="fas fa-cog"></i>
             <span>Other</span>
@@ -171,15 +171,16 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'active'; } ?>">
+    <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'show'; } else { echo 'collapsed'; } ?>" href="#" data-toggle="collapse" data-target="#collapseGenerate"
             aria-expanded="true" aria-controls="collapseGenerate">
             <i class="fas fa-newspaper"></i>
             <span>Generate</span>
         </a>
-        <div id="collapseGenerate" class="collapse <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'show'; } else { } ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseGenerate" class="collapse <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'show'; } else { } ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage:</h6>
+                <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_announcement.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/generate_announcement"><i class="fa fa-file-text" aria-hidden="true"></i> Aannouncement</a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_concern.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/generate_concern"><i class="fa fa-file-text" aria-hidden="true"></i> Concern</a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_report.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/generate_report"><i class="fa fa-file-text" aria-hidden="true"></i> Report</a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/generate_request.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>admin/home/generate_request"><i class="fa fa-file-text" aria-hidden="true"></i> Request</a>
@@ -199,13 +200,30 @@
 
 <script>
 function myDashboard() {
-    var x = document.getElementById("myDashboard");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+  var x = document.getElementById("myDashboard");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    var badge = document.querySelector('.badge-new');
+    if (badge && badge.offsetParent !== null) {
+      badge.classList.add('count');
     }
+    var newProduct = document.querySelector('.new-product');
+    if (newProduct && newProduct.offsetParent !== null) {
+      newProduct.classList.add('count-product');
+    }
+  } else {
+    x.style.display = "none";
+    var countBadge = document.querySelector('.count');
+    if (countBadge) {
+      countBadge.classList.remove('count');
+    }
+    var countProduct = document.querySelector('.count-product');
+    if (countProduct) {
+      countProduct.classList.remove('count-product');
+    }
+  }
 }
+
 </script>
 <?php if(is_mobile){ ?> 
     <style type="text/css">
@@ -240,10 +258,10 @@ function myDashboard() {
 <?php } else { ?>
     <style type="text/css">
         .count{
-            margin-right: 7.8rem;
+            margin-right: 7.8rem !important;
         }
         .count-product{
-            margin-right: 7rem;
+            margin-right: 7rem !important;
         }
     </style> 
 <?php } ?>

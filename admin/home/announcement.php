@@ -37,7 +37,7 @@
                         FROM announcement
                         INNER JOIN user
                         ON announcement.user_id = user.user_id
-                        WHERE ann_status != 'Archive'";
+                        WHERE ann_status != 'Archive' AND ann_deleted != 1";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
                             foreach($query_run as $row){

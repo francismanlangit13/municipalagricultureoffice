@@ -454,7 +454,7 @@
 
           <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
-              &copy; Copyright <strong><span>MAO JIMENEZ</span></strong>. All Rights Reserved
+              Copyright &copy; 1996-<?php echo date('Y'); ?> <strong><span>Municipal Agriculture Office Jimenez</span></strong>. All Rights Reserved
             </div>
           </div>
           <div class="social-links text-center text-md-right pt-3 pt-md-0">

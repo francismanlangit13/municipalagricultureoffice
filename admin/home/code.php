@@ -1315,9 +1315,18 @@
 
   if(isset($_POST['ann_delete'])){
     $user_id= $_POST['ann_delete'];
-    $ann_status = "Archive";
+    $ann_deleted = '1';
+    $date_deleted = date('Y-m-d H:i:s');
+    $person_id =  $_SESSION['auth_user']['user_id'];
+    $sql = "SELECT * FROM user WHERE user_id='$person_id' ";
+    $sql_run = mysqli_query($con, $sql);
+    if(mysqli_num_rows($sql_run) > 0) {
+      foreach($sql_run as $row){
+        $person = $row['fname'] .' '. $row['lname'];
+      }
+    } 
 
-    $query = "UPDATE `announcement` SET `ann_status` = '$ann_status' WHERE ann_id ='$user_id' ";
+    $query = "UPDATE `announcement` SET `ann_deleted` = '$ann_deleted', `date_deleted` = '$date_deleted', `deleted_by` = '$person' WHERE ann_id ='$user_id' ";
     $query_run = mysqli_query($con, $query);
     if($query_run){
       $_SESSION['status'] = "The announcement has been successfully deleted.";
@@ -1632,6 +1641,85 @@
       $_SESSION['status_code'] = "error";
       header("Location: " . base_url . "admin/home/request");
       exit(0);
+    }
+  }
+
+  function restoreMysqlDB($filePath, $con){
+    $sql = '';
+    $error = '';
+  
+    // Disable foreign key checks
+    mysqli_query($con, "SET FOREIGN_KEY_CHECKS=0");
+  
+    // SQL query to drop all tables
+    $qry = "SHOW TABLES";
+    $result = mysqli_query($con, $qry);
+  
+    while($row = mysqli_fetch_row($result)) {
+      $qry = "DROP TABLE IF EXISTS $row[0]";
+      mysqli_query($con, $qry);
+    }
+  
+    // Enable foreign key checks
+    mysqli_query($con, "SET FOREIGN_KEY_CHECKS=0");
+  
+    if(file_exists($filePath)) {
+      $lines = file($filePath);
+  
+      foreach ($lines as $line) {
+  
+        // Ignoring comments from the SQL script
+        if (substr($line, 0, 2) == '--' || $line == '') {
+          continue;
+        }
+  
+        $sql .= $line;
+  
+        if (substr(trim($line), - 1, 1) == ';') {
+          $result = mysqli_query($con, $sql);
+          if (! $result) {
+            $error .= mysqli_error($con) . "\n";
+          }
+          $sql = '';
+        }
+      } // end foreach
+  
+      if ($error) {
+        $response = array(
+          $_SESSION['status'] = "Database restore failed.",
+          $_SESSION['status_code'] = "error"
+        );
+      }
+      else{
+        $response = array(
+          $_SESSION['status'] = "Database restore completed successfully.",
+          $_SESSION['status_code'] = "success"
+        );
+        header("Location: " . base_url . "admin/home/database");
+        //echo '<script>setTimeout(function(){ location.reload(); }, 4500);</script>';
+        exit(0);
+      }
+      exec('rm ' . $filePath);
+    } // end if file exists
+  
+    return $response;
+  }
+  
+  if(isset($_POST['restore'])){
+    if (! empty($_FILES)) {
+      // Validating SQL file type by extensions
+      if (! in_array(strtolower(pathinfo($_FILES["backup_file"]["name"], PATHINFO_EXTENSION)), array("sql"))){
+        $response = array(
+          "type" => "error",
+          "message" => "Invalid File Type"
+        );
+      }
+      else{
+        if (is_uploaded_file($_FILES["backup_file"]["tmp_name"])) {
+          move_uploaded_file($_FILES["backup_file"]["tmp_name"],'../../database/'.$_FILES["backup_file"]["name"]);
+          $response = restoreMysqlDB('../../database/'.$_FILES["backup_file"]["name"], $con);
+        }
+      }
     }
   }
 ?>

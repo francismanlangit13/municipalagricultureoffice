@@ -19,7 +19,7 @@
                     <?php
                         if(isset($_GET['id'])){
                             $id = $_GET['id'];
-                            $users = "SELECT * FROM announcement WHERE ann_id='$id' AND ann_status != 'Archive'";
+                            $users = "SELECT * FROM announcement WHERE ann_id='$id' AND ann_status != 'Archive' AND ann_deleted != 1";
                             $users_run = mysqli_query($con, $users);
                             if(mysqli_num_rows($users_run) > 0){
                                 foreach($users_run as $user){
