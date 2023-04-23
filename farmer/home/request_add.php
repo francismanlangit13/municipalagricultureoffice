@@ -16,10 +16,10 @@
                     <div class="row"> 
                         <div class="col-md-6 mb-3">
                             <?php
-                                $sql = "SELECT * FROM `product`";
+                                $sql = "SELECT * FROM `product` WHERE product_status = 1";
                                 $all_categories = mysqli_query($con,$sql);
                             ?>
-                            <label for="">Product:</label>
+                            <label for="" class="required">Product:</label>
                             <select name="product" id="product_id" required class="form-control">
                                 <option value="" disabled selected>Select Product</option>
                                 <?php
@@ -42,12 +42,12 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="">Quantity</label>
+                            <label for="" class="required">Quantity</label>
                             <input required type="text" name="quantity" class="form-control" id="product_quantity-input">
                             <div id="product_quantity-error"></div>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="Description">Request message</label>
+                            <label for="Description" class="required">Request message</label>
                             <textarea placeholder="Enter Description" name="description" required type="text" class="form-control" rows="3"></textarea>
                         </div>
                         <?php if(isset($_SESSION['auth_user']))  ?>

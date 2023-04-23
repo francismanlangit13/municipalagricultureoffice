@@ -19,7 +19,8 @@
                 INNER JOIN
                 product_category
                 ON 
-                product.product_category_id = product_category.product_category_id";
+                product.product_category_id = product_category.product_category_id
+                WHERE product_status = 1";
                 $query_run = mysqli_query($con, $query);
                 $product = mysqli_num_rows($query_run) > 0;
                 if($product){

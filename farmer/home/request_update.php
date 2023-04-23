@@ -4,6 +4,26 @@
     <li class="breadcrumb-item">Request</li>
     <li class="breadcrumb-item">Update Request</li>
 </ol>
+<?php
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $users = "SELECT *
+        FROM request WHERE request_id='$id' AND request_status = 1";
+        $users_run = mysqli_query($con, $users);
+
+        if(mysqli_num_rows($users_run) > 0){
+            foreach($users_run as $user){
+?>
+<?php 
+    $request_date_timestamp = strtotime($user['request_date']);
+    
+    // Format $user['request_date'] and the current date as "Y-m-d H:i:s"
+    $request_date = date("Y-m-d H:i:s", $request_date_timestamp);
+    $current_date = date("Y-m-d H:i:s", strtotime("-10 minutes")); // set 10 minutes can update the information.
+    
+    // Check if $user['request_date'] is greater than the current date
+    if($request_date > $current_date){
+?>
 <form action="code.php" method="POST">
     <div class="container-fluid px-4">
         <div class="row">
@@ -13,23 +33,14 @@
                         <h5>Request information</h5>
                     </div>
                     <div class="card-body">
-                        <?php
-                            if(isset($_GET['id'])){
-                                $id = $_GET['id'];
-                                $users = "SELECT * FROM request WHERE request_id='$id' ";
-                                $users_run = mysqli_query($con, $users);
-
-                                if(mysqli_num_rows($users_run) > 0){
-                                    foreach($users_run as $user){
-                        ?>
                         <input type="hidden" name="request_id" value="<?=$user['request_id'];?>">
                         <div class="row"> 
                             <div class="col-md-6 mb-3">
                                 <?php
-                                    $sql = "SELECT * FROM `product`";
+                                    $sql = "SELECT * FROM `product` WHERE product_status = 1";
                                     $all_categories = mysqli_query($con,$sql);
                                 ?>
-                                <label for="">Product:</label>
+                                <label for="" class="required">Product:</label>
                                 <select name="product" id="product_id" required class="form-control">
                                     <?php
                                         // use a while loop to fetch data
@@ -53,13 +64,13 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="">Quantity</label>
+                                <label for="" class="required">Quantity</label>
                                 <input required type="text" name="quantity" id="product_quantity-input" value="<?=$user['request_quantity'];?>" class="form-control">
                                 <div id="product_quantity-error"></div>
                             </div>
 
                             <div class="col-md-12 mb-3">
-                                <label for="Description">Description</label>
+                                <label for="Description" class="required">Description</label>
                                 <textarea placeholder="Enter Description" name="description" required type="text" class="form-control" rows="3"><?=$user['description'];?></textarea>
                             </div>
 
@@ -67,13 +78,6 @@
                             <label for="" hidden="true">user_id</label>
                             <input required type="text" hidden name="user_id" value="<?=  $_SESSION['auth_user']['user_id']; ?>" class="form-control">
                         </div>
-                        <?php
-                                }
-                            }
-                            else{
-                        ?>
-                            <h4>No Record Found!</h4>
-                        <?php } } ?>
                     </div>
                 </div>
                 <br>
@@ -86,6 +90,32 @@
         </div>
     </div>
 </form>
+<?php } else { ?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Request information</h5>
+                </div>
+                <div class="card-body">
+                    No Record Found!
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+        <div class="text-right">
+            <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+        </div>
+    <br>
+<?php } ?>
+<?php
+        }
+    }
+    else{
+?>
+    <h4>No Record Found!</h4>
+<?php } } ?>
 
 <?php include('../includes/footer.php'); ?>
 

@@ -16,7 +16,7 @@
 <ol class="breadcrumb mb-4 noprint">    
   <li class="breadcrumb-item">Dashboard</li>
   <li class="breadcrumb-item">Generate</li>
-  <li class="breadcrumb-item">Concern</li>
+  <li class="breadcrumb-item">Announcement</li>
 </ol>
 
 <div class="col-xl-12 col-md-12 mb-4 noprint">
@@ -59,7 +59,7 @@
 		</div>
 		<div class="col-8">
 			<h4 class="text-center"><b>Municipal Agriculture Office Jimenez</b></h4>
-			<h3 class="text-center"><b>Concern</b></h3>
+			<h3 class="text-center"><b>Announcement</b></h3>
 			<h5 class="text-center"><b>as of</b></h5>
 			<h5 class="text-center"><b><?php echo date("F d, Y", strtotime($from)). " - ".date("F d, Y", strtotime($to)); ?></b></h5>
 		</div>
@@ -69,9 +69,8 @@
 		<colgroup>
 			<col width="5%">
 			<col width="10%">
-			<col width="15%">
 			<col width="10%">
-			<col width="10%">
+			<col width="25%">
 			<col width="10%">
 			<col width="10%">
 			<col width="10%">
@@ -80,11 +79,10 @@
 		<thead>
 			<tr class="bg-success text-light">
 				<th>No.</th>
-				<th>Date/Time Concern</th>
-				<th>Concern Message</th>
-				<th>Farmer</th>
-				<th>Action by</th>
-				<th>Action by date</th>
+				<th>Date/Time Announcement</th>
+				<th>Announcement Title</th>
+				<th>Announcement Body</th>
+				<th>Posted by</th>
 				<th>Delete by</th>
 				<th>Delete by date</th>
 				<th>Status</th>
@@ -92,26 +90,19 @@
 		</thead>
 		<tbody>
 			<?php 
-				$user_id = $_SESSION['auth_user']['user_id'];
-				$qry = $con->query("SELECT concern.*, user.*,
-				DATE_FORMAT(concern.date_created, '%m-%d-%Y %h:%i:%s %p') as short_date_created,
-				DATE_FORMAT(concern.date_updated, '%m-%d-%Y %h:%i:%s %p') as short_date_updated,
-				DATE_FORMAT(concern.date_deleted, '%m-%d-%Y %h:%i:%s %p') as short_date_deleted
-				FROM user INNER JOIN concern where user.user_id = concern.user_id AND concern.user_id = $user_id AND date(date_created) between '{$from}' and '{$to}' order by unix_timestamp(date_created) asc");
+				$i = 1;
+				$qry = $con->query("SELECT announcement.*, user.*,
+				DATE_FORMAT(announcement.ann_date, '%m-%d-%Y %h:%i:%s %p') as short_date_created,
+				DATE_FORMAT(announcement.date_deleted, '%m-%d-%Y %h:%i:%s %p') as short_date_deleted
+				FROM user INNER JOIN announcement where user.user_id = announcement.user_id AND date(ann_date) between '{$from}' and '{$to}' order by unix_timestamp(ann_date) asc");
 				while($row = $qry->fetch_assoc()):
 			?>
 				<tr>
-					<td class="text-center"><?php echo $row['concern_id'] ?></td>
+					<td class="text-center"><?php echo $row['ann_id'] ?></td>
 					<td class=""><?php echo $row['short_date_created'] ?></td>
-					<td class=""><p class="m-0"><?php echo $row['message'] ?></p></td>
-					<td class=""><p class="m-0"><?php echo $row['fname'] ?> <?php echo $row['mname'] ?> <?php echo $row['lname'] ?> <?php echo $row['suffix'] ?></p></td>
-					<td class=""><p class="m-0"><?php echo $row['person'] ?></p></td>
-					<td class="">
-						<p class="m-0">
-							<?php if($row['date_updated'] == '0000-00-00 00:00:00'){
-							} else{ echo $row['short_date_updated']; } ?>
-						</p>
-					</td>
+					<td class=""><p class="m-0"><?php echo $row['ann_title'] ?></p></td>
+					<td class=""><p class="m-0"><?php echo $row['ann_body'] ?></p></td>
+					<td class=""><p class="m-0"><?php echo $row['fname'] ?> <?php echo $row['lname'] ?></p></td>
 					<td class=""><p class="m-0"><?php echo $row['deleted_by'] ?></p></td>
 					<td class="">
 						<p class="m-0">
@@ -121,15 +112,12 @@
 					</td>
 					<td class="text-center">
 						<?php 
-							switch ($row['status_id']){
-								case 1:
+							switch ($row['ann_status']){
+								case 'Pending':
 									echo '<span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>';
 									break;
-								case 2:
-									echo '<span class="rounded-pill badge badge-primary bg-gradient-purple px-3">Approved</span>';
-									break;
-								case 3:
-									echo '<span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>';
+								case 'Posted':
+									echo '<span class="rounded-pill badge badge-primary bg-gradient-purple px-3">Posted</span>';
 									break;
 							}
 						?>

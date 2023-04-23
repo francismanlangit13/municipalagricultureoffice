@@ -6,6 +6,34 @@
     <li class="breadcrumb-item">Concern</li>
     <li class="breadcrumb-item">Update Concern</li>
 </ol>
+<?php
+  if(isset($_GET['id'])){
+  $id = $_GET['id'];
+  $sql = "SELECT
+  *
+  FROM
+  concern
+  INNER JOIN
+  user
+  ON 
+  concern.user_id = user.user_id
+  WHERE
+  concern.concern_id = '$id' AND concern_status != 2";
+  
+  $sql_run = mysqli_query($con, $sql);
+  if(mysqli_num_rows($sql_run) > 0){
+      foreach($sql_run as $row){
+?>
+<?php 
+  $request_date_timestamp = strtotime($row['date_created']);
+  
+  // Format $user['request_date'] and the current date as "Y-m-d H:i:s"
+  $request_date = date("Y-m-d H:i:s", $request_date_timestamp);
+  $current_date = date("Y-m-d H:i:s", strtotime("-10 minutes")); // set 10 minutes can update the information.
+  
+  // Check if $user['request_date'] is greater than the current date
+  if($request_date > $current_date){
+?>
 <form action="code.php" method="POST" enctype="multipart/form-data">  
   <div class="row">
     <div class="col-md-12">
@@ -14,24 +42,6 @@
             <h5>Concern information</h5>
         </div>
         <div class="card-body">
-          <?php
-            if(isset($_GET['id'])){
-            $id = $_GET['id'];
-            $sql = "SELECT
-            *
-            FROM
-            concern
-            INNER JOIN
-            user
-            ON 
-            concern.user_id = user.user_id
-            WHERE
-            concern.concern_id = '$id'";
-            
-            $sql_run = mysqli_query($con, $sql);
-            if(mysqli_num_rows($sql_run) > 0){
-                foreach($sql_run as $row){
-          ?>
           <div class="row"> 
             <input type="hidden" name="concern_id" value="<?=$row['concern_id'];?>">
             <div class="col-md-12 mb-3">
@@ -213,12 +223,6 @@
                 <br>
               </div>
             </div>
-            <?php
-                } }
-                else{
-            ?>
-                <h4>No Record Found!</h4>
-            <?php } } ?>
           </div>
         </div>
       </div>
@@ -231,6 +235,32 @@
     </div>
   </div>
 </form>
+<?php } else { ?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Concern information</h5>
+                </div>
+                <div class="card-body">
+                    No Record Found!
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+        <div class="text-right">
+            <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+        </div>
+    <br>
+<?php } ?>
+<?php
+        }
+    }
+    else{
+?>
+    <h4>No Record Found!</h4>
+<?php } } ?>
 
 <?php include('../includes/footer.php');?>
 

@@ -5,10 +5,10 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white noprint">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; MAO JIMENEZ</span>
+                        <span>Copyright &copy; 1996-<?php echo date('Y'); ?> Municipal Agriculture Office Jimenez</span>
                     </div>
                 </div>
             </footer>

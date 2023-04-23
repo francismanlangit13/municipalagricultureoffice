@@ -22,7 +22,7 @@ if(isset($_POST['add_request'])){
     $product_id = $_POST['product'];
     $quantity = $_POST['quantity'];
     $description = $_POST['description'];
-    $request_date = $ann_date = date('Y-m-d H:i:s');
+    $request_date = date('Y-m-d H:i:s');
     $status = 1;
 
     $query = "INSERT INTO `request`(`user_id`, `product_id`, `request_quantity`, `description`, `request_date`, `status_id`) VALUES ('$user_id', '$product_id','$quantity','$description','$request_date', '$status')";
@@ -114,10 +114,7 @@ if(isset($_POST["add_concern"])){
         if($fileError === 0 && $fileError1 === 0 && $fileError2 === 0 && $fileError3 === 0 && $fileError4 === 0){
             if($fileSize < 10485760 && $fileSize1 < 10485760 && $fileSize2 < 10485760 && $fileSize3 < 10485760 && $fileSize4 < 10485760){
 
-                $date = new DateTime();
-                $date->setTimezone(new DateTimeZone('UTC'));
-                $report_date = $date->format('Y-m-d H:i:s');
-
+                $report_date = date('Y-m-d H:i:s');
                 $user_id = $_POST['user_id'];
                 $message = $_POST['message'];
                 $status = 1;
@@ -413,80 +410,111 @@ if(isset($_POST["add_concern"])){
     }
 }
   
-if(isset($_POST['delete_request'])){
+    // if(isset($_POST['delete_request'])){
 
 
-    $id = $_POST['delete_request'];
+    //     $id = $_POST['delete_request'];
 
-  
-      $query = "DELETE FROM `request` WHERE request_id = '$id'";
-      $query_run = mysqli_query($con,$query);
-  
-      if($query_run)
-      {
-          $_SESSION['status'] = "Request Deleted Successfully";
-          $_SESSION['status_code'] = "success";
-          header("Location: " . base_url . "farmer/home/request");
-          exit(0);
-      }
-      else{
-          $_SESSION['status'] = "SOMETHING WENT WRONG!";
-          $_SESSION['status_code'] = "error";
-          header("Location: " . base_url . "farmer/home/request");
-          exit(0);
-      }
-  }
+    
+    //     $query = "DELETE FROM `request` WHERE request_id = '$id'";
+    //     $query_run = mysqli_query($con,$query);
+    
+    //     if($query_run)
+    //     {
+    //         $_SESSION['status'] = "Request Deleted Successfully";
+    //         $_SESSION['status_code'] = "success";
+    //         header("Location: " . base_url . "farmer/home/request");
+    //         exit(0);
+    //     }
+    //     else{
+    //         $_SESSION['status'] = "SOMETHING WENT WRONG!";
+    //         $_SESSION['status_code'] = "error";
+    //         header("Location: " . base_url . "farmer/home/request");
+    //         exit(0);
+    //     }
+    // }
+
+    if(isset($_POST['delete_request'])){
+        $id = $_POST['delete_request'];
+        $query = "UPDATE `request` SET request_status = 2 WHERE request_id = '$id'";
+        $query_run = mysqli_query($con,$query);
+    
+        if($query_run){
+            $_SESSION['status'] = "Request deleted successfully";
+            $_SESSION['status_code'] = "success";
+            header("Location: " . base_url . "farmer/home/request");
+            exit(0);
+        }
+        else{
+            $_SESSION['status'] = "Something went wrong!";
+            $_SESSION['status_code'] = "error";
+            header("Location: " . base_url . "farmer/home/request");
+            exit(0);
+        }
+    }
 
 
 
-  if(isset($_POST['update_request'])){
+    if(isset($_POST['update_request'])){
 
-    $request_id = $_POST['request_id'];
-    $product = $_POST['product'];
-    $quantity = $_POST['quantity'];
-    $description = $_POST['description'];
+        $request_id = $_POST['request_id'];
+        $product = $_POST['product'];
+        $quantity = $_POST['quantity'];
+        $description = $_POST['description'];
+        $date = date('Y-m-d H:i:s');
+        $query = "UPDATE `request` SET `product_id`='$product',`request_quantity`='$quantity',`description`='$description', `request_date`='$date' WHERE `request_id`='$request_id'";
+        $query_run = mysqli_query($con,$query);
+        if($query_run){
+            $_SESSION['status'] = "Request Updated Successfully";
+            $_SESSION['status_code'] = "success";
+            header("Location: " . base_url . "farmer/home/request");
+            exit(0);
+        }
+        else{
+            $_SESSION['status'] = "SOMETHING WENT WRONG!";
+            $_SESSION['status_code'] = "error";
+            header("Location: " . base_url . "farmer/home/request");
+            exit(0);
+        }
+    }
 
-  
-      $query = "UPDATE `request` SET `product_id`='$product',`request_quantity`='$quantity',`description`='$description' WHERE `request_id`='$request_id'";
-      $query_run = mysqli_query($con,$query);
-  
-      if($query_run)
-      {
-          $_SESSION['status'] = "Request Updated Successfully";
-          $_SESSION['status_code'] = "success";
-          header("Location: " . base_url . "farmer/home/request");
-          exit(0);
-      }
-      else{
-          $_SESSION['status'] = "SOMETHING WENT WRONG!";
-          $_SESSION['status_code'] = "error";
-          header("Location: " . base_url . "farmer/home/request");
-          exit(0);
-      }
-  }
+    // if(isset($_POST['delete_concern'])){
+    //     $id = $_POST['delete_concern'];
+    //     $query = "DELETE FROM `concern` WHERE concern_id = '$id'";
+    //     $query_run = mysqli_query($con,$query);
+    
+    //     if($query_run){
+    //         $_SESSION['status'] = "Concern Deleted Successfully";
+    //         $_SESSION['status_code'] = "success";
+    //         header("Location: " . base_url . "farmer/home/concern");
+    //         exit(0);
+    //     }
+    //     else{
+    //         $_SESSION['status'] = "SOMETHING WENT WRONG!";
+    //         $_SESSION['status_code'] = "error";
+    //         header("Location: " . base_url . "farmer/home/concern");
+    //         exit(0);
+    //     }
+    // }
 
-  if(isset($_POST['delete_concern'])){
-
-    $id = $_POST['delete_concern'];
-
-  
-      $query = "DELETE FROM `concern` WHERE concern_id = '$id'";
-      $query_run = mysqli_query($con,$query);
-  
-      if($query_run)
-      {
-          $_SESSION['status'] = "Concern Deleted Successfully";
-          $_SESSION['status_code'] = "success";
-          header("Location: " . base_url . "farmer/home/concern");
-          exit(0);
-      }
-      else{
-          $_SESSION['status'] = "SOMETHING WENT WRONG!";
-          $_SESSION['status_code'] = "error";
-          header("Location: " . base_url . "farmer/home/concern");
-          exit(0);
-      }
-  }
+    if(isset($_POST['delete_concern'])){
+        $id = $_POST['delete_concern'];
+        $query = "UPDATE `concern` SET concern_status = 2 WHERE concern_id = '$id'";
+        $query_run = mysqli_query($con,$query);
+    
+        if($query_run){
+            $_SESSION['status'] = "Concern deleted successfully";
+            $_SESSION['status_code'] = "success";
+            header("Location: " . base_url . "farmer/home/concern");
+            exit(0);
+        }
+        else{
+            $_SESSION['status'] = "Something went wrong!";
+            $_SESSION['status_code'] = "error";
+            header("Location: " . base_url . "farmer/home/concern");
+            exit(0);
+        }
+    }
 
 if(isset($_POST['update_account'])){
     $user_id= $_POST['user_id'];
@@ -797,10 +825,7 @@ if(isset($_POST["add_report"])){
         }
     }
 
-    $date = new DateTime();
-    $date->setTimezone(new DateTimeZone('UTC'));
-    $report_date = $date->format('Y-m-d H:i:s');
-
+    $report_date = date('Y-m-d H:i:s');
     $message = $_POST['message'];
     $status = 1;
 
@@ -1062,11 +1087,7 @@ if(isset($_POST["update_report"])){
             header("Location: " . base_url . "farmer/home/report");
         }
     }
-
-    $date = new DateTime();
-    $date->setTimezone(new DateTimeZone('UTC'));
-    $report_date = $date->format('Y-m-d H:i:s');
-
+    $report_date = date('Y-m-d H:i:s');
     $message = $_POST['message'];
     $status = 1;
 
@@ -1329,11 +1350,7 @@ if(isset($_POST["update_concern"])){
             header("Location: " . base_url . "farmer/home/concern");
         }
     }
-
-    $date = new DateTime();
-    $date->setTimezone(new DateTimeZone('UTC'));
-    $concern_date = $date->format('Y-m-d H:i:s');
-
+    $concern_date = date('Y-m-d H:i:s');
     $message = $_POST['message'];
     $status = 1;
 

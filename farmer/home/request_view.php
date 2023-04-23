@@ -1,81 +1,203 @@
-<?php include('../includes/header.php'); ?>
+<?php
+    include('../includes/header.php');
+?>
+
 <ol class="breadcrumb mb-4">    
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Request</li>
-    <li class="breadcrumb-item">View Request</li>
+    <li class="breadcrumb-item">View</li>
 </ol>
-<div class="container-fluid px-4">
+<?php
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $sql = "SELECT
+        *, DATE_FORMAT(request.request_date, '%m-%d-%Y %h:%i:%s %p') as short_date_created,
+		DATE_FORMAT(request.request_updated, '%m-%d-%Y %h:%i:%s %p') as short_date_updated
+        FROM
+        request
+        INNER JOIN
+        user
+        ON 
+        request.user_id = user.user_id
+        INNER JOIN
+        product
+        ON 
+        request.product_id = product.product_id
+        WHERE
+        request.request_id = '$id' AND request_status != 2";
+        
+        $sql_run = mysqli_query($con, $sql);
+        if(mysqli_num_rows($sql_run) > 0){
+            foreach($sql_run as $row){
+?>
     <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="border-bottom:0px !important">
+                    <h5>View Farmer Request</h5>
+                </div>
+            </div>
+            <br>
+        </div>
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h5>Request information</h5>
                 </div>
                 <div class="card-body">
-                    <?php
-                        if(isset($_GET['id'])){
-                            $id = $_GET['id'];
-                            $users = "SELECT * FROM request WHERE request_id='$id' ";
-                            $users_run = mysqli_query($con, $users);
-
-                            if(mysqli_num_rows($users_run) > 0){
-                                foreach($users_run as $user){
-                    ?>
                     <div class="row"> 
                         <div class="col-md-6 mb-3">
-                            <?php
-                                $sql = "SELECT * FROM `product`";
-                                $all_categories = mysqli_query($con,$sql);
-                            ?>
-                            <label for="">Product:</label>
-                            <select disabled class="form-control">
-                                <?php
-                                    // use a while loop to fetch data
-                                    // from the $all_categories variable
-                                    // and individually display as an option
-                                    while ($category = mysqli_fetch_array(
-                                            $all_categories,MYSQLI_ASSOC)):;
-                                ?>
-                                    <option value="<?php echo $category["product_id"];
-                                        // The value we usually set is the primary key
-                                    ?>">
-                                        <?php echo $category["product_name"];
-                                            // To show the category name to the user
-                                        ?>
-                                    </option>
-                                <?php
-                                    endwhile;
-                                    // While loop must be terminated
-                                ?>
-                            </select>
+                            <label for="">Request Product</label>
+                            <input class="form-control" type="text" value="<?= $row['product_name']; ?>" readonly>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="">Quantity</label>
-                            <input disabled type="text" value="<?=$user['request_quantity'];?>" class="form-control">
+                            <label for="">Product Image</label>
+                            <br>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo'])){
+                                        echo base_url . 'assets/img/products/' . $row['photo'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo'])){
+                                            echo base_url . 'assets/img/products/' . $row['photo'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo1'])){
+                                        echo base_url . 'assets/img/products/' . $row['photo1'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo1'])){
+                                            echo base_url . 'assets/img/products/' . $row['photo1'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo2'])){
+                                        echo base_url . 'assets/img/products/' . $row['photo2'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo2'])){
+                                            echo base_url . 'assets/img/products/' . $row['photo2'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover;">
+                            </a>
+                            <a href="
+                                <?php
+                                    if(isset($row['photo3'])){
+                                        echo base_url . 'assets/img/products/' . $row['photo3'];
+                                    } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="PRODUCT: <?php echo $row['product_name']; ?>">
+                                <img class="zoom img-fluid img-bordered-sm"
+                                src="
+                                    <?php
+                                        if(isset($row['photo3'])){
+                                            echo base_url . 'assets/img/products/' . $row['photo3'];
+                                        } else { echo base_url . 'assets/img/system/no-image.png'; }
+                                    ?>
+                                " alt="image" style="height: 100px; max-width: 160px; object-fit: cover;">
+                            </a>
                         </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="">Request Quantity</label>
+                            <input class="form-control"  value="<?=$row['request_quantity']; ?>" readonly>
+                        </div>
+
 
                         <div class="col-md-12 mb-3">
                             <label for="Description">Description</label>
-                            <textarea placeholder="Enter Description" disabled type="text" class="form-control" rows="3"><?=$user['description'];?></textarea>
+                            <textarea placeholder="Enter Description" class="form-control" readonly rows="5"> <?= $row['description']; ?></textarea>
                         </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="">Request Date</label>
+                            <input type="datetime" class="form-control" type="text" value="<?= $row['short_date_created']; ?>" readonly>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="">Status</label>
+                            <select disabled class="form-control" onchange="showTextarea()">
+                                <option value="" selected disabled>Select Status</option>
+                                <option value="1" <?= isset($row['status_id']) && $row['status_id'] == '1' ? 'selected' : '' ?>>Pending</option>
+                                <option value="2" <?= isset($row['status_id']) && $row['status_id'] == '2' ? 'selected' : '' ?>>Approved</option>
+                                <option value="3" <?= isset($row['status_id']) && $row['status_id'] == '3' ? 'selected' : '' ?>>Deny</option>
+                            </select>
+                        </div>
+                        <?php if ($row['status_id'] == 3){ ?>
+                            <div class="col-md-12 mb-3" id="textarea-container">
+                                <label for="">Reason why deny</label>
+                                <textarea disabled class="form-control" rows="5"><?= $row['reason']; ?></textarea>
+                            </div>
+                        <?php } ?>
+                        <?php if ($row['status_id'] == 2){ ?>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Approved Date</label>
+                                <input type="datetime" class="form-control"  value="<?=$row['short_date_updated']; ?>" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Approved By</label>
+                                <input type="datetime" class="form-control"  value="<?=$row['person']; ?>" readonly>
+                            </div>
+                        <?php } ?>
+                        <?php if ($row['status_id'] == 3){ ?>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Deny Date</label>
+                                <input type="datetime" class="form-control"  value="<?=$row['short_date_updated']; ?>" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Deny By</label>
+                                <input type="datetime" class="form-control"  value="<?=$row['person']; ?>" readonly>
+                            </div>
+                        <?php } ?>
                     </div>
-                    <?php
-                            }
-                        }
-                        else{
-                    ?>
-                        <h4>No Record Found!</h4>
-                    <?php } } ?>
                 </div>
             </div>
             <br>
                 <div class="text-right">
-                    <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
                 </div>
             <br>
         </div>
     </div>
-</div>
+<?php } ?>
+<?php
+    } }
+    else{
+?>
+    <h4>No Record Found!</h4>
+<?php }  ?>
 
-<?php include('../includes/footer.php'); ?>
+<?php include('../includes/footer.php');?>
+<script>
+    function showTextarea() {
+        var status = document.getElementsByName('status')[0].value;
+        var container = document.getElementById('textarea-container');
+        var textarea = container.getElementsByTagName('textarea')[0];
+        if (status == 3) {
+            container.style.display = 'block';
+            textarea.setAttribute('required', true);
+        } else {
+            container.style.display = 'none';
+            textarea.removeAttribute('required');
+            textarea.value = '';
+        }
+    }
+</script>

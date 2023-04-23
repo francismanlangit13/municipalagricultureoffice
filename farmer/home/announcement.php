@@ -23,7 +23,7 @@
           <tbody>
             <?php
               //$query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE announcement.ann_date >= DATE_SUB(NOW(), INTERVAL 10 DAY) ORDER BY announcement.ann_date DESC";
-              $query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE announcement.ann_date <= NOW() ORDER BY announcement.ann_date DESC";
+              $query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE ann_status = 'Posted' AND ann_deleted = 0 AND announcement.ann_date <= NOW() ORDER BY announcement.ann_date DESC";
               $query_run = mysqli_query($con, $query);
               $check_announcement = mysqli_num_rows($query_run) > 0;
 
@@ -57,6 +57,17 @@
                 <?php } elseif ($row['short_date'] >= date('m-d-Y', strtotime('-7 days'))){ ?>
                   <div class="card mt-3" style="background-color: #ff947fe6; border: 1.5px solid #000000 !important; color:black !important;">
                     <div class="card-header" style="display:grid;align-items:center; grid-template-columns:1fr 1fr 0fr; column-gap:5px; background-color: #ff947f;">Title: <?php echo $row['ann_title']; ?>
+                      <span class="text-right">Date: <?php echo $row['short_date']; ?></span>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title"><?php echo $row['ann_body']; ?></h5>
+                      <br>
+                      <p class="card-text">Announced by: <?php echo $row['fname'];?> <?php echo $row['lname'];?></p>
+                    </div>
+                  </div>
+                <?php } else{ ?>
+                  <div class="card mt-3" style="background-color: #b1b1b196; border: 1.5px solid #000000 !important; color:black !important;">
+                    <div class="card-header" style="display:grid;align-items:center; grid-template-columns:1fr 1fr 0fr; column-gap:5px; background-color: #b1b1b1;">Title: <?php echo $row['ann_title']; ?>
                       <span class="text-right">Date: <?php echo $row['short_date']; ?></span>
                     </div>
                     <div class="card-body">
