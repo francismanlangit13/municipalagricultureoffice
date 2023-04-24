@@ -10,7 +10,7 @@
 <ol class="breadcrumb mb-4">    
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Farmer</li>
-    <li class="breadcrumb-item">Update Account</li>
+    <li class="breadcrumb-item">Update</li>
 </ol>
 <?php
     if(isset($_GET['id'])){
@@ -399,11 +399,26 @@
 <?php
         }
     }
-    else{ ?>
-        <h4>No Record Found!</h4>
-    <?php }
-    }
+    else{
 ?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Farmer information</h5>
+                </div>
+                <div class="card-body">
+                    <h4>No Record Found!</h4>
+                </div>
+            </div>
+            <br>
+                <div class="text-right">
+                    <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                </div>
+            <br>
+        </div>
+    </div>
+<?php } } ?>
 
 <?php include('../includes/footer.php');?>
 

@@ -10,7 +10,7 @@
 <ol class="breadcrumb mb-4">    
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Farmer</li>
-    <li class="breadcrumb-item">Add Account</li>
+    <li class="breadcrumb-item">Add</li>
 </ol>
 <form action="code.php" method="POST" autocomplete="off" enctype="multipart/form-data">
     <div class="row justify-content-center">

@@ -6,7 +6,7 @@
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Accounts</li>
     <li class="breadcrumb-item">User</li>
-    <li class="breadcrumb-item">Add User Account</li>
+    <li class="breadcrumb-item">Add</li>
 </ol>
 <form action="code.php" method="POST" enctype="multipart/form-data" >  
     <div class="row justify-content-center">

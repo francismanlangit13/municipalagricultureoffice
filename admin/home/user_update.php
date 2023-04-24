@@ -6,8 +6,17 @@
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Accounts</li>
     <li class="breadcrumb-item">User</li>
-    <li class="breadcrumb-item">Update User Account</li>
+    <li class="breadcrumb-item">Update</li>
 </ol>
+<?php
+    if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM user WHERE user_id='$id' AND user_status != 3 AND user_type != 3";
+        $sql_run = mysqli_query($con, $sql);
+
+        if(mysqli_num_rows($sql_run) > 0) {
+            foreach($sql_run as $row){
+?>
 <form action="code.php" method="POST" enctype="multipart/form-data" >  
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -16,17 +25,6 @@
                     <h5>User information</h5>
                 </div>
                 <div class="card-body">
-
-                    <?php
-                        if(isset($_GET['id'])) {
-                            $id = $_GET['id'];
-                            $sql = "SELECT * FROM user WHERE user_id='$id' AND user_status != 3 AND user_type != 3";
-                            $sql_run = mysqli_query($con, $sql);
-
-                            if(mysqli_num_rows($sql_run) > 0) {
-                                foreach($sql_run as $row){
-                    ?>
-
                     <input type="hidden" name="user_id" value="<?=$row['user_id'];?>">
                     <div class="row"> 
                         <div class="col-md-3 mb-3">
@@ -126,17 +124,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <?php
-                        }
-                        }
-                        else {
-                    ?>
-                            <h4>No Record Found!</h4>
-                    <?php
-                            }
-                        }
-                    ?>
                 </div>
             </div>
         </div>
@@ -148,6 +135,29 @@
         </div>
     <br>
 </form>
+<?php
+        }
+    }
+    else{
+?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>User information</h5>
+                </div>
+                <div class="card-body">
+                    <h4>No Record Found!</h4>
+                </div>
+            </div>
+            <br>
+                <div class="text-right">
+                    <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                </div>
+            <br>
+        </div>
+    </div>
+<?php } } ?>
 
 <?php include('../includes/footer.php');?>
 

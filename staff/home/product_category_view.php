@@ -8,21 +8,21 @@
         <li class="breadcrumb-item">Category</li>
         <li class="breadcrumb-item">View</li>
     </ol>
+    <?php
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+            $users = "SELECT * FROM product_category WHERE product_category_id='$id' AND product_category_status !=2";
+            $users_run = mysqli_query($con, $users);
+            if(mysqli_num_rows($users_run) > 0){
+                foreach($users_run as $user){
+    ?>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Add Category</h5>
+                    <h5>Category information</h5>
                 </div>
                 <div class="card-body">
-                    <?php
-                        if(isset($_GET['id'])){
-                            $id = $_GET['id'];
-                            $users = "SELECT * FROM product_category WHERE product_category_id='$id' AND product_category_status !=2";
-                            $users_run = mysqli_query($con, $users);
-                            if(mysqli_num_rows($users_run) > 0){
-                                foreach($users_run as $user){
-                    ?>
                     <input type="hidden" name="user_id" value="<?=$user['product_category_id'];?>">
                     <div class="row"> 
                         <div class="col-md-12 mb-3">
@@ -34,16 +34,6 @@
                             <textarea disabled placeholder="Enter Description" value="<?= $user['category_description']; ?>" class="form-control" rows="5"><?= $user['category_description']; ?></textarea>
                         </div>
                     </div>
-                    <?php
-                            }
-                        }
-                        else{
-                    ?>
-                        <h4>No Record Found!</h4>
-                    <?php
-                            }
-                        }
-                    ?>
                 </div>
             </div>
             <br>
@@ -53,6 +43,29 @@
             <br>
         </div>
     </div>
+    <?php
+            }
+        }
+        else{
+    ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Category information</h5>
+                    </div>
+                    <div class="card-body">
+                        <h4>No Record Found!</h4>
+                    </div>
+                </div>
+                <br>
+                    <div class="text-right">
+                        <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                    </div>
+                <br>
+            </div>
+        </div>
+    <?php } } ?>
 </form>
 
 <?php include('../includes/footer.php');?>

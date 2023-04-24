@@ -5,6 +5,14 @@
     <li class="breadcrumb-item">Products</li>
     <li class="breadcrumb-item">Update Products</li>
 </ol>
+<?php
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM product WHERE product_id='$id' AND product_status != 3";
+        $sql_run = mysqli_query($con, $sql);
+        if(mysqli_num_rows($sql_run) > 0){
+            foreach($sql_run as $row){
+?>
 <form action="code.php" method="post" autocomplete="off" enctype="multipart/form-data">  
     <div class="row">
         <div class="col-md-12">
@@ -13,14 +21,6 @@
                     <h5>Product information</h5>
                 </div>
                 <div class="card-body">
-                    <?php
-                        if(isset($_GET['id'])){
-                            $id = $_GET['id'];
-                            $sql = "SELECT * FROM product WHERE product_id='$id' AND product_status != 3";
-                            $sql_run = mysqli_query($con, $sql);
-                            if(mysqli_num_rows($sql_run) > 0){
-                                foreach($sql_run as $row){
-                    ?>
                     <input type="hidden" name="product_id" value="<?=$row['product_id'];?>">
                     <div class="row"> 
                         <div class="col-md-6 mb-3">
@@ -186,19 +186,7 @@
                                 <input type="hidden" name="status" id="myValue" value="<?= $row['product_status']; ?>">
                             </div>
                         </div>
-        
                     </div>
-                                                   
-                    <?php
-                                }
-                            }
-                        else{
-                    ?>
-                        <h4>No Record Found!</h4>
-                    <?php
-                            }
-                        }
-                    ?>
                 </div>
             </div>
             <br>
@@ -210,6 +198,29 @@
         </div>
     </div>
 </form>
+<?php
+        }
+    }
+    else{
+?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Product information</h5>
+                </div>
+                <div class="card-body">
+                    <h4>No Record Found!</h4>
+                </div>
+            </div>
+            <br>
+                <div class="text-right">
+                    <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                </div>
+            <br>
+        </div>
+    </div>
+<?php } } ?>
 
 <?php include('../includes/footer.php');?>
 

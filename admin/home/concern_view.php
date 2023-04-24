@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" style="border-bottom:0px !important">
-                        <h5>View Farmer Report</h5>
+                        <h5>View Farmer Concern</h5>
                     </div>
                 </div>
                 <br>
@@ -124,17 +124,17 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Report information</h5>
+                        <h5>Concern information</h5>
                     </div>
                     <div class="card-body">
                         <div class="row"> 
                             <div class="col-md-12 mb-3">
-                                <label for="">Report Message</label>
+                                <label for="">Concern Message</label>
                                 <textarea class="form-control" type="text" rows="5" readonly><?= $row['message']; ?></textarea>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="" style="position:inherit;left:-7px;">Report Images</label>
+                                <label for="" style="position:inherit;left:-7px;">Attachments</label>
                                 <br>
                                 <a href="
                                     <?php
@@ -142,7 +142,7 @@
                                             if(!empty($row['photo'])) {
                                                 echo base_url . 'assets/img/concerns/' . $row['photo'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                     <img class="zoom img-fluid img-bordered-sm"
                                     src="
                                         <?php
@@ -159,7 +159,7 @@
                                             if(!empty($row['photo1'])) {
                                                 echo base_url . 'assets/img/concerns/' . $row['photo1'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                     <img class="zoom img-fluid img-bordered-sm"
                                     src="
                                         <?php
@@ -176,7 +176,7 @@
                                             if(!empty($row['photo2'])) {
                                                 echo base_url . 'assets/img/concerns/' . $row['photo2'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                     <img class="zoom img-fluid img-bordered-sm"
                                     src="
                                         <?php
@@ -193,7 +193,7 @@
                                             if(!empty($row['photo3'])) {
                                                 echo base_url . 'assets/img/concerns/' . $row['photo3'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                     <img class="zoom img-fluid img-bordered-sm"
                                     src="
                                         <?php
@@ -210,7 +210,7 @@
                                             if(!empty($row['photo4'])) {
                                                 echo base_url . 'assets/img/concerns/' . $row['photo4'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                     <img class="zoom img-fluid img-bordered-sm"
                                     src="
                                         <?php
@@ -227,7 +227,7 @@
                                             if(!empty($row['video'])) {
                                                 echo base_url . 'assets/img/concerns/' . $row['video'];
                                         } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                    ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                     <video class="zoom img-fluid img-bordered-sm"
                                     src="
                                         <?php
@@ -242,7 +242,7 @@
                             </div>
 
                             <div class="col-md-3 mb-3">
-                                <label for="">Date of Report</label>
+                                <label for="">Date of Concern</label>
                                 <input type="datetime" class="form-control" type="text" value="<?= $row['short_date_created']; ?>" readonly>
                             </div>
 
@@ -276,7 +276,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" style="border-bottom:0px !important">
-                    <h5>View Farmer Report</h5>
+                    <h5>View Farmer Concern</h5>
                 </div>
             </div>
             <br>
@@ -369,17 +369,17 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Report information</h5>
+                    <h5>Concern information</h5>
                 </div>
                 <div class="card-body">
                     <div class="row"> 
                         <div class="col-md-12 mb-3">
-                            <label for="">Report Message</label>
+                            <label for="">Concern Message</label>
                             <textarea class="form-control" type="text" rows="5" readonly><?= $row['message']; ?></textarea>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="" style="position:inherit;left:-7px;">Report Images</label>
+                            <label for="" style="position:inherit;left:-7px;">Attachments</label>
                             <br>
                             <a href="
                                 <?php
@@ -387,7 +387,7 @@
                                         if(!empty($row['photo'])) {
                                             echo base_url . 'assets/img/concerns/' . $row['photo'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
@@ -404,7 +404,7 @@
                                         if(!empty($row['photo1'])) {
                                             echo base_url . 'assets/img/concerns/' . $row['photo1'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
@@ -421,7 +421,7 @@
                                         if(!empty($row['photo2'])) {
                                             echo base_url . 'assets/img/concerns/' . $row['photo2'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
@@ -438,7 +438,7 @@
                                         if(!empty($row['photo3'])) {
                                             echo base_url . 'assets/img/concerns/' . $row['photo3'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
@@ -455,7 +455,7 @@
                                         if(!empty($row['photo4'])) {
                                             echo base_url . 'assets/img/concerns/' . $row['photo4'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
@@ -472,7 +472,7 @@
                                         if(!empty($row['video'])) {
                                             echo base_url . 'assets/img/concerns/' . $row['video'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="REPORT: <?php echo $row['message']; ?>">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="FARMER: <?php echo $row['fname']; ?> <?php echo $row['mname']; ?> <?php echo $row['lname']; ?> <?php echo $row['suffix']; ?> <br> CONCERN: <?php echo $row['message']; ?>">
                                 <video class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
@@ -487,7 +487,7 @@
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <label for="">Date of Report</label>
+                            <label for="">Date of Concern</label>
                             <input type="datetime" class="form-control" type="text" value="<?= $row['short_date_created']; ?>" readonly>
                         </div>
 
@@ -538,10 +538,27 @@
     </div>
 <?php } ?>
 <?php
-    } }
+        }
+    }
     else{
 ?>
-    <h4>No Record Found!</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Concern information</h5>
+                </div>
+                <div class="card-body">
+                    <h4>No Record Found!</h4>
+                </div>
+            </div>
+            <br>
+                <div class="text-right">
+                    <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+                </div>
+            <br>
+        </div>
+    </div>
 <?php } } ?>
 
 <?php include('../includes/footer.php');?>

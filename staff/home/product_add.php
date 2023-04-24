@@ -3,7 +3,7 @@
 <ol class="breadcrumb mb-4">    
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Products</li>
-    <li class="breadcrumb-item">Add Product</li>
+    <li class="breadcrumb-item">Add</li>
 </ol>
 <form action="code.php" method="post" autocomplete="off" enctype="multipart/form-data">
     <div class="row">

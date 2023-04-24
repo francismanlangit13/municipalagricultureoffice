@@ -6,7 +6,7 @@
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Other</li>
     <li class="breadcrumb-item">Announcement</li>
-    <li class="breadcrumb-item">Add Announcement</li>
+    <li class="breadcrumb-item">Add</li>
 </ol>
 <form action="code.php" method="post" autocomplete="off" enctype="multipart/form-data">  
     <div class="row">
