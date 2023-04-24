@@ -34,15 +34,40 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url ?>assets/fonts/icomoon/style.css">
   </head>
-
   <?php
     if(isset($_SESSION['auth'])){
+      if ($_SESSION['auth_role'] == "1"){
         if(!isset($_SESSION['status'])){
-            $_SESSION['status'] = "You are already logged in";
+          $_SESSION['status'] = "You are already logged in";
+          $_SESSION['status_code'] = "error";
+        }
+        header("Location: " . base_url . "admin");
+        exit(0);
+      }
+      elseif ($_SESSION['auth_role'] == "2"){
+        if(!isset($_SESSION['status'])){
+          $_SESSION['status'] = "You are already logged in";
+          $_SESSION['status_code'] = "error";
+        }
+        header("Location: " . base_url . "staff");
+        exit(0);
+      }
+      elseif ($_SESSION['auth_role'] == "3"){
+        if(!isset($_SESSION['status'])){
+          $_SESSION['status'] = "You are already logged in";
+          $_SESSION['status_code'] = "error";
+        }
+        header("Location: " . base_url . "farmer");
+        exit(0);
+      }
+      else{
+        if(!isset($_SESSION['status'])){
+            $_SESSION['status'] = "Login first to access dashboard";
             $_SESSION['status_code'] = "error";
         }
-        header("Location: ../admin/index.php");
+        header("Location: " . base_url . "login");
         exit(0);
+      }
     }
   ?>
   <body>
