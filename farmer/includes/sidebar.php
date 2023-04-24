@@ -13,7 +13,7 @@
                 class="img-fluid-logo navbar-brand" style="width:4vh; margin-right:0rem !important;">
         </div>
         <div class="sidebar-brand mx-1" id="myDashboard" style="display:block; font-size: 0.8rem !important;">
-            <sup>MAO</sup>JIMENEZ<br><sup>FARMER</sup>
+            MAO JIMENEZ<br><sup>FARMER</sup>
         </div>
     </a>
 
