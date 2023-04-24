@@ -1,6 +1,6 @@
 
 <?php
-  require_once '../../phpqrcode/qrlib.php';
+  require_once '../../assets/phpqrcode/qrlib.php';
   include('../includes/header.php');
 
   // Retrieve the username and password from the database

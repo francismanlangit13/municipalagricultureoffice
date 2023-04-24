@@ -15,6 +15,9 @@
     <!-- Title Page -->
     <title>Municipal Agriculture Office Jimenez | Farmer</title>
 
+    <!-- Remove Banner -->
+    <script src="<?php echo base_url ?>assets/js/fwhabannerfix.js"></script>
+
     <!-- Favicons -->
     <link rel="shortcut icon" href="<?php echo base_url ?>assets/img/system/favicon.png" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url ?>assets/img/system/favicon.png">

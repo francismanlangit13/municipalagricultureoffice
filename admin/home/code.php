@@ -3,6 +3,10 @@
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\Exception;
 
+  require '../../assets/PHPMailer/src/Exception.php';
+  require '../../assets/PHPMailer/src/PHPMailer.php';
+  require '../../assets/PHPMailer/src/SMTP.php';
+
   if(isset($_POST['logout_btn'])){
       // session_destroy();
       unset( $_SESSION['auth']);
@@ -1717,8 +1721,8 @@
       }
       else{
         if (is_uploaded_file($_FILES["backup_file"]["tmp_name"])) {
-          move_uploaded_file($_FILES["backup_file"]["tmp_name"],'../../database/'.$_FILES["backup_file"]["name"]);
-          $response = restoreMysqlDB('../../database/'.$_FILES["backup_file"]["name"], $con);
+          move_uploaded_file($_FILES["backup_file"]["tmp_name"],'../../assets/database/'.$_FILES["backup_file"]["name"]);
+          $response = restoreMysqlDB('../../assets/database/'.$_FILES["backup_file"]["name"], $con);
         }
       }
     }

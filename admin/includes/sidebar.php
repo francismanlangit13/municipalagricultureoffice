@@ -9,7 +9,7 @@
                 class="img-fluid-logo navbar-brand" style="width:4vh; margin-right:0rem !important;">
         </div>
         <div class="sidebar-brand mx-1" id="myDashboard" style="display:block; font-size: 0.8rem !important;">
-            <sup>MAO</sup>JIMENEZ
+            <sup>MAO</sup>JIMENEZ<br><sup>ADMIN</sup>
         </div>
     </a>
 

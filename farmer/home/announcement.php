@@ -23,7 +23,7 @@
           <tbody>
             <?php
               //$query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE announcement.ann_date >= DATE_SUB(NOW(), INTERVAL 10 DAY) ORDER BY announcement.ann_date DESC";
-              $query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE ann_status = 'Posted' AND ann_deleted = 0 AND announcement.ann_date <= NOW() ORDER BY announcement.ann_date DESC";
+              $query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y %h:%i:%s %p') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE ann_status = 'Posted' AND ann_deleted = 0 AND announcement.ann_date <= NOW() ORDER BY announcement.ann_date DESC";
               $query_run = mysqli_query($con, $query);
               $check_announcement = mysqli_num_rows($query_run) > 0;
 

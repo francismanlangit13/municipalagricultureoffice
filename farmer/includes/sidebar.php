@@ -1,6 +1,8 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
-
+<?php
+    $user_id = $_SESSION['auth_user']['user_id'];
+?>
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion <?php if(is_mobile){ echo 'toggled'; } else { } ?>" id="accordionSidebar">
 
@@ -11,7 +13,7 @@
                 class="img-fluid-logo navbar-brand" style="width:4vh; margin-right:0rem !important;">
         </div>
         <div class="sidebar-brand mx-1" id="myDashboard" style="display:block; font-size: 0.8rem !important;">
-            <sup>MAO</sup>JIMENEZ
+            <sup>MAO</sup>JIMENEZ<br><sup>FARMER</sup>
         </div>
     </a>
 
@@ -56,23 +58,55 @@
         </a>
     </li>
 
-
+    <?php
+        // Count the number of records that have a "pending" status
+        $sql2 = "SELECT COUNT(*) AS num_request FROM request WHERE user_id = '$user_id' AND status_id != '1' AND request_status = 1";
+        $result2 = mysqli_query($con, $sql2);
+        $row2 = mysqli_fetch_assoc($result2);
+        $num_request = $row2['num_request'];
+    ?>
     <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_update.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/request">
+            <?php if($num_request == 0) { } else{ ?>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter new-request count-request"><?php if ($num_request >= 99){ echo "99+";} else { echo $num_request; } ?></span>
+            <?php } ?>
             <i class="fa fa-archive"></i>
             <span>Request</span>
         </a>
     </li>
 
+    <?php
+        // Count the number of records that have a "pending" status
+        $sql1 = "SELECT COUNT(*) AS num_report FROM report WHERE user_id = '$user_id' AND status_id != '1' AND report_status = 1";
+        $result1 = mysqli_query($con, $sql1);
+        $row1 = mysqli_fetch_assoc($result1);
+        $num_report = $row1['num_report'];
+    ?>
     <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_update.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/report">
+            <?php if($num_report == 0) { } else{ ?>
+                <!-- Counter - Alerts -->
+                <span class="badge-new badge-danger badge-counter count-report"><?php if ($num_report >= 99){ echo "99+";} else { echo $num_report; } ?></span>
+            <?php } ?>
             <i class="fa fa-pencil-square"></i>
             <span>Report</span>
         </a>
     </li>
 
+    <?php
+        // Count the number of records that have a "pending" status
+        $sql = "SELECT COUNT(*) AS num_concern FROM concern WHERE user_id = '$user_id' AND status_id != '1' AND concern_status = 1";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $num_concern = $row['num_concern'];
+    ?>
     <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_update.php') !== false)  { echo 'active'; } ?>">
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/concern">
+            <?php if($num_concern == 0) { } else{ ?>
+                <!-- Counter - Alerts -->
+                <span class="badge-old badge-danger badge-counter count-concern"><?php if ($num_concern >= 99){ echo "99+";} else { echo $num_concern; } ?></span>
+            <?php } ?>
             <i class="fa fa-comment"></i>
             <span>Concern</span>
         </a>
@@ -117,31 +151,98 @@
 <!-- End of Sidebar -->
 
 <script>
-function myDashboard() {
-    var x = document.getElementById("myDashboard");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+    function myDashboard() {
+        var x = document.getElementById("myDashboard");
+        if (x.style.display === "none"){
+            x.style.display = "block";
+            var badge = document.querySelector('.badge-new');
+            if (badge && badge.offsetParent !== null){
+                badge.classList.add('count-report');
+            }
+            var newRequest = document.querySelector('.new-request');
+            if(newRequest && newRequest.offsetParent !== null){
+                newRequest.classList.add('count-request');
+            }
+            var newConcern = document.querySelector('.badge-old');
+            if(newConcern && newConcern.offsetParent !== null){
+                newConcern.classList.add('count-concern');
+            }
+        }
+        else {
+            x.style.display = "none";
+            var countRequest = document.querySelector('.count-request');
+            if(countRequest){
+                countRequest.classList.remove('count-request');
+            }
+            var countReport = document.querySelector('.count-report');
+            if(countReport){
+                countReport.classList.remove('count-report');
+            }
+            var countConcern = document.querySelector('.count-concern');
+            if(countConcern){
+                countConcern.classList.remove('count-concern');
+            }
+        }
     }
-}
-// Get the announcement link and the counter alerts element
-const announcementLink = document.querySelector('.nav-link[href="<?php echo base_url ?>farmer/home/announcement"]');
-const counterAlerts = document.querySelector('.count-ann');
+    // Get the announcement link and the counter alerts element
+    const announcementLink = document.querySelector('.nav-link[href="<?php echo base_url ?>farmer/home/announcement"]');
+    const counterAlertsAnnouncement = document.querySelector('.count-ann');
+    // Check if the user has clicked the announcement before
+    if (localStorage.getItem('announcementClicked')) {
+        counterAlertsAnnouncement.style.display = 'none';
+    }
+    // Add a click event listener to the announcement link
+    announcementLink.addEventListener('click', function() {
+        // Hide the counter alerts element
+        counterAlertsAnnouncement.style.display = 'none';
+        // Save the user's click in localStorage
+        localStorage.setItem('announcementClicked', true);
+    });
 
-// Check if the user has clicked the announcement before
-if (localStorage.getItem('announcementClicked')) {
-  counterAlerts.style.display = 'none';
-}
+    // Get the request link and the counter alerts element
+    const requestLink = document.querySelector('.nav-link[href="<?php echo base_url ?>farmer/home/request"]');
+    const counterAlertsRequest = document.querySelector('.count-request');
+    // Check if the user has clicked the request before
+    if (localStorage.getItem('requestClicked')) {
+        counterAlertsRequest.style.display = 'none';
+    }
+    // Add a click event listener to the request link
+    requestLink.addEventListener('click', function() {
+        // Hide the counter alerts element
+        counterAlertsRequest.style.display = 'none';
+        // Save the user's click in localStorage
+        localStorage.setItem('requestClicked', true);
+    });
 
-// Add a click event listener to the announcement link
-announcementLink.addEventListener('click', function() {
-  // Hide the counter alerts element
-  counterAlerts.style.display = 'none';
-  
-  // Save the user's click in localStorage
-  localStorage.setItem('announcementClicked', true);
-});
+    // Get the report link and the counter alerts element
+    const reportLink = document.querySelector('.nav-link[href="<?php echo base_url ?>farmer/home/report"]');
+    const counterAlertsReport = document.querySelector('.count-report');
+    // Check if the user has clicked the report before
+    if (localStorage.getItem('reportClicked')) {
+        counterAlertsReport.style.display = 'none';
+    }
+    // Add a click event listener to the report link
+    reportLink.addEventListener('click', function() {
+        // Hide the counter alerts element
+        counterAlertsReport.style.display = 'none';
+        // Save the user's click in localStorage
+        localStorage.setItem('reportClicked', true);
+    });
+
+    // Get the concern link and the counter alerts element
+    const concernLink = document.querySelector('.nav-link[href="<?php echo base_url ?>farmer/home/concern"]');
+    const counterAlertsConcern = document.querySelector('.count-concern');
+    // Check if the user has clicked the concern before
+    if (localStorage.getItem('concernClicked')) {
+        counterAlertsConcern.style.display = 'none';
+    }
+    // Add a click event listener to the concern link
+    concernLink.addEventListener('click', function() {
+        // Hide the counter alerts element
+        counterAlertsConcern.style.display = 'none';
+        // Save the user's click in localStorage
+        localStorage.setItem('concernClicked', true);
+    });
 </script>
 <?php if(is_mobile){ ?> 
     <style type="text/css">
@@ -167,7 +268,16 @@ announcementLink.addEventListener('click', function() {
 <?php } else { ?>
     <style type="text/css">
         .count-ann{
-            margin-right: 2rem;
+            margin-right: 2rem !important;
+        }
+        .count-request{
+            margin-right: 7rem !important;
+        }
+        .count-report{
+            margin-right: 7.8rem !important;
+        }
+        .count-concern{
+            margin-right: 7.3rem !important;
         }
     </style> 
 <?php } ?>

@@ -3,6 +3,10 @@
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\Exception;
 
+  require '../../assets/PHPMailer/src/Exception.php';
+  require '../../assets/PHPMailer/src/PHPMailer.php';
+  require '../../assets/PHPMailer/src/SMTP.php';
+
   if(isset($_POST['logout_btn'])){
       // session_destroy();
       unset( $_SESSION['auth']);

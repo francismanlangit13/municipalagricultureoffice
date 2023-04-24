@@ -33,6 +33,9 @@
     <meta name="description" content="Grow ECommerce, Inc.">
     <meta name="author" content="">
 
+    <!-- Remove Banner -->
+    <script src="<?php echo base_url ?>assets/js/fwhabannerfix.js"></script>
+
     <!-- Icons for web browsers -->
     <link rel="icon" href="<?php echo base_url ?>assets/img/system/favicon.png">
     <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url ?>assets/img/system/favicon.png">

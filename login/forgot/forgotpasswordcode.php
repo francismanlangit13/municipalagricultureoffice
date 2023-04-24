@@ -4,9 +4,9 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    require '../../PHPMailer/src/Exception.php';
-    require '../../PHPMailer/src/PHPMailer.php';
-    require '../../PHPMailer/src/SMTP.php';
+    require '../../assets/PHPMailer/src/Exception.php';
+    require '../../assets/PHPMailer/src/PHPMailer.php';
+    require '../../assets/PHPMailer/src/SMTP.php';
 
     if(isset($_POST['forgot_btn'])){
         $email = mysqli_real_escape_string($con, $_POST['email']);
@@ -25,20 +25,25 @@
                 $subject = htmlentities('Forgot Password');
                 $message =  nl2br("Good day! \r\n This is your NEW PASSWORD \r\nPassword: $new_password \r\n Please change your password immediately!");
             
-                $mail = new PHPMailer(true);
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
+                require("../../assets/PHPMailer/PHPMailerAutoload.php");
+                require ("../../assets/PHPMailer/class.phpmailer.php");
+                require ("../../assets/PHPMailer/class.smtp.php");
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                //$mail->SMTPDebug = 2; // Debug if the gmail doesn't send email when forgetting password.
                 $mail->SMTPAuth = true;
-                $mail->Username = 'contactmaojimenez@gmail.com';
-                $mail->Password = 'kcexdtybjptxgizm';
-                $mail->Port = 465;
-                $mail->SMTPSecure = 'ssl';
-                $mail->isHTML(true);
+                $mail->SMTPSecure = 'TLS/STARTTLS';
+                $mail->Host = 'smtp.gmail.com'; // Enter your host here
+                $mail->Port = '587';
+                $mail->IsHTML();
+                $mail->Username = 'contactmaojimenez@gmail.com'; // Enter your email here
+                $mail->Password = 'kcexdtybjptxgizm'; //Enter your passwrod here
                 $mail->setFrom($email);
                 $mail->addAddress($_POST['email']);
                 $mail->Subject = ("$email ($subject)");
                 $mail->Body = $message;
                 $mail->send();
+
                 $_SESSION['status'] = "Your new password is now sent in e-mail.";
                 $_SESSION['status_code'] = "success";
                 header("Location: " . base_url . "login/forgot");
