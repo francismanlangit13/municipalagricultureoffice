@@ -96,8 +96,8 @@
 </div>
 
 <?php include('../includes/footer.php');?>
-<script>
+<!-- <script>
   $(document).ready(function(){
     $('#table-desc').trigger('click');
   });
-</script>
+</script> -->
