@@ -3,10 +3,6 @@
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\Exception;
 
-  require '../../PHPMailer/src/Exception.php';
-  require '../../PHPMailer/src/PHPMailer.php';
-  require '../../PHPMailer/src/SMTP.php';
-
   if(isset($_POST['logout_btn'])){
       // session_destroy();
       unset( $_SESSION['auth']);
@@ -352,15 +348,19 @@
               $subject = htmlentities('Username and Password Credentials');
               $message = nl2br("Welcome to MAO System! \r\n \r\n Email: $email \r\n Password: $new_password \r\n \r\n Please change your password immediately.");
               // PHP Mailer
-              $mail = new PHPMailer(true);
-              $mail->isSMTP();
-              $mail->Host = 'smtp.gmail.com';
+              require("../../assets/PHPMailer/PHPMailerAutoload.php");
+              require ("../../assets/PHPMailer/class.phpmailer.php");
+              require ("../../assets/PHPMailer/class.smtp.php");
+              $mail = new PHPMailer();
+              $mail->IsSMTP();
+              //$mail->SMTPDebug = 2; // Debug if the gmail doesn't send email when forgetting password.
               $mail->SMTPAuth = true;
-              $mail->Username = 'contactmaojimenez@gmail.com';
-              $mail->Password = 'kcexdtybjptxgizm';
-              $mail->Port = 465;
-              $mail->SMTPSecure = 'ssl';
-              $mail->isHTML(true);
+              $mail->SMTPSecure = 'TLS/STARTTLS';
+              $mail->Host = 'smtp.gmail.com'; // Enter your host here
+              $mail->Port = '587';
+              $mail->IsHTML();
+              $mail->Username = 'contactmaojimenez@gmail.com'; // Enter your email here
+              $mail->Password = 'kcexdtybjptxgizm'; //Enter your passwrod here
               $mail->setFrom($email, $name);
               $mail->addAddress($_POST['email']);
               $mail->Subject = ("$email ($subject)");
@@ -652,15 +652,19 @@
               $subject = htmlentities('Username and Password Credentials');
               $message = nl2br("Welcome to MAO System! \r\n \r\n Email: $email \r\n Password: $new_password \r\n \r\n Please change your password immediately.");
               // PHP Mailer
-              $mail = new PHPMailer(true);
-              $mail->isSMTP();
-              $mail->Host = 'smtp.gmail.com';
+              require("../../assets/PHPMailer/PHPMailerAutoload.php");
+              require ("../../assets/PHPMailer/class.phpmailer.php");
+              require ("../../assets/PHPMailer/class.smtp.php");
+              $mail = new PHPMailer();
+              $mail->IsSMTP();
+              //$mail->SMTPDebug = 2; // Debug if the gmail doesn't send email when forgetting password.
               $mail->SMTPAuth = true;
-              $mail->Username = 'contactmaojimenez@gmail.com';
-              $mail->Password = 'kcexdtybjptxgizm';
-              $mail->Port = 465;
-              $mail->SMTPSecure = 'ssl';
-              $mail->isHTML(true);
+              $mail->SMTPSecure = 'TLS/STARTTLS';
+              $mail->Host = 'smtp.gmail.com'; // Enter your host here
+              $mail->Port = '587';
+              $mail->IsHTML();
+              $mail->Username = 'contactmaojimenez@gmail.com'; // Enter your email here
+              $mail->Password = 'kcexdtybjptxgizm'; //Enter your passwrod here
               $mail->setFrom($email, $name);
               $mail->addAddress($_POST['email']);
               $mail->Subject = ("$email ($subject)");
@@ -1186,18 +1190,19 @@
       $sql = "SELECT email FROM user WHERE user_type = 3 AND user_status = 1";
       $result = $con->query($sql);
 
-      // Create a new PHPMailer instance
-      $mail = new PHPMailer;
-
-      // Set the SMTP settings
-      $mail->SMTPDebug = 0;
-      $mail->isSMTP();
-      $mail->Host = 'smtp.gmail.com';
+      require("../../assets/PHPMailer/PHPMailerAutoload.php");
+      require ("../../assets/PHPMailer/class.phpmailer.php");
+      require ("../../assets/PHPMailer/class.smtp.php");
+      $mail = new PHPMailer();
+      $mail->IsSMTP();
+      //$mail->SMTPDebug = 2; // Debug if the gmail doesn't send email when forgetting password.
       $mail->SMTPAuth = true;
-      $mail->Username = 'contactmaojimenez@gmail.com';
-      $mail->Password = 'kcexdtybjptxgizm';
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port = 465;
+      $mail->SMTPSecure = 'TLS/STARTTLS';
+      $mail->Host = 'smtp.gmail.com'; // Enter your host here
+      $mail->Port = '587';
+      $mail->IsHTML();
+      $mail->Username = 'contactmaojimenez@gmail.com'; // Enter your email here
+      $mail->Password = 'kcexdtybjptxgizm'; //Enter your passwrod here
 
       if(mysqli_num_rows($ann_result) > 0){
         foreach($ann_result as $row){
