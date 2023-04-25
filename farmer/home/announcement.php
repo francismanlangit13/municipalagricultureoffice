@@ -21,15 +21,24 @@
             </tr>
           </thead>
           <tbody>
-            <?php
-              //$query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE announcement.ann_date >= DATE_SUB(NOW(), INTERVAL 10 DAY) ORDER BY announcement.ann_date DESC";
-              $query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y %h:%i:%s %p') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE ann_status = 'Posted' AND ann_deleted = 0 AND announcement.ann_date <= NOW() ORDER BY announcement.ann_date DESC";
-              $query_run = mysqli_query($con, $query);
-              $check_announcement = mysqli_num_rows($query_run) > 0;
-
-              if($check_announcement){
-                  while($row = mysqli_fetch_array($query_run)){
-            ?>
+          <?php
+            //$query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE announcement.ann_date >= DATE_SUB(NOW(), INTERVAL 10 DAY) ORDER BY announcement.ann_date DESC";
+            $query = "SELECT announcement.*, user.*, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y %h:%i:%s %p') as short_date FROM `announcement` INNER JOIN `user` ON announcement.user_id = user.user_id WHERE ann_status = 'Posted' AND ann_deleted = 0 AND announcement.ann_date <= NOW() ORDER BY announcement.ann_date DESC";
+            $query_run = mysqli_query($con, $query);
+            $check_announcement = mysqli_num_rows($query_run) > 0;
+            if($check_announcement){
+              $data_array = array();
+              while($row = mysqli_fetch_array($query_run)){
+                  $data_array[] = $row;
+              }
+              // sort the array in descending order by announcement date
+              usort($data_array, function($a, $b) {
+                  return strtotime($b['ann_date']) - strtotime($a['ann_date']);
+              });
+              // display the data
+              foreach($data_array as $row){
+                  // your display code here
+          ?>
             <tr>
               <td>
                 <?php if ($row['short_date'] >= date('m-d-Y', strtotime('-2 days'))){ ?>
@@ -101,3 +110,8 @@
     $('#table-desc').trigger('click');
   });
 </script> -->
+<script>
+  $('#dataTable').DataTable({
+      "order": [[ 2, "desc" ]]
+  });
+</script>
