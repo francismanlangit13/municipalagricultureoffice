@@ -41,7 +41,7 @@
                         request.request_quantity, 
                         request.request_date, 
                         status.status_name, 
-                        request.status_id
+                        request.status_id, DATE_FORMAT(request.request_date, '%m-%d-%Y %h:%i:%s %p') as short_date
                         FROM
                         request
                         INNER JOIN
@@ -62,42 +62,151 @@
                         if(mysqli_num_rows($query_run) > 0){
                             foreach($query_run as $row){
                     ?>
-                    <tr>
-                        <td><?= $row['request_id']; ?></td>
-                        <td><?= $row['reference_number']; ?></td>
-                        <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?> <?= $row['suffix']; ?></td>
-                        <td><?= $row['barangay']; ?></td>
-                        <td><?= $row['product_name']; ?></td>
-                        <td><?= $row['request_quantity']; ?></td>
-                        <td>
-                            <?php if($row['status_id'] == 1){ ?>
-                                <span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>
-                            <?php }  else if($row['status_id'] == 2){ ?>
-                                <span class="rounded-pill badge badge-success bg-gradient-success px-3">Approved</span>
-                            <?php } else { ?>
-                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>
-                            <?php } ?>
-                        </td>
-                        <td> 
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-md-12 mb-1" style="zoom:95%">
-                                    <a href="request_view?id=<?=$row['request_id'];?>" class="btn btn-info btn-icon-split"> 
-                                        <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
-                                        <span class="text ml-2 mr-2">View</span>
-                                    </a>
+                    <?php if ($row['short_date'] >= date('m-d-Y', strtotime('-2 days'))){ ?>
+                        <tr style="background-color: #79e179; color:black !important;">
+                            <td><?= $row['request_id']; ?></td>
+                            <td><?= $row['reference_number']; ?></td>
+                            <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?> <?= $row['suffix']; ?></td>
+                            <td><?= $row['barangay']; ?></td>
+                            <td><?= $row['product_name']; ?></td>
+                            <td><?= $row['request_quantity']; ?></td>
+                            <td>
+                                <?php if($row['status_id'] == 1){ ?>
+                                    <span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>
+                                <?php }  else if($row['status_id'] == 2){ ?>
+                                    <span class="rounded-pill badge badge-success bg-gradient-success px-3">Approved</span>
+                                <?php } else { ?>
+                                    <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>
+                                <?php } ?>
+                            </td>
+                            <td> 
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-12 mb-1" style="zoom:95%">
+                                        <a href="request_view?id=<?=$row['request_id'];?>" class="btn btn-info btn-icon-split"> 
+                                            <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                            <span class="text ml-2 mr-2">View</span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 mb-1" style="zoom:103%;">
-                                <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-trash"></i>
-                                    </span>
-                                    <span class="text">Delete</span>
-                                </button>
-                            </div>
-                        </td>
-                    
-                    </tr>
+                                <div class="col-md-12 mb-1" style="zoom:103%;">
+                                    <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } elseif ($row['short_date'] >= date('m-d-Y', strtotime('-5 days'))){ ?>
+                        <tr style="background-color: #ffd57f; color:black !important;">
+                            <td><?= $row['request_id']; ?></td>
+                            <td><?= $row['reference_number']; ?></td>
+                            <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?> <?= $row['suffix']; ?></td>
+                            <td><?= $row['barangay']; ?></td>
+                            <td><?= $row['product_name']; ?></td>
+                            <td><?= $row['request_quantity']; ?></td>
+                            <td>
+                                <?php if($row['status_id'] == 1){ ?>
+                                    <span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>
+                                <?php }  else if($row['status_id'] == 2){ ?>
+                                    <span class="rounded-pill badge badge-success bg-gradient-success px-3">Approved</span>
+                                <?php } else { ?>
+                                    <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>
+                                <?php } ?>
+                            </td>
+                            <td> 
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-12 mb-1" style="zoom:95%">
+                                        <a href="request_view?id=<?=$row['request_id'];?>" class="btn btn-info btn-icon-split"> 
+                                            <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                            <span class="text ml-2 mr-2">View</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-1" style="zoom:103%;">
+                                    <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } elseif ($row['short_date'] >= date('m-d-Y', strtotime('-7 days'))){ ?>
+                        <tr style="background-color: #ff947fe6; color:black !important;">
+                            <td><?= $row['request_id']; ?></td>
+                            <td><?= $row['reference_number']; ?></td>
+                            <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?> <?= $row['suffix']; ?></td>
+                            <td><?= $row['barangay']; ?></td>
+                            <td><?= $row['product_name']; ?></td>
+                            <td><?= $row['request_quantity']; ?></td>
+                            <td>
+                                <?php if($row['status_id'] == 1){ ?>
+                                    <span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>
+                                <?php }  else if($row['status_id'] == 2){ ?>
+                                    <span class="rounded-pill badge badge-success bg-gradient-success px-3">Approved</span>
+                                <?php } else { ?>
+                                    <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>
+                                <?php } ?>
+                            </td>
+                            <td> 
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-12 mb-1" style="zoom:95%">
+                                        <a href="request_view?id=<?=$row['request_id'];?>" class="btn btn-info btn-icon-split"> 
+                                            <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                            <span class="text ml-2 mr-2">View</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-1" style="zoom:103%;">
+                                    <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } else{ ?>
+                        <tr style="background-color: #b1b1b196; color:black !important;">
+                            <td><?= $row['request_id']; ?></td>
+                            <td><?= $row['reference_number']; ?></td>
+                            <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?> <?= $row['suffix']; ?></td>
+                            <td><?= $row['barangay']; ?></td>
+                            <td><?= $row['product_name']; ?></td>
+                            <td><?= $row['request_quantity']; ?></td>
+                            <td>
+                                <?php if($row['status_id'] == 1){ ?>
+                                    <span class="rounded-pill badge badge-secondary bg-gradient-secondary px-3">Pending</span>
+                                <?php }  else if($row['status_id'] == 2){ ?>
+                                    <span class="rounded-pill badge badge-success bg-gradient-success px-3">Approved</span>
+                                <?php } else { ?>
+                                    <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Deny</span>
+                                <?php } ?>
+                            </td>
+                            <td> 
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-12 mb-1" style="zoom:95%">
+                                        <a href="request_view?id=<?=$row['request_id'];?>" class="btn btn-info btn-icon-split"> 
+                                            <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                            <span class="text ml-2 mr-2">View</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-1" style="zoom:103%;">
+                                    <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     <?php
                             }
                         } else{

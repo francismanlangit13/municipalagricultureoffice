@@ -46,7 +46,7 @@
                             foreach($query_run as $row){
                     ?>
                     <?php if ($row['short_date_created'] >= date('m-d-Y', strtotime('-2 days'))){ ?>
-                        <tr style="background-color: aquamarine; border: 1.5px solid #000000 !important; color:black !important;">
+                        <tr style="background-color: #79e179; border: 1.5px solid #000000 !important; color:black !important;">
                             <td><?= $row['report_id']; ?></td>
                             <td><?= $row['reference_number']; ?></td>
                             <td><?= $row['fname']; ?> <?= $row['mname']; ?> <?= $row['lname']; ?></td>
