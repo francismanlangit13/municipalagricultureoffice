@@ -13,6 +13,11 @@
             <i class="fa fa-bars"></i>
         </button>
 
+        <!-- System Time -->
+        <div class="col-md-12 input-group">
+            Date: <?php echo date("M d Y"); ?> (<?php echo date("l"); ?>) System time: <div id="timer" style="margin-left:0.3rem;"></div>
+        </div>
+
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
 
@@ -123,3 +128,25 @@
       max-width: 100%;
     }
 </style>
+<script>
+    setInterval(function(){
+       var xhr = new XMLHttpRequest();
+       xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+             var currentTime = new Date(xhr.responseText);
+             var currentHours = currentTime.getHours();
+             var currentMinutes = currentTime.getMinutes();
+             var currentSeconds = currentTime.getSeconds();
+             currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+             currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+             var timeOfDay = (currentHours < 12) ? "AM" : "PM";
+             currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
+             currentHours = (currentHours == 0) ? 12 : currentHours;
+             var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+             document.getElementById("timer").innerHTML = currentTimeString;
+          }
+       };
+       xhr.open("GET", "../includes/server_time.php", true); // Change "server_time.php" to the actual path of your PHP file
+       xhr.send();
+    }, 1000);
+</script>
