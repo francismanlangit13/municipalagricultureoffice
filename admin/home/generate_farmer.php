@@ -101,7 +101,7 @@
 		</div>
 		<div class="col-8">
 			<h4 class="text-center"><b>Municipal Agriculture Office Jimenez</b></h4>
-			<h3 class="text-center"><b>List of Farmer in Barangay (GATA)</b></h3>
+			<h3 class="text-center"><b>List of Farmer in Barangay (<?php if(isset($_POST['barangay'])) { echo $barangay = $_POST['barangay']; } else { echo "Undefined";} ?>)</b></h3>
 			<br><br>
 		</div>
 		<div class="col-2"></div>
@@ -205,14 +205,30 @@
 							echo '<tr>';
 							echo '<td class="text-center">' . $row['reference_number'] . '</td>';
 							echo '<td class=""><p class="m-0">' . $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix'] . '</p></td>';
-							echo '<td class=""><p class="m-0">' . $row['phone'] . '</p></td>';
-							echo '<td class=""><p class="m-0">' . $row['email'] . '</p></td>';
-							echo '<td class=""><p class="m-0">' . $row['purok'] . '</p></td>';
-							echo '<td class=""><p class="m-0">' . $row['pwd'] . '</p></td>';
-							echo '<td class=""><p class="m-0">' . $row['4ps'] . '</p></td>';
-							echo '<td class=""><p class="m-0">' . $row['ig'] . '</p></td>';
-							echo '<td class=""><p class="m-0">' . $row['farmersassoc'] . '</p></td>';
-							echo '<td class=""><p class="m-0">' . $row['livelihood'] . '</p></td>';
+							if(isset($_POST['Phone'])) { 
+								echo '<td class=""><p class="m-0">' . $row['phone'] . '</p></td>';
+							}
+							if(isset($_POST['Email'])) { 
+								echo '<td class=""><p class="m-0">' . $row['email'] . '</p></td>';
+							}
+							if(isset($_POST['Purok'])) { 
+								echo '<td class=""><p class="m-0">' . $row['purok'] . '</p></td>';
+							}
+							if(isset($_POST['PWD'])) { 
+								echo '<td class=""><p class="m-0">' . $row['pwd'] . '</p></td>';
+							}
+							if(isset($_POST['4ps'])) { 
+								echo '<td class=""><p class="m-0">' . $row['4ps'] . '</p></td>';
+							}
+							if(isset($_POST['Indigenous'])) { 
+								echo '<td class=""><p class="m-0">' . $row['ig'] . '</p></td>';
+							}
+							if(isset($_POST['farmersassoc'])) { 
+								echo '<td class=""><p class="m-0">' . $row['farmersassoc'] . '</p></td>';
+							}
+							if(isset($_POST['Livelihood'])) { 
+								echo '<td class=""><p class="m-0">' . $row['livelihood'] . '</p></td>';
+							}
 							echo '</tr>';
 						}
 					} else {
