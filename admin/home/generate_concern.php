@@ -35,8 +35,10 @@
 							<input type="date" name="to" id="to" value="<?= $to ?>" class="form-control form-control-sm rounded-0">
 						</div>
 						<div class="form-group col-md-4">
-							<button class="btn btn-primary btn-flat btn-sm" id="submit-btn"><i class="fa fa-filter"></i> Filter</button>
-							<button class="btn btn-sm btn-flat btn-success" type="button" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+							<button class="btn btn-primary btn-flat btn-sm" name="submit-btn" id="submit-btn"><i class="fa fa-filter"></i> Filter</button>
+							<button class="btn btn-sm btn-flat btn-secondary" type="button" onclick="window.print()" <?php if(isset($_POST['submit-btn'])) { } else { echo "disabled";} ?>><i class="fa fa-print"></i> Print</button>
+							<button class="btn btn-sm btn-flat btn-success" type="button" id="export-btn-csv" <?php if(isset($_POST['submit-btn'])) { } else { echo "disabled";} ?>><i class="fas fa-file-csv"></i> CSV</button>
+							<button class="btn btn-sm btn-flat btn-danger" type="button" onclick="printPDF()" <?php if(isset($_POST['submit-btn'])) { } else { echo "disabled";} ?>><i class="fas fa-file-pdf"></i> PDF</button>
 						</div>
 					</div>
 				</form>
@@ -52,7 +54,7 @@
 		height: 6.5em;
 	}
 </style>
-<div class="container-fluid">
+<div class="container-fluid" id="capture-PDF">
 	<div class="row">
 		<div class="col-2 d-flex justify-content-center align-items-center">
 			<img src="<?php echo base_url ?>assets/img/system/logo.png" class="img-circle" id="sys_logo" alt="System Logo">
@@ -192,4 +194,65 @@
 		$('#submit-btn').prop('disabled', false);
 		}
 	});
+</script>
+
+<script>
+	// Function to export table as CSV/Excel
+    function exportTableToCSV(filename) {
+        var csv = [];
+        var rows = document.querySelectorAll("table tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var row = [], cols = rows[i].querySelectorAll("td, th");
+
+            for (var j = 0; j < cols.length; j++) {
+                row.push(cols[j].innerText);
+            }
+
+            csv.push(row.join(","));
+        }
+
+        // Download CSV file
+        downloadCSV(csv.join("\n"), filename);
+    }
+
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        csvFile = new Blob([csv], {type: "text/csv"});
+        downloadLink = document.createElement("a");
+        downloadLink.download = filename;
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+    }
+
+    // Export table when clicking on a button
+    var exportBtn = document.querySelector("#export-btn-csv");
+    exportBtn.addEventListener("click", function () {
+        var date = '<?php echo date("Ymd_His"); ?>';
+        var filename = "export_concern-" + date + ".csv";
+        exportTableToCSV(filename);
+    });
+</script>
+
+<script>
+	// Function to export table as PDF
+	function printPDF() {
+		html2canvas(document.getElementById('capture-PDF')).then(function(canvas) {
+			var imgData = canvas.toDataURL('image/png');
+			var imgWidth = 8.5;
+			var pageHeight = imgWidth * canvas.height / canvas.width;
+			var pdf = new jsPDF({
+				orientation: 'portrait',
+				unit: 'in',
+				format: 'letter'
+			});
+			pdf.addImage(imgData, 'PNG', 0, 0.3, imgWidth, pageHeight);
+			var date = '<?php echo date("Ymd_His"); ?>';
+			pdf.save("export_concern-" + date + ".pdf");
+		});
+	}
 </script>
