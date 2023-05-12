@@ -44,7 +44,7 @@
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/announcement">
             <?php if($num_ann == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter count-ann"><?php if ($num_ann >= 99){ echo "99+";} else { echo $num_ann; } ?></span>
+                <span class="badge badge-danger badge-counter count-ann"><?php if ($num_ann >= 9){ echo "9+";} else { echo $num_ann; } ?></span>
             <?php } ?>
             <i class="fa fa-bullhorn"></i>
             <span>View Announcement</span>
@@ -69,7 +69,7 @@
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/request">
             <?php if($num_request == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter new-request count-request"><?php if ($num_request >= 99){ echo "99+";} else { echo $num_request; } ?></span>
+                <span class="badge badge-danger badge-counter new-request count-request"><?php if ($num_request >= 9){ echo "9+";} else { echo $num_request; } ?></span>
             <?php } ?>
             <i class="fa fa-archive"></i>
             <span>Request</span>
@@ -87,7 +87,7 @@
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/report">
             <?php if($num_report == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge-new badge-danger badge-counter count-report"><?php if ($num_report >= 99){ echo "99+";} else { echo $num_report; } ?></span>
+                <span class="badge-new badge-danger badge-counter count-report"><?php if ($num_report >= 9){ echo "9+";} else { echo $num_report; } ?></span>
             <?php } ?>
             <i class="fa fa-pencil-square"></i>
             <span>Report</span>
@@ -105,7 +105,7 @@
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/concern">
             <?php if($num_concern == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge-old badge-danger badge-counter count-concern"><?php if ($num_concern >= 99){ echo "99+";} else { echo $num_concern; } ?></span>
+                <span class="badge-old badge-danger badge-counter count-concern"><?php if ($num_concern >= 9){ echo "9+";} else { echo $num_concern; } ?></span>
             <?php } ?>
             <i class="fa fa-comment"></i>
             <span>Concern</span>
