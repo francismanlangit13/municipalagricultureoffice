@@ -13,9 +13,11 @@
             <i class="fa fa-bars"></i>
         </button>
 
-        <!-- System Time -->
-        <div class="col-md-6 input-group">
-            Date: <?php echo date("M d Y"); ?> (<?php echo date("l"); ?>) System time: <div id="timer" style="margin-left:0.3rem;"></div>
+        <!-- Topbar Search -->
+        <div class="d-none d-md-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <label>Date: <?php echo date("M d Y"); ?> (<?php echo date("l"); ?>) System time: <div id="timer" style="margin-left:0.3rem;"></div></label>
+            </div>
         </div>
 
         <!-- Topbar Navbar -->
