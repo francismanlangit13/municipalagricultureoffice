@@ -180,6 +180,24 @@
       background-color: #fff;
       max-width: 100%;
     }
+    @media (min-width: 276px) {
+        .topbar .dropdown {
+            position:relative
+        }
+
+        .topbar .dropdown .dropdown-menu {
+            width: auto;
+            right: 0
+        }
+
+        .topbar .dropdown-list {
+            width: 20rem!important
+        }
+
+        .topbar .dropdown-list .dropdown-item .text-truncate {
+            max-width: 13.375rem
+        }
+    }
 </style>
 <script>
     setInterval(function(){
