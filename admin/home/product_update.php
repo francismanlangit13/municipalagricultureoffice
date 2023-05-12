@@ -3,7 +3,7 @@
 <ol class="breadcrumb mb-4">    
     <li class="breadcrumb-item">Dashboard</li>
     <li class="breadcrumb-item">Products</li>
-    <li class="breadcrumb-item">Update Products</li>
+    <li class="breadcrumb-item">Update</li>
 </ol>
 <?php
     if(isset($_GET['id'])){
