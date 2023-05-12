@@ -8,12 +8,22 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="user_add" class="btn btn-success btn-icon-split"> 
-            <span class="icon text-white-50">
-                <i class="fas fa-user"></i>
-            </span>
-            <span class="text">Add User Account</span>
-        </a>
+        <div class="d-flex justify-content-between">
+            <a href="user_add" class="btn btn-success btn-icon-split"> 
+                <span class="icon text-white-50">
+                    <i class="fas fa-user"></i>
+                </span>
+                <span class="text">Add User Account</span>
+            </a>
+            <form method="post" action="code.php">
+                <button class="btn btn-success btn-icon-split" type="submit" name="export_user">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-file-csv"></i>
+                    </span>
+                    <span class="text">CSV</span>
+                </button>
+            </form>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">

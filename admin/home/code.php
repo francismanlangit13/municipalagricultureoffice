@@ -1727,4 +1727,62 @@
       }
     }
   }
+  // Export CSV File here
+  if(isset($_POST['export_farmer'])){
+    // Fetch data from MySQL table
+    $sql = "SELECT * FROM user INNER JOIN user_type ON user.user_type = user_type.user_id INNER JOIN user_status ON user.user_status = user_status.user_status_id WHERE user.user_type = 3 AND user.user_status IN (1,2,3)";
+    $result = mysqli_query($con, $sql);
+
+    // Set the filename and mime type
+    $filename = "export_farmer_" . date('m-d-Y_H:i:s A') . ".csv";
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Open file for writing
+    $file = fopen('php://output', 'w');
+
+    // Set the column headers
+    fputcsv($file, array('User ID', 'First Name', 'Middle Name', 'Last Name', 'Suffix', 'Gender', 'Email', 'RSBSA', 'Purok', 'Street', 'Barangay', 'Municipality', 'Province', 'Region', 'Phone', 'Religion', 'Birthday', 'Birthplace', 'Civil Status', 'PWD', '4Ps', 'Indigenous Groups', 'Indigenous Groups Sepcify', 'Government ID', 'Government ID specify', 'Farmers Association/Cooperative', 'Farmers Association/Cooperative Specify', 'Main Livelihood', 'Rice', 'Corn', 'Other Crops Specify', 'Livestock', 'Livestock Specify', 'Poultry', 'Poultry Sepcify', 'Owner', 'Land', 'Planting', 'Cultivation', 'Harvesting', 'Other Farm Workers Specify', 'Part of Farming', 'Attending Formal', 'Attending Nonformal', 'Participated', 'Other Agri Youth Specify', 'Roles', 'Status'));
+
+    // Add the data to the file
+    while ($data = mysqli_fetch_assoc($result)) {
+      fputcsv($file, array($data['user_id'], $data['fname'], $data['mname'], $data['lname'], $data['suffix'], $data['gender'], $data['email'], $data['reference_number'], $data['purok'], $data['street'], $data['barangay'], $data['municipality'], $data['province'], $data['region'], $data['phone'], $data['religion'], $data['birthday'], $data['birthplace'], $data['civil_status'], $data['pwd'], $data['4ps'], $data['ig'], $data['ig_specify'], $data['govid'], $data['govid_specify'], $data['farmersassoc'], $data['farmersassoc_specify'], $data['livelihood'], $data['rice'], $data['corn'], $data['other_crops_specify'], $data['livestock'], $data['livestock_specify'], $data['poultry'], $data['poultry_specify'], $data['owner'], $data['land'], $data['planting'], $data['cultivation'], $data['harvesting'], $data['other_farmworker_specify'], $data['part_of_farming'], $data['attending_formal'], $data['attending_nonformal'], $data['participated'], $data['other_agri_youth_specify'], $data['user_name'], $data['user_status_name']));
+    }
+
+    // Close file
+    fclose($file);
+
+    // Close MySQL connection
+    mysqli_close($con);
+  }
+
+  if(isset($_POST['export_user'])){
+    // Fetch data from MySQL table
+    $sql = "SELECT * FROM user INNER JOIN user_type ON user.user_type = user_type.user_id INNER JOIN user_status ON user.user_status = user_status.user_status_id WHERE user.user_type IN (1,2) AND user.user_status IN (1,2,3)";
+    $result = mysqli_query($con, $sql);
+
+    // Set the filename and mime type
+    $filename = "export_user_" . date('m-d-Y_H:i:s A') . ".csv";
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Open file for writing
+    $file = fopen('php://output', 'w');
+
+    // Set the column headers
+    fputcsv($file, array('User ID', 'First Name', 'Middle Name', 'Last Name', 'Suffix', 'Gender', 'Email', 'Phone', 'Religion', 'Birthday', 'Birthplace', 'Civil Status', 'Roles', 'Status'));
+
+    // Add the data to the file
+    while ($data = mysqli_fetch_assoc($result)) {
+      fputcsv($file, array($data['user_id'], $data['fname'], $data['mname'], $data['lname'], $data['suffix'], $data['gender'], $data['email'], $data['phone'], $data['religion'], $data['birthday'], $data['birthplace'], $data['civil_status'], $data['user_name'], $data['user_status_name']));
+    }
+
+    // Close file
+    fclose($file);
+
+    // Close MySQL connection
+    mysqli_close($con);
+  }
 ?>
