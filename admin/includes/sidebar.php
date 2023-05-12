@@ -3,7 +3,7 @@
 <!-- Sidebar -->
 <ul class="navbar-nav noprint bg-gradient-success sidebar sidebar-dark accordion <?php if(is_mobile){ echo 'toggled'; } else { } ?>" id="accordionSidebar">
 
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url ?>admin/home">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url ?>admin/home" style="margin-bottom:0.5rem;">
         <div class="sidebar-brand-icon rotate-n-0" data-toggle="collapse">
             <img src="<?php echo base_url ?>assets/img/system/logo.png" alt="company_logo"
                 class="img-fluid-logo navbar-brand" style="width:4vh; margin-right:0rem !important;">
