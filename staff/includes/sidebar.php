@@ -45,7 +45,7 @@
             aria-expanded="true" aria-controls="collapseUtilities">
             <?php if($num_expired == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter new-product count-product"><?php if ($num_expired >= 99){ echo "99+";} else { echo $num_expired; } ?></span>
+                <span class="badge badge-danger badge-counter new-product count-product"><?php if ($num_expired >= 9){ echo "9+";} else { echo $num_expired; } ?></span>
             <?php } ?>
             <i class="fas fa-shopping-cart"></i>
             <span>Product</span>
@@ -57,7 +57,7 @@
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/product.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_update.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>staff/home/product"><i class="fas fa-box" aria-hidden="true"></i> Products
                 <?php if($num_expired == 0) { } else{ ?>
                     <!-- Counter - Alerts -->
-                    <span class="badge badge-danger badge-counter"><?php if ($num_expired >= 99){ echo "99+";} else { echo $num_expired; } ?></span>
+                    <span class="badge badge-danger badge-counter"><?php if ($num_expired >= 9){ echo "9+";} else { echo $num_expired; } ?></span>
                 <?php } ?>
                 </a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/product_category.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_update.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/product_category_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>staff/home/product_category"><i class="fa fa-list-alt" aria-hidden="true"></i> Product Category</a>
@@ -109,7 +109,7 @@
             aria-expanded="true" aria-controls="collapsePages">
             <?php if($total_notification == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge-new badge-danger badge-counter count"><?php if ($total_notification >= 99){ echo "99+";} else { echo $total_notification; } ?></span>
+                <span class="badge-new badge-danger badge-counter count"><?php if ($total_notification >= 9){ echo "9+";} else { echo $total_notification; } ?></span>
             <?php } ?>
             <i class="fas fa-cog"></i>
             <span>Other</span>
@@ -121,19 +121,19 @@
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>staff/home/request"><i class="fa fa-archive" aria-hidden="true"></i> Request
                     <?php if($num_request == 0) { } else{ ?>
                         <!-- Counter - Alerts -->
-                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_request >= 99){ echo "99+";} else { echo $num_request; } ?></span>
+                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_request >= 9){ echo "9+";} else { echo $num_request; } ?></span>
                     <?php } ?>
                 </a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>staff/home/report"><i class="fa fa-pencil-square" aria-hidden="true"></i> Report
                     <?php if($num_report == 0) { } else{ ?>
                         <!-- Counter - Alerts -->
-                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_report >= 99){ echo "99+";} else { echo $num_report; } ?></span>
+                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_report >= 9){ echo "9+";} else { echo $num_report; } ?></span>
                     <?php } ?>
                 </a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>staff/home/concern"><i class="fa fa-comment" aria-hidden="true"></i> Concern
                     <?php if($num_concern == 0) { } else{ ?>
                         <!-- Counter - Alerts -->
-                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_concern >= 99){ echo "99+";} else { echo $num_concern; } ?></span>
+                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_concern >= 9){ echo "9+";} else { echo $num_concern; } ?></span>
                     <?php } ?>
                 </a>
             </div>
