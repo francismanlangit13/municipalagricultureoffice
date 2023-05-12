@@ -134,6 +134,63 @@
         <!-- Content Row -->
     </div>
     <!-- /.container-fluid -->
+    <div class="my-element" id="myChart"></div>
+    <?php
+        if(isset($_SESSION['auth_user'])) {
+            $currentUSER = $_SESSION['auth_user']['user_id'];
+            $total_category = "SELECT 'request' as category, COUNT(*) as count FROM request WHERE user_id=$currentUSER AND request_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+                UNION ALL
+                SELECT 'report' as category, COUNT(*) as count FROM report WHERE user_id=$currentUSER AND date_created >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+                UNION ALL
+                SELECT 'concern' as category, COUNT(*) as count FROM concern WHERE user_id=$currentUSER AND date_created >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+            ";
+            $total_category_query_run = mysqli_query($con, $total_category);
+            if(mysqli_num_rows($total_category_query_run) > 0){
+                echo '<script>
+                        google.charts.load("current", {"packages":["corechart"]});
+                        google.charts.setOnLoadCallback(drawChart);
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                                ["Category", "Count"],';
+                while($row = mysqli_fetch_assoc($total_category_query_run)) {
+                    echo '["'.$row['category'].'", '.$row['count'].'],';
+                }
+                echo '          ]);
+                            var options = {
+                                title: "Your total transactions in this month",
+                            };
+                            var chart = new google.visualization.BarChart(document.getElementById("myChart"));
+                            chart.draw(data, options);
+                        }
+                    </script>';
+            }
+            else {
+                echo '<h4>0</h4>';
+            }
+        }
+    ?>
 </div>
 <!-- End of Main Content -->
 <?php include('../includes/footer.php');?>
+<style>
+    .my-element {
+        width:100%;
+        height:800px;
+        max-width:auto;
+    }
+    
+    @media (min-width: 768px) {
+        .my-element {
+            width:100%;
+            height:800px;
+            max-width:auto;
+        }
+    }
+    @media (min-width: 1200px) {
+        .my-element {
+            width:100%;
+            height:800px;
+            max-width:auto;
+        }
+    }
+</style>

@@ -14,7 +14,7 @@
         </button>
 
         <!-- System Time -->
-        <div class="col-md-12 input-group">
+        <div class="col-md-6 input-group">
             Date: <?php echo date("M d Y"); ?> (<?php echo date("l"); ?>) System time: <div id="timer" style="margin-left:0.3rem;"></div>
         </div>
 

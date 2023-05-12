@@ -38,6 +38,9 @@
     <!-- Image slider -->
     <link href="<?php echo base_url ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
+    <!-- Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <!-- Loading CSS -->
     <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
 </head>
