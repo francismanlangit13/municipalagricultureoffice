@@ -7,7 +7,7 @@
         swal({
             title: "<?php echo $_SESSION['status']; ?>",
             icon: "<?php echo $_SESSION['status_code']; ?>",
-            timer: <?php echo $delay_time; ?>,
+            timer: 8000,
             button: "Close",
         }).then(
             function () {},
