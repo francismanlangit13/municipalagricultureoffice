@@ -281,10 +281,10 @@
             $query_run = mysqli_query($con, $query);
 
             if($query_run){
-              $name = htmlentities($_POST['lname']);
+              $name = htmlentities('Municipal Agriculture Office Jimenez');
               $email = htmlentities($_POST['email']);
-              $subject = htmlentities('Username and Password Credentials');
-              $message = nl2br("Welcome to MAO System! \r\n \r\n Email: $email \r\n Password: $new_password \r\n \r\n Please change your password immediately.");
+              $subject = htmlentities('Email and Password Credentials - Municipal Agriculture Office Jimenez');
+              $message = nl2br("Welcome to Municipal Agriculture Office System! \r\n \r\n This is your account information \r\n Email: $email \r\n Password: $new_password \r\n \r\n Please change your password immediately. \r\n \r\n Thanks, \r\n Municipal Agriculture Office Jimenez");
               // PHP Mailer
               require("../../assets/PHPMailer/PHPMailerAutoload.php");
               require ("../../assets/PHPMailer/class.phpmailer.php");
@@ -301,7 +301,7 @@
               $mail->Password = emailpass; //Enter your passwrod here
               $mail->setFrom($email, $name);
               $mail->addAddress($_POST['email']);
-              $mail->Subject = ("$email ($subject)");
+              $mail->Subject = $subject;
               $mail->Body = $message;
               $mail->send();
         
@@ -430,28 +430,6 @@
     } 
   }
 
-
-  if(isset($_POST['req_deny'])){
-      $req_deny = $_POST['req_deny'];
-      $status = 3;
-
-      $query = "UPDATE `request` SET `request_status`= '$status' WHERE `request_id`= '$req_deny'";
-      $query_run = mysqli_query($con, $query);
-      
-      if($query_run){
-        $_SESSION['status'] = "Request has been denied!";
-        $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "staff/home/request");
-        exit(0);
-      }
-      else{
-        $_SESSION['message'] = "Something went wrong!";
-        header("Location: " . base_url . "staff/home/request");
-        exit(0);
-      }
-  }
-
-
   if(isset($_POST['request_save'])){
     $farmer_id = $_POST['farmer_id'];
     $request_id = $_POST['user_id'];
@@ -485,11 +463,38 @@
         $query = "UPDATE `request` SET `status_id`='$status', `person` ='$person', `request_updated` = '$date' WHERE `request_id`= '$request_id'";
         $query_run = mysqli_query($con, $query);
 
+        $sql = "SELECT * FROM request INNER JOIN user ON request.user_id = user.user_id INNER JOIN product ON request.product_id = product.product_id WHERE request.request_id = '$request_id'";
+        $sql_run = mysqli_query($con, $sql);
+
         if($query_run && $query1){
-          $_SESSION['status'] = "Request has been approved!";
-          $_SESSION['status_code'] = "success";
-          header("Location: " . base_url . "staff/home/request");
-          exit(0);
+          if (mysqli_num_rows($sql_run) > 0) {
+            foreach ($sql_run as $row) {
+              $url = base_url;
+              $phone = $row['phone'];
+              $string = <<<EOD
+              Dear {$row['fname']} {$row['lname']}, your request product {$row['product_name']} has been approved.
+              Please check $url
+              EOD;
+              $ch = curl_init();
+              $parameters = array(
+                'apikey' => smsapikey, // Your API KEY
+                'number' => $phone,
+                'message' => $string,
+                'sendername' => smsapiname
+              );
+              curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+              curl_setopt($ch, CURLOPT_POST, 1);
+              curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              $output = curl_exec($ch);
+              curl_close($ch);
+              echo $output;
+              $_SESSION['status'] = "Request has been approved!";
+              $_SESSION['status_code'] = "success";
+              header("Location: " . base_url . "staff/home/request");
+              exit(0);
+            }
+          }
         }
         else{
           $_SESSION['status'] = "Something went wrong!";
@@ -510,10 +515,34 @@
       $query_run = mysqli_query($con, $query);
 
       if($query_run && $query){
-        $_SESSION['status'] = "Request has been deny!";
-        $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "staff/home/request");
-        exit(0);
+        if (mysqli_num_rows($sql_run) > 0) {
+          foreach ($sql_run as $row) {
+            $url = base_url;
+            $phone = $row['phone'];
+            $string = <<<EOD
+            Dear {$row['fname']} {$row['lname']}, your request product {$row['product_name']} has been denied.
+            Please check $url
+            EOD;
+            $ch = curl_init();
+            $parameters = array(
+              'apikey' => smsapikey, // Your API KEY
+              'number' => $phone,
+              'message' => $string,
+              'sendername' => smsapiname
+            );
+            curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $output = curl_exec($ch);
+            curl_close($ch);
+            echo $output;
+            $_SESSION['status'] = "Request has been deny!";
+            $_SESSION['status_code'] = "success";
+            header("Location: " . base_url . "staff/home/request");
+            exit(0);
+          }
+        }
       }
       else{
         $_SESSION['status'] = "Something went wrong!";
@@ -954,7 +983,7 @@
       if(mysqli_num_rows($ann_result) > 0){
         foreach($ann_result as $row){
           // Set the email content
-          $mail->setFrom('contactmaojimenez@gmail.com', 'MAO JIMENEZ');
+          $mail->setFrom(emailuser, 'Municipal Agriculture Office Jimenez');
           //$mail->addReplyTo('reply-to@example.com', 'DO NO REPLY!');
           $mail->Subject = $row['ann_title'];
           $output = <<<EOD
@@ -1204,8 +1233,38 @@
       $query = "UPDATE `concern` SET `status_id`='$status', `date_updated`='$date_response', `person`='$person' WHERE `concern_id`= '$farmer_id'";
       $query_run = mysqli_query($con, $query);
 
+      $sql = "SELECT * FROM concern INNER JOIN user ON concern.user_id = user.user_id WHERE concern.concern_id = $farmer_id";
+      $sql_run = mysqli_query($con, $sql);
+
       if($query_run){
-        $_SESSION['status'] = "Concern has been approved!";
+        if (mysqli_num_rows($sql_run) > 0) {
+          foreach ($sql_run as $row) {
+            $url = base_url;
+            $phone = $row['phone'];
+            $string = <<<EOD
+            Dear {$row['fname']} {$row['lname']}, your submit a concern {$row['title']} has been approved.
+            Please check $url
+            EOD;
+            $ch = curl_init();
+            $parameters = array(
+              'apikey' => smsapikey, // Your API KEY
+              'number' => $phone,
+              'message' => $string,
+              'sendername' => smsapiname
+            );
+            curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $output = curl_exec($ch);
+            curl_close($ch);
+            echo $output;
+            $_SESSION['status'] = "Concern has been approved!";
+            $_SESSION['status_code'] = "success";
+            header("Location: " . base_url . "staff/home/concern");
+            exit(0);
+          }
+        }
         $_SESSION['status_code'] = "success";
         header("Location: " . base_url . "staff/home/concern");
         exit(0);
@@ -1221,11 +1280,38 @@
       $query1 = "UPDATE `concern` SET `status_id`='$status', `reason` = '$reason', `date_updated`='$date_response', `person`='$person' WHERE `concern_id`= '$farmer_id'";
       $query_run1 = mysqli_query($con, $query1);
 
+      $sql = "SELECT * FROM concern INNER JOIN user ON concern.user_id = user.user_id WHERE concern.concern_id = $farmer_id";
+      $sql_run = mysqli_query($con, $sql);
+
       if($query_run1){
-        $_SESSION['status'] = "Concern has been deny!";
-        $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "staff/home/concern");
-        exit(0);
+        if (mysqli_num_rows($sql_run) > 0) {
+          foreach ($sql_run as $row) {
+            $url = base_url;
+            $phone = $row['phone'];
+            $string = <<<EOD
+            Dear {$row['fname']} {$row['lname']}, your submit a concern {$row['title']} has been denied.
+            Please check $url
+            EOD;
+            $ch = curl_init();
+            $parameters = array(
+              'apikey' => smsapikey, // Your API KEY
+              'number' => $phone,
+              'message' => $string,
+              'sendername' => smsapiname
+            );
+            curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $output = curl_exec($ch);
+            curl_close($ch);
+            echo $output;
+            $_SESSION['status'] = "Concern has been deny!";
+            $_SESSION['status_code'] = "success";
+            header("Location: " . base_url . "staff/home/concern");
+            exit(0);
+          }
+        }
       }
       else{
         $_SESSION['status'] = "Something went wrong!";
@@ -1254,11 +1340,38 @@
       $query = "UPDATE `report` SET `status_id`='$status', `date_updated`='$date_response', `person`='$person' WHERE `report_id`= '$report_id'";
       $query_run = mysqli_query($con, $query);
 
+      $sql = "SELECT * FROM report INNER JOIN user ON report.user_id = user.user_id WHERE report.report_id = $report_id";
+      $sql_run = mysqli_query($con, $sql);
+
       if($query_run){
-        $_SESSION['status'] = "Report has been approved!";
-        $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "staff/home/report");
-        exit(0);
+        if (mysqli_num_rows($sql_run) > 0) {
+          foreach ($sql_run as $row) {
+            $url = base_url;
+            $phone = $row['phone'];
+            $string = <<<EOD
+            Dear {$row['fname']} {$row['lname']}, your submit a report {$row['title']} has been approved.
+            Please check $url
+            EOD;
+            $ch = curl_init();
+            $parameters = array(
+              'apikey' => smsapikey, // Your API KEY
+              'number' => $phone,
+              'message' => $string,
+              'sendername' => smsapiname
+            );
+            curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $output = curl_exec($ch);
+            curl_close($ch);
+            echo $output;
+            $_SESSION['status'] = "Report has been approved!";
+            $_SESSION['status_code'] = "success";
+            header("Location: " . base_url . "staff/home/report");
+            exit(0);
+          }
+        }
       }
       else{
         $_SESSION['status'] = "Something went wrong!";
@@ -1271,11 +1384,38 @@
       $sql = "UPDATE `report` SET `status_id`='$status', `reason` = '$reason', `date_updated`='$date_response', `person`='$person' WHERE `report_id`= '$report_id'";
       $sql_run = mysqli_query($con, $sql);
 
+      $sql = "SELECT * FROM report INNER JOIN user ON report.user_id = user.user_id WHERE report.report_id = $report_id";
+      $sql_run = mysqli_query($con, $sql);
+
       if($sql_run){
-        $_SESSION['status'] = "Report has been deny!";
-        $_SESSION['status_code'] = "success";
-        header("Location: " . base_url . "staff/home/report");
-        exit(0);
+        if (mysqli_num_rows($sql_run) > 0) {
+          foreach ($sql_run as $row) {
+            $url = base_url;
+            $phone = $row['phone'];
+            $string = <<<EOD
+            Dear {$row['fname']} {$row['lname']}, your submit a report {$row['title']} has been denied.
+            Please check $url
+            EOD;
+            $ch = curl_init();
+            $parameters = array(
+              'apikey' => smsapikey, // Your API KEY
+              'number' => $phone,
+              'message' => $string,
+              'sendername' => smsapiname
+            );
+            curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $output = curl_exec($ch);
+            curl_close($ch);
+            echo $output;
+            $_SESSION['status'] = "Report has been deny!";
+            $_SESSION['status_code'] = "success";
+            header("Location: " . base_url . "staff/home/report");
+            exit(0);
+          }
+        }
       }
       else{
         $_SESSION['status'] = "Something went wrong!";
