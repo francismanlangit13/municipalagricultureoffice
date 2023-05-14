@@ -42,126 +42,127 @@ if(isset($_POST['add_request'])){
     }
 }
 
-if(isset($_POST["add_concern"])){
+// if(isset($_POST["add_concern"])){
 
-    $photo = $_FILES['photo'];
-        $customFileName = 'concern1_' . date('Ymd_His'); // replace with your desired file name
-        $ext = pathinfo($photo['name'], PATHINFO_EXTENSION); // get the file extension
-        $fileName = $customFileName . '.' . $ext; // append the extension to the custom file name
-        $fileTmpname = $photo['tmp_name'];
-        $fileSize = $photo['size'];
-        $fileError = $photo['error'];
-        $fileExt = explode('.',$fileName);
-        $fileActExt = strtolower(end($fileExt));
-        $allowed = array('jpg','jpeg','png');
+//     $photo = $_FILES['photo'];
+//         $customFileName = 'concern1_' . date('Ymd_His'); // replace with your desired file name
+//         $ext = pathinfo($photo['name'], PATHINFO_EXTENSION); // get the file extension
+//         $fileName = $customFileName . '.' . $ext; // append the extension to the custom file name
+//         $fileTmpname = $photo['tmp_name'];
+//         $fileSize = $photo['size'];
+//         $fileError = $photo['error'];
+//         $fileExt = explode('.',$fileName);
+//         $fileActExt = strtolower(end($fileExt));
+//         $allowed = array('jpg','jpeg','png');
 
-    $photo1 = $_FILES['photo1'];
-        $customFileName1 = 'concern2_' . date('Ymd_His'); // replace with your desired file name
-        $ext1 = pathinfo($photo1['name'], PATHINFO_EXTENSION); // get the file extension
-        $fileName1 = $customFileName1 . '.' . $ext1; // append the extension to the custom file name
-        $fileTmpname1 = $photo1['tmp_name'];
-        $fileSize1 = $photo1['size'];
-        $fileError1 = $photo1['error'];
-        $fileExt1 = explode('.',$fileName1);
-        $fileActExt1 = strtolower(end($fileExt1));
-        $allowed1 = array('jpg','jpeg','png');
+//     $photo1 = $_FILES['photo1'];
+//         $customFileName1 = 'concern2_' . date('Ymd_His'); // replace with your desired file name
+//         $ext1 = pathinfo($photo1['name'], PATHINFO_EXTENSION); // get the file extension
+//         $fileName1 = $customFileName1 . '.' . $ext1; // append the extension to the custom file name
+//         $fileTmpname1 = $photo1['tmp_name'];
+//         $fileSize1 = $photo1['size'];
+//         $fileError1 = $photo1['error'];
+//         $fileExt1 = explode('.',$fileName1);
+//         $fileActExt1 = strtolower(end($fileExt1));
+//         $allowed1 = array('jpg','jpeg','png');
 
-    $photo2 = $_FILES['photo2'];
-        $customFileName2 = 'concern3_' . date('Ymd_His'); // replace with your desired file name
-        $ext2 = pathinfo($photo2['name'], PATHINFO_EXTENSION); // get the file extension
-        $fileName2 = $customFileName2 . '.' . $ext2; // append the extension to the custom file name
-        $fileTmpname2 = $photo2['tmp_name'];
-        $fileSize2 = $photo2['size'];
-        $fileError2 = $photo2['error'];
-        $fileExt2 = explode('.',$fileName2);
-        $fileActExt2 = strtolower(end($fileExt2));
-        $allowed2 = array('jpg','jpeg','png');
+//     $photo2 = $_FILES['photo2'];
+//         $customFileName2 = 'concern3_' . date('Ymd_His'); // replace with your desired file name
+//         $ext2 = pathinfo($photo2['name'], PATHINFO_EXTENSION); // get the file extension
+//         $fileName2 = $customFileName2 . '.' . $ext2; // append the extension to the custom file name
+//         $fileTmpname2 = $photo2['tmp_name'];
+//         $fileSize2 = $photo2['size'];
+//         $fileError2 = $photo2['error'];
+//         $fileExt2 = explode('.',$fileName2);
+//         $fileActExt2 = strtolower(end($fileExt2));
+//         $allowed2 = array('jpg','jpeg','png');
 
-    $photo3 = $_FILES['photo3'];
-        $customFileName3 = 'concern4_' . date('Ymd_His'); // replace with your desired file name
-        $ext3 = pathinfo($photo3['name'], PATHINFO_EXTENSION); // get the file extension
-        $fileName3 = $customFileName3 . '.' . $ext3; // append the extension to the custom file name
-        $fileTmpname3 = $photo3['tmp_name'];
-        $fileSize3 = $photo3['size'];
-        $fileError3 = $photo3['error'];
-        $fileExt3 = explode('.',$fileName3);
-        $fileActExt3 = strtolower(end($fileExt3));
-        $allowed3 = array('jpg','jpeg','png');
+//     $photo3 = $_FILES['photo3'];
+//         $customFileName3 = 'concern4_' . date('Ymd_His'); // replace with your desired file name
+//         $ext3 = pathinfo($photo3['name'], PATHINFO_EXTENSION); // get the file extension
+//         $fileName3 = $customFileName3 . '.' . $ext3; // append the extension to the custom file name
+//         $fileTmpname3 = $photo3['tmp_name'];
+//         $fileSize3 = $photo3['size'];
+//         $fileError3 = $photo3['error'];
+//         $fileExt3 = explode('.',$fileName3);
+//         $fileActExt3 = strtolower(end($fileExt3));
+//         $allowed3 = array('jpg','jpeg','png');
 
-    $photo4 = $_FILES['photo4'];
-        $customFileName4 = 'concern5_' . date('Ymd_His'); // replace with your desired file name
-        $ext4 = pathinfo($photo4['name'], PATHINFO_EXTENSION); // get the file extension
-        $fileName4 = $customFileName4 . '.' . $ext4; // append the extension to the custom file name
-        $fileTmpname4 = $photo4['tmp_name'];
-        $fileSize4 = $photo4['size'];
-        $fileError4 = $photo4['error'];
-        $fileExt4 = explode('.',$fileName4);
-        $fileActExt4 = strtolower(end($fileExt4));
-        $allowed4 = array('jpg','jpeg','png');
+//     $photo4 = $_FILES['photo4'];
+//         $customFileName4 = 'concern5_' . date('Ymd_His'); // replace with your desired file name
+//         $ext4 = pathinfo($photo4['name'], PATHINFO_EXTENSION); // get the file extension
+//         $fileName4 = $customFileName4 . '.' . $ext4; // append the extension to the custom file name
+//         $fileTmpname4 = $photo4['tmp_name'];
+//         $fileSize4 = $photo4['size'];
+//         $fileError4 = $photo4['error'];
+//         $fileExt4 = explode('.',$fileName4);
+//         $fileActExt4 = strtolower(end($fileExt4));
+//         $allowed4 = array('jpg','jpeg','png');
 
-    $video = $_FILES['video'];
-        $customFileName5 = 'concern6_' . date('Ymd_His'); // replace with your desired file name
-        $ext5 = pathinfo($video['name'], PATHINFO_EXTENSION); // get the file extension
-        $fileName5 = $customFileName5 . '.' . $ext5; // append the extension to the custom file name
-        $fileTmpname5 = $video['tmp_name'];
-        $fileSize5 = $video['size'];
-        $fileError5 = $video['error'];
-        $fileExt5 = explode('.',$fileName5);
-        $fileActExt5 = strtolower(end($fileExt5));
-        $allowed5 = array('mp4','3gp','mov');
+//     $video = $_FILES['video'];
+//         $customFileName5 = 'concern6_' . date('Ymd_His'); // replace with your desired file name
+//         $ext5 = pathinfo($video['name'], PATHINFO_EXTENSION); // get the file extension
+//         $fileName5 = $customFileName5 . '.' . $ext5; // append the extension to the custom file name
+//         $fileTmpname5 = $video['tmp_name'];
+//         $fileSize5 = $video['size'];
+//         $fileError5 = $video['error'];
+//         $fileExt5 = explode('.',$fileName5);
+//         $fileActExt5 = strtolower(end($fileExt5));
+//         $allowed5 = array('mp4','3gp','mov');
   
-    if(in_array($fileActExt, $allowed) && in_array($fileActExt1, $allowed1) && in_array($fileActExt2, $allowed2) && in_array($fileActExt3, $allowed3) && in_array($fileActExt4, $allowed4)){
-        if($fileError === 0 && $fileError1 === 0 && $fileError2 === 0 && $fileError3 === 0 && $fileError4 === 0){
-            if($fileSize < 10485760 && $fileSize1 < 10485760 && $fileSize2 < 10485760 && $fileSize3 < 10485760 && $fileSize4 < 10485760){
+//     if(in_array($fileActExt, $allowed) && in_array($fileActExt1, $allowed1) && in_array($fileActExt2, $allowed2) && in_array($fileActExt3, $allowed3) && in_array($fileActExt4, $allowed4)){
+//         if($fileError === 0 && $fileError1 === 0 && $fileError2 === 0 && $fileError3 === 0 && $fileError4 === 0){
+//             if($fileSize < 10485760 && $fileSize1 < 10485760 && $fileSize2 < 10485760 && $fileSize3 < 10485760 && $fileSize4 < 10485760){
 
-                $report_date = date('Y-m-d H:i:s');
-                $user_id = $_POST['user_id'];
-                $message = $_POST['message'];
-                $status = 1;
-                $uploadDir = '../../assets/img/concerns/';
-                $targetFile = $uploadDir . $fileName;
-                $targetFile1 = $uploadDir . $fileName1;
-                $targetFile2 = $uploadDir . $fileName2;
-                $targetFile3 = $uploadDir . $fileName3;
-                $targetFile4 = $uploadDir . $fileName4;
-                $targetFile5 = $uploadDir . $fileName5;
-                if (move_uploaded_file($fileTmpname, $targetFile) && move_uploaded_file($fileTmpname1, $targetFile1) && move_uploaded_file($fileTmpname2, $targetFile2) && move_uploaded_file($fileTmpname3, $targetFile3) && move_uploaded_file($fileTmpname4, $targetFile4) && move_uploaded_file($fileTmpname5, $targetFile5)) {
-                    $query = "INSERT INTO `concern`(`user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`,`status_id`) VALUES ('$user_id','$message','$fileName','$fileName1', '$fileName2', '$fileName3', '$fileName4', '$fileName5','$report_date','$status')";
-                    $query_run = mysqli_query($con, $query);
+//                 $report_date = date('Y-m-d H:i:s');
+//                 $user_id = $_POST['user_id'];
+//                 $title = $_POST['title'];
+//                 $message = $_POST['message'];
+//                 $status = 1;
+//                 $uploadDir = '../../assets/img/concerns/';
+//                 $targetFile = $uploadDir . $fileName;
+//                 $targetFile1 = $uploadDir . $fileName1;
+//                 $targetFile2 = $uploadDir . $fileName2;
+//                 $targetFile3 = $uploadDir . $fileName3;
+//                 $targetFile4 = $uploadDir . $fileName4;
+//                 $targetFile5 = $uploadDir . $fileName5;
+//                 if (move_uploaded_file($fileTmpname, $targetFile) && move_uploaded_file($fileTmpname1, $targetFile1) && move_uploaded_file($fileTmpname2, $targetFile2) && move_uploaded_file($fileTmpname3, $targetFile3) && move_uploaded_file($fileTmpname4, $targetFile4) && move_uploaded_file($fileTmpname5, $targetFile5)) {
+//                     $query = "INSERT INTO `concern`(`user_id`, `title`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`,`status_id`) VALUES ('$user_id','$title','$message','$fileName','$fileName1', '$fileName2', '$fileName3', '$fileName4', '$fileName5','$report_date','$status')";
+//                     $query_run = mysqli_query($con, $query);
 
-                    if($query_run){
-                        $_SESSION['status'] = "Concern Submitted!";
-                        $_SESSION['status_code'] = "success";
-                        header("Location: " . base_url . "farmer/home/concern");
-                        exit(0);
-                    } else{
-                        $_SESSION['status'] = "Something went wrong!";
-                        $_SESSION['status_code'] = "error";
-                        header("Location: " . base_url . "farmer/home/concern");
-                        exit(0);
-                    }
-                }
-                else{
-                    $_SESSION['status']="Error uploading image.";
-                    $_SESSION['status_code'] = "error";
-                    header("Location: " . base_url . "farmer/home/concern");
-                }
-            } else{
-                $_SESSION['status']="File is too large file must be 10mb";
-                $_SESSION['status_code'] = "error"; 
-                header("Location: " . base_url . "farmer/home/concern");
-            }
-        } else{
-            $_SESSION['status']="File Error";
-            $_SESSION['status_code'] = "error"; 
-            header("Location: " . base_url . "farmer/home/concern");
-        }
-    } else{
-        $_SESSION['status']="File Error";
-        $_SESSION['status_code'] = "error"; 
-        header("Location: " . base_url . "farmer/home/concern");
-    }
-}
+//                     if($query_run){
+//                         $_SESSION['status'] = "Concern Submitted!";
+//                         $_SESSION['status_code'] = "success";
+//                         header("Location: " . base_url . "farmer/home/concern");
+//                         exit(0);
+//                     } else{
+//                         $_SESSION['status'] = "Something went wrong!";
+//                         $_SESSION['status_code'] = "error";
+//                         header("Location: " . base_url . "farmer/home/concern");
+//                         exit(0);
+//                     }
+//                 }
+//                 else{
+//                     $_SESSION['status']="Error uploading image.";
+//                     $_SESSION['status_code'] = "error";
+//                     header("Location: " . base_url . "farmer/home/concern");
+//                 }
+//             } else{
+//                 $_SESSION['status']="File is too large file must be 10mb";
+//                 $_SESSION['status_code'] = "error"; 
+//                 header("Location: " . base_url . "farmer/home/concern");
+//             }
+//         } else{
+//             $_SESSION['status']="File Error";
+//             $_SESSION['status_code'] = "error"; 
+//             header("Location: " . base_url . "farmer/home/concern");
+//         }
+//     } else{
+//         $_SESSION['status']="File Error";
+//         $_SESSION['status_code'] = "error"; 
+//         header("Location: " . base_url . "farmer/home/concern");
+//     }
+// }
 
 if(isset($_POST["add_concern"])){
     $user_id = $_POST['user_id'];
@@ -391,10 +392,11 @@ if(isset($_POST["add_concern"])){
     $date->setTimezone(new DateTimeZone('UTC'));
     $report_date = $date->format('Y-m-d H:i:s');
 
+    $title = $_POST['title'];
     $message = $_POST['message'];
     $status = 1;
 
-    $query = "INSERT INTO `concern`(`user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`,`status_id`) VALUES ('$user_id','$message','$fileName','$fileName1', '$fileName2', '$fileName3', '$fileName4', '$fileName5','$report_date','$status')";
+    $query = "INSERT INTO `concern`(`user_id`, `title`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`,`status_id`) VALUES ('$user_id','$title','$message','$fileName','$fileName1', '$fileName2', '$fileName3', '$fileName4', '$fileName5','$report_date','$status')";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -828,10 +830,11 @@ if(isset($_POST["add_report"])){
     }
 
     $report_date = date('Y-m-d H:i:s');
+    $title = $_POST['title'];
     $message = $_POST['message'];
     $status = 1;
 
-    $query = "INSERT INTO `report`(`user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`,`status_id`) VALUES ('$user_id','$message','$fileName','$fileName1', '$fileName2', '$fileName3', '$fileName4', '$fileName5','$report_date','$status')";
+    $query = "INSERT INTO `report`(`user_id`, `title`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `date_created`,`status_id`) VALUES ('$user_id','$title','$message','$fileName','$fileName1', '$fileName2', '$fileName3', '$fileName4', '$fileName5','$report_date','$status')";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -1090,10 +1093,11 @@ if(isset($_POST["update_report"])){
         }
     }
     $report_date = date('Y-m-d H:i:s');
+    $title = $_POST['title'];
     $message = $_POST['message'];
     $status = 1;
 
-    $query = "UPDATE `report` SET `message` = '$message' WHERE `report_id` = '$report_id'";
+    $query = "UPDATE `report` SET `title` = '$title', `message` = '$message' WHERE `report_id` = '$report_id'";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -1109,7 +1113,7 @@ if(isset($_POST["update_report"])){
     }
 }
 
-//Update report
+//Update concern
 if(isset($_POST["update_concern"])){
     $user_id = $_POST['user_id'];
     $concern_id = $_POST['concern_id'];
@@ -1353,10 +1357,11 @@ if(isset($_POST["update_concern"])){
         }
     }
     $concern_date = date('Y-m-d H:i:s');
+    $title = $_POST['title'];
     $message = $_POST['message'];
     $status = 1;
 
-    $query = "UPDATE `concern` SET `message` = '$message' WHERE `concern_id` = '$concern_id'";
+    $query = "UPDATE `concern` SET `title`= '$title', `message` = '$message' WHERE `concern_id` = '$concern_id'";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){

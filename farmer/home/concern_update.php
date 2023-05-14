@@ -45,6 +45,10 @@
           <div class="row"> 
             <input type="hidden" name="concern_id" value="<?=$row['concern_id'];?>">
             <div class="col-md-12 mb-3">
+                <label for="Title">Title</label>
+                <input required type="text" name="title" value="<?=$row['title'];?>" class="form-control">
+            </div>
+            <div class="col-md-12 mb-3">
                 <label for="Description" class="required">Message</label>
                 <textarea placeholder="Enter Message" name="message" required type="text" class="form-control" rows="3"><?=$row['message']; ?></textarea>
             </div>

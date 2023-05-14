@@ -14,7 +14,11 @@
                     <h5>Report information</h5>
                 </div>
                 <div class="card-body">
-                    <div class="row"> 
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="Title">Title</label>
+                            <input required type="text" name="title" class="form-control">
+                        </div>
                         <div class="col-md-12 mb-3">
                             <label for="Description" class="required">Message</label>
                             <textarea placeholder="Enter Message" name="message" required type="text" class="form-control" rows="3"></textarea>

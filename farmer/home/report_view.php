@@ -36,7 +36,11 @@
                 <h5>Report information</h5>
             </div>
             <div class="card-body">
-                <div class="row"> 
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="Title">Title</label>
+                        <input disabled type="text" value="<?=$row['title'];?>" class="form-control">
+                    </div> 
                     <div class="col-md-12 mb-3">
                         <label for="">Report Message</label>
                         <textarea class="form-control" type="text" rows="5" readonly><?= $row['message']; ?></textarea>
