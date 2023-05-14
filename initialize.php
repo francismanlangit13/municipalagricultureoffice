@@ -9,6 +9,9 @@
     // This is offline hosting configuration.
     if(!defined('is_mobile')) define('is_mobile', is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile")));
     if(!defined('date')) define('date', date("Y-m-d h:i:s A"));
+    if(!defined('smsapi')) define('smsapi', '');
+    if(!defined('emailuser')) define('emailuser', 'maojimenez.ueuo@gmail.com');
+    if(!defined('emailpass')) define('emailpass', 'zyppycyqpqhpxxbf');
     if(!defined('base_url')) define('base_url','http://localhost/municipalagricultureoffice/');
     if(!defined('base_app')) define('base_app', str_replace('\\','/',__DIR__).'/' );
     if(!defined('DB_SERVER')) define('DB_SERVER',"localhost");

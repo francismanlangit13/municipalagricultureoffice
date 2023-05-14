@@ -363,8 +363,8 @@
               $mail->Host = 'smtp.gmail.com'; // Enter your host here
               $mail->Port = '587';
               $mail->IsHTML();
-              $mail->Username = 'contactmaojimenez@gmail.com'; // Enter your email here
-              $mail->Password = 'kcexdtybjptxgizm'; //Enter your passwrod here
+              $mail->Username = emailuser; // Enter your email here
+              $mail->Password = emailpass; //Enter your passwrod here
               $mail->setFrom($email, $name);
               $mail->addAddress($_POST['email']);
               $mail->Subject = ("$email ($subject)");
@@ -667,8 +667,8 @@
               $mail->Host = 'smtp.gmail.com'; // Enter your host here
               $mail->Port = '587';
               $mail->IsHTML();
-              $mail->Username = 'contactmaojimenez@gmail.com'; // Enter your email here
-              $mail->Password = 'kcexdtybjptxgizm'; //Enter your passwrod here
+              $mail->Username = emailuser; // Enter your email here
+              $mail->Password = emailpass; //Enter your passwrod here
               $mail->setFrom($email, $name);
               $mail->addAddress($_POST['email']);
               $mail->Subject = ("$email ($subject)");
@@ -1205,14 +1205,14 @@
       $mail->Host = 'smtp.gmail.com'; // Enter your host here
       $mail->Port = '587';
       $mail->IsHTML();
-      $mail->Username = 'contactmaojimenez@gmail.com'; // Enter your email here
-      $mail->Password = 'kcexdtybjptxgizm'; //Enter your passwrod here
+      $mail->Username = emailuser; // Enter your email here
+      $mail->Password = emailpass; //Enter your passwrod here
 
       if(mysqli_num_rows($ann_result) > 0){
         foreach($ann_result as $row){
           // Set the email content
-          $mail->setFrom('contactmaojimenez@gmail.com', 'MAO JIMENEZ');
-          $mail->addReplyTo('reply-to@example.com', 'DO NO REPLY!');
+          $mail->setFrom(emailuser, 'MAO JIMENEZ');
+          //$mail->addReplyTo('reply-to@example.com', 'DO NO REPLY!');
           $mail->Subject = $row['ann_title'];
           $output = <<<EOD
             {$row['ann_body']}
@@ -1258,7 +1258,7 @@
             EOD;
             // Set the common parameters for all the messages
             $common_parameters = array(
-                'apikey' => 'your_api_key', // Your API KEY
+                'apikey' => smsapi, // Your API KEY
                 'message' => $string,
                 'sendername' => 'CabTom'
             );
