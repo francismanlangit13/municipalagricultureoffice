@@ -129,7 +129,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <label for="Region">Title</label>
+                                <label for="Title">Title</label>
                                 <input disabled type="text" value="<?=$row['title'];?>" class="form-control">
                             </div>
                             <div class="col-md-12 mb-3">
@@ -378,7 +378,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="Region">Title</label>
+                            <label for="Title">Title</label>
                             <input disabled type="text" value="<?=$row['title'];?>" class="form-control">
                         </div>
                         <div class="col-md-12 mb-3">
