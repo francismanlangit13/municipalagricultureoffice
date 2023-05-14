@@ -1258,9 +1258,9 @@
             EOD;
             // Set the common parameters for all the messages
             $common_parameters = array(
-                'apikey' => smsapi, // Your API KEY
+                'apikey' => smsapikey, // Your API KEY
                 'message' => $string,
-                'sendername' => 'CabTom'
+                'sendername' => smsapiname
             );
           }
         }

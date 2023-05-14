@@ -36,8 +36,8 @@
                 $mail->Host = 'smtp.gmail.com'; // Enter your host here
                 $mail->Port = '587';
                 $mail->IsHTML();
-                $mail->Username = 'contactmaojimenez@gmail.com'; // Enter your email here
-                $mail->Password = 'kcexdtybjptxgizm'; //Enter your passwrod here
+                $mail->Username = emailuser; // Enter your email here
+                $mail->Password = emailpass; //Enter your passwrod here
                 $mail->setFrom($email);
                 $mail->addAddress($_POST['email']);
                 $mail->Subject = ("$email ($subject)");
