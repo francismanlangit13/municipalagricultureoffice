@@ -311,13 +311,13 @@
                     <div class="col-lg-4 info mt-4 mt-lg-0">
                       <i class="bi bi-envelope"></i>
                       <h4>Email:</h4>
-                      <p>maojimenez@gmail.com<br></p>
+                      <a href="mailto:aggies.jimenez2016@gmail.com">aggies.jimenez2016@gmail.com<br></a>
                     </div>
 
                     <div class="col-lg-4 info mt-4 mt-lg-0">
                       <i class="bi bi-phone"></i>
                       <h4>Call:</h4>
-                      <p>+639 9457664949<br>+639 457664949</p>
+                      <a href="tel:+6399972388625">+6399972388625<br></a>
                     </div>
                   </div>
                 </div>
@@ -365,16 +365,15 @@
               <h2>About Us</h2>
               <p></p>
             </div>
-
-            <div class="row">
+            <div class="row" style="justify-content:center;">
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/team/carlo.png" alt="">
-                  <h4>Francis Carlo Manlangit</h4>
-                  <span>Full Stack Developer</span>
-                  <p>
+                  <img src="<?php echo base_url ?>assets/img/teams/MALON_MARISSA.jpg" alt="">
+                  <h4>MARISSA MALON</h4>
+                  <span>Municipal Agriculturist</span>
+                  <!-- <p>
                   I can do all things through Christ who strengthen me.
-                  </p>
+                  </p> -->
                   <div class="social">
                     <a href="https://www.facebook.com/fanzcarl13" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/franzcarl13" target="_blank"><i class="bi bi-instagram"></i></a>
@@ -382,15 +381,16 @@
                   </div>
                 </div>
               </div>
-
+            </div>
+            <div class="row" style="justify-content:center;">
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img class="" src="<?php echo base_url ?>assets/img/team/balmadres.jpg" alt="">
-                  <h4>Christine Mae Balmadres</h4>
-                  <span>Full Stack Developer</span>
-                  <p>
+                  <img class="" src="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" alt="">
+                  <h4>CHERLIE PINO</h4>
+                  <span>Agricultural Technologist/Corn Coordinator</span>
+                  <!-- <p>
                     Commit to the LORD whatever you do, and your plans will succeed.
-                  </p>
+                  </p> -->
                   <div class="social">
                     <a href="https://www.facebook.com/chrstnmea" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/tinnnniiiiiiiii" target="_blank"><i class="bi bi-instagram"></i></a>
@@ -401,12 +401,12 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/team/cindy.jpg" alt="">
-                  <h4>Cindy Sapalleda</h4>
-                  <span>Full Stack Developer</span>
-                  <p>
+                  <img src="<?php echo base_url ?>assets/img/teams/GALBO_MARIEFE.jpg" alt="">
+                  <h4>MARIEFE GALBO</h4>
+                  <span>Agricultural Technologist/Livestock Inspector</span>
+                  <!-- <p>
                   Failure is not the opposite of success, it is part of success.
-                  </p>
+                  </p> -->
                   <div class="social">
                     <a href="https://www.facebook.com/cindy.sapallida.58" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/cindybantilansapalleda" target="_blank"><i class="bi bi-instagram"></i></a>
@@ -417,12 +417,77 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/team/yvesh.jpg" alt="">
-                  <h4>Yvesh Laurent Hemororz</h4>
-                  <span>System Designer</span>
-                  <p>
+                  <img src="<?php echo base_url ?>assets/img/teams/BARRIENTOS_LENDIE.jpg" alt="">
+                  <h4>LENDIE BARRIENTOS</h4>
+                  <span>Agricultural Technologist/Rice Coordinator</span>
+                  <!-- <p>
                   The road to success and the road to failure are almost the same.
-                  </p>
+                  </p> -->
+                  <div class="social">
+                    <a href="https://www.facebook.com/yvesh211" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/yvesh_hemoroz" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.twitter.com/yvesh_21" target="_blank"><i class="bi bi-twitter"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="justify-content:center;">
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <img src="<?php echo base_url ?>assets/img/teams/MALALIS_JOHN_MARK.jpg" alt="">
+                  <h4>JOHN MARK MALALIS</h4>
+                  <span>Farm Foreman/AT-Designate</span>
+                  <!-- <p>
+                  I can do all things through Christ who strengthen me.
+                  </p> -->
+                  <div class="social">
+                    <a href="https://www.facebook.com/fanzcarl13" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/franzcarl13" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.twitter.com/franzcarl13" target="_blank"><i class="bi bi-twitter"></i></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <img class="" src="<?php echo base_url ?>assets/img/teams/TABUZO_ROSHELLE_ANN.jpg" alt="">
+                  <h4>ROSHELLE ANN TABUZO</h4>
+                  <span>Agriculturist I/HVCDP Coordinator</span>
+                  <!-- <p>
+                    Commit to the LORD whatever you do, and your plans will succeed.
+                  </p> -->
+                  <div class="social">
+                    <a href="https://www.facebook.com/chrstnmea" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/tinnnniiiiiiiii" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.twitter.com/chrstnmeyh" target="_blank"><i class="bi bi-twitter"></i></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <img src="<?php echo base_url ?>assets/img/teams/BANQUE_MARY_JOY.jpg" alt="">
+                  <h4>MARY JOY BANQUE</h4>
+                  <span>Agricultural Technologist/Special Projects</span>
+                  <!-- <p>
+                  Failure is not the opposite of success, it is part of success.
+                  </p> -->
+                  <div class="social">
+                    <a href="https://www.facebook.com/cindy.sapallida.58" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/cindybantilansapalleda" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.twitter.com/cindy" target="_blank"><i class="bi bi-twitter"></i></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <img src="<?php echo base_url ?>assets/img/teams/PALANAS_JUVY.jpg" alt="">
+                  <h4>JUVY PALANAS</h4>
+                  <span>Meat Inspector-Designate/VBAIT/JO</span>
+                  <!-- <p>
+                  The road to success and the road to failure are almost the same.
+                  </p> -->
                   <div class="social">
                     <a href="https://www.facebook.com/yvesh211" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/yvesh_hemoroz" target="_blank"><i class="bi bi-instagram"></i></a>
