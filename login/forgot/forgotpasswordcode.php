@@ -110,7 +110,7 @@
         $num_rows_affected = mysqli_affected_rows($con);
         $query2 = mysqli_query($con, "DELETE FROM `password_reset_temp` WHERE `email`='".$email."';");
 
-        if ($query1 && $query2 && $num_rows_affected > 0) {
+        if ($query1 && $query2 > 0) {
             $_SESSION['status'] = "Password updated successfully";
             $_SESSION['status_code'] = "success";
             header("Location: " . base_url . "login");
