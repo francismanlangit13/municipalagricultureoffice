@@ -1123,9 +1123,26 @@ section {
   color: #65747f;
 }
 
+.contact .info a {
+  display: flex;
+  width: 100%;
+  padding: 0 0 0 60px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #65747f;
+}
+
 .contact .info:hover i {
   background: #37db34;
   color: #fff;
+}
+
+.contact .info:hover a {
+  color: #37db34;
+}
+
+.contact .info:hover p {
+  color: #37db34;
 }
 
 .contact .php-email-form {

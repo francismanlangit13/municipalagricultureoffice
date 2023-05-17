@@ -65,8 +65,8 @@
 
         <div class="logo me-auto">
           <h1>
-            <a href="<?php echo base_url ?>"><img src="<?php echo base_url ?>assets/img/system/favicon.png" alt="MAO Jimenez" class="img-fluid"></a>
-            <a href="<?php echo base_url ?>" data-alttext="MAO Jimenez"><b>Municipal Agriculture Office Jimenez</b></a>
+            <a href="<?php echo base_url ?>"><img src="<?php echo base_url ?>assets/img/system/favicon.png" alt="MAO Jimenez" aria-label="Municipal Agriculture Office" class="img-fluid"></a>
+            <a href="<?php echo base_url ?>" aria-label="Municipal Agriculture Office" data-alttext="MAO Jimenez"><b>Municipal Agriculture Office Jimenez</b></a>
           </h1>
           <!-- Uncomment below if you prefer to use an image logo -->
           <!--== <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -314,7 +314,7 @@
                     <div class="col-lg-4 info">
                       <i class="bi bi-geo-alt"></i>
                       <h4>Location:</h4>
-                      <p>Corrales, Jimenez<br>Misamis Occidental</p>
+                      <a href="https://goo.gl/maps/7eJ96JTjzgPq3AGy7" aria-label="Visit Municipal Agriculture Office on Google Maps" target="_blank">Corrales, Jimenez Misamis Occidental</a>
                     </div>
 
                     <div class="col-lg-4 info mt-4 mt-lg-0">
@@ -542,7 +542,7 @@
             </div>
           </div>
           <div class="social-links text-center text-md-right pt-3 pt-md-0">
-            <a href="https://www.facebook.com/municipalagriculture.jimenez" target="_blank"><i class="bx bxl-facebook"></i></a>
+            <a href="https://www.facebook.com/municipalagriculture.jimenez" aria-label="Visit Municipal Agriculture Office on Facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
           </div>
         </div>
       </footer>
