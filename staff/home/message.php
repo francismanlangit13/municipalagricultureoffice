@@ -1,6 +1,6 @@
 <?php
     if(isset($_SESSION['status']) && $_SESSION['status_code'] !='' ){
-        $delay_time = 2500;
+        $delay_time = 1500;
 ?>
 <script>
     setTimeout(function() {

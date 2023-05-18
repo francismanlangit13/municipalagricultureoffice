@@ -46,6 +46,13 @@
     <!-- Template Main CSS File -->
     <link href="<?php echo base_url ?>assets/css/style.css" rel="stylesheet">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCVFDYEBW0"></script>
+    <script src="<?php echo base_url ?>assets/js/gtag.js"></script>
+
+    <!-- Google Tag Manager -->
+    <script src="<?php echo base_url ?>assets/js/gtagmanager.js"></script>
+
     <!-- =======================================================
     * Template Name: Lumia - v4.10.0
     * Template URL: https://bootstrapmade.com/lumia-bootstrap-business-template/
@@ -55,6 +62,12 @@
   </head>
 
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D46BH6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- Loading Screen -->
     <div id="loading">
         <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />

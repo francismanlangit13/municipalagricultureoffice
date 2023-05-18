@@ -7,6 +7,6 @@ window.addEventListener('load', function() {
         loading.classList.add('fade-out');
         setTimeout(function(){
             loading.style.display = 'none';
-        }, 1000);
-    }, 2000);
+        }, 500);
+    }, 1000);
 });
