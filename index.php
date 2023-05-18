@@ -11,7 +11,7 @@
       ga('create', 'G-LCVFDYEBW0', 'auto');
       ga('send', 'pageview');
     </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <script async src='<?php echo base_url ?>assets/js/analytics.js'></script>
     <!-- End Google Analytics -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
