@@ -20,7 +20,7 @@
 }
 @media print{
     body{
-        margin-top: 50px;
+        margin-top: -30px;
     }
     .noprint{
         display: none;
