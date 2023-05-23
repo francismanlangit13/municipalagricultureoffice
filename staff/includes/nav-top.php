@@ -147,7 +147,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        </button>
+        Confirm to logout?
       </div>
       <div class="modal-body"> Are you sure you want to logout?
       </div>
