@@ -24,15 +24,15 @@
                     ?>
                     <div class="row"> 
                         <input type="hidden" name="user_id" value="<?=$row['user_id'];?>">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="" class="required">First Name</label>
                             <input placeholder="Enter First Name" name="fname" value="<?=$row['fname'];?>" class="form-control" required>
                         </div> 
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="">Middle Name</label>
                             <input placeholder="Enter Middle Name" name="mname" value="<?=$row['mname'];?>" class="form-control">
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="" class="required">Last Name</label>
                             <input placeholder="Enter Last Name" name="lname" value="<?=$row['lname'];?>" class="form-control" required>
                         </div>
