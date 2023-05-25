@@ -1134,6 +1134,7 @@
     $mname= $_POST['mname'];
     $lname= $_POST['lname'];
     $email= $_POST['email'];
+    $suffix= $_POST['suffix'];
     if(isset($_POST['confirm_password']) && !empty($_POST['confirm_password'])){
         $new_password= $_POST['password'];
         $password = md5($new_password);
@@ -1160,7 +1161,7 @@
             unlink($uploadDir . $OLDfileImage);
 
             if (move_uploaded_file($fileTmpname, $targetFile)) {
-                $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email',`picture`='$fileName' WHERE `user_id`='$user_id'";
+                $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`suffix`='$suffix',`email`='$email',`picture`='$fileName' WHERE `user_id`='$user_id'";
                 $query_run = mysqli_query($con, $query);
     
                 if($query_run){
@@ -1197,7 +1198,7 @@
         }
     }
     else{
-        $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`email`='$email' WHERE `user_id`='$user_id'";
+        $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`suffix`='$suffix',`email`='$email' WHERE `user_id`='$user_id'";
         $query_run = mysqli_query($con, $query);
 
         if($query_run){
