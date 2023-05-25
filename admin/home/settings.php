@@ -36,6 +36,22 @@
                             <label for="" class="required">Last Name</label>
                             <input placeholder="Enter Last Name" name="lname" value="<?=$row['lname'];?>" class="form-control" required>
                         </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label for="suffix">Suffix</label>
+                                <select class="form-control" name="suffix">
+                                    <option value="" selected>Select Suffix</option>
+                                    <option value="Jr" <?= isset($row['suffix']) && $row['suffix'] == 'Jr' ? 'selected' : '' ?>>Jr</option>
+                                    <option value="Sr" <?= isset($row['suffix']) && $row['suffix'] == 'Sr' ? 'selected' : '' ?>>Sr</option>
+                                    <option value="I" <?= isset($row['suffix']) && $row['suffix'] == 'I' ? 'selected' : '' ?>>I</option>
+                                    <option value="II" <?= isset($row['suffix']) && $row['suffix'] == 'II' ? 'selected' : '' ?>>II</option>
+                                    <option value="III" <?= isset($row['suffix']) && $row['suffix'] == 'III' ? 'selected' : '' ?>>III</option>
+                                    <option value="IV" <?= isset($row['suffix']) && $row['suffix'] == 'IV' ? 'selected' : '' ?>>IV</option>
+                                    <option value="V" <?= isset($row['suffix']) && $row['suffix'] == 'V' ? 'selected' : '' ?>>V</option>
+                                    <option value="VI" <?= isset($row['suffix']) && $row['suffix'] == 'VI' ? 'selected' : '' ?>>VI</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Email</label> 
                             <input placeholder="Enter Email Address" type="email" name="email" value="<?=$row['email'];?>" class="form-control" required id="email-input">

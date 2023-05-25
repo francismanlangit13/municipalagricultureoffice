@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label for="suffix">Suffix</label>
                                 <select class="form-control" name="suffix">
-                                    <option value="" selected disabled>Select Suffix</option>
+                                    <option value="" selected>Select Suffix</option>
                                     <option value="Jr">Jr</option>
                                     <option value="Sr">Sr</option>
                                     <option value="I">I</option>

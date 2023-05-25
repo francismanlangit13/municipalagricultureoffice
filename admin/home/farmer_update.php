@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label for="suffix">Suffix</label>
                                 <select class="form-control" name="suffix">
-                                    <option value="" selected disabled>Select Suffix</option>
+                                    <option value="" selected>Select Suffix</option>
                                     <option value="Jr" <?= isset($user['suffix']) && $user['suffix'] == 'Jr' ? 'selected' : '' ?>>Jr</option>
                                     <option value="Sr" <?= isset($user['suffix']) && $user['suffix'] == 'Sr' ? 'selected' : '' ?>>Sr</option>
                                     <option value="I" <?= isset($user['suffix']) && $user['suffix'] == 'I' ? 'selected' : '' ?>>I</option>
