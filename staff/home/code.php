@@ -1543,4 +1543,33 @@
     // Close MySQL connection
     mysqli_close($con);
   }
+
+  if(isset($_POST['export_product'])){
+    // Fetch data from MySQL table
+    $sql = "SELECT * FROM product INNER JOIN product_category ON product.product_category_id = product_category.product_category_id WHERE product.product_status IN (1,2,3)";
+    $result = mysqli_query($con, $sql);
+
+    // Set the filename and mime type
+    $filename = "export_product_" . date('m-d-Y_H:i:s A') . ".csv";
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Open file for writing
+    $file = fopen('php://output', 'w');
+
+    // Set the column headers
+    fputcsv($file, array('Product ID', 'Product Name', 'Product Description', 'Quantity', 'Expiration', 'Product Category', 'Status (1-Active, 2-In Active, 3-Archived)'));
+
+    // Add the data to the file
+    while ($data = mysqli_fetch_assoc($result)) {
+      fputcsv($file, array($data['product_id'], $data['product_name'], $data['product_description'], $data['product_quantity'], $data['exp_date'], $data['category_name'], $data['product_status']));
+    }
+
+    // Close file
+    fclose($file);
+
+    // Close MySQL connection
+    mysqli_close($con);
+  }
 ?>
