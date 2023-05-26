@@ -10,12 +10,22 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="product_add" class="btn btn-success btn-icon-split"> 
-            <span class="icon text-white-50">
-            <i class="fas fa-archive"></i>
-            </span>
-            <span class="text">Add Product</span>
-        </a>
+        <div class="d-flex justify-content-between">
+            <a href="product_add" class="btn btn-success btn-icon-split"> 
+                <span class="icon text-white-50">
+                <i class="fas fa-archive"></i>
+                </span>
+                <span class="text">Add Product</span>
+            </a>
+            <form method="post" action="code.php">
+                <button class="btn btn-success btn-icon-split" type="submit" name="export_product">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-file-csv"></i>
+                    </span>
+                    <span class="text">CSV</span>
+                </button>
+            </form>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">

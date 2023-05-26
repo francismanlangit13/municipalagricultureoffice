@@ -148,18 +148,6 @@
 </div>
 
 <?php include('../includes/footer.php'); ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(document).ready(function(){
-        $('.select2').select2({
-            width:'100%'
-        })
-        $('#filter').submit(function(e){
-            e.preventDefault();
-            //location.href= './?page=reports/date_wise_transaction&'+$(this).serialize();
-        })
-	})
-</script>
 <script>
 	function printDiv() {
 		var divToPrint = document.getElementById('outprint');
