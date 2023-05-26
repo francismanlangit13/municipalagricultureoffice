@@ -55,7 +55,7 @@
                             `user`.phone,
                             `user`.`password`, 
                             `user`.picture,
-                            `user`.user_status,
+                            `user`.user_status_id,
                             user_type.user_name, 
                             user_status.user_status_name,
                             user_type.user_name
@@ -64,13 +64,13 @@
                         INNER JOIN
                             user_type
                         ON 
-                            `user`.user_type = user_type.user_id
+                            `user`.user_type_id = user_type.user_type_id
                         INNER JOIN
                             user_status
                         ON 
-                            `user`.user_status = user_status.user_status_id
+                            `user`.user_status_id = user_status.user_status_id
                         WHERE
-                            `user`.user_status != 3 && `user`.user_type != 3";
+                            `user`.user_status_id != 3 && `user`.user_type_id != 3";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
                             foreach($query_run as $row){
@@ -102,7 +102,7 @@
                         <td><?= $row['phone']; ?></td>
                         <td><?= $row['user_name']; ?></td>
                         <td>
-                            <?php if($row['user_status'] == 1){ ?>
+                            <?php if($row['user_status_id'] == 1){ ?>
                                 <span class="rounded-pill badge badge-success bg-gradient-success px-3">Active</span>
                             <?php } else { ?>
                                 <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">In active</span>

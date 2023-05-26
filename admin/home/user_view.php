@@ -11,7 +11,7 @@
 <?php
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
-        $sql = "SELECT * FROM user WHERE user_id='$id' AND user_status != 3 AND user_type != 3";
+        $sql = "SELECT * FROM user WHERE user_id='$id' AND user_status_id != 3 AND user_type_id != 3";
         $sql_run = mysqli_query($con, $sql);
 
         if(mysqli_num_rows($sql_run) > 0) {
@@ -84,10 +84,10 @@
                     <div class="col-md-4 mb-3">
                         <label for="">Role</label>
                         <?php
-                        if ($row['user_type'] == 1) { ?>
+                        if ($row['user_type_id'] == 1) { ?>
                             <input disabled type="text" value="Admin" class="form-control">
                         <?php } 
-                        if ($row['user_type'] == 2) { ?>
+                        if ($row['user_type_id'] == 2) { ?>
                             <input disabled type="text" value="Staff" class="form-control">
                         <?php } ?>
                     </div>
@@ -107,7 +107,7 @@
                                     if(!empty($row['picture'])){ 
                                         echo base_url . 'assets/img/users/' . $row['picture'];
                                 } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                            ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type'] == 1){ echo"ADMIN: ";} else{ echo"STAFF: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
+                            ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type_id'] == 1){ echo"ADMIN: ";} else{ echo"STAFF: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
                             <img class="zoom img-fluid img-bordered-sm"
                             src="
                                 <?php

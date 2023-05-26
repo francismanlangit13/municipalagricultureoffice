@@ -23,7 +23,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Account (Farmer)</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <?php
-                                        $sql = "SELECT* FROM user WHERE user_status = 1 && user_type = 3";
+                                        $sql = "SELECT* FROM user WHERE user_status_id = 1 && user_type_id = 3";
                                         $sql_run = mysqli_query($con, $sql);
                                         if($farmer_count = mysqli_num_rows($sql_run)){
                                             echo '<h4>'.$farmer_count.'</h4>';

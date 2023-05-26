@@ -15,7 +15,7 @@
 <?php
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $users = "SELECT * FROM user WHERE user_id='$id' AND user_status != 3 AND user_type NOT IN (1, 2)";
+        $users = "SELECT * FROM user WHERE user_id='$id' AND user_status_id != 3 AND user_type_id NOT IN (1, 2)";
         $users_run = mysqli_query($con, $users);
         if(mysqli_num_rows($users_run) > 0){
             foreach($users_run as $user){
@@ -376,13 +376,13 @@
                             </div>
                         </div>
                         <div class="col-md-3 mb-3" style="margin-left:15rem;">
-                            <label for="" class="required">User Status (<label id="myValueName"><?php if($user['user_status']=="1") { echo "Active"; } else { echo "In active"; } ?></label>)</label>
+                            <label for="" class="required">User Status (<label id="myValueName"><?php if($user['user_status_id']=="1") { echo "Active"; } else { echo "In active"; } ?></label>)</label>
                             <br>
                             <label class="switch-new" style="margin-left:3.3rem;">
-                                <input type="checkbox" id="mySwitch" <?php if($user['user_status']=="1") {?> <?php echo "checked";?> <?php }?>>
+                                <input type="checkbox" id="mySwitch" <?php if($user['user_status_id']=="1") {?> <?php echo "checked";?> <?php }?>>
                                 <span class="slider-new round-new"></span>
                             </label>
-                            <input type="hidden" name="status" id="myValue" value="<?= $user['user_status']; ?>">
+                            <input type="hidden" name="status" id="myValue" value="<?= $user['user_status_id']; ?>">
                         </div>
                     </div>
                 </div>

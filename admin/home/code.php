@@ -88,7 +88,7 @@
   //Delete user
   if(isset($_POST['user_delete'])){
     $user_id= $_POST['user_delete'];
-    $query = "UPDATE `user` SET user_status = 3 WHERE user_id = $user_id ";
+    $query = "UPDATE `user` SET user_status_id = 3 WHERE user_id = $user_id ";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -343,7 +343,7 @@
           $targetFile = $uploadDir . $fileName;
 
           if (move_uploaded_file($fileTmpname, $targetFile)) {
-            $query = "INSERT INTO `user`(`fname`, `mname`, `lname`, `suffix`, `gender`, `email`, `password`, `qrcode`, `reference_number`, `picture`, `purok`, `street`, `barangay`, `municipality`, `province`, `region`, `phone`, `religion`, `birthday`, `birthplace`, `civil_status`, `pwd`, `4ps`, `ig`, `ig_specify`, `govid`, `govid_specify`, `farmersassoc`, `farmersassoc_specify`, `livelihood`, `rice`, `corn`, `other_crops_specify`, `livestock`, `livestock_specify`, `poultry`, `poultry_specify`, `owner`, `land`, `planting`, `cultivation`, `harvesting`, `other_farmworker_specify`, `part_of_farming`, `attending_formal`, `attending_nonformal`, `participated`, `other_agri_youth_specify`, `user_type`, `user_status`) VALUES ('$fname','$mname','$lname','$suffix','$gender','$email','$password','$qrcode','$reference_number','$fileName','$purok','$street','$barangay','$municipality','$province','$region','$phone', '$religion','$birthday','$placeofbirth','$civilstatus','$pwd','$fourps','$ig','$igyes','$govid','$govidyes','$fac','$facyes','$livelihood','$rice','$corn','$other_crops_specify','$livestock','$livestock_specify','$poultry','$poultry_specify', '$owner','$land','$planting','$cultivation','$harvesting','$other_farmworker_specify','$part_of_farming','$attending_formal','$attending_nonformal','$participated','$other_agri_youth_specify','$user_type','$user_status')";
+            $query = "INSERT INTO `user`(`fname`, `mname`, `lname`, `suffix`, `gender`, `email`, `password`, `qrcode`, `reference_number`, `picture`, `purok`, `street`, `barangay`, `municipality`, `province`, `region`, `phone`, `religion`, `birthday`, `birthplace`, `civil_status`, `pwd`, `4ps`, `ig`, `ig_specify`, `govid`, `govid_specify`, `farmersassoc`, `farmersassoc_specify`, `livelihood`, `rice`, `corn`, `other_crops_specify`, `livestock`, `livestock_specify`, `poultry`, `poultry_specify`, `owner`, `land`, `planting`, `cultivation`, `harvesting`, `other_farmworker_specify`, `part_of_farming`, `attending_formal`, `attending_nonformal`, `participated`, `other_agri_youth_specify`, `user_type_id`, `user_status_id`) VALUES ('$fname','$mname','$lname','$suffix','$gender','$email','$password','$qrcode','$reference_number','$fileName','$purok','$street','$barangay','$municipality','$province','$region','$phone', '$religion','$birthday','$placeofbirth','$civilstatus','$pwd','$fourps','$ig','$igyes','$govid','$govidyes','$fac','$facyes','$livelihood','$rice','$corn','$other_crops_specify','$livestock','$livestock_specify','$poultry','$poultry_specify', '$owner','$land','$planting','$cultivation','$harvesting','$other_farmworker_specify','$part_of_farming','$attending_formal','$attending_nonformal','$participated','$other_agri_youth_specify','$user_type','$user_status')";
             $query_run = mysqli_query($con, $query);
 
             if($query_run){
@@ -459,7 +459,7 @@
     $qrcode = $_POST['qrcode_text'];
     $user_status = $_POST['status'];
 
-    $query = "UPDATE `user` SET `fname`='$fname', `mname`='$mname', `lname`='$lname', `suffix`='$suffix', `gender`='$gender', `email`='$email', `qrcode`='$qrcode', `reference_number`='$reference_number', `purok`='$purok', `street`='$street', `barangay`='$barangay', `municipality`='$municipality', `province`='$province', `region`='$region', `phone`='$phone', `religion`='$religion', `birthday`='$birthday', `birthplace`='$placeofbirth', `civil_status`='$civilstatus', `pwd`='$pwd', `4ps`='$fourps', `ig`='$ig', `ig_specify`='$igyes', `govid`='$govid', `govid_specify`='$govidyes', `farmersassoc`='$fac', `farmersassoc_specify`='$facyes', `livelihood`='$livelihood', `rice`='$rice', `corn`='$corn', `other_crops_specify`='$other_crops_specify', `livestock`='$livestock', `livestock_specify`='$livestock_specify', `poultry`='$poultry', `poultry_specify`='$poultry_specify', `owner`='$owner', `land`='$land', `planting`='$planting', `cultivation`='$cultivation', `harvesting`='$harvesting', `other_farmworker_specify`='$other_farmworker_specify', `part_of_farming`='$part_of_farming', `attending_formal`='$attending_formal', `attending_nonformal`='$attending_nonformal', `participated`='$participated', `other_agri_youth_specify`='$other_agri_youth_specify', `user_status`='$user_status' WHERE `user_id`=$user_id";
+    $query = "UPDATE `user` SET `fname`='$fname', `mname`='$mname', `lname`='$lname', `suffix`='$suffix', `gender`='$gender', `email`='$email', `qrcode`='$qrcode', `reference_number`='$reference_number', `purok`='$purok', `street`='$street', `barangay`='$barangay', `municipality`='$municipality', `province`='$province', `region`='$region', `phone`='$phone', `religion`='$religion', `birthday`='$birthday', `birthplace`='$placeofbirth', `civil_status`='$civilstatus', `pwd`='$pwd', `4ps`='$fourps', `ig`='$ig', `ig_specify`='$igyes', `govid`='$govid', `govid_specify`='$govidyes', `farmersassoc`='$fac', `farmersassoc_specify`='$facyes', `livelihood`='$livelihood', `rice`='$rice', `corn`='$corn', `other_crops_specify`='$other_crops_specify', `livestock`='$livestock', `livestock_specify`='$livestock_specify', `poultry`='$poultry', `poultry_specify`='$poultry_specify', `owner`='$owner', `land`='$land', `planting`='$planting', `cultivation`='$cultivation', `harvesting`='$harvesting', `other_farmworker_specify`='$other_farmworker_specify', `part_of_farming`='$part_of_farming', `attending_formal`='$attending_formal', `attending_nonformal`='$attending_nonformal', `participated`='$participated', `other_agri_youth_specify`='$other_agri_youth_specify', `user_status_id`='$user_status' WHERE `user_id`=$user_id";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -500,7 +500,7 @@
 
   if(isset($_POST['farmer_delete'])){
     $user_id= $_POST['farmer_delete'];
-    $query = "UPDATE `user` SET user_status = 3 WHERE user_id = $user_id ";
+    $query = "UPDATE `user` SET user_status_id = 3 WHERE user_id = $user_id ";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
@@ -677,7 +677,7 @@
           $targetFile = $uploadDir . $fileName;
 
           if (move_uploaded_file($fileTmpname, $targetFile)) {
-            $query = "INSERT INTO `user`(`fname`, `mname`, `lname`, `suffix`, `gender`, `religion`, `birthday`, `birthplace`, `civil_status`, `email`, `phone`, `password`, `picture`, `user_type`, `user_status`) VALUES ('$fname','$mname','$lname','$suffix','$gender','$religion','$birthday','$placeofbirth','$civilstatus','$email','$phone','$password','$fileName','$user_type','$user_status')";
+            $query = "INSERT INTO `user`(`fname`, `mname`, `lname`, `suffix`, `gender`, `religion`, `birthday`, `birthplace`, `civil_status`, `email`, `phone`, `password`, `picture`, `user_type_id`, `user_status_id`) VALUES ('$fname','$mname','$lname','$suffix','$gender','$religion','$birthday','$placeofbirth','$civilstatus','$email','$phone','$password','$fileName','$user_type','$user_status')";
             $query_run = mysqli_query($con, $query);
 
             if($query_run){
@@ -772,8 +772,8 @@
     `civil_status`='$civilstatus',
     `email`='$email',
     `phone`='$phone',
-    `user_type`='$user_type',
-    `user_status`='$user_status'
+    `user_type_id`='$user_type',
+    `user_status_id`='$user_status'
     WHERE `user_id`='$user_id'";
     $query_run = mysqli_query($con, $query);
 
@@ -1221,7 +1221,7 @@
       //$sql0 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
       $sql0 = "SELECT announcement.ann_title, announcement.ann_body, user.fname, user.lname FROM announcement INNER JOIN user ON announcement.user_id = user.user_id WHERE announcement.ann_id = '$user_id'";
       $ann_result = mysqli_query($con, $sql0);
-      $sql = "SELECT email FROM user WHERE user_type = 3 AND user_status = 1";
+      $sql = "SELECT email FROM user WHERE user_type_id = 3 AND user_status_id = 1";
       $result = $con->query($sql);
 
       require("../../assets/PHPMailer/PHPMailerAutoload.php");
@@ -1267,7 +1267,7 @@
           echo 'Mailer Error: ' . $mail->ErrorInfo;
       } else {
         // Prepare the SQL statement to select phone numbers based on user type and status
-        $sql = "SELECT phone FROM user WHERE user_type = 3 AND user_status = 1";
+        $sql = "SELECT phone FROM user WHERE user_type_id = 3 AND user_status_id = 1";
         //$sql1 = "SELECT `ann_title`, `ann_body` FROM `announcement` WHERE `ann_id` ='$user_id'";
         $sql1 = "SELECT announcement.ann_title, announcement.ann_body, user.fname, user.lname FROM announcement INNER JOIN user ON announcement.user_id = user.user_id WHERE announcement.ann_id = '$user_id'";
         $ann_result1 = mysqli_query($con, $sql1);
@@ -1868,7 +1868,7 @@
   // Export CSV File here
   if(isset($_POST['export_farmer'])){
     // Fetch data from MySQL table
-    $sql = "SELECT * FROM user INNER JOIN user_type ON user.user_type = user_type.user_id INNER JOIN user_status ON user.user_status = user_status.user_status_id WHERE user.user_type = 3 AND user.user_status IN (1,2,3)";
+    $sql = "SELECT * FROM user INNER JOIN user_type ON user.user_type_id = user_type.user_type_id INNER JOIN user_status ON user.user_status_id = user_status.user_status_id WHERE user.user_type_id = 3 AND user.user_status_id IN (1,2,3)";
     $result = mysqli_query($con, $sql);
 
     // Set the filename and mime type
@@ -1897,7 +1897,7 @@
 
   if(isset($_POST['export_user'])){
     // Fetch data from MySQL table
-    $sql = "SELECT * FROM user INNER JOIN user_type ON user.user_type = user_type.user_id INNER JOIN user_status ON user.user_status = user_status.user_status_id WHERE user.user_type IN (1,2) AND user.user_status IN (1,2,3)";
+    $sql = "SELECT * FROM user INNER JOIN user_type ON user.user_type_id = user_type.user_type_id INNER JOIN user_status ON user.user_status_id = user_status.user_status_id WHERE user.user_type_id IN (1,2) AND user.user_status_id IN (1,2,3)";
     $result = mysqli_query($con, $sql);
 
     // Set the filename and mime type
