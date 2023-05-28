@@ -1,6 +1,6 @@
 <?php
     include ('db_conn.php');
-    if(!$sock = @fsockopen('maojimenez.ueuo.com', 80)){
+    if(!$sock = @fsockopen(base_url, 80)){
         echo 'Not Connected';
     }
     else{
