@@ -25,6 +25,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url ?>assets/css/bootstrap.min.css">
+    <link href="<?php echo base_url ?>assets/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Loading CSS -->
     <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
@@ -75,6 +77,7 @@
     <div id="loading">
         <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />
     </div>
+    <div id="connectionAlert" class="alert"></div>
     <div class="d-lg-flex half">
       <div class="bg order-1 order-md-2" style="background-image: url('<?php echo base_url ?>assets/img/system/template.jpg');"></div>
       <div class="contents order-2 order-md-1">
@@ -101,15 +104,17 @@
     <script src="<?php echo base_url ?>assets/js/sweetalert.js"></script>
     <?php include ('message.php'); ?>
     <script>
-        var base_url = "<?php echo base_url ?>"; // global location for javascript
-      </script>
-      <script src="<?php echo base_url ?>assets/js/jquery-3.3.1.min.js"></script>
-      <script src="<?php echo base_url ?>assets/js/popper.min.js"></script>
-      <script src="<?php echo base_url ?>assets/js/bootstrap.min.js"></script>
-      <script src="<?php echo base_url ?>assets/js/main.js"></script>
-      <!-- Loading JS -->
-      <script src="<?php echo base_url ?>assets/js/loader.js"></script>
-      <script src="<?php echo base_url ?>assets/js/underscore-min.js"></script>
+      var base_url = "<?php echo base_url ?>"; // global location for javascript
+    </script>
+    <script src="<?php echo base_url ?>assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<?php echo base_url ?>assets/js/popper.min.js"></script>
+    <script src="<?php echo base_url ?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url ?>assets/js/main.js"></script>
+    <!-- Loading JS -->
+    <script src="<?php echo base_url ?>assets/js/loader.js"></script>
+    <script src="<?php echo base_url ?>assets/js/underscore-min.js"></script>
+    <!-- Serverstatus JS -->
+    <script src="<?php echo base_url ?>assets/js/serverstatus.js"></script>
     <script>
       $(document).ready(function() {
         // disable submit button by default

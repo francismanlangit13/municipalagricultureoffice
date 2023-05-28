@@ -51,6 +51,7 @@
     <div id="loading">
         <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />
     </div>
+    <div id="connectionAlert" class="alert"></div>
 <?php include('sidebar.php');?>
 
 <?php include('nav-top.php');?>
