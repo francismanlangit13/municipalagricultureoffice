@@ -40,6 +40,7 @@
                                     // While loop must be terminated
                                 ?>
                             </select>
+                            <div id="product_id-error"></div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="" class="required">Quantity</label>
@@ -48,7 +49,8 @@
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="Description" class="required">Request message</label>
-                            <textarea placeholder="Enter Description" name="description" required type="text" class="form-control" rows="3"></textarea>
+                            <textarea placeholder="Enter Message" id="message" name="description" required type="text" class="form-control" rows="3"></textarea>
+                            <div id="message-error"></div>
                         </div>
                         <?php if(isset($_SESSION['auth_user']))  ?>
                         <label for="" hidden="true">user_id</label>
@@ -80,34 +82,92 @@
         function checkQuantity() {
             var product_id = $('#product_id').val();
             var product_quantity = $('#product_quantity-input').val();
-            $.ajax({
-            url: 'ajax.php', // replace with the actual URL to check quantity
-            method: 'POST', // use the appropriate HTTP method
-            data: { product_id: product_id, product_quantity: product_quantity },
-            success: function(response) {
-                if (response.exists) {
-                    // disable submit button if quantity is taken
-                    $('#submit-btn').prop('disabled', true);
-                    $('#product_quantity-error').text('Out of stock').css('color', 'red');
-                    $('#product_quantity-input').addClass('is-invalid');
-                } else {
-                $('#product_quantity-error').empty();
-                $('#product_quantity-input').removeClass('is-invalid');
-                // enable submit button if quantity is valid
+
+            // show error if quantity is empty
+            if (product_quantity === '') {
+                $('#product_quantity-error').text('Please input quantity').css('color', 'red');
+                $('#product_quantity-input').addClass('is-invalid');
                 checkIfAllFieldsValid();
-                }
-            },
-            error: function() {
-                $('#product_quantity-error').text('Error checking quantity');
+                return;
             }
+
+            // check if numbers format is valid
+            var numbersPattern = /^\d+$/;
+            if (!numbersPattern.test(product_quantity)) {
+                $('#product_quantity-error').text('Invalid format').css('color', 'red');
+                $('#product_quantity-input').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            $.ajax({
+                url: 'ajax.php', // replace with the actual URL to check quantity
+                method: 'POST', // use the appropriate HTTP method
+                data: { product_id: product_id, product_quantity: product_quantity },
+                success: function(response) {
+                    if (response.exists) {
+                        // disable submit button if quantity is taken
+                        $('#submit-btn').prop('disabled', true);
+                        $('#product_quantity-error').text('Out of stock').css('color', 'red');
+                        $('#product_quantity-input').addClass('is-invalid');
+                    } else {
+                        $('#product_quantity-error').empty();
+                        $('#product_quantity-input').removeClass('is-invalid');
+                        // enable submit button if quantity is valid
+                        checkIfAllFieldsValid();
+                    }
+                },
+                error: function() {
+                    $('#product_quantity-error').text('Error checking quantity');
+                }
             });
         }
 
         function checkIfAllFieldsValid() {
             // check if all input fields are valid and enable submit button if so
             if ($('#product_quantity-error').is(':empty')) {
-            $('#submit-btn').prop('disabled', false);
+                $('#submit-btn').prop('disabled', false);
             }
         }
     });
+</script>
+
+<script>
+    var product_idNameInput = document.getElementById("product_id");
+    var product_idNameError = document.getElementById("product_id-error");
+    var messageNameInput = document.getElementById("message");
+    var messageNameError = document.getElementById("description-error");
+
+    product_idNameInput.addEventListener("blur", function() {
+        if (product_idNameInput.value.trim() === "") {
+            $('#product_id-error').text('Select product').css('color', 'red');
+            $('#product_id').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#product_id-error').empty();
+            $('#product_id').removeClass('is-invalid');
+            // enable submit button if product name is selected.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    messageNameInput.addEventListener("blur", function() {
+        if (messageNameInput.value.trim() === "") {
+            $('#message-error').text('Please input message').css('color', 'red');
+            $('#message').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#message-error').empty();
+            $('#message').removeClass('is-invalid');
+            // enable submit button if message is inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    function checkIfAllFieldsValid() {
+      // check if all input fields are valid and enable submit button if so
+      if ($('#title-error').is(':empty') && $('#message-error').is(':empty')) {
+        $('#submit-btn').prop('disabled', false);
+      }
+    }
 </script>

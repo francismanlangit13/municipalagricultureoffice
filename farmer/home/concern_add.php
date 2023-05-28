@@ -17,11 +17,13 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="Title" class="required">Title</label>
-                            <input required type="text" name="title" class="form-control">
+                            <input required type="text" id="title" name="title" class="form-control">
+                            <div id="title-error"></div>
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="Description" class="required">Message</label>
-                            <textarea placeholder="Enter Message" name="message" required type="text" class="form-control" rows="3"></textarea>
+                            <textarea placeholder="Enter Message" id="message" name="message" required type="text" class="form-control" rows="3"></textarea>
+                            <div id="message-error"></div>
                         </div>
 
                         <?php if(isset($_SESSION['auth_user']))  ?>
@@ -77,7 +79,7 @@
                     </div>
                     <div class="text-right">
                       <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                      <button type="submit" name="add_concern" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
+                      <button type="submit" name="add_concern" id="submit-btn" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
                     </div>
                 </div>
             </div>
@@ -159,4 +161,44 @@
       fileInput6.required = false;
     }
   });
+</script>
+
+<script>
+    var titleNameInput = document.getElementById("title");
+    var titleNameError = document.getElementById("title-error");
+    var messageNameInput = document.getElementById("message");
+    var messageNameError = document.getElementById("description-error");
+
+    titleNameInput.addEventListener("blur", function() {
+        if (titleNameInput.value.trim() === "") {
+            $('#title-error').text('Please input title name').css('color', 'red');
+            $('#title').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#title-error').empty();
+            $('#title').removeClass('is-invalid');
+            // enable submit button if title name are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    messageNameInput.addEventListener("blur", function() {
+        if (messageNameInput.value.trim() === "") {
+            $('#message-error').text('Please input message').css('color', 'red');
+            $('#message').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#message-error').empty();
+            $('#message').removeClass('is-invalid');
+            // enable submit button if message is inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    function checkIfAllFieldsValid() {
+      // check if all input fields are valid and enable submit button if so
+      if ($('#title-error').is(':empty') && $('#message-error').is(':empty')) {
+        $('#submit-btn').prop('disabled', false);
+      }
+    }
 </script>

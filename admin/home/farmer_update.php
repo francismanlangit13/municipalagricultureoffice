@@ -37,24 +37,28 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Last Name</label>
-                            <input required placeholder="Enter First Name" type="text" value="<?=$user['lname'];?>" name="lname" class="form-control">
+                            <input required placeholder="Enter Last Name" type="text" value="<?=$user['lname'];?>" id="lname" name="lname" class="form-control">
+                            <div id="lname-error"></div>
                         </div> 
                     
                         <div class="col-md-3 mb-3">
                             <label for="">Middle Name</label>
-                            <input placeholder="Enter Middle Name" type="text" value="<?=$user['mname'];?>" name="mname" class="form-control">
+                            <input placeholder="Enter Middle Name" type="text" value="<?=$user['mname'];?>" id="mname" name="mname" class="form-control">
+                            <div id="mname-error"></div>
                         </div>
 
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">First Name</label>
-                            <input required placeholder="Enter First Name" type="text" value="<?=$user['fname'];?>" name="fname" class="form-control">
+                            <input required placeholder="Enter First Name" type="text" value="<?=$user['fname'];?>" id="fname" name="fname" class="form-control">
+                            <div id="fname-error"></div>
                         </div>
 
                         <div class="col-md-3 mb-3">
                             <div class="form-group">
                                 <label for="suffix">Suffix</label>
-                                <select class="form-control" name="suffix">
+                                <select class="form-control" id="suffix" name="suffix">
                                     <option value="" selected>Select Suffix</option>
+                                    <option value="" <?= isset($user['suffix']) && $user['suffix'] == '' ? 'selected' : '' ?>>None</option>
                                     <option value="Jr" <?= isset($user['suffix']) && $user['suffix'] == 'Jr' ? 'selected' : '' ?>>Jr</option>
                                     <option value="Sr" <?= isset($user['suffix']) && $user['suffix'] == 'Sr' ? 'selected' : '' ?>>Sr</option>
                                     <option value="I" <?= isset($user['suffix']) && $user['suffix'] == 'I' ? 'selected' : '' ?>>I</option>
@@ -64,14 +68,16 @@
                                     <option value="V" <?= isset($user['suffix']) && $user['suffix'] == 'V' ? 'selected' : '' ?>>V</option>
                                     <option value="VI" <?= isset($user['suffix']) && $user['suffix'] == 'VI' ? 'selected' : '' ?>>VI</option>
                                 </select>
+                                <div id="suffix-error"></div>
                             </div>
                         </div>
 
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Gender</label>
                             <br>
-                            <input required class="ml-2" type="radio" name="gender" value="Male" <?php if($user['gender']=="Male") {?> <?php echo "checked";?> <?php }?>> Male
-                            <input required class="ml-2"  type="radio" name="gender" value="Female" <?php if($user['gender']=="Female") {?> <?php echo "checked";?> <?php }?>> Female
+                            <input required class="ml-2" type="radio" id="male" name="gender" value="Male" <?php if($user['gender']=="Male") {?> <?php echo "checked";?> <?php }?>> Male
+                            <input required class="ml-2"  type="radio" id="female" name="gender" value="Female" <?php if($user['gender']=="Female") {?> <?php echo "checked";?> <?php }?>> Female
+                            <div id="gender-error"></div>
                         </div>
 
                         <div class="col-md-9 mb-3">
@@ -86,19 +92,21 @@
 
                         <div class="col-md-4 mb-3">   
                             <label for="" class="required">Purok</label>
-                            <input required placeholder="Enter Purok No." type="text" pattern="\d*" minlength="1" maxlength="2" value="<?=$user['purok'];?>" name="purok" class="form-control">
+                            <input required placeholder="Enter Purok No." type="text" pattern="\d*" minlength="1" maxlength="2" value="<?=$user['purok'];?>" id="purok" name="purok" class="form-control">
+                            <div id="purok-error"></div>
                         </div>
 
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Street</label>
-                            <input required placeholder="Enter Street" type="text" value="<?=$user['street'];?>" name="street" class="form-control">
+                            <input required placeholder="Enter Street" type="text" value="<?=$user['street'];?>" id="street" name="street" class="form-control">
+                            <div id="street-error"></div>
                         </div>
 
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="address" class="required">Barangay</label>
                                 <select class="form-control" name="barangay" id="barangay" required>
-                                    <option value="" selected="true" disabled="disabled">Select Barangay</option>
+                                    <option value="" selected>Select Barangay</option>
                                     <option value="Adorable" <?= isset($user['barangay']) && $user['barangay'] == 'Adorable' ? 'selected' : '' ?>>Adorable</option>    
                                     <option value="Butuay" <?= isset($user['barangay']) && $user['barangay'] == 'Butuay' ? 'selected' : '' ?>>Butuay</option> 
                                     <option value="Carmen" <?= isset($user['barangay']) && $user['barangay'] == 'Carmen' ? 'selected' : '' ?>>Carmen</option> 
@@ -124,6 +132,7 @@
                                     <option value="Tabo-o" <?= isset($user['barangay']) && $user['barangay'] == 'Tabo-o' ? 'selected' : '' ?>>Tabo-o</option>
                                     <option value="Taraka" <?= isset($user['barangay']) && $user['barangay'] == 'Taraka' ? 'selected' : '' ?>>Taraka</option>
                                 </select>
+                                <div id="barangay-error"></div>
                             </div>
                         </div>
 
@@ -154,28 +163,32 @@
 
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Religion</label>
-                            <input required placeholder="Enter Religion" type="text" value="<?=$user['religion'];?>" name="religion" class="form-control">
+                            <input required placeholder="Enter Religion" type="text" value="<?=$user['religion'];?>" id="religion" name="religion" class="form-control">
+                            <div id="religion-error"></div>
                         </div>
 
                         <div class="col-md-4 mb-3">
                             <label for="date" class="required">Date of Birth</label>
                             <input required class="form-control" id="date" value="<?=$user['birthday'];?>" name="dob" placeholder="MM/DD/YYY" type="date"/>
+                            <div id="date-error"></div>
                         </div>
 
                         <div class="col-md-9 mb-3">
                             <label for="" class="required">Place of Birth</label>
-                            <textarea required placeholder="Enter Place of Birth" type="text" value="<?=$user['birthplace'];?>" name="placeofbirth" class="form-control"><?=$user['birthplace'];?></textarea>
+                            <textarea required placeholder="Enter Place of Birth" type="text" value="<?=$user['birthplace'];?>" id="placeofbirth" name="placeofbirth" class="form-control"><?=$user['birthplace'];?></textarea>
+                            <div id="placeofbirth-error"></div>
                         </div> 
 
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Civil Status</label>
-                            <select name="civilstatus" required class="form-control">
+                            <select id="civilstatus" name="civilstatus" required class="form-control">
                                 <option value="" selected="true" disabled="disabled">Select Civil Status</option>
                                 <option value="Single" <?= isset($user['civil_status']) && $user['civil_status'] == 'Single' ? 'selected' : '' ?>>Single</option>
                                 <option value="Married" <?= isset($user['civil_status']) && $user['civil_status'] == 'Married' ? 'selected' : '' ?>>Married</option>
                                 <option value="Widowed" <?= isset($user['civil_status']) && $user['civil_status'] == 'Widowed' ? 'selected' : '' ?>>Widowed</option>
                                 <option value="Separated" <?= isset($user['civil_status']) && $user['civil_status'] == 'Separated' ? 'selected' : '' ?>>Separated</option>
                             </select>
+                            <div id="civilstatus-error"></div>
                         </div>
 
                         <div class="col-md-12 mb-3">
@@ -185,26 +198,29 @@
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Person with Disability (PWD)</label>
                             <br>
-                            <input required class="ml-2" type="radio" name="pwd" value="Yes" <?php if($user['pwd']=="Yes") {?> <?php echo "checked";?> <?php }?>> Yes
-                            <input required class="ml-2" type="radio" name="pwd" value="No" <?php if($user['pwd']=="No") {?> <?php echo "checked";?> <?php }?>> No
+                            <input required class="ml-2" type="radio" id="pwdyes" name="pwd" value="Yes" <?php if($user['pwd']=="Yes") {?> <?php echo "checked";?> <?php }?>> Yes
+                            <input required class="ml-2" type="radio" id="pwdno" name="pwd" value="No" <?php if($user['pwd']=="No") {?> <?php echo "checked";?> <?php }?>> No
+                            <div id="pwd-error"></div>
                         </div>
 
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">4P's Beneficiary?</label>
                             <br>
-                            <input required class="ml-2" type="radio" name="fourps" value="Yes" <?php if($user['4ps']=="Yes") {?> <?php echo "checked";?> <?php }?>> Yes
-                            <input required class="ml-2" type="radio" name="fourps" value="No" <?php if($user['4ps']=="No") {?> <?php echo "checked";?> <?php }?>> No
+                            <input required class="ml-2" type="radio" id="fourpsyes" name="fourps" value="Yes" <?php if($user['4ps']=="Yes") {?> <?php echo "checked";?> <?php }?>> Yes
+                            <input required class="ml-2" type="radio" id="fourpsno" name="fourps" value="No" <?php if($user['4ps']=="No") {?> <?php echo "checked";?> <?php }?>> No
+                            <div id="fourps-error"></div>
                         </div>
 
                         <div class="col-md-12 mb-3">
-                        <hr>
+                            <hr>
                         </div>
 
                         <div class="col-md-4 mb-3">
-                        <label for="" class="required">Member of an <strong>Indigenous Group</strong>?</label>
-                        <br>
-                        <input required class="ml-2" type="radio" name="ig" id="igyes" value="Yes"> Yes
-                        <input required class="ml-2" type="radio" name="ig" id="igno" value="No"> No
+                            <label for="" class="required">Member of an <strong>Indigenous Group</strong>?</label>
+                            <br>
+                            <input required class="ml-2" type="radio" name="ig" id="igyes" value="Yes"> Yes
+                            <input required class="ml-2" type="radio" name="ig" id="igno" value="No"> No
+                            <div id="ig-error"></div>
                         </div>
 
                         <div class="col-md-8 mb-3">
@@ -213,10 +229,11 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                        <label for="" class="required">With <strong>Government ID</strong>?</label>
-                        <br>
-                        <input required class="ml-2" type="radio" name="govid" id="govidyes" value="Yes"> Yes
-                        <input required class="ml-2" type="radio" name="govid" id="govidno" value="No"> No
+                            <label for="" class="required">With <strong>Government ID</strong>?</label>
+                            <br>
+                            <input required class="ml-2" type="radio" name="govid" id="govidyes" value="Yes"> Yes
+                            <input required class="ml-2" type="radio" name="govid" id="govidno" value="No"> No
+                            <div id="govid-error"></div>
                         </div>
 
                         <div class="col-md-8 mb-3">
@@ -225,10 +242,11 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                        <label for="" class="required">Member of any <strong>Farmers Association/Cooperative</strong>?</label>
-                        <br>
-                        <input required class="ml-2" type="radio" name="fac" id="facyes" value="Yes"> Yes
-                        <input required class="ml-2"  type="radio" name="fac" id="facno" value="No"> No
+                            <label for="" class="required">Member of any <strong>Farmers Association/Cooperative</strong>?</label>
+                            <br>
+                            <input required class="ml-2" type="radio" name="fac" id="facyes" value="Yes"> Yes
+                            <input required class="ml-2"  type="radio" name="fac" id="facno" value="No"> No
+                            <div id="fac-error"></div>
                         </div>
 
                         
@@ -252,6 +270,7 @@
                             <input required class="ml-4" type="radio" name="livelihood" value="Farmer" id="option1" onclick="showDiv('div1')" <?php if($user['livelihood']=="Farmer") {?> <?php echo "checked"; ?> <?php }?>> Farmer
                             <input required  class="ml-4" type="radio" name="livelihood" value="Farmworker" id="option2" onclick="showDiv('div2')" <?php if($user['livelihood']=="Farmworker") {?> <?php echo "checked";?> <?php }?>> Farmworker/Laborer
                             <input required  class="ml-4" type="radio" name="livelihood" value="Agri Youth" id="option3" onclick="showDiv('div3')" <?php if($user['livelihood']=="Agri Youth") {?> <?php echo "checked";?> <?php }?>> Agri Youth
+                            <div id="livelihood-error"></div>
                         </div>
 
                         <div class="col-md-12 mb-3"  id="div1" style="display: none;">
@@ -439,46 +458,66 @@
 
     function checkEmail() {
         var email = $('#email-input').val();
-        $.ajax({
-        url: 'ajax.php', // replace with the actual URL to check email
-        method: 'POST', // use the appropriate HTTP method
-        data: { email: email },
-        success: function(response) {
-            if (response.exists) {
-                // disable submit button if email is taken
-                $('#submit-btn').prop('disabled', true);
-                $('#email-error').text('Email already taken').css('color', 'red');
-                $('#email-input').addClass('is-invalid');
-            } else {
-            $('#email-error').empty();
-            $('#email-input').removeClass('is-invalid');
-            // enable submit button if email is valid
+
+        // check if email format is valid
+        var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+        if (!emailPattern.test(email)) {
+            $('#email-error').text('Invalid email format').css('color', 'red');
+            $('#email-input').addClass('is-invalid');
             checkIfAllFieldsValid();
-            }
-        },
-        error: function() {
-            $('#email-error').text('Error checking email');
+            return;
         }
+
+        $.ajax({
+            url: 'ajax.php', // replace with the actual URL to check email
+            method: 'POST', // use the appropriate HTTP method
+            data: { email: email },
+            success: function(response) {
+                if (response.exists) {
+                    // disable submit button if email is taken
+                    $('#submit-btn').prop('disabled', true);
+                    $('#email-error').text('Email already taken').css('color', 'red');
+                    $('#email-input').addClass('is-invalid');
+                } else {
+                    $('#email-error').empty();
+                    $('#email-input').removeClass('is-invalid');
+                    // enable submit button if email is valid
+                    checkIfAllFieldsValid();
+                }
+            },
+            error: function() {
+                $('#email-error').text('Error checking email');
+            }
         });
     }
 
     function checkPhone() {
         var phone = $('#phone-input').val();
+
+        // check if phone number format is valid
+        var phoneNumberPattern = /^09[0-9]{9}$/;
+        if (!phoneNumberPattern.test(phone)) {
+            $('#phone-error').text('Invalid phone number format').css('color', 'red');
+            $('#phone-input').addClass('is-invalid');
+            checkIfAllFieldsValid();
+            return;
+        }
+
         $.ajax({
         url: 'ajax.php', // replace with the actual URL to check phone
         method: 'POST', // use the appropriate HTTP method
         data: { phone: phone },
         success: function(response) {
             if (response.exists) {
-            $('#phone-error').text('Phone number already taken').css('color', 'red');
-            $('#phone-input').addClass('is-invalid');
-            // disable submit button if phone number is taken
-            $('#submit-btn').prop('disabled', true);
+                $('#phone-error').text('Phone number already taken').css('color', 'red');
+                $('#phone-input').addClass('is-invalid');
+                // disable submit button if phone number is taken
+                $('#submit-btn').prop('disabled', true);
             } else {
-            $('#phone-error').empty();
-            $('#phone-input').removeClass('is-invalid');
-            // enable submit button if phone number is valid
-            checkIfAllFieldsValid();
+                $('#phone-error').empty();
+                $('#phone-input').removeClass('is-invalid');
+                // enable submit button if phone number is valid
+                checkIfAllFieldsValid();
             }
         },
         error: function() {
@@ -488,28 +527,38 @@
     }
 
     function checkRefNumber() {
-    var reference_number = $('#reference_number-input').val();
-    $.ajax({
-        url: 'ajax.php', // replace with the actual URL to check reference number
-        method: 'POST', // use the appropriate HTTP method
-        data: { reference_number: reference_number },
-        success: function(response) {
-        if (response.exists) {
-            $('#reference_number-error').text('Reference number already taken').css('color', 'red');
+        var reference_number = $('#reference_number-input').val();
+
+        // check if reference number format is valid
+        var referenceNumberPattern = /^\d{2}-\d{2}-\d{2}-\d{3}-\d{6}$/;
+        if (!referenceNumberPattern.test(reference_number)) {
+            $('#reference_number-error').text('Invalid reference number format').css('color', 'red');
             $('#reference_number-input').addClass('is-invalid');
-            // disable submit button if reference number is taken
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#reference_number-error').empty();
-            $('#reference_number-input').removeClass('is-invalid');
-            // enable submit button if reference number is valid
             checkIfAllFieldsValid();
+            return;
         }
-        },
-        error: function() {
-        $('#reference_number-error').text('Error checking reference number');
-        }
-    });
+
+        $.ajax({
+            url: 'ajax.php', // replace with the actual URL to check reference number
+            method: 'POST', // use the appropriate HTTP method
+            data: { reference_number: reference_number },
+            success: function(response) {
+                if (response.exists) {
+                    $('#reference_number-error').text('Reference number already taken').css('color', 'red');
+                    $('#reference_number-input').addClass('is-invalid');
+                    // disable submit button if reference number is taken
+                    $('#submit-btn').prop('disabled', true);
+                } else {
+                    $('#reference_number-error').empty();
+                    $('#reference_number-input').removeClass('is-invalid');
+                    // enable submit button if reference number is valid
+                    checkIfAllFieldsValid();
+                }
+            },
+            error: function() {
+                $('#reference_number-error').text('Error checking reference number');
+            }
+        });
     }
 
     function checkIfAllFieldsValid() {
@@ -609,4 +658,322 @@
             myValueName.innerHTML = "In active";
         }
     });
+</script>
+
+<script>
+    var firstNameInput = document.getElementById("fname");
+    var firstNameError = document.getElementById("fname-error");
+    var middleNameInput = document.getElementById("mname");
+    var middleNameError = document.getElementById("mname-error");
+    var lastNameInput = document.getElementById("lname");
+    var lastNameError = document.getElementById("lname-error");
+    var suffixSelect = document.getElementById("suffix");
+    var suffixNameError = document.getElementById("suffix-error");
+    const maleInput = document.getElementById("male");
+    const femaleInput = document.getElementById("female");
+    var genderNameError = document.getElementById("gender-error");
+    var religionNameInput = document.getElementById("religion");
+    var religionNameError = document.getElementById("religion-error");
+    var birthdayNameInput = document.getElementById("date");
+    var birthdayNameError = document.getElementById("date-error");
+    var placeofbirthNameInput = document.getElementById("placeofbirth");
+    var placeofbirthNameError = document.getElementById("placeofbirth-error");
+    var civilstatusNameInput = document.getElementById("civilstatus");
+    var civilstatusNameError = document.getElementById("civilstatus-error");
+    var purokNameInput = document.getElementById("purok");
+    var purokNameError = document.getElementById("purok-error");
+    var streetNameInput = document.getElementById("street");
+    var streetNameError = document.getElementById("street-error");
+    var barangayNameInput = document.getElementById("barangay");
+    var barangayNameError = document.getElementById("barangay-error");
+    const pwdyesInput = document.getElementById("pwdyes");
+    const pwdnoInput = document.getElementById("pwdno");
+    var pwdNameError = document.getElementById("pwd-error");
+    const fourpsyesInput = document.getElementById("fourpsyes");
+    const fourpsnoInput = document.getElementById("fourpsno");
+    var fourpsNameError = document.getElementById("fourps-error");
+    const igyesInput = document.getElementById("igyes");
+    const ignoInput = document.getElementById("igno");
+    var igNameError = document.getElementById("ig-error");
+    const govidyesInput = document.getElementById("govidyes");
+    const govidnoInput = document.getElementById("govidno");
+    var igNameError = document.getElementById("govid-error");
+    const facyesInput = document.getElementById("facyes");
+    const facnoInput = document.getElementById("facno");
+    var facNameError = document.getElementById("fac-error");
+    const option1Input = document.getElementById("option1");
+    const option2Input = document.getElementById("option2");
+    const option3Input = document.getElementById("option3");
+    var livelihoodNameError = document.getElementById("livelihood-error");
+
+    firstNameInput.addEventListener("blur", function() {
+        if (firstNameInput.value.trim() === "") {
+            $('#fname-error').text('Please input first name').css('color', 'red');
+            $('#fname').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#fname-error').empty();
+            $('#fname').removeClass('is-invalid');
+            // enable submit button if first name are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    middleNameInput.addEventListener("blur", function() {
+        if (middleNameInput.value.trim() === "") {
+            $('#mname-error').text('Please input middle name').css('color', 'red');
+            $('#mname').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#mname-error').empty();
+            $('#mname').removeClass('is-invalid');
+            // enable submit button if middle name are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    lastNameInput.addEventListener("blur", function() {
+        if (lastNameInput.value.trim() === "") {
+            $('#lname-error').text('Please input last name').css('color', 'red');
+            $('#lname').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#lname-error').empty();
+            $('#lname').removeClass('is-invalid');
+            // enable submit button if last name are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    suffixSelect.addEventListener("blur", function() {
+        if (suffixSelect.value === "" && suffixSelect.selectedIndex !== 1) {
+            $('#suffix-error').text('Please select suffix').css('color', 'red');
+            $('#suffix').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#suffix-error').empty();
+            $('#suffix').removeClass('is-invalid');
+            // enable submit button if suffix are selected.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    maleInput.addEventListener("blur", checkGenderSelection);
+    femaleInput.addEventListener("blur", checkGenderSelection);
+    function checkGenderSelection() {
+        if (!maleInput.checked && !femaleInput.checked) {
+            $('#gender-error').text('Please select your gender').css('color', 'red');
+            $('#male').addClass('is-invalid');
+            $('#female').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#gender-error').empty();
+            $('#male').removeClass('is-invalid');
+            $('#female').removeClass('is-invalid');
+            // Enable submit button if a gender is selected
+            checkIfAllFieldsValid();
+        }
+    }
+
+    religionNameInput.addEventListener("blur", function() {
+        if (religionNameInput.value.trim() === "") {
+            $('#religion-error').text('Please input religion').css('color', 'red');
+            $('#religion').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#religion-error').empty();
+            $('#religion').removeClass('is-invalid');
+            // enable submit button if religion are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    birthdayNameInput.addEventListener("blur", function() {
+        if (birthdayNameInput.value.trim() === "") {
+            $('#date-error').text('Please input birthday').css('color', 'red');
+            $('#date').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#date-error').empty();
+            $('#date').removeClass('is-invalid');
+            // enable submit button if birthday are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    placeofbirthNameInput.addEventListener("blur", function() {
+        if (placeofbirthNameInput.value.trim() === "") {
+            $('#placeofbirth-error').text('Please input place of birth').css('color', 'red');
+            $('#placeofbirth').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#placeofbirth-error').empty();
+            $('#placeofbirth').removeClass('is-invalid');
+            // enable submit button if place of birth are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    civilstatusNameInput.addEventListener("blur", function() {
+        if (civilstatusNameInput.value.trim() === "") {
+            $('#civilstatus-error').text('Please select civil status').css('color', 'red');
+            $('#civilstatus').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#civilstatus-error').empty();
+            $('#civilstatus').removeClass('is-invalid');
+            // enable submit button if civil status is selected.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    purokNameInput.addEventListener("blur", function() {
+        if (purokNameInput.value.trim() === "") {
+            $('#purok-error').text('Please input purok').css('color', 'red');
+            $('#purok').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#purok-error').empty();
+            $('#purok').removeClass('is-invalid');
+            // enable submit button if purok is inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    streetNameInput.addEventListener("blur", function() {
+        if (streetNameInput.value.trim() === "") {
+            $('#street-error').text('Please input street').css('color', 'red');
+            $('#street').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#street-error').empty();
+            $('#street').removeClass('is-invalid');
+            // enable submit button if street is inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    barangayNameInput.addEventListener("blur", function() {
+        if (barangayNameInput.value.trim() === "") {
+            $('#barangay-error').text('Please select barangay').css('color', 'red');
+            $('#barangay').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#barangay-error').empty();
+            $('#barangay').removeClass('is-invalid');
+            // enable submit button if barangay is selected.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    pwdyesInput.addEventListener("blur", checkPWDSelection);
+    pwdnoInput.addEventListener("blur", checkPWDSelection);
+    function checkPWDSelection() {
+        if (!pwdyesInput.checked && !pwdnoInput.checked) {
+            $('#pwd-error').text('Please select pwd').css('color', 'red');
+            $('#pwdyes').addClass('is-invalid');
+            $('#pwdno').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#pwd-error').empty();
+            $('#pwdyes').removeClass('is-invalid');
+            $('#pwdno').removeClass('is-invalid');
+            // Enable submit button if a pwd is selected
+            checkIfAllFieldsValid();
+        }
+    }
+
+    fourpsyesInput.addEventListener("blur", check4psSelection);
+    fourpsnoInput.addEventListener("blur", check4psSelection);
+    function check4psSelection() {
+        if (!fourpsyesInput.checked && !fourpsnoInput.checked) {
+            $('#fourps-error').text('Please select 4ps').css('color', 'red');
+            $('#fourpsyes').addClass('is-invalid');
+            $('#fourpsno').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#fourps-error').empty();
+            $('#fourpsyes').removeClass('is-invalid');
+            $('#fourpsno').removeClass('is-invalid');
+            // Enable submit button if a 4ps is selected
+            checkIfAllFieldsValid();
+        }
+    }
+
+    igyesInput.addEventListener("blur", checkigSelection);
+    ignoInput.addEventListener("blur", checkigSelection);
+    function checkigSelection() {
+        if (!igyesInput.checked && !ignoInput.checked) {
+            $('#ig-error').text('Please select indigenous group').css('color', 'red');
+            $('#igyes').addClass('is-invalid')
+            $('#igno').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#ig-error').empty();
+            $('#igyes').removeClass('is-invalid');
+            $('#igno').removeClass('is-invalid');
+            // Enable submit button if a indigenous group is selected
+            checkIfAllFieldsValid();
+        }
+    }
+
+    govidyesInput.addEventListener("blur", checkgovidSelection);
+    govidnoInput.addEventListener("blur", checkgovidSelection);
+    function checkgovidSelection() {
+        if (!govidyesInput.checked && !govidnoInput.checked) {
+            $('#govid-error').text('Please select government ID').css('color', 'red');
+            $('#govidyes').addClass('is-invalid')
+            $('#govidno').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#govid-error').empty();
+            $('#govidyes').removeClass('is-invalid');
+            $('#govidno').removeClass('is-invalid');
+            // Enable submit button if a government ID is selected
+            checkIfAllFieldsValid();
+        }
+    }
+
+    facyesInput.addEventListener("blur", checkfacSelection);
+    facnoInput.addEventListener("blur", checkfacSelection);
+    function checkfacSelection() {
+        if (!facyesInput.checked && !facnoInput.checked) {
+            $('#fac-error').text('Please select farmers association/cooperative').css('color', 'red');
+            $('#facyes').addClass('is-invalid')
+            $('#facno').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#fac-error').empty();
+            $('#facyes').removeClass('is-invalid');
+            $('#facno').removeClass('is-invalid');
+            // Enable submit button if a farmers association/cooperative is selected
+            checkIfAllFieldsValid();
+        }
+    }
+
+    option1Input.addEventListener("blur", checklivelihoodSelection);
+    option2Input.addEventListener("blur", checklivelihoodSelection);
+    option3Input.addEventListener("blur", checklivelihoodSelection);
+    function checklivelihoodSelection() {
+        if (!option1Input.checked && !option2Input.checked && !option3Input.checked) {
+            $('#livelihood-error').text('Please select livelihood').css('color', 'red');
+            $('#option1').addClass('is-invalid')
+            $('#option2').addClass('is-invalid');
+            $('#option3').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#livelihood-error').empty();
+            $('#option1').removeClass('is-invalid');
+            $('#option2').removeClass('is-invalid');
+            $('#option3').removeClass('is-invalid');
+            // Enable submit button if a livelihood is selected
+            checkIfAllFieldsValid();
+        }
+    }
+    function checkIfAllFieldsValid() {
+      // check if all input fields are valid and enable submit button if so
+      if ($('#fname-error').is(':empty') && $('#lname-error').is(':empty') && $('#suffix-error').is(':empty') && $('#gender-error').is(':empty') && $('#religion-error').is(':empty') && $('#date-error').is(':empty') && $('#placeofbirth-error').is(':empty') && $('#civilstatus-error').is(':empty') && $('#purok-error').is(':empty') && $('#street-error').is(':empty') && $('#barangay-error').is(':empty') && $('#pwd-error').is(':empty') && $('#fourps-error').is(':empty') && $('#ig-error').is(':empty') && $('#govid-error').is(':empty') && $('#fac-error').is(':empty') && $('#livelihood-error').is(':empty')) {
+        $('#submit-btn').prop('disabled', false);
+      }
+    }
 </script>

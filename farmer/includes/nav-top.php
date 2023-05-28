@@ -75,7 +75,7 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="margin-top:-1.5rem; margin-right:1rem;">
-                    <a class="dropdown-item" href="settings.php">
+                    <a class="dropdown-item" href="settings">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile
                     </a>

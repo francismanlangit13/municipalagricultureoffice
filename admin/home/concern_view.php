@@ -252,16 +252,18 @@
 
                             <div class="col-md-3 mb-3">
                                 <label for="" class="required">Status</label>
-                                <select required class="form-control" name="status" onchange="showTextarea()">
+                                <select required class="form-control" id="status" name="status" onchange="showTextarea()">
                                     <option value="" selected disabled>Select Status</option>
                                     <option value="1" <?= isset($row['status_id']) && $row['status_id'] == '1' ? 'hidden' : '' ?>>Pending</option>
                                     <option value="2" <?= isset($row['status_id']) && $row['status_id'] == '2' ? 'hidden' : '' ?>>Approved</option>
                                     <option value="3" <?= isset($row['status_id']) && $row['status_id'] == '3' ? 'hidden' : '' ?>>Deny</option>
                                 </select>
+                                <div id="status-error"></div>
                             </div>
                             <div class="col-md-12 mb-3" id="textarea-container" style="display:none">
                                 <label for="" class="required">Reason why deny</label>
-                                <textarea placeholder="Enter reason why deny" class="form-control" name="reason" rows="5"></textarea>
+                                <textarea placeholder="Enter reason why deny" class="form-control" id="reason" name="reason" rows="5"></textarea>
+                                <div id="reason-error"></div>
                             </div>
                         </div>
                     </div>
@@ -269,7 +271,7 @@
                 <br>
                     <div class="text-right">
                     <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                        <button type="submit" name="concern_save" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                        <button type="submit" name="concern_save" id="submit-btn" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
                     </div>
                 <br>
             </div>
@@ -511,7 +513,7 @@
                         <?php if ($row['status_id'] == 3){ ?>
                             <div class="col-md-12 mb-3" id="textarea-container">
                                 <label for="">Reason why deny</label>
-                                <textarea disabled placeholder="Enter reason why deny" class="form-control" rows="5"><?= $row['reason']; ?></textarea>
+                                <textarea disabled placeholder="Enter reason why deny" id="reason" class="form-control" rows="5"><?= $row['reason']; ?></textarea>
                             </div>
                         <?php } ?>
                         <?php if ($row['status_id'] == 2){ ?>
@@ -582,6 +584,49 @@
             container.style.display = 'none';
             textarea.removeAttribute('required');
             textarea.value = '';
+            $('#submit-btn').prop('disabled', false);
+            $('#reason-error').empty();
+            $('#reason').removeClass('is-invalid');
         }
+    }
+</script>
+
+<script>
+    var statusNameInput = document.getElementById("status");
+    var statusNameError = document.getElementById("status-error");
+    var reasonNameInput = document.getElementById("reason");
+    var reasonNameError = document.getElementById("reason-error");
+
+    statusNameInput.addEventListener("blur", function() {
+        if (statusNameInput.value.trim() === "") {
+            $('#status-error').text('Please select status').css('color', 'red');
+            $('#status').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#status-error').empty();
+            $('#status').removeClass('is-invalid');
+            // enable submit button if category name are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    reasonNameInput.addEventListener("blur", function() {
+        if (reasonNameInput.value.trim() === "") {
+            $('#reason-error').text('Please input reason message').css('color', 'red');
+            $('#reason').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#reason-error').empty();
+            $('#reason').removeClass('is-invalid');
+            // enable submit button if description is inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    function checkIfAllFieldsValid() {
+      // check if all input fields are valid and enable submit button if so
+      if ($('#status-error').is(':empty') && $('#reason-error').is(':empty')) {
+        $('#submit-btn').prop('disabled', false);
+      }
     }
 </script>

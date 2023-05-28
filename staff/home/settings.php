@@ -26,21 +26,25 @@
                         <input type="hidden" name="user_id" value="<?=$row['user_id'];?>">
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">First Name</label>
-                            <input placeholder="Enter First Name" name="fname" value="<?=$row['fname'];?>" class="form-control" required>
+                            <input placeholder="Enter First Name" id="fname" name="fname" value="<?=$row['fname'];?>" class="form-control" required>
+                            <div id="fname-error"></div>
                         </div> 
                         <div class="col-md-3 mb-3">
                             <label for="">Middle Name</label>
-                            <input placeholder="Enter Middle Name" name="mname" value="<?=$row['mname'];?>" class="form-control">
+                            <input placeholder="Enter Middle Name" id="mname" name="mname" value="<?=$row['mname'];?>" class="form-control">
+                            <div id="mname-error"></div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Last Name</label>
-                            <input placeholder="Enter Last Name" name="lname" value="<?=$row['lname'];?>" class="form-control" required>
+                            <input placeholder="Enter Last Name" id="lname" name="lname" value="<?=$row['lname'];?>" class="form-control" required>
+                            <div id="lname-error"></div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <div class="form-group">
                                 <label for="suffix">Suffix</label>
-                                <select class="form-control" name="suffix">
+                                <select class="form-control" id="suffix" name="suffix">
                                     <option value="" selected>Select Suffix</option>
+                                    <option value="" <?= isset($row['suffix']) && $row['suffix'] == '' ? 'selected' : '' ?>>None</option>
                                     <option value="Jr" <?= isset($row['suffix']) && $row['suffix'] == 'Jr' ? 'selected' : '' ?>>Jr</option>
                                     <option value="Sr" <?= isset($row['suffix']) && $row['suffix'] == 'Sr' ? 'selected' : '' ?>>Sr</option>
                                     <option value="I" <?= isset($row['suffix']) && $row['suffix'] == 'I' ? 'selected' : '' ?>>I</option>
@@ -50,6 +54,7 @@
                                     <option value="V" <?= isset($row['suffix']) && $row['suffix'] == 'V' ? 'selected' : '' ?>>V</option>
                                     <option value="VI" <?= isset($row['suffix']) && $row['suffix'] == 'VI' ? 'selected' : '' ?>>VI</option>
                                 </select>
+                                <div id="suffix-error"></div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -71,6 +76,7 @@
                             <a href="javascript:void(0)"  style="position: relative; top: -2rem; left: 89%; cursor: pointer; color: lightgray;">
                                 <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword1">
                             </a>
+                            <div id="cpassword-error" style="margin-top:-1.5rem;"></div>
                         </div>
                         
                         <div class="col-md-6 text-center">
@@ -134,29 +140,36 @@
 <?php include('../includes/footer.php');?>
 
 <script>
-  // Get references to the password fields and label
-  const passwordInput = document.getElementById('password');
-  const confirmPasswordInput = document.getElementById('password1');
-  const confirmLabel = document.querySelector('label[for="password1"]');
+    // Get references to the password fields and label
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('password1');
+    const confirmLabel = document.querySelector('label[for="password1"]');
+    var cpasswordNameError = document.getElementById("cpassword-error");
 
-  // Function to check if passwords match and update required class
-  function checkPasswords() {
-    if (passwordInput.value) {
-      confirmLabel.classList.add('required');
-    } else {
-      confirmLabel.classList.remove('required');
+    // Function to check if passwords match and update required class
+    function checkPasswords() {
+        if (passwordInput.value) {
+            confirmLabel.classList.add('required');
+        } else {
+            confirmLabel.classList.remove('required');
+        }
+
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            confirmPasswordInput.setCustomValidity("Passwords do not match");
+            $('#cpassword-error').text('Passwords do not match').css('color', 'red');
+            $('#cpassword').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#cpassword-error').empty();
+            $('#cpassword-input').removeClass('is-invalid');
+            $('#submit-btn').prop('disabled', false);
+            confirmPasswordInput.setCustomValidity("");
+        }
     }
 
-    if (passwordInput.value !== confirmPasswordInput.value) {
-      confirmPasswordInput.setCustomValidity("Passwords do not match");
-    } else {
-      confirmPasswordInput.setCustomValidity("");
-    }
-  }
-
-  // Add event listeners to the password fields
-  passwordInput.addEventListener('input', checkPasswords);
-  confirmPasswordInput.addEventListener('input', checkPasswords);
+    // Add event listeners to the password fields
+    passwordInput.addEventListener('input', checkPasswords);
+    confirmPasswordInput.addEventListener('input', checkPasswords);
 </script>
 
 <script>
@@ -172,34 +185,122 @@
 
     function checkEmail() {
         var email = $('#email-input').val();
-        $.ajax({
-        url: 'ajax.php', // replace with the actual URL to check email
-        method: 'POST', // use the appropriate HTTP method
-        data: { email: email },
-        success: function(response) {
-            if (response.exists) {
-                // disable submit button if email is taken
-                $('#submit-btn').prop('disabled', true);
-                $('#email-error').text('Email already taken').css('color', 'red');
-                $('#email-input').addClass('is-invalid');
-            } else {
-            $('#email-error').empty();
-            $('#email-input').removeClass('is-invalid');
-            // enable submit button if email is valid
+
+        // show error if email is empty
+        if (email === '') {
+            $('#email-error').text('Please input email').css('color', 'red');
+            $('#email-input').addClass('is-invalid');
             checkIfAllFieldsValid();
-            }
-        },
-        error: function() {
-            $('#email-error').text('Error checking email');
+            return;
         }
+
+        // check if email format is valid
+        var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+        if (!emailPattern.test(email)) {
+            $('#email-error').text('Invalid email format').css('color', 'red');
+            $('#email-input').addClass('is-invalid');
+            checkIfAllFieldsValid();
+            return;
+        }
+
+        $.ajax({
+            url: 'ajax.php', // replace with the actual URL to check email
+            method: 'POST', // use the appropriate HTTP method
+            data: { email: email },
+            success: function(response) {
+                if (response.exists) {
+                    // disable submit button if email is taken
+                    $('#submit-btn').prop('disabled', true);
+                    $('#email-error').text('Email already taken').css('color', 'red');
+                    $('#email-input').addClass('is-invalid');
+                } else {
+                    $('#email-error').empty();
+                    $('#email-input').removeClass('is-invalid');
+                    // enable submit button if email is valid
+                    checkIfAllFieldsValid();
+                }
+            },
+            error: function() {
+                $('#email-error').text('Error checking email');
+            }
         });
     }
 
     function checkIfAllFieldsValid() {
         // check if all input fields are valid and enable submit button if so
         if ($('#email-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
+            $('#submit-btn').prop('disabled', false);
         }
     }
     });
+</script>
+
+<script>
+    var firstNameInput = document.getElementById("fname");
+    var firstNameError = document.getElementById("fname-error");
+    var middleNameInput = document.getElementById("mname");
+    var middleNameError = document.getElementById("mname-error");
+    var lastNameInput = document.getElementById("lname");
+    var lastNameError = document.getElementById("lname-error");
+    var suffixSelect = document.getElementById("suffix");
+    var suffixNameError = document.getElementById("suffix-error");
+
+    firstNameInput.addEventListener("blur", function() {
+        if (firstNameInput.value.trim() === "") {
+            $('#fname-error').text('Please input first name').css('color', 'red');
+            $('#fname').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#fname-error').empty();
+            $('#fname').removeClass('is-invalid');
+            // enable submit button if first name are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    middleNameInput.addEventListener("blur", function() {
+        if (middleNameInput.value.trim() === "") {
+            $('#mname-error').text('Please input middle name').css('color', 'red');
+            $('#mname').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#mname-error').empty();
+            $('#mname').removeClass('is-invalid');
+            // enable submit button if middle name are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    lastNameInput.addEventListener("blur", function() {
+        if (lastNameInput.value.trim() === "") {
+            $('#lname-error').text('Please input last name').css('color', 'red');
+            $('#lname').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#lname-error').empty();
+            $('#lname').removeClass('is-invalid');
+            // enable submit button if last name are inputed.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    suffixSelect.addEventListener("blur", function() {
+        if (suffixSelect.value === "" && suffixSelect.selectedIndex !== 1) {
+            $('#suffix-error').text('Please select suffix').css('color', 'red');
+            $('#suffix').addClass('is-invalid');
+            $('#submit-btn').prop('disabled', true);
+        } else {
+            $('#suffix-error').empty();
+            $('#suffix').removeClass('is-invalid');
+            // enable submit button if suffix are selected.
+            checkIfAllFieldsValid();
+        }
+    });
+
+    function checkIfAllFieldsValid() {
+      // check if all input fields are valid and enable submit button if so
+      if ($('#fname-error').is(':empty') && $('#lname-error').is(':empty') && $('#suffix-error').is(':empty')) {
+        $('#submit-btn').prop('disabled', false);
+      }
+    }
 </script>

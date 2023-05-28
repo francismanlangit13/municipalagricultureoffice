@@ -84,6 +84,12 @@
 
     <?php
         // Count the number of records that have a "pending" status
+        $sql = "SELECT COUNT(*) AS num_announcement FROM announcement WHERE ann_deleted = '0' AND ann_status = 'Pending'";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $num_announcement = $row['num_announcement'];
+
+        // Count the number of records that have a "pending" status
         $sql = "SELECT COUNT(*) AS num_concern FROM concern WHERE status_id = '1' AND concern_status = 1";
         $result = mysqli_query($con, $sql);
         $row = mysqli_fetch_assoc($result);
@@ -101,7 +107,7 @@
         $row2 = mysqli_fetch_assoc($result2);
         $num_request = $row2['num_request'];
 
-        $total_notification = $num_concern + $num_report + $num_request;
+        $total_notification = $num_announcement + $num_concern + $num_report + $num_request;
     ?>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_update.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_view.php') !== false)  { echo 'active'; } ?>">
@@ -117,7 +123,12 @@
         <div id="collapsePages" class="collapse <?php if (strpos($_SERVER['PHP_SELF'], 'home/announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_update.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/report_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/concern_view.php') !== false)  { echo 'show'; } else { } ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage:</h6>
-                <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_update.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>staff/home/announcement"><i class="fa fa-bullhorn" aria-hidden="true"></i> Announcement</a>
+                <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/announcement.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_add.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_view.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/announcement_update.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>staff/home/announcement"><i class="fa fa-bullhorn" aria-hidden="true"></i> Announcement
+                    <?php if($num_announcement == 0) { } else{ ?>
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter count-title"><?php if ($num_announcement >= 9){ echo "9+";} else { echo $num_announcement; } ?></span>
+                    <?php } ?>
+                </a>
                 <a class="collapse-item <?php if (strpos($_SERVER['PHP_SELF'], 'home/request.php') !== false || strpos($_SERVER['PHP_SELF'], 'home/request_view.php') !== false)  { echo 'active'; } ?>" href="<?php echo base_url ?>staff/home/request"><i class="fa fa-archive" aria-hidden="true"></i> Request
                     <?php if($num_request == 0) { } else{ ?>
                         <!-- Counter - Alerts -->

@@ -25,6 +25,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url ?>assets/css/bootstrap.min.css">
+    <link href="<?php echo base_url ?>assets/css/custom.css" rel="stylesheet">
 
     <!-- Loading CSS -->
     <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
@@ -86,7 +87,8 @@
               <form action="logincode.php" method="POST">
                 <div class="form-group first">
                   <label for="">Email</label>
-                  <input required type="email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="your-email@gmail.com" id="username">
+                  <input required type="email" id="email" name="email" class="form-control" placeholder="your-email@gmail.com">
+                  <div id="email-error"></div>
                 </div>
                 <div class="form-group last mb-0">
                   <label for="">Password</label>
@@ -101,7 +103,7 @@
                   </label>
                   <span class="ml-auto"><a href="<?php echo base_url ?>login/qr"><u>Login via QR</u></a></span>
                 </div>
-                <button type="submit" name="login_btn" class="btn btn-block btn-success">Login</button>
+                <button type="submit" id="submit-btn" name="login_btn" class="btn btn-block btn-success">Login</button>
                 <br>
                 <span class="ml-auto"><a href="<?php echo base_url ?>"><u>Click here to Homepage</u></a></span> 
               </form>
@@ -122,5 +124,52 @@
     <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
     <!-- Loading JS -->
     <script src="<?php echo base_url ?>assets/js/loader.js"></script>
+    <script src="<?php echo base_url ?>assets/js/underscore-min.js"></script>
+    <script>
+      $(document).ready(function() {
+        // disable submit button by default
+        //$('#submit-btn').prop('disabled', true);
+
+        // debounce functions for each input field
+        var debouncedCheckEmail = _.debounce(checkEmail, 500);
+
+        // attach event listeners for each input field
+        $('#email').on('input', debouncedCheckEmail);
+        $('#email').on('focusout', checkEmail); // Add focusout event listener
+
+        function checkEmail() {
+          var email = $('#email').val();
+
+          // show error if email is empty
+          if (email === '') {
+            $('#email-error').text('Please input email').css('color', 'red');
+            $('#email').addClass('is-invalid'); // Update selector to 'email'
+            $('#submit-btn').prop('disabled', true);
+            return;
+          }
+
+          // check if email format is valid
+          var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+          if (!emailPattern.test(email)) {
+            $('#email-error').text('Invalid email format').css('color', 'red');
+            $('#email').addClass('is-invalid'); // Update selector to 'email'
+            $('#submit-btn').prop('disabled', true);
+            return;
+          }
+
+          // Clear error if email is valid
+          $('#email-error').empty();
+          $('#email').removeClass('is-invalid'); // Update selector to 'email'
+          checkIfAllFieldsValid();
+        }
+
+        function checkIfAllFieldsValid() {
+          // check if all input fields are valid and enable submit button if so
+          if ($('#email-error').is(':empty')) {
+            $('#submit-btn').prop('disabled', false);
+          }
+        }
+      });
+    </script>
   </body>
 </html>
