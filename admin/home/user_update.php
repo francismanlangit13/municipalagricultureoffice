@@ -11,7 +11,7 @@
 <?php
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
-        $sql = "SELECT * FROM user WHERE user_id='$id' AND user_status != 3 AND user_type != 3";
+        $sql = "SELECT * FROM user WHERE user_id='$id' AND user_status_id != 3 AND user_type_id != 3";
         $sql_run = mysqli_query($con, $sql);
 
         if(mysqli_num_rows($sql_run) > 0) {
@@ -118,19 +118,19 @@
                             <label for="" class="required">Role</label>
                             <select id="role" name="role" required class="form-control">
                                 <option value="" selected disabled>Select Role</option>
-                                <option value="1" <?= isset($row['user_type']) && $row['user_type'] == '1' ? 'selected' : '' ?>>Admin</option>
-                                <option value="2" <?= isset($row['user_type']) && $row['user_type'] == '2' ? 'selected' : '' ?>>Staff</option>
+                                <option value="1" <?= isset($row['user_type_id']) && $row['user_type_id'] == '1' ? 'selected' : '' ?>>Admin</option>
+                                <option value="2" <?= isset($row['user_type_id']) && $row['user_type_id'] == '2' ? 'selected' : '' ?>>Staff</option>
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
                             <div style="margin-left:2rem;">
-                                <label for="" class="required">User Status (<label id="myValueName"><?php if($row['user_status']=="1") { echo "Active"; } else { echo "In active"; } ?></label>)</label>
+                                <label for="" class="required">User Status (<label id="myValueName"><?php if($row['user_status_id']=="1") { echo "Active"; } else { echo "In active"; } ?></label>)</label>
                                 <br>
                                 <label class="switch-new" style="margin-left:3.3rem;">
-                                    <input type="checkbox" id="mySwitch" <?php if($row['user_status']=="1") {?> <?php echo "checked";?> <?php }?>>
+                                    <input type="checkbox" id="mySwitch" <?php if($row['user_status_id']=="1") {?> <?php echo "checked";?> <?php }?>>
                                     <span class="slider-new round-new"></span>
                                 </label>
-                                <input type="hidden" name="status" id="myValue" value="<?= $row['user_status']; ?>">
+                                <input type="hidden" name="status" id="myValue" value="<?= $row['user_status_id']; ?>">
                             </div>
                         </div>
                     </div>

@@ -11,14 +11,14 @@ include('../../db_conn.php');
 
 		$qrcode_text = validate($_POST['qrcode_text']);
 
-		$qr_login_query = "SELECT * FROM user WHERE qrcode='$qrcode_text' AND user_status = 1";
+		$qr_login_query = "SELECT * FROM user WHERE qrcode='$qrcode_text' AND user_status_id = 1";
 		$qr_login_query_run = mysqli_query($con, $qr_login_query);
 
 		if(mysqli_num_rows($qr_login_query_run) > 0){
 			foreach($qr_login_query_run as $data){
 				$user_id = $data['user_id'];
 				$full_name = $data['fname'].' '.$data['lname'];
-				$role_as = $data['user_type'];
+				$role_as = $data['user_type_id'];
 				$user_email = $data['email'];
 			}
 

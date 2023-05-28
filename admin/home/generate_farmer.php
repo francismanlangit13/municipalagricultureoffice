@@ -136,7 +136,7 @@
 				$livelihood = $_POST['Livelihood'];
 			}
 
-			$stmt = $con->prepare("SELECT * FROM user WHERE user_type = 3 AND barangay = ?");
+			$stmt = $con->prepare("SELECT * FROM user WHERE user_type_id = 3 AND barangay = ?");
 			$stmt->bind_param("s", $barangay);
 			$stmt->execute();
 			$result = $stmt->get_result();
