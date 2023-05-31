@@ -145,71 +145,108 @@
 <?php include('../includes/footer.php');?>
 
 <script>
-    var productNameInput = document.getElementById("pname");
-    var productNameError = document.getElementById("pname-error");
-    var quantityNameInput = document.getElementById("quantity");
-    var quantityNameError = document.getElementById("quantity-error");
-    var categorySelect = document.getElementById("category");
-    var categoryNameError = document.getElementById("category-error");
-    var exp_dateNameInput = document.getElementById("exp_date");
-    var exp_dateNameError = document.getElementById("exp_date-error");
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
 
-    productNameInput.addEventListener("blur", function() {
-        if (productNameInput.value.trim() === "") {
-            $('#pname-error').text('Please input product name').css('color', 'red');
-            $('#pname').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        // debounce functions for each input field
+        var debouncedCheckProductname = _.debounce(checkProductname, 500);
+        var debouncedCheckQuantity = _.debounce(checkQuantity, 500);
+        var debouncedCheckCategory = _.debounce(checkCategory, 500);
+        var debouncedCheckExpdate = _.debounce(checkExpdate, 500);
+
+        // attach event listeners for each input field
+        $('#pname').on('input', debouncedCheckProductname);
+        $('#quantity').on('input', debouncedCheckQuantity);
+        $('#category').on('input', debouncedCheckCategory);
+        $('#exp_date').on('input', debouncedCheckExpdate);
+
+        $('#pname').on('blur', debouncedCheckProductname);
+        $('#quantity').on('blur', debouncedCheckQuantity);
+        $('#category').on('blur', debouncedCheckCategory);
+        $('#exp_date').on('blur', debouncedCheckExpdate);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#pname-error').is(':empty') && $('#quantity-error').is(':empty') && $('#category-error').is(':empty') && $('#exp_date-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+        
+        function checkProductname() {
+            var pname = $('#pname').val().trim();
+            
+            // show error if pname is empty
+            if (pname === '') {
+                $('#pname-error').text('Please input product name').css('color', 'red');
+                $('#pname').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for pname if needed
+            
             $('#pname-error').empty();
             $('#pname').removeClass('is-invalid');
-            // enable submit button if product name are inputed.
             checkIfAllFieldsValid();
         }
-    });
 
-    quantityNameInput.addEventListener("blur", function() {
-        if (quantityNameInput.value.trim() === "") {
-            $('#quantity-error').text('Please input quantity').css('color', 'red');
-            $('#quantity').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        function checkQuantity() {
+            var quantity = $('#quantity').val().trim();
+            
+            // show error if quantity is empty
+            if (quantity === '') {
+                $('#quantity-error').text('Please input quantity').css('color', 'red');
+                $('#quantity').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for quantity if needed
+            
             $('#quantity-error').empty();
             $('#quantity').removeClass('is-invalid');
-            // enable submit button if quantity is inputed.
             checkIfAllFieldsValid();
         }
-    });
 
-    categorySelect.addEventListener("blur", function() {
-        if (categorySelect.value === "" && categorySelect.selectedIndex !== 1) {
-            $('#category-error').text('Please select category').css('color', 'red');
-            $('#category').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        function checkCategory() {
+            var categorySelect = document.getElementById('category');
+            var category = categorySelect.value;
+            
+            // show error if the default option is selected
+            if (category === '' && categorySelect.selectedIndex !== 1) {
+                $('#category-error').text('Please select category').css('color', 'red');
+                $('#category').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for category if needed
+            
             $('#category-error').empty();
             $('#category').removeClass('is-invalid');
-            // enable submit button if category are selected.
             checkIfAllFieldsValid();
         }
-    });
 
-    exp_dateNameInput.addEventListener("blur", function() {
-        if (exp_dateNameInput.value.trim() === "") {
-            $('#exp_date-error').text('Please input exipration date').css('color', 'red');
-            $('#exp_date').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        function checkExpdate() {
+            var exp_date = $('#exp_date').val().trim();
+            
+            // show error if exp_date is empty
+            if (exp_date === '') {
+                $('#exp_date-error').text('Please input expiration date').css('color', 'red');
+                $('#exp_date').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for exp_date if needed
+            
             $('#exp_date-error').empty();
             $('#exp_date').removeClass('is-invalid');
-            // enable submit button if exp_date are inputed.
             checkIfAllFieldsValid();
         }
+        
     });
-
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#pname-error').is(':empty') && $('#quantity-error').is(':empty') && $('#category-error').is(':empty') && $('#exp_date-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
 </script>

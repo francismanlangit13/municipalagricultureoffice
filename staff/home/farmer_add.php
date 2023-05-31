@@ -412,6 +412,10 @@
         $('#phone-input').on('blur', debouncedCheckPhone);
         $('#reference_number-input').on('blur', debouncedCheckRefNumber);
 
+        $('#email-input').on('input', debouncedCheckEmail);
+        $('#phone-input').on('input', debouncedCheckPhone);
+        $('#reference_number-input').on('input', debouncedCheckRefNumber);
+
         function checkIfAllFieldsValid() {
             // check if all input fields are valid and enable submit button if so
             if ($('#email-error').is(':empty') && $('#phone-error').is(':empty') && $('#reference_number-error').is(':empty')) {
@@ -630,7 +634,7 @@
     handleRadioChange(document.getElementsByName('fac'), document.getElementsByName('facyes')[0], document.querySelector('label[for="facyes"]'));
 </script>
 
-<script>
+<!-- <script>
     var firstNameInput = document.getElementById("fname");
     var firstNameError = document.getElementById("fname-error");
     var middleNameInput = document.getElementById("mname");
@@ -946,4 +950,435 @@
         $('#submit-btn').prop('disabled', false);
       }
     }
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
+
+        // debounce functions for each input field
+        var debouncedCheckFname = _.debounce(checkFname, 500);
+        var debouncedCheckMname = _.debounce(checkMname, 500);
+        var debouncedCheckLname = _.debounce(checkLname, 500);
+        var debouncedCheckSuffix = _.debounce(checkSuffix, 500);
+        var debouncedCheckGender = _.debounce(checkGender, 500);
+        var debouncedCheckReligion = _.debounce(checkReligion, 500);
+        var debouncedCheckBirthday = _.debounce(checkBirthday, 500);
+        var debouncedCheckPlaceofbirth = _.debounce(checkPlaceofbirth, 500);
+        var debouncedCheckCivilstatus = _.debounce(checkCivilstatus, 500);
+        var debouncedCheckPurok = _.debounce(checkPurok, 500);
+        var debouncedCheckStreet = _.debounce(checkStreet, 500);
+        var debouncedCheckBarangay = _.debounce(checkBarangay, 500);
+        var debouncedCheckPWD = _.debounce(checkPWD, 500);
+        var debouncedCheckFourps = _.debounce(checkFourps, 500);
+        var debouncedCheckIg = _.debounce(checkIg, 500);
+        var debouncedCheckGovid = _.debounce(checkGovid, 500);
+        var debouncedCheckFac = _.debounce(checkFac, 500);
+        var debouncedCheckLivelihood = _.debounce(checkLivelihood, 500);
+
+        // attach event listeners for each input field
+        $('#fname').on('input', debouncedCheckFname);
+        $('#mname').on('input', debouncedCheckMname);
+        $('#lname').on('input', debouncedCheckLname);
+        $('#suffix').on('change', debouncedCheckSuffix);
+        $('#male').on('input', debouncedCheckGender);
+        $('#female').on('input', debouncedCheckGender);
+        $('#religion').on('input', debouncedCheckReligion);
+        $('#date').on('input', debouncedCheckBirthday);
+        $('#placeofbirth').on('input', debouncedCheckPlaceofbirth);
+        $('#civilstatus').on('input', debouncedCheckCivilstatus);
+        $('#purok').on('input', debouncedCheckPurok);
+        $('#street').on('input', debouncedCheckStreet);
+        $('#barangay').on('change', debouncedCheckBarangay);
+        $('#pwdyes').on('input', debouncedCheckPWD);
+        $('#pwdno').on('input', debouncedCheckPWD);
+        $('#fourpsyes').on('input', debouncedCheckFourps);
+        $('#fourpsno').on('input', debouncedCheckFourps);
+        $('#igyes').on('input', debouncedCheckIg);
+        $('#igno').on('input', debouncedCheckIg);
+        $('#govidyes').on('input', debouncedCheckGovid);
+        $('#govidno').on('input', debouncedCheckGovid);
+        $('#facyes').on('input', debouncedCheckFac);
+        $('#facno').on('input', debouncedCheckFac);
+        $('#option1').on('input', debouncedCheckLivelihood);
+        $('#option2').on('input', debouncedCheckLivelihood);
+        $('#option3').on('input', debouncedCheckLivelihood);
+
+        $('#fname').on('blur', debouncedCheckFname);
+        $('#mname').on('blur', debouncedCheckMname);
+        $('#lname').on('blur', debouncedCheckLname);
+        $('#suffix').on('blur', debouncedCheckSuffix);
+        $('#male').on('blur', debouncedCheckGender);
+        $('#female').on('blur', debouncedCheckGender);
+        $('#religion').on('blur', debouncedCheckReligion);
+        $('#date').on('blur', debouncedCheckBirthday);
+        $('#placeofbirth').on('blur', debouncedCheckPlaceofbirth);
+        $('#civilstatus').on('blur', debouncedCheckCivilstatus);
+        $('#purok').on('blur', debouncedCheckPurok);
+        $('#street').on('blur', debouncedCheckStreet);
+        $('#barangay').on('blur', debouncedCheckBarangay);
+        $('#pwdyes').on('blur', debouncedCheckPWD);
+        $('#pwdno').on('blur', debouncedCheckPWD);
+        $('#fourpsyes').on('blur', debouncedCheckFourps);
+        $('#fourpsno').on('blur', debouncedCheckFourps);
+        $('#igyes').on('blur', debouncedCheckIg);
+        $('#igno').on('blur', debouncedCheckIg);
+        $('#govidyes').on('blur', debouncedCheckGovid);
+        $('#govidno').on('blur', debouncedCheckGovid);
+        $('#facyes').on('blur', debouncedCheckFac);
+        $('#facno').on('blur', debouncedCheckFac);
+        $('#option1').on('blur', debouncedCheckLivelihood);
+        $('#option2').on('blur', debouncedCheckLivelihood);
+        $('#option3').on('blur', debouncedCheckLivelihood);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#fname-error').is(':empty') && $('#mname-error').is(':empty') && $('#lname-error').is(':empty') && $('#suffix-error').is(':empty') && $('#gender-error').is(':empty') && $('#religion-error').is(':empty') && $('#date-error').is(':empty') && $('#placeofbirth-error').is(':empty') && $('#civilstatus-error').is(':empty') && $('#purok-error').is(':empty') && $('#street-error').is(':empty') && $('#barangay-error').is(':empty') && $('#pwd-error').is(':empty') && $('#fourps-error').is(':empty') && $('#ig-error').is(':empty') && $('#govid-error').is(':empty') && $('#fac-error').is(':empty') && $('#livelihood-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+        
+        function checkFname() {
+            var fname = $('#fname').val().trim();
+            
+            // show error if first name is empty
+            if (fname === '') {
+                $('#fname-error').text('Please input first name').css('color', 'red');
+                $('#fname').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for first name if needed
+            
+            $('#fname-error').empty();
+            $('#fname').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkMname() {
+            var mname = $('#mname').val().trim();
+            
+            // show error if middle name is empty
+            if (mname === '') {
+                $('#mname-error').text('Please input middle name').css('color', 'red');
+                $('#mname').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for middle name if needed
+            
+            $('#mname-error').empty();
+            $('#mname').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+        
+        function checkLname() {
+            var lname = $('#lname').val().trim();
+            
+            // show error if last name is empty
+            if (lname === '') {
+                $('#lname-error').text('Please input last name').css('color', 'red');
+                $('#lname').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for last name if needed
+            
+            $('#lname-error').empty();
+            $('#lname').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkSuffix() {
+            var suffixSelect = document.getElementById('suffix');
+            var suffix = suffixSelect.value;
+            
+            // show error if the default option is selected
+            if (suffix === '' && suffixSelect.selectedIndex !== 1) {
+                $('#suffix-error').text('Please select a suffix').css('color', 'red');
+                $('#suffix').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for suffix if needed
+            
+            $('#suffix-error').empty();
+            $('#suffix').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkGender() {
+            var gender = $('input[name="gender"]:checked').val();
+
+            // show error if gender is not selected
+            if (!gender) {
+                $('#gender-error').text('Please select gender').css('color', 'red');
+                $('#male').addClass('is-invalid');
+                $('#female').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            // Perform additional validation for gender if needed
+
+            $('#gender-error').empty();
+            $('#male').removeClass('is-invalid');
+            $('#female').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+        
+        function checkReligion() {
+            var religion = $('#religion').val().trim();
+            
+            // show error if religion is empty
+            if (religion === '') {
+                $('#religion-error').text('Please input religion').css('color', 'red');
+                $('#religion').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for religion if needed
+            
+            $('#religion-error').empty();
+            $('#religion').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+        
+        function checkBirthday() {
+            var date = $('#date').val().trim();
+            
+            // show error if date is empty
+            if (date === '') {
+                $('#date-error').text('Please input birthday').css('color', 'red');
+                $('#date').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for date if needed
+            
+            $('#date-error').empty();
+            $('#date').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+        
+        function checkPlaceofbirth() {
+            var placeofbirth = $('#placeofbirth').val().trim();
+            
+            // show error if placeofbirth is empty
+            if (placeofbirth === '') {
+                $('#placeofbirth-error').text('Please input place of birth').css('color', 'red');
+                $('#placeofbirth').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for placeofbirth if needed
+            
+            $('#placeofbirth-error').empty();
+            $('#placeofbirth').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkCivilstatus() {
+            var civilstatus = $('#civilstatus').val()
+            
+            // show error if civilstatus is empty
+            if (!civilstatus || civilstatus.trim() === '') {
+                $('#civilstatus-error').text('Please select civil status').css('color', 'red');
+                $('#civilstatus').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for civilstatus if needed
+            
+            $('#civilstatus-error').empty();
+            $('#civilstatus').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkPurok() {
+            var purok = $('#purok').val().trim();
+            
+            // show error if purok is empty
+            if (purok === '') {
+                $('#purok-error').text('Please input purok').css('color', 'red');
+                $('#purok').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for purok if needed
+            
+            $('#purok-error').empty();
+            $('#purok').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkStreet() {
+            var street = $('#street').val().trim();
+            
+            // show error if street is empty
+            if (street === '') {
+                $('#street-error').text('Please input street').css('color', 'red');
+                $('#street').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for street if needed
+            
+            $('#street-error').empty();
+            $('#street').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkBarangay() {
+            var barangay = $('#barangay').val()
+            
+            // show error if barangay is empty
+            if (!barangay || barangay.trim() === '') {
+                $('#barangay-error').text('Please select barangay').css('color', 'red');
+                $('#barangay').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for barangay if needed
+            
+            $('#barangay-error').empty();
+            $('#barangay').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkPWD() {
+            var pwd = $('input[name="pwd"]:checked').val();
+
+            // show error if pwd is not selected
+            if (!pwd) {
+                $('#pwd-error').text('Please select pwd').css('color', 'red');
+                $('#pwdyes').addClass('is-invalid');
+                $('#pwdno').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            // Perform additional validation for pwd if needed
+
+            $('#pwd-error').empty();
+            $('#pwdyes').removeClass('is-invalid');
+            $('#pwdno').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkFourps() {
+            var fourps = $('input[name="fourps"]:checked').val();
+
+            // show error if fourps is not selected
+            if (!fourps) {
+                $('#fourps-error').text('Please select 4ps').css('color', 'red');
+                $('#fourpsyes').addClass('is-invalid');
+                $('#fourpsno').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            // Perform additional validation for fourps if needed
+
+            $('#fourps-error').empty();
+            $('#fourpsyes').removeClass('is-invalid');
+            $('#fourpsno').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkIg() {
+            var ig = $('input[name="ig"]:checked').val();
+
+            // show error if ig is not selected
+            if (!ig) {
+                $('#ig-error').text('Please select indigenous groups').css('color', 'red');
+                $('#igyes').addClass('is-invalid');
+                $('#igno').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            // Perform additional validation for ig if needed
+
+            $('#ig-error').empty();
+            $('#igyes').removeClass('is-invalid');
+            $('#igno').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkGovid() {
+            var govid = $('input[name="govid"]:checked').val();
+
+            // show error if govid is not selected
+            if (!govid) {
+                $('#govid-error').text('Please select government ID').css('color', 'red');
+                $('#govidyes').addClass('is-invalid');
+                $('#govidno').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            // Perform additional validation for govid if needed
+
+            $('#govid-error').empty();
+            $('#govidyes').removeClass('is-invalid');
+            $('#govidno').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkFac() {
+            var fac = $('input[name="fac"]:checked').val();
+
+            // show error if fac is not selected
+            if (!fac) {
+                $('#fac-error').text('Please select farmers association/cooperative').css('color', 'red');
+                $('#facyes').addClass('is-invalid');
+                $('#facno').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            // Perform additional validation for fac if needed
+
+            $('#fac-error').empty();
+            $('#facyes').removeClass('is-invalid');
+            $('#facno').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkLivelihood() {
+            var livelihood = $('input[name="livelihood"]:checked').val();
+
+            // show error if livelihood is not selected
+            if (!livelihood) {
+                $('#livelihood-error').text('Please select livelihood').css('color', 'red');
+                $('#livelihoodyes').addClass('is-invalid');
+                $('#livelihoodno').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            // Perform additional validation for livelihood if needed
+
+            $('#livelihood-error').empty();
+            $('#livelihoodyes').removeClass('is-invalid');
+            $('#livelihoodno').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+    });
 </script>

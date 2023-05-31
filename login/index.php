@@ -141,6 +141,7 @@
         // attach event listeners for each input field
         $('#email').on('input', debouncedCheckEmail);
         $('#email').on('focusout', checkEmail); // Add focusout event listener
+        $('#email').on('blur', debouncedCheckEmail); // Trigger on input change
 
         function checkEmail() {
           var email = $('#email').val();

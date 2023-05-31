@@ -235,7 +235,7 @@
       <br>
         <div class="text-right">
           <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-          <button type="submit" name="update_concern" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+          <button type="submit" name="update_concern" id="submit-btn" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
         </div>
       <br>
     </div>
@@ -345,41 +345,65 @@
 </script>
 
 <script>
-    var titleNameInput = document.getElementById("title");
-    var titleNameError = document.getElementById("title-error");
-    var messageNameInput = document.getElementById("message");
-    var messageNameError = document.getElementById("description-error");
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
 
-    titleNameInput.addEventListener("blur", function() {
-        if (titleNameInput.value.trim() === "") {
-            $('#title-error').text('Please input title name').css('color', 'red');
-            $('#title').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        // debounce functions for each input field
+        var debouncedCheckTitle = _.debounce(checkTitle, 500);
+        var debouncedCheckMessage = _.debounce(checkMessage, 500);
+
+        // attach event listeners for each input field
+        $('#title').on('input', debouncedCheckTitle);
+        $('#message').on('input', debouncedCheckMessage);
+
+        $('#title').on('blur', debouncedCheckTitle);
+        $('#message').on('blur', debouncedCheckMessage);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#title-error').is(':empty') && $('#message-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+
+        function checkTitle() {
+            var title = $('#title').val().trim();
+            
+            // show error if title is empty
+            if (title === '') {
+                $('#title-error').text('Please input title').css('color', 'red');
+                $('#title').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for title if needed
+            
             $('#title-error').empty();
             $('#title').removeClass('is-invalid');
-            // enable submit button if title name are inputed.
             checkIfAllFieldsValid();
         }
-    });
 
-    messageNameInput.addEventListener("blur", function() {
-        if (messageNameInput.value.trim() === "") {
-            $('#message-error').text('Please input message').css('color', 'red');
-            $('#message').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        function checkMessage() {
+            var message = $('#message').val().trim();
+            
+            // show error if message is empty
+            if (message === '') {
+                $('#message-error').text('Please input message').css('color', 'red');
+                $('#message').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for message if needed
+            
             $('#message-error').empty();
             $('#message').removeClass('is-invalid');
-            // enable submit button if message is inputed.
             checkIfAllFieldsValid();
         }
+        
     });
-
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#title-error').is(':empty') && $('#message-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
 </script>

@@ -592,41 +592,66 @@
 </script>
 
 <script>
-    var statusNameInput = document.getElementById("status");
-    var statusNameError = document.getElementById("status-error");
-    var reasonNameInput = document.getElementById("reason");
-    var reasonNameError = document.getElementById("reason-error");
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
 
-    statusNameInput.addEventListener("blur", function() {
-        if (statusNameInput.value.trim() === "") {
-            $('#status-error').text('Please select status').css('color', 'red');
-            $('#status').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        // debounce functions for each input field
+        var debouncedCheckStatus = _.debounce(checkStatus, 500);
+        var debouncedCheckReason = _.debounce(checkReason, 500);
+
+        // attach event listeners for each input field
+        $('#status').on('input', debouncedCheckStatus);
+        $('#reason').on('input', debouncedCheckReason);
+
+        $('#status').on('blur', debouncedCheckStatus);
+        $('#reason').on('blur', debouncedCheckReason);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#status-error').is(':empty') && $('#reason-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+        
+        function checkStatus() {
+            var statusSelect = document.getElementById('status');
+            var status = statusSelect.value;
+            
+            // show error if the default option is selected
+            if (status === '' && statusSelect.selectedIndex !== 1) {
+                $('#status-error').text('Please select status').css('color', 'red');
+                $('#status').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for status if needed
+            
             $('#status-error').empty();
             $('#status').removeClass('is-invalid');
-            // enable submit button if category name are inputed.
             checkIfAllFieldsValid();
         }
-    });
 
-    reasonNameInput.addEventListener("blur", function() {
-        if (reasonNameInput.value.trim() === "") {
-            $('#reason-error').text('Please input reason message').css('color', 'red');
-            $('#reason').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        function checkReason() {
+            var reason = $('#reason').val().trim();
+            
+            // show error if reason is empty
+            if (reason === '') {
+                $('#reason-error').text('Please input reason').css('color', 'red');
+                $('#reason').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for reason if needed
+            
             $('#reason-error').empty();
             $('#reason').removeClass('is-invalid');
-            // enable submit button if description is inputed.
             checkIfAllFieldsValid();
         }
+        
     });
-
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#status-error').is(':empty') && $('#reason-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
 </script>

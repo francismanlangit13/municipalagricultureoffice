@@ -182,6 +182,7 @@
 
     // attach event listeners for each input field
     $('#email-input').on('input', debouncedCheckEmail);
+    $('#email-input').on('blur', debouncedCheckEmail);
 
     function checkEmail() {
         var email = $('#email-input').val();
@@ -235,7 +236,7 @@
     });
 </script>
 
-<script>
+<!-- <script>
     var firstNameInput = document.getElementById("fname");
     var firstNameError = document.getElementById("fname-error");
     var middleNameInput = document.getElementById("mname");
@@ -303,4 +304,111 @@
         $('#submit-btn').prop('disabled', false);
       }
     }
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
+
+        // debounce functions for each input field
+        var debouncedCheckFname = _.debounce(checkFname, 500);
+        var debouncedCheckMname = _.debounce(checkMname, 500);
+        var debouncedCheckLname = _.debounce(checkLname, 500);
+        var debouncedCheckSuffix = _.debounce(checkSuffix, 500);
+
+        // attach event listeners for each input field
+        $('#fname').on('input', debouncedCheckFname);
+        $('#mname').on('input', debouncedCheckMname);
+        $('#lname').on('input', debouncedCheckLname);
+        $('#suffix').on('change', debouncedCheckSuffix);
+
+        $('#fname').on('blur', debouncedCheckFname);
+        $('#mname').on('blur', debouncedCheckMname);
+        $('#lname').on('blur', debouncedCheckLname);
+        $('#suffix').on('blur', debouncedCheckSuffix);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#fname-error').is(':empty') && $('#mname-error').is(':empty') && $('#lname-error').is(':empty') && $('#suffix-error').is(':empty') && $('#gender-error').is(':empty') && $('#religion-error').is(':empty') && $('#date-error').is(':empty') && $('#placeofbirth-error').is(':empty') && $('#civilstatus-error').is(':empty') && $('#role-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+        
+        function checkFname() {
+            var fname = $('#fname').val().trim();
+            
+            // show error if first name is empty
+            if (fname === '') {
+                $('#fname-error').text('Please input first name').css('color', 'red');
+                $('#fname').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for first name if needed
+            
+            $('#fname-error').empty();
+            $('#fname').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkMname() {
+            var mname = $('#mname').val().trim();
+            
+            // show error if middle name is empty
+            if (mname === '') {
+                $('#mname-error').text('Please input middle name').css('color', 'red');
+                $('#mname').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for middle name if needed
+            
+            $('#mname-error').empty();
+            $('#mname').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+        
+        function checkLname() {
+            var lname = $('#lname').val().trim();
+            
+            // show error if last name is empty
+            if (lname === '') {
+                $('#lname-error').text('Please input last name').css('color', 'red');
+                $('#lname').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for last name if needed
+            
+            $('#lname-error').empty();
+            $('#lname').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkSuffix() {
+            var suffixSelect = document.getElementById('suffix');
+            var suffix = suffixSelect.value;
+            
+            // show error if the default option is selected
+            if (suffix === '' && suffixSelect.selectedIndex !== 1) {
+                $('#suffix-error').text('Please select a suffix').css('color', 'red');
+                $('#suffix').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for suffix if needed
+            
+            $('#suffix-error').empty();
+            $('#suffix').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+        
+    });
 </script>

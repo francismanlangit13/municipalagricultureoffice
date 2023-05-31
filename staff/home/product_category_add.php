@@ -41,7 +41,7 @@
 
 <?php include('../includes/footer.php');?>
 
-<script>
+<!-- <script>
     var cnameNameInput = document.getElementById("cname");
     var cnameNameError = document.getElementById("cname-error");
     var descriptionNameInput = document.getElementById("description");
@@ -79,4 +79,68 @@
         $('#submit-btn').prop('disabled', false);
       }
     }
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
+
+        // debounce functions for each input field
+        var debouncedCheckName = _.debounce(checkName, 500);
+        var debouncedCheckDescription = _.debounce(checkDescription, 500);
+
+        // attach event listeners for each input field
+        $('#cname').on('input', debouncedCheckName);
+        $('#description').on('input', debouncedCheckDescription);
+
+        $('#cname').on('blur', debouncedCheckName);
+        $('#description').on('blur', debouncedCheckDescription);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#cname-error').is(':empty') && $('#description-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+        
+        function checkName() {
+            var cname = $('#cname').val().trim();
+            
+            // show error if cname is empty
+            if (cname === '') {
+                $('#cname-error').text('Please input category name').css('color', 'red');
+                $('#cname').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for cname if needed
+            
+            $('#cname-error').empty();
+            $('#cname').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkDescription() {
+            var description = $('#description').val().trim();
+            
+            // show error if description is empty
+            if (description === '') {
+                $('#description-error').text('Please input description').css('color', 'red');
+                $('#description').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for description if needed
+            
+            $('#description-error').empty();
+            $('#description').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+        
+    });
 </script>

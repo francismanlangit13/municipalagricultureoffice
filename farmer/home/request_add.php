@@ -73,11 +73,12 @@
     $(document).ready(function() {
 
         // debounce functions for each input field
-        var debouncedCheckQuantity = _.debounce(checkQuantity, 100);
+        var debouncedCheckQuantity = _.debounce(checkQuantity, 500);
 
         // attach event listeners for each input field
         $('#product_quantity-input').on('input', debouncedCheckQuantity);
-        $('#product_id').on('change', debouncedCheckQuantity);
+        $('#product_quantity-input').on('blur', debouncedCheckQuantity);
+        //$('#product_id').on('change', debouncedCheckQuantity);
 
         function checkQuantity() {
             var product_id = $('#product_id').val();
@@ -133,41 +134,66 @@
 </script>
 
 <script>
-    var product_idNameInput = document.getElementById("product_id");
-    var product_idNameError = document.getElementById("product_id-error");
-    var messageNameInput = document.getElementById("message");
-    var messageNameError = document.getElementById("description-error");
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
 
-    product_idNameInput.addEventListener("blur", function() {
-        if (product_idNameInput.value.trim() === "") {
-            $('#product_id-error').text('Select product').css('color', 'red');
-            $('#product_id').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        // debounce functions for each input field
+        var debouncedCheckProduct = _.debounce(checkProduct, 500);
+        var debouncedCheckMessage = _.debounce(checkMessage, 500);
+
+        // attach event listeners for each input field
+        $('#product_id').on('input', debouncedCheckProduct);
+        $('#message').on('input', debouncedCheckMessage);
+
+        $('#product_id').on('blur', debouncedCheckProduct);
+        $('#message').on('blur', debouncedCheckMessage);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#product_id-error').is(':empty') && $('#message-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+
+        function checkProduct() {
+            var product_idSelect = document.getElementById('product_id');
+            var product_id = product_idSelect.value;
+            
+            // show error if the default option is selected
+            if (product_id === '' && product_idSelect.selectedIndex !== 1) {
+                $('#product_id-error').text('Please select product').css('color', 'red');
+                $('#product_id').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for product_id if needed
+            
             $('#product_id-error').empty();
             $('#product_id').removeClass('is-invalid');
-            // enable submit button if product name is selected.
             checkIfAllFieldsValid();
         }
-    });
 
-    messageNameInput.addEventListener("blur", function() {
-        if (messageNameInput.value.trim() === "") {
-            $('#message-error').text('Please input message').css('color', 'red');
-            $('#message').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        function checkMessage() {
+            var message = $('#message').val().trim();
+            
+            // show error if message is empty
+            if (message === '') {
+                $('#message-error').text('Please input message').css('color', 'red');
+                $('#message').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for message if needed
+            
             $('#message-error').empty();
             $('#message').removeClass('is-invalid');
-            // enable submit button if message is inputed.
             checkIfAllFieldsValid();
         }
+        
     });
-
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#title-error').is(':empty') && $('#message-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
 </script>

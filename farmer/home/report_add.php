@@ -79,7 +79,7 @@
                     </div>
                     <div class="text-right">
                       <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-                      <button type="submit" name="add_report" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
+                      <button type="submit" name="add_report" id="submit-btn" class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
                     </div>
                 </div>
             </div>
@@ -163,7 +163,7 @@
   });
 </script>
 
-<script>
+<!-- <script>
     var titleNameInput = document.getElementById("title");
     var titleNameError = document.getElementById("title-error");
     var messageNameInput = document.getElementById("message");
@@ -201,4 +201,68 @@
         $('#submit-btn').prop('disabled', false);
       }
     }
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
+
+        // debounce functions for each input field
+        var debouncedCheckTitle = _.debounce(checkTitle, 500);
+        var debouncedCheckMessage = _.debounce(checkMessage, 500);
+
+        // attach event listeners for each input field
+        $('#title').on('input', debouncedCheckTitle);
+        $('#message').on('input', debouncedCheckMessage);
+
+        $('#title').on('blur', debouncedCheckTitle);
+        $('#message').on('blur', debouncedCheckMessage);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#title-error').is(':empty') && $('#message-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+
+        function checkTitle() {
+            var title = $('#title').val().trim();
+            
+            // show error if title is empty
+            if (title === '') {
+                $('#title-error').text('Please input title').css('color', 'red');
+                $('#title').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for title if needed
+            
+            $('#title-error').empty();
+            $('#title').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkMessage() {
+            var message = $('#message').val().trim();
+            
+            // show error if message is empty
+            if (message === '') {
+                $('#message-error').text('Please input message').css('color', 'red');
+                $('#message').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for message if needed
+            
+            $('#message-error').empty();
+            $('#message').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+        
+    });
 </script>

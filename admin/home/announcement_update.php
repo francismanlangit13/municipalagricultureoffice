@@ -74,41 +74,65 @@
 <?php include('../includes/footer.php');?>
 
 <script>
-    var announcement_titleNameInput = document.getElementById("announcement_title");
-    var announcement_titleNameError = document.getElementById("announcement_title-error");
-    var announcement_messageNameInput = document.getElementById("announcement_message");
-    var announcement_messageNameError = document.getElementById("announcement_message-error");
+    $(document).ready(function() {
+        // disable submit button by default
+        $('#submit-btn').prop('disabled', true);
 
-    announcement_titleNameInput.addEventListener("blur", function() {
-        if (announcement_titleNameInput.value.trim() === "") {
-            $('#announcement_title-error').text('Please input announcement title').css('color', 'red');
-            $('#announcement_title').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        // debounce functions for each input field
+        var debouncedCheckTitle = _.debounce(checkTitle, 500);
+        var debouncedCheckBody = _.debounce(checkBody, 500);
+
+        // attach event listeners for each input field
+        $('#announcement_title').on('input', debouncedCheckTitle);
+        $('#announcement_message').on('input', debouncedCheckBody);
+
+        $('#announcement_title').on('blur', debouncedCheckTitle);
+        $('#announcement_message').on('blur', debouncedCheckBody);
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#announcement_title-error').is(':empty') && $('#announcement_message-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            } else {
+                $('#submit-btn').prop('disabled', true);
+            }
+        }
+        
+        function checkTitle() {
+            var announcement_title = $('#announcement_title').val().trim();
+            
+            // show error if announcement_title is empty
+            if (announcement_title === '') {
+                $('#announcement_title-error').text('Please input title').css('color', 'red');
+                $('#announcement_title').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for announcement_title if needed
+            
             $('#announcement_title-error').empty();
             $('#announcement_title').removeClass('is-invalid');
-            // enable submit button if category name are inputed.
             checkIfAllFieldsValid();
         }
-    });
 
-    announcement_messageNameInput.addEventListener("blur", function() {
-        if (announcement_messageNameInput.value.trim() === "") {
-            $('#announcement_message-error').text('Please input announcement message').css('color', 'red');
-            $('#announcement_message').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
+        function checkBody() {
+            var announcement_message = $('#announcement_message').val().trim();
+            
+            // show error if announcement_message is empty
+            if (announcement_message === '') {
+                $('#announcement_message-error').text('Please input body').css('color', 'red');
+                $('#announcement_message').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for middle name if needed
+            
             $('#announcement_message-error').empty();
             $('#announcement_message').removeClass('is-invalid');
-            // enable submit button if description is inputed.
             checkIfAllFieldsValid();
         }
+        
     });
-
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#announcement_title-error').is(':empty') && $('#announcement_message-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
 </script>
