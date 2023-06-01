@@ -175,7 +175,7 @@
 <script>
     $(document).ready(function() {
     // disable submit button by default
-    //$('#submit-btn').prop('disabled', true);
+    // $('#submit-btn').prop('disabled', true);
 
     // debounce functions for each input field
     var debouncedCheckEmail = _.debounce(checkEmail, 500);
@@ -236,80 +236,10 @@
     });
 </script>
 
-<!-- <script>
-    var firstNameInput = document.getElementById("fname");
-    var firstNameError = document.getElementById("fname-error");
-    var middleNameInput = document.getElementById("mname");
-    var middleNameError = document.getElementById("mname-error");
-    var lastNameInput = document.getElementById("lname");
-    var lastNameError = document.getElementById("lname-error");
-    var suffixSelect = document.getElementById("suffix");
-    var suffixNameError = document.getElementById("suffix-error");
-
-    firstNameInput.addEventListener("blur", function() {
-        if (firstNameInput.value.trim() === "") {
-            $('#fname-error').text('Please input first name').css('color', 'red');
-            $('#fname').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#fname-error').empty();
-            $('#fname').removeClass('is-invalid');
-            // enable submit button if first name are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    middleNameInput.addEventListener("blur", function() {
-        if (middleNameInput.value.trim() === "") {
-            $('#mname-error').text('Please input middle name').css('color', 'red');
-            $('#mname').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#mname-error').empty();
-            $('#mname').removeClass('is-invalid');
-            // enable submit button if middle name are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    lastNameInput.addEventListener("blur", function() {
-        if (lastNameInput.value.trim() === "") {
-            $('#lname-error').text('Please input last name').css('color', 'red');
-            $('#lname').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#lname-error').empty();
-            $('#lname').removeClass('is-invalid');
-            // enable submit button if last name are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    suffixSelect.addEventListener("blur", function() {
-        if (suffixSelect.value === "" && suffixSelect.selectedIndex !== 1) {
-            $('#suffix-error').text('Please select suffix').css('color', 'red');
-            $('#suffix').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#suffix-error').empty();
-            $('#suffix').removeClass('is-invalid');
-            // enable submit button if suffix are selected.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#fname-error').is(':empty') && $('#lname-error').is(':empty') && $('#suffix-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
-</script> -->
-
 <script>
     $(document).ready(function() {
         // disable submit button by default
-        $('#submit-btn').prop('disabled', true);
+        // $('#submit-btn').prop('disabled', true);
 
         // debounce functions for each input field
         var debouncedCheckFname = _.debounce(checkFname, 500);

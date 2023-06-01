@@ -41,50 +41,10 @@
 
 <?php include('../includes/footer.php');?>
 
-<!-- <script>
-    var cnameNameInput = document.getElementById("cname");
-    var cnameNameError = document.getElementById("cname-error");
-    var descriptionNameInput = document.getElementById("description");
-    var descriptionNameError = document.getElementById("description-error");
-
-    cnameNameInput.addEventListener("blur", function() {
-        if (cnameNameInput.value.trim() === "") {
-            $('#cname-error').text('Please input category name').css('color', 'red');
-            $('#cname').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#cname-error').empty();
-            $('#cname').removeClass('is-invalid');
-            // enable submit button if category name are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    descriptionNameInput.addEventListener("blur", function() {
-        if (descriptionNameInput.value.trim() === "") {
-            $('#description-error').text('Please input quantity').css('color', 'red');
-            $('#description').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#description-error').empty();
-            $('#description').removeClass('is-invalid');
-            // enable submit button if description is inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#cname-error').is(':empty') && $('#description-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
-</script> -->
-
 <script>
     $(document).ready(function() {
         // disable submit button by default
-        $('#submit-btn').prop('disabled', true);
+        // $('#submit-btn').prop('disabled', true);
 
         // debounce functions for each input field
         var debouncedCheckName = _.debounce(checkName, 500);

@@ -146,7 +146,7 @@
 <script>
     $(document).ready(function() {
         // disable submit button by default
-        $('#submit-btn').prop('disabled', true);
+        // $('#submit-btn').prop('disabled', true);
 
         // debounce functions for each input field
         var debouncedCheckEmail = _.debounce(checkEmail, 500);
@@ -257,174 +257,10 @@
     });
 </script>
 
-<!-- <script>
-    var firstNameInput = document.getElementById("fname");
-    var firstNameError = document.getElementById("fname-error");
-    var middleNameInput = document.getElementById("mname");
-    var middleNameError = document.getElementById("mname-error");
-    var lastNameInput = document.getElementById("lname");
-    var lastNameError = document.getElementById("lname-error");
-    var suffixSelect = document.getElementById("suffix");
-    var suffixNameError = document.getElementById("suffix-error");
-    const maleInput = document.getElementById("male");
-    const femaleInput = document.getElementById("female");
-    var genderNameError = document.getElementById("gender-error");
-    var religionNameInput = document.getElementById("religion");
-    var religionNameError = document.getElementById("religion-error");
-    var birthdayNameInput = document.getElementById("date");
-    var birthdayNameError = document.getElementById("date-error");
-    var placeofbirthNameInput = document.getElementById("placeofbirth");
-    var placeofbirthNameError = document.getElementById("placeofbirth-error");
-    var civilstatusNameInput = document.getElementById("civilstatus");
-    var civilstatusNameError = document.getElementById("civilstatus-error");
-    var roleNameInput = document.getElementById("role");
-    var roleNameError = document.getElementById("role-error");
-
-    firstNameInput.addEventListener("blur", function() {
-        if (firstNameInput.value.trim() === "") {
-            $('#fname-error').text('Please input first name').css('color', 'red');
-            $('#fname').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#fname-error').empty();
-            $('#fname').removeClass('is-invalid');
-            // enable submit button if first name are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    middleNameInput.addEventListener("blur", function() {
-        if (middleNameInput.value.trim() === "") {
-            $('#mname-error').text('Please input middle name').css('color', 'red');
-            $('#mname').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#mname-error').empty();
-            $('#mname').removeClass('is-invalid');
-            // enable submit button if middle name are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    lastNameInput.addEventListener("blur", function() {
-        if (lastNameInput.value.trim() === "") {
-            $('#lname-error').text('Please input last name').css('color', 'red');
-            $('#lname').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#lname-error').empty();
-            $('#lname').removeClass('is-invalid');
-            // enable submit button if last name are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    suffixSelect.addEventListener("blur", function() {
-        if (suffixSelect.value === "" && suffixSelect.selectedIndex !== 1) {
-            $('#suffix-error').text('Please select suffix').css('color', 'red');
-            $('#suffix').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#suffix-error').empty();
-            $('#suffix').removeClass('is-invalid');
-            // enable submit button if suffix are selected.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    maleInput.addEventListener("blur", checkGenderSelection);
-    femaleInput.addEventListener("blur", checkGenderSelection);
-    function checkGenderSelection() {
-        if (!maleInput.checked && !femaleInput.checked) {
-            $('#gender-error').text('Please select your gender').css('color', 'red');
-            $('#male').addClass('is-invalid');
-            $('#female').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#gender-error').empty();
-            $('#male').removeClass('is-invalid');
-            $('#female').removeClass('is-invalid');
-            // Enable submit button if a gender is selected
-            checkIfAllFieldsValid();
-        }
-    }
-
-    religionNameInput.addEventListener("blur", function() {
-        if (religionNameInput.value.trim() === "") {
-            $('#religion-error').text('Please input religion').css('color', 'red');
-            $('#religion').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#religion-error').empty();
-            $('#religion').removeClass('is-invalid');
-            // enable submit button if religion are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    birthdayNameInput.addEventListener("blur", function() {
-        if (birthdayNameInput.value.trim() === "") {
-            $('#date-error').text('Please input birthday').css('color', 'red');
-            $('#date').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#date-error').empty();
-            $('#date').removeClass('is-invalid');
-            // enable submit button if birthday are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    placeofbirthNameInput.addEventListener("blur", function() {
-        if (placeofbirthNameInput.value.trim() === "") {
-            $('#placeofbirth-error').text('Please input place of birth').css('color', 'red');
-            $('#placeofbirth').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#placeofbirth-error').empty();
-            $('#placeofbirth').removeClass('is-invalid');
-            // enable submit button if place of birth are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    civilstatusNameInput.addEventListener("blur", function() {
-        if (civilstatusNameInput.value.trim() === "") {
-            $('#civilstatus-error').text('Please select civil status').css('color', 'red');
-            $('#civilstatus').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#civilstatus-error').empty();
-            $('#civilstatus').removeClass('is-invalid');
-            // enable submit button if civil status is selected.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    roleNameInput.addEventListener("blur", function() {
-        if (roleNameInput.value.trim() === "") {
-            $('#role-error').text('Please select role').css('color', 'red');
-            $('#role').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#role-error').empty();
-            $('#role').removeClass('is-invalid');
-            // enable submit button if role is selected.
-            checkIfAllFieldsValid();
-        }
-    });
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#fname-error').is(':empty') && $('#lname-error').is(':empty') && $('#suffix-error').is(':empty') && $('#gender-error').is(':empty') && $('#religion-error').is(':empty') && $('#date-error').is(':empty') && $('#placeofbirth-error').is(':empty') && $('#civilstatus-error').is(':empty') && $('#role-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
-</script> -->
-
 <script>
     $(document).ready(function() {
         // disable submit button by default
-        $('#submit-btn').prop('disabled', true);
+        // $('#submit-btn').prop('disabled', true);
 
         // debounce functions for each input field
         var debouncedCheckFname = _.debounce(checkFname, 500);

@@ -163,50 +163,10 @@
   });
 </script>
 
-<!-- <script>
-    var titleNameInput = document.getElementById("title");
-    var titleNameError = document.getElementById("title-error");
-    var messageNameInput = document.getElementById("message");
-    var messageNameError = document.getElementById("description-error");
-
-    titleNameInput.addEventListener("blur", function() {
-        if (titleNameInput.value.trim() === "") {
-            $('#title-error').text('Please input title name').css('color', 'red');
-            $('#title').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#title-error').empty();
-            $('#title').removeClass('is-invalid');
-            // enable submit button if title name are inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    messageNameInput.addEventListener("blur", function() {
-        if (messageNameInput.value.trim() === "") {
-            $('#message-error').text('Please input message').css('color', 'red');
-            $('#message').addClass('is-invalid');
-            $('#submit-btn').prop('disabled', true);
-        } else {
-            $('#message-error').empty();
-            $('#message').removeClass('is-invalid');
-            // enable submit button if message is inputed.
-            checkIfAllFieldsValid();
-        }
-    });
-
-    function checkIfAllFieldsValid() {
-      // check if all input fields are valid and enable submit button if so
-      if ($('#title-error').is(':empty') && $('#message-error').is(':empty')) {
-        $('#submit-btn').prop('disabled', false);
-      }
-    }
-</script> -->
-
 <script>
     $(document).ready(function() {
         // disable submit button by default
-        $('#submit-btn').prop('disabled', true);
+        // $('#submit-btn').prop('disabled', true);
 
         // debounce functions for each input field
         var debouncedCheckTitle = _.debounce(checkTitle, 500);
