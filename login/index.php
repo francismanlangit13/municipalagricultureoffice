@@ -99,6 +99,7 @@
                   <a href="javascript:void(0)"  style="position: relative; top: -2.5rem; left: 87%; cursor: pointer; color: lightgray;">
                     <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="1%" id="togglePassword">
                   </a>
+                  <div id="password-error" style="margin-top:-23px;"></div>
                 </div>
                 <div class="d-flex mb-3 align-items-center">
                   <label class="control control mb-0">
@@ -137,11 +138,15 @@
 
         // debounce functions for each input field
         var debouncedCheckEmail = _.debounce(checkEmail, 500);
+        var debouncedCheckPassword = _.debounce(checkPassword, 500);
 
         // attach event listeners for each input field
         $('#email').on('input', debouncedCheckEmail);
         $('#email').on('focusout', checkEmail); // Add focusout event listener
         $('#email').on('blur', debouncedCheckEmail); // Trigger on input change
+        $('#password').on('input', debouncedCheckPassword);
+        $('#password').on('focusout', checkPassword); // Add focusout event listener
+        $('#password').on('blur', debouncedCheckPassword); // Trigger on input change
 
         function checkEmail() {
           var email = $('#email').val();
@@ -169,9 +174,35 @@
           checkIfAllFieldsValid();
         }
 
+        function checkPassword() {
+          var password = $('#password').val();
+
+          // show error if password is empty
+          if (password === '') {
+            $('#password-error').text('Please input password').css('color', 'red');
+            $('#password').addClass('is-invalid'); // Update selector to 'password'
+            $('#submit-btn').prop('disabled', true);
+            return;
+          }
+
+          // check if password format is valid
+          var passwordPattern = /^.{8,}$/i;
+          if (!passwordPattern.test(password)) {
+            $('#password-error').text('At least 8 minimum characters').css('color', 'red');
+            $('#password').addClass('is-invalid'); // Update selector to 'password'
+            $('#submit-btn').prop('disabled', true);
+            return;
+          }
+
+          // Clear error if password is valid
+          $('#password-error').empty();
+          $('#password').removeClass('is-invalid'); // Update selector to 'password'
+          checkIfAllFieldsValid();
+        }
+
         function checkIfAllFieldsValid() {
           // check if all input fields are valid and enable submit button if so
-          if ($('#email-error').is(':empty')) {
+          if ($('#email-error').is(':empty') && $('#password-error').is(':empty')) {
             $('#submit-btn').prop('disabled', false);
           }
         }
