@@ -44,6 +44,7 @@
                 </thead>
                 <tbody>
                     <?php
+                        $user_id = $_SESSION['auth_user']['user_id'];
                         $query = "SELECT
                             `user`.user_id, 
                             `user`.fname, 
@@ -70,7 +71,7 @@
                         ON 
                             `user`.user_status_id = user_status.user_status_id
                         WHERE
-                            `user`.user_status_id != 3 && `user`.user_type_id != 3";
+                            `user`.user_status_id != 3 && `user`.user_type_id != 3 AND user.user_id != $user_id";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0){
                             foreach($query_run as $row){
