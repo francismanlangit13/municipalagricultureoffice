@@ -63,6 +63,7 @@
             <div class="mr-2">Choose Backup File</div>
             <div>
                 <input type="file" name="backup_file" class="form-control-file btn btn-secondary" required accept=".sql">
+                <i style="color:red">Warning! Restoring the wrong database file will crash this system. Proceed with caution!</i>
             </div>
         </div>
         <div>
