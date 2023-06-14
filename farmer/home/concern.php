@@ -22,7 +22,7 @@
                 <thead>
                     <tr>
                         <th style="width:5%;">No.</th>
-                        <th style="width:45%;">Message</th>
+                        <th style="width:45%;">Title</th>
                         <th style="width:25%;">Attachments</th>
                         <th style="width:5%;">Status</th>
                         <th style="width:10%;">Date Submitted</th>
@@ -43,7 +43,7 @@
                     ?>
                     <tr>
                         <td><?= $row['concern_id']; ?></td>
-                        <td><?= $row['message']; ?></td>
+                        <td><?= $row['title']; ?></td>
                         <td class="text-center">
                         <a href="
                             <?php
