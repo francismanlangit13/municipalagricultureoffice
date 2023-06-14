@@ -86,6 +86,14 @@
                                         <span class="text ml-2 mr-2">View</span>
                                     </a>
                                 </div>
+                                <div class="col-md-12 mb-1" style="zoom:103%;">
+                                    <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Delete</span>
+                                    </button>
+                                </div>
                                 <?php 
                                     $date_timestamp = strtotime($row['request_date']);
                                     
@@ -123,14 +131,6 @@
                                     // Check if $row['date_created'] is greater than the current date
                                     if ($date_created < $deadline){
                                 ?>
-                                    <div class="col-md-12 mb-1" style="zoom:103%;">
-                                        <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">Delete</span>
-                                        </button>
-                                    </div>
                                 <?php } ?>
                             </div>
                         </td>
