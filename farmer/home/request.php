@@ -123,7 +123,7 @@
                                     // Check if $row['date_created'] is greater than the current date
                                     if ($date_created < $deadline){
                                 ?>
-                                <?php if($row['status_id'] != "2"){ ?>
+                                <?php if($row['status_id'] != "4"){ ?>
                                     <div class="col-md-12 mb-1" style="zoom:103%;">
                                         <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
                                             <span class="icon text-white-50">
