@@ -71,14 +71,12 @@
                                         </a>
                                     </div>
                                     <div class="col-md-12 mb-1">
-                                        <form action="code.php" method="POST" style="zoom:97%;">
-                                            <button type="submit" name="ann_post" value="<?=$row['ann_id']; ?>" class="btn btn-warning btn-icon-split" href="#">
-                                                <span class="icon text-white-50">
-                                                    <i class="fas fa-paper-plane"></i>
-                                                </span>
-                                                <span class="text">Publish</span>
-                                            </button>
-                                        </form>
+                                        <button type="submit" data-toggle="modal" value="<?=$row['ann_id']; ?>" data-target="#exampleModalPublish" onclick="publishModal(this)" class="btn btn-warning btn-icon-split" href="#">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </span>
+                                            <span class="text">Publish</span>
+                                        </button>
                                     </div>
                                 <?php } ?>
                                 <!-- <div class="col-md-12 mb-1">
@@ -119,7 +117,7 @@
 
 <?php include('../includes/footer.php');?>
 
-<!-- Modal -->
+<!-- Modal Delete -->
 <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -149,5 +147,38 @@
         var id = button.value;
         document.getElementById("delete_id").value = id;
         document.getElementById("label").innerHTML = id;
+    }
+</script>
+
+<!-- Modal Publish -->
+<div class="modal fade" id="exampleModalPublish" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Publish Announcement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to publish this announcement <label id="label_post"></label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="code.php" method="POST">
+            <input type="hidden" id="ann_post" name="ann_post" value="">
+            <button type="submit" class="btn btn-warning">Publish</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    function publishModal(button) {
+        var id = button.value;
+        document.getElementById("ann_post").value = id;
+        document.getElementById("label_post").innerHTML = id;
     }
 </script>
