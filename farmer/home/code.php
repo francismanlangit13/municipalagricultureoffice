@@ -24,8 +24,9 @@ if(isset($_POST['add_request'])){
     $description = $_POST['description'];
     $request_date = date('Y-m-d H:i:s');
     $status = 1;
+    $request_status = 1;
 
-    $query = "INSERT INTO `request`(`user_id`, `product_id`, `request_quantity`, `description`, `request_date`, `status_id`) VALUES ('$user_id', '$product_id','$quantity','$description','$request_date', '$status')";
+    $query = "INSERT INTO `request`(`user_id`, `product_id`, `request_quantity`, `description`, `request_date`, `status_id`, `request_status`) VALUES ('$user_id', '$product_id','$quantity','$description','$request_date', '$status', '$request_status')";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
