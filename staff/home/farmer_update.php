@@ -32,7 +32,7 @@
                         <input type="text" name="user_id" value="<?=$user['user_id'];?>" hidden>
                         <div class="col-md-12 mb-3">
                             <label for="" class="required">Reference Number</label>
-                            <input required placeholder="Enter Reference Number" type="text" name="reference_number" value="<?=$user['reference_number'];?>" pattern="\d*" minlength="15" maxlength="15" class="form-control" id="reference_number-input">
+                            <input required placeholder="Enter Reference Number" type="text" name="reference_number" value="<?=$user['reference_number'];?>"  pattern="\d{2}-\d{2}-\d{2}-\d{3}-\d{6}" pattern="\d*" minlength="19" maxlength="19" class="form-control" id="reference_number-input">
                             <div id="reference_number-error"></div>
                         </div>
                         <div class="col-md-3 mb-3">
