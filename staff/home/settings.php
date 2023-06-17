@@ -174,65 +174,74 @@
 
 <script>
     $(document).ready(function() {
-    // disable submit button by default
-    // $('#submit-btn').prop('disabled', true);
+        // disable submit button by default
+        //$('#submit-btn').prop('disabled', true);
 
-    // debounce functions for each input field
-    var debouncedCheckEmail = _.debounce(checkEmail, 500);
+        // debounce functions for each input field
+        var debouncedCheckEmail = _.debounce(checkEmail, 500);
 
-    // attach event listeners for each input field
-    $('#email-input').on('input', debouncedCheckEmail);
-    $('#email-input').on('blur', debouncedCheckEmail);
+        // attach event listeners for each input field
+        $('#email-input').on('input', debouncedCheckEmail);
+        $('#email-input').on('blur', debouncedCheckEmail);
 
-    function checkEmail() {
-        var email = $('#email-input').val();
+        var initialEmail = $('#email-input').val(); // Store the initial email
 
-        // show error if email is empty
-        if (email === '') {
-            $('#email-error').text('Please input email').css('color', 'red');
-            $('#email-input').addClass('is-invalid');
-            checkIfAllFieldsValid();
-            return;
-        }
+        function checkEmail() {
+            var email = $('#email-input').val();
+            var userEmailAddress = "<?php echo $row['email']; ?>"; // Display current user email
 
-        // check if email format is valid
-        var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
-        if (!emailPattern.test(email)) {
-            $('#email-error').text('Invalid email format').css('color', 'red');
-            $('#email-input').addClass('is-invalid');
-            checkIfAllFieldsValid();
-            return;
-        }
-
-        $.ajax({
-            url: 'ajax.php', // replace with the actual URL to check email
-            method: 'POST', // use the appropriate HTTP method
-            data: { email: email },
-            success: function(response) {
-                if (response.exists) {
-                    // disable submit button if email is taken
-                    $('#submit-btn').prop('disabled', true);
-                    $('#email-error').text('Email already taken').css('color', 'red');
-                    $('#email-input').addClass('is-invalid');
-                } else {
-                    $('#email-error').empty();
-                    $('#email-input').removeClass('is-invalid');
-                    // enable submit button if email is valid
-                    checkIfAllFieldsValid();
-                }
-            },
-            error: function() {
-                $('#email-error').text('Error checking email');
+            // show error if email is empty
+            if (email === '') {
+                $('#email-error').text('Please input email').css('color', 'red');
+                $('#email-input').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
             }
-        });
-    }
 
-    function checkIfAllFieldsValid() {
-        // check if all input fields are valid and enable submit button if so
-        if ($('#email-error').is(':empty')) {
-            $('#submit-btn').prop('disabled', false);
+            // check if email format is valid
+            var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+            if (!emailPattern.test(email)) {
+                $('#email-error').text('Invalid email format').css('color', 'red');
+                $('#email-input').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+
+            if (email !== initialEmail) { // Check if email is different from the initial email
+                $.ajax({
+                    url: 'ajax.php', // replace with the actual URL to check email
+                    method: 'POST', // use the appropriate HTTP method
+                    data: { email: email },
+                    success: function(response) {
+                        if (response.exists) {
+                            // disable submit button if email is taken
+                            $('#submit-btn').prop('disabled', true);
+                            $('#email-error').text('Email already taken').css('color', 'red');
+                            $('#email-input').addClass('is-invalid');
+                        } else {
+                            $('#email-error').empty();
+                            $('#email-input').removeClass('is-invalid');
+                            // enable submit button if email is valid
+                            checkIfAllFieldsValid();
+                        }
+                    },
+                    error: function() {
+                        $('#email-error').text('Error checking email');
+                    }
+                });
+            } else {
+                $('#email-error').empty();
+                $('#email-input').removeClass('is-invalid');
+                checkIfAllFieldsValid();
+            }
         }
-    }
+
+        function checkIfAllFieldsValid() {
+            // check if all input fields are valid and enable submit button if so
+            if ($('#email-error').is(':empty')) {
+                $('#submit-btn').prop('disabled', false);
+            }
+        }
     });
 </script>
 
@@ -260,7 +269,7 @@
 
         function checkIfAllFieldsValid() {
             // check if all input fields are valid and enable submit button if so
-            if ($('#fname-error').is(':empty') && $('#mname-error').is(':empty') && $('#lname-error').is(':empty') && $('#suffix-error').is(':empty') && $('#gender-error').is(':empty') && $('#religion-error').is(':empty') && $('#date-error').is(':empty') && $('#placeofbirth-error').is(':empty') && $('#civilstatus-error').is(':empty') && $('#role-error').is(':empty')) {
+            if ($('#fname-error').is(':empty') && $('#mname-error').is(':empty') && $('#lname-error').is(':empty') && $('#suffix-error').is(':empty')) {
                 $('#submit-btn').prop('disabled', false);
             } else {
                 $('#submit-btn').prop('disabled', true);
