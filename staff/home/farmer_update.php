@@ -388,9 +388,10 @@
                                 <video id="preview" width="100%"></video>
                             </div>
                             <div class="succqrcode" style="display:none;">
-                                <div class="alert alert-success" role="alert">
+                                <div class="badge badge-success mb-2" role="alert" style="font-size:20px">
                                     QR Scan Success!
                                 </div>
+                                <br>
                                 <button type="button" id="rescan-btn" class="btn btn-warning"><i class="fa fa-qrcode"></i> Rescan QR Code</button>
                             </div>
                         </div>
