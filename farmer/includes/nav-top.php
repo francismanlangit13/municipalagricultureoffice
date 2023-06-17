@@ -53,25 +53,25 @@
             <?php if(isset($_SESSION['auth_user']))  ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:6.8rem; margin-bottom: 1.6rem;">
-                <?php
-                    $userID = $_SESSION['auth_user'] ['user_id'];
-                    $query = "SELECT * FROM user where user_id = $userID";
-                    $query_run = mysqli_query($con, $query);
-                    $user = mysqli_num_rows($query_run) > 0;
+                    <?php
+                        $userID = $_SESSION['auth_user'] ['user_id'];
+                        $query = "SELECT * FROM user where user_id = $userID";
+                        $query_run = mysqli_query($con, $query);
+                        $user = mysqli_num_rows($query_run) > 0;
 
-                    if($user){
-                        while($row = mysqli_fetch_assoc($query_run)){
-                ?>
-                    <img id="cimg" class="img-fluid card-img-top" id="frame1" style="margin-top: 1.5rem;"
-                    src="
-                        <?php
-                            if(isset($row['picture'])){
-                                echo base_url . 'assets/img/users/' . $row['picture'];
-                            } else { echo base_url . 'assets/img/system/no-image.png'; }
-                        ?>
-                    " alt="image">
+                        if($user){
+                            while($row = mysqli_fetch_assoc($query_run)){
+                    ?>
+                        <img id="cimg" class="img-fluid card-img-top" id="frame1" style="margin-top: 1.5rem;"
+                        src="
+                            <?php
+                                if(isset($row['picture'])){
+                                    echo base_url . 'assets/img/users/' . $row['picture'];
+                                } else { echo base_url . 'assets/img/system/no-image.png'; }
+                            ?>
+                        " alt="image">
+                        <span class="mr-2 d-lg-inline text-gray-600 small" style="margin-top: 1.8rem;"><?=$row['fname']?> <?=$row['mname']?> <?=$row['lname']?> <?=$row['suffix']?></span>
                     <?php } } ?>
-                    <span class="mr-2 d-lg-inline text-gray-600 small" style="margin-top: 1.8rem;"> <?= $_SESSION['auth_user'] ['user_name'];  ?></span>
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="margin-top:-1.5rem; margin-right:1rem;">
@@ -93,23 +93,22 @@
     <!-- End of Topbar -->
 
     <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        Confirm to logout?
-      </div>
-      <div class="modal-body"> Are you sure you want to logout?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form action="code.php" method="POST">
-          <button type="submit" name="logout_btn" class="btn btn-danger">Logout</button>
-        </form>
-      </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Confirm to logout?
+                </div>
+                <div class="modal-body"> Are you sure you want to logout?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form action="code.php" method="POST">
+                        <button type="submit" name="logout_btn" class="btn btn-danger">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
