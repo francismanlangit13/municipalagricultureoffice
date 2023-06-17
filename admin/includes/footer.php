@@ -47,7 +47,9 @@
     <script src="<?php echo base_url ?>assets/js/sweetalert.js"></script>
 
     <!-- Image viewer slider -->
+    <script src="<?php echo base_url ?>assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="<?php echo base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="<?php echo base_url ?>assets/js/main.js"></script>
 
     <!-- Loading JS -->
