@@ -88,50 +88,56 @@
 	        $expDate = $row['expDate'];
 	        if ($expDate >= $curDate){
   ?>
-  <body>
-    <!-- Loading Screen -->
-    <div id="loading">
-        <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />
-    </div>
-    <div id="connectionAlert" class="alert"></div>
-    <div class="d-lg-flex half">
-      <div class="bg order-1 order-md-2" style="background-image: url('<?php echo base_url ?>assets/img/system/template.jpg');"></div>
-      <div class="contents order-2 order-md-1">
-        <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-7">
-              <h3><strong><center>Type New Password</center></strong></h3>
-              <br>
-              <form action="forgotpasswordcode.php" method="POST">
-                <input type="hidden" name="email" value = "<?php echo $email; ?>"/>
-                <div class="form-group first">
-                  <label for="password">New Password</label>
-                  <input type="password" name="password" class="form-control" minlength="8" placeholder="New Password" id="password">
-                  <a href="javascript:void(0)"  style="position: relative; top: -2.5rem; left: 87%; cursor: pointer; color: lightgray;">
-                    <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword">
-                  </a>
-                </div>
-                <div class="form-group first">
-                  <label for="password1">Confirm Password</label>
-                  <input type="password" name="confirm_password" class="form-control" minlength="8" placeholder="Confirm Password" id="password1">
-                  <a href="javascript:void(0)"  style="position: relative; top: -2.5rem; left: 87%; cursor: pointer; color: lightgray;">
-                    <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword1">
-                  </a>
-                </div>
-                <button type="submit" name="changepass_btn" class="btn btn-block btn-success">Update Password</button>
+    <body>
+      <!-- Loading Screen -->
+      <div id="loading">
+          <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />
+      </div>
+      <div id="connectionAlert" class="alert"></div>
+      <div class="d-lg-flex half">
+        <div class="bg order-1 order-md-2" style="background-image: url('<?php echo base_url ?>assets/img/system/template.jpg');"></div>
+        <div class="contents order-2 order-md-1">
+          <div class="container">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-7">
+                <h3><strong><center>Type New Password</center></strong></h3>
                 <br>
-                <span class="ml-auto"><a href="<?php echo base_url ?>"><u>Click here to Homepage</u></a></span> 
-              </form>
+                <form action="forgotpasswordcode.php" method="POST">
+                  <input type="hidden" name="email" value = "<?php echo $email; ?>"/>
+                  <div class="form-group first">
+                    <label for="password">New Password</label>
+                    <input type="password" name="password" class="form-control" minlength="8" placeholder="New Password" id="password">
+                    <a href="javascript:void(0)"  style="position: relative; top: -2.5rem; left: 87%; cursor: pointer; color: lightgray;">
+                      <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword">
+                    </a>
+                  </div>
+                  <div class="form-group first">
+                    <label for="password1">Confirm Password</label>
+                    <input type="password" name="confirm_password" class="form-control" minlength="8" placeholder="Confirm Password" id="password1">
+                    <a href="javascript:void(0)"  style="position: relative; top: -2.5rem; left: 87%; cursor: pointer; color: lightgray;">
+                      <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword1">
+                    </a>
+                  </div>
+                  <button type="submit" name="changepass_btn" class="btn btn-block btn-success">Update Password</button>
+                  <br>
+                  <span class="ml-auto"><a href="<?php echo base_url ?>"><u>Click here to Homepage</u></a></span> 
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <script src="<?php echo base_url ?>assets/js/sweetalert.js"></script>
-    <?php include ('message.php'); ?>
-    <script>
+      <script src="<?php echo base_url ?>assets/js/sweetalert.js"></script>
+      <?php include ('message.php'); ?>
+      <script>
         var base_url = "<?php echo base_url ?>"; // global location for javascript
       </script>
+            <!-- Image viewer slider -->
+      <script src="<?php echo base_url ?>assets/vendor/purecounter/purecounter_vanilla.js"></script>
+      <script src="<?php echo base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
+      <script src="<?php echo base_url ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
+      <script src="<?php echo base_url ?>assets/js/main.js"></script>
+
       <script src="<?php echo base_url ?>assets/js/jquery-3.3.1.min.js"></script>
       <script src="<?php echo base_url ?>assets/js/popper.min.js"></script>
       <script src="<?php echo base_url ?>assets/js/bootstrap.min.js"></script>
@@ -141,7 +147,7 @@
       <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
       <!-- Serverstatus JS -->
       <script src="<?php echo base_url ?>assets/js/serverstatus.js"></script>
-  </body>
+    </body>
   <?php } } } ?>
 </html>
 
