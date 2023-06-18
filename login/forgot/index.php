@@ -106,6 +106,12 @@
     <script>
       var base_url = "<?php echo base_url ?>"; // global location for javascript
     </script>
+    <!-- Image viewer slider -->
+    <script src="<?php echo base_url ?>assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="<?php echo base_url ?>assets/js/main.js"></script>
+
     <script src="<?php echo base_url ?>assets/js/jquery-3.3.1.min.js"></script>
     <script src="<?php echo base_url ?>assets/js/popper.min.js"></script>
     <script src="<?php echo base_url ?>assets/js/bootstrap.min.js"></script>
