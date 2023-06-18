@@ -96,7 +96,7 @@
                   </div>
                   <div class="col-md-6" hidden="true">
                     <form method="post" class="form-horizontal">
-                      <label>SCAN QR CODE HERE</label>
+                      <h3>SCAN QR CODE HERE</h3>
                       <input type="text" name="qrcode_text" id="text" readonyy="" placeholder="INPUT QR CODE" class="form-control">
                     </form>
 
