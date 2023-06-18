@@ -89,12 +89,12 @@
               <br>
               <form action="logincode.php" method="POST">
                 <div class="form-group first">
-                  <label for="">Email</label>
+                  <label for="email">Email</label>
                   <input required type="email" id="email" name="email" class="form-control" placeholder="your-email@gmail.com">
                   <div id="email-error"></div>
                 </div>
                 <div class="form-group last mb-0">
-                  <label for="">Password</label>
+                  <label for="password">Password</label>
                   <input required type="password" name="password" class="form-control" minlength="8" placeholder="Your Password" id="password">
                   <a href="javascript:void(0)"  style="position: relative; top: -2.5rem; left: 87%; cursor: pointer; color: lightgray;">
                     <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="1%" id="togglePassword">
@@ -121,11 +121,17 @@
     <script>
       var base_url = "<?php echo base_url ?>"; // global location for javascript
     </script>
+    <!-- Image viewer slider -->
+    <script src="<?php echo base_url ?>assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="<?php echo base_url ?>assets/js/main.js"></script>
+
     <script src="<?php echo base_url ?>assets/js/jquery-3.3.1.min.js"></script>
     <script src="<?php echo base_url ?>assets/js/popper.min.js"></script>
     <script src="<?php echo base_url ?>assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url ?>assets/js/main.js"></script>
-    <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
+    <script src="<?php echo base_url ?>assets/js/showpass-login.js"></script>
     <!-- Loading JS -->
     <script src="<?php echo base_url ?>assets/js/loader.js"></script>
     <script src="<?php echo base_url ?>assets/js/underscore-min.js"></script>
