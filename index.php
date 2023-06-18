@@ -124,7 +124,7 @@
               </div>
 
               <div class="row">
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch justify-content-center">
                   <div class="icon-box">
                     <div class="icon"><i class='bx bxs-leaf'></i></div>
                     <h4>Vision</h4>
@@ -164,12 +164,12 @@
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0">
                   <h3>Functions of Municipal Agriculture Office</h3>
-                  <p>
-                  Formulate measures for the approval of the Sanggunian and provide technical assistance and support to the mayor, in carrying out said measures to ensure the delivery of basic services and provision of adequate facilities relative to agricultural services
+                  <p class="text-justify">
+                    Formulate measures for the approval of the Sanggunian and provide technical assistance and support to the mayor, in carrying out said measures to ensure the delivery of basic services and provision of adequate facilities relative to agricultural services
                   </p>
                   <ul>
-                    <li><i class="bx bx-check-double"></i> Enforce rules and regulations relating to agriculture and aquaculture.</li>
-                    <li><i class="bx bx-check-double"></i> Recommend to the Sanggunian and advise the mayor, on all other matters related to agriculture and aqua-culture which will improve the livelihood and living conditions of the inhabitants.</li>
+                    <li class="text-justify"><i class="bx bx-check-double"></i> Enforce rules and regulations relating to agriculture and aquaculture.</li>
+                    <li class="text-justify"><i class="bx bx-check-double"></i> Recommend to the Sanggunian and advise the mayor, on all other matters related to agriculture and aqua-culture which will improve the livelihood and living conditions of the inhabitants.</li>
                   </ul>
                 
                 </div>
