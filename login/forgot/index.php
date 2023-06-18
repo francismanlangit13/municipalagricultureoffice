@@ -88,8 +88,8 @@
               <br>
               <form action="forgotpasswordcode.php" method="POST">
                 <div class="form-group first">
-                  <label for="">Email</label>
-                  <input required type="email" id="email" name="email" class="form-control" placeholder="your-email@gmail.com">
+                  <label for="email">Email</label>
+                  <input required type="email" id="email" name="email" class="form-control" placeholder="your-email@gmail.com" autocomplete="off">
                   <div id="email-error"></div>
                 </div>
                 <button type="submit" id="submit-btn" name="forgot_btn" class="btn btn-block btn-success">Reset Password</button>

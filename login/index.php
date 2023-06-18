@@ -90,7 +90,7 @@
               <form action="logincode.php" method="POST">
                 <div class="form-group first">
                   <label for="email">Email</label>
-                  <input required type="email" id="email" name="email" class="form-control" placeholder="your-email@gmail.com">
+                  <input required type="email" id="email" name="email" class="form-control" placeholder="your-email@gmail.com" autocomplete="off">
                   <div id="email-error"></div>
                 </div>
                 <div class="form-group last mb-0">
@@ -102,9 +102,9 @@
                   <div id="password-error" style="margin-top:-23px;"></div>
                 </div>
                 <div class="d-flex mb-3 align-items-center">
-                  <label class="control control mb-0">
+                  <div class="control control mb-0">
                     <a href="<?php echo base_url ?>login/forgot"><u>Forgot password</u></a>
-                  </label>
+                  </div>
                   <span class="ml-auto"><a href="<?php echo base_url ?>login/qr"><u>Login via QR</u></a></span>
                 </div>
                 <button type="submit" id="submit-btn" name="login_btn" class="btn btn-block btn-success">Login</button>
