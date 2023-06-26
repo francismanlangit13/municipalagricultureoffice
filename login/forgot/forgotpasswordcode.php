@@ -9,6 +9,7 @@
     require '../../assets/PHPMailer/src/SMTP.php';
 
     if(isset($_POST['forgot_btn'])){
+        $ip = $_SERVER['REMOTE_ADDR']; // get the user ip
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $check_mail = "SELECT * FROM user WHERE email = '$email' AND user_status_id = 1";
         $check_mail_run = mysqli_query($con, $check_mail);
@@ -18,6 +19,10 @@
             $get_email = $row['email'];
             $fullname = $row['fname']; $row['lname']; $row['suffix'];
             $user_id = $row['user_id'];
+
+            $forgot_success = "Reset password";
+            $forgot_success_log = "success";
+            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip')");
 
             $expFormat = mktime(date("H"), date("i"), date("s"), date("m")  , date("d")+1, date("Y"));
             $expDate = date("Y-m-d H:i:s",$expFormat);
@@ -100,7 +105,7 @@
     }
 
     if(isset($_POST['changepass_btn'])){
-
+        $ip = $_SERVER['REMOTE_ADDR']; // get the user ip
         $password = $_POST["password"];
         $email = $_POST["email"];
         $curDate = date("Y-m-d H:i:s");
@@ -108,13 +113,24 @@
         
         $query1 = mysqli_query($con, "UPDATE `user` SET `password`='".$hash_password."' WHERE `email`='".$email."';");
         $num_rows_affected = mysqli_affected_rows($con);
-        $query2 = mysqli_query($con, "DELETE FROM `password_reset_temp` WHERE `email`='".$email."';");
+        $query2 = mysqli_query($con, "DELETE FROM `password_reset_temp` WHERE `email`='".$email."'");
 
         if ($query1 && $query2 > 0) {
-            $_SESSION['status'] = "Password updated successfully";
-            $_SESSION['status_code'] = "success";
-            header("Location: " . base_url . "login");
-            exit(0);
+            $user_query = "SELECT * FROM user WHERE `email`='".$email."'";
+            $user_query_run = mysqli_query($con, $user_query);
+            if(mysqli_num_rows($login_query_run) > 0){
+                foreach($login_query_run as $data){
+                    $user_id = $data['user_id'];
+                }
+                $forgot_success = "Reset new password";
+                $forgot_success_log = "success";
+                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip')");
+
+                $_SESSION['status'] = "Password updated successfully";
+                $_SESSION['status_code'] = "success";
+                header("Location: " . base_url . "login");
+                exit(0);
+            }
         }
         else{
             $_SESSION['status'] = "Something went wrong";

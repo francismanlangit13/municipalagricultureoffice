@@ -2,6 +2,7 @@
     include('../db_conn.php');
 
     if(isset($_POST['login_btn'])){
+        $ip = $_SERVER['REMOTE_ADDR']; // get the user ip
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $hashed_password = md5($password);
@@ -15,6 +16,10 @@
                 $role_as = $data['user_type_id'];
                 $user_email = $data['email'];
             }
+
+            $login_success = "Login";
+            $login_success_log = "success using email and password";
+            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$login_success."','".$login_success_log."','$ip')");
 
             $_SESSION['auth'] = true;
             $_SESSION['auth_role'] = "$role_as";
@@ -44,10 +49,21 @@
             }
         }
         else {
-            $_SESSION['status'] = "Invalid Email or Password";
-            $_SESSION['status_code'] = "error";
-            header("Location: " . base_url . "login");
-            exit(0);
+            $login_error = "SELECT * FROM user WHERE email = '$email' AND user_status_id = 1 LIMIT 1";
+            $login_error_run = mysqli_query($con, $login_error);
+            if(mysqli_num_rows($login_error_run) > 0){
+                foreach($login_error_run as $data){
+                    $user_id = $data['user_id'];
+                }
+                $login_failed = "Login";
+                $login_failed_log = "failed";
+                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$login_failed."','".$login_failed_log."','$ip')");
+
+                $_SESSION['status'] = "Invalid Email or Password";
+                $_SESSION['status_code'] = "error";
+                header("Location: " . base_url . "login");
+                exit(0);
+            }
         }
     }   
     else {
