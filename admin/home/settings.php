@@ -157,6 +157,7 @@
                         </thead>
                         <tbody>
                             <?php
+                                $i = 0;
                                 $userID = $_SESSION['auth_user'] ['user_id'];
                                 $query = "SELECT *, DATE_FORMAT(user_log.date, '%m-%d-%Y %h:%i:%s %p') as date_created
                                 FROM
@@ -169,9 +170,10 @@
                                 $query_run = mysqli_query($con, $query);
                                 if(mysqli_num_rows($query_run) > 0){
                                     foreach($query_run as $row){
+                                    $i++
                             ?>
                             <tr>
-                                <td><?= $row['id']; ?></td>
+                                <td><?= $i; ?></td>
                                 <td><?= $row['type']; ?></td>
                                 <td><?= $row['log']; ?></td>
                                 <td><?= $row['ip_address']; ?></td>
