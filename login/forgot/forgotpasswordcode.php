@@ -21,8 +21,8 @@
             $user_id = $row['user_id'];
 
             $date = date;
-            $forgot_success = "Reset password";
-            $forgot_success_log = "success";
+            $forgot_success = "Forgot password";
+            $forgot_success_log = "success sent to user email";
             mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip', '$date')");
 
             $expFormat = mktime(date("H"), date("i"), date("s"), date("m")  , date("d")+1, date("Y"));
@@ -124,7 +124,7 @@
                     $user_id = $data['user_id'];
                 }
                 $date = date;
-                $forgot_success = "Reset new password";
+                $forgot_success = "Reset password";
                 $forgot_success_log = "success";
                 mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip', '$date')");
 
