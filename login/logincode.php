@@ -17,9 +17,10 @@
                 $user_email = $data['email'];
             }
 
+            $date = date;
             $login_success = "Login";
             $login_success_log = "success using email and password";
-            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$login_success."','".$login_success_log."','$ip')");
+            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$login_success."','".$login_success_log."','$ip', '$date')");
 
             $_SESSION['auth'] = true;
             $_SESSION['auth_role'] = "$role_as";
@@ -55,9 +56,10 @@
                 foreach($login_error_run as $data){
                     $user_id = $data['user_id'];
                 }
+                $date = date;
                 $login_failed = "Login";
                 $login_failed_log = "failed";
-                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$login_failed."','".$login_failed_log."','$ip')");
+                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$login_failed."','".$login_failed_log."','$ip', '$date')");
 
                 $_SESSION['status'] = "Invalid Email or Password";
                 $_SESSION['status_code'] = "error";

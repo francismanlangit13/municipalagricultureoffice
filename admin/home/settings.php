@@ -136,6 +136,63 @@
         </div>
     </div>
 </form>
+<br>
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>My Logs</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="5%">No.</th>
+                                <th width="15%">Type</th>
+                                <th width="40%">Log</th>
+                                <th width="20%">IP Address</th>
+                                <th width="20%">IP Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $userID = $_SESSION['auth_user'] ['user_id'];
+                                $query = "SELECT *, DATE_FORMAT(user_log.date, '%m-%d-%Y %h:%i:%s %p') as date_created
+                                FROM
+                                user_log
+                                INNER JOIN
+                                user
+                                ON
+                                user_log.user_id = user.user_id
+                                WHERE user_log.user_id = '$userID'";
+                                $query_run = mysqli_query($con, $query);
+                                if(mysqli_num_rows($query_run) > 0){
+                                    foreach($query_run as $row){
+                            ?>
+                            <tr>
+                                <td><?= $row['id']; ?></td>
+                                <td><?= $row['type']; ?></td>
+                                <td><?= $row['log']; ?></td>
+                                <td><?= $row['ip_address']; ?></td>
+                                <td><?= $row['date_created']; ?></td>
+                            </tr>
+                            <?php
+                                    }
+                                } else{
+                            ?>
+                                <tr>
+                                    <td colspan="6">No Record Found</td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
 
 <?php include('../includes/footer.php');?>
 
