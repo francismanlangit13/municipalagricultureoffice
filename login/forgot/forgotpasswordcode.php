@@ -20,9 +20,10 @@
             $fullname = $row['fname']; $row['lname']; $row['suffix'];
             $user_id = $row['user_id'];
 
+            $date = date;
             $forgot_success = "Reset password";
             $forgot_success_log = "success";
-            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip')");
+            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip', '$date')");
 
             $expFormat = mktime(date("H"), date("i"), date("s"), date("m")  , date("d")+1, date("Y"));
             $expDate = date("Y-m-d H:i:s",$expFormat);
@@ -122,9 +123,10 @@
                 foreach($login_query_run as $data){
                     $user_id = $data['user_id'];
                 }
+                $date = date;
                 $forgot_success = "Reset new password";
                 $forgot_success_log = "success";
-                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip')");
+                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip', '$date')");
 
                 $_SESSION['status'] = "Password updated successfully";
                 $_SESSION['status_code'] = "success";

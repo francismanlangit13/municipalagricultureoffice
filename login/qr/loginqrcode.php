@@ -12,6 +12,7 @@ include('../../db_conn.php');
 
 		$qrcode_text = validate($_POST['qrcode_text']);
 
+		$date = date;
 		$qr_login_query = "SELECT * FROM user WHERE qrcode='$qrcode_text' AND user_status_id = 1";
 		$qr_login_query_run = mysqli_query($con, $qr_login_query);
 
@@ -25,7 +26,7 @@ include('../../db_conn.php');
 
 			$login_success = "Login";
 			$login_success_log = "success using QR Code";
-            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address) values('".$user_id."','".$login_success."','".$login_success_log."','$ip')");
+            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$login_success."','".$login_success_log."','$ip', '$date')");
 
 			$_SESSION['auth'] = true;
 			$_SESSION['auth_role'] = "$role_as";
