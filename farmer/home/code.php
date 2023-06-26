@@ -395,6 +395,8 @@ if(isset($_POST["add_concern"])){
     }
 
 if(isset($_POST['update_account'])){
+    $ip = $_SERVER['REMOTE_ADDR']; // get the user ip
+    $date = date;
     $user_id= $_POST['user_id'];
     $fname= $_POST['fname'];
     $mname= $_POST['mname'];
@@ -406,6 +408,10 @@ if(isset($_POST['update_account'])){
         $password = md5($new_password);
         $sql0 = "UPDATE `user` SET `password` = '$password' WHERE `user_id` = '$user_id'";
         $sql0_run = mysqli_query($con, $sql0);
+
+        $cpassword_success = "Update account";
+        $cpassword_success_log = "change password";
+        mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$cpassword_success."','".$cpassword_success_log."','$ip', '$date')");
     }
     if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileImage = $_FILES['image'];
@@ -429,6 +435,10 @@ if(isset($_POST['update_account'])){
             if (move_uploaded_file($fileTmpname, $targetFile)) {
                 $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`suffix`='$suffix',`email`='$email',`picture`='$fileName' WHERE `user_id`='$user_id'";
                 $query_run = mysqli_query($con, $query);
+
+                $profile_success = "Update account";
+                $profile_success_log = "change profile";
+                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$profile_success."','".$profile_success_log."','$ip', '$date')");
     
                 if($query_run){
                 $_SESSION['status'] = "Account updated sucessfully";
@@ -466,6 +476,10 @@ if(isset($_POST['update_account'])){
     else{
         $query = "UPDATE `user` SET `fname`='$fname',`mname`='$mname',`lname`='$lname',`suffix`='$suffix',`email`='$email' WHERE `user_id`='$user_id'";
         $query_run = mysqli_query($con, $query);
+
+        $info_success = "Update account";
+        $info_success_log = "update information";
+        mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$info_success."','".$info_success_log."','$ip', '$date')");
 
         if($query_run){
         $_SESSION['status'] = "Account updated sucessfully";
