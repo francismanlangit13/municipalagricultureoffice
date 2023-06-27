@@ -149,9 +149,8 @@
                         <thead>
                             <tr>
                                 <th width="5%">No.</th>
-                                <th width="15%">Type</th>
-                                <th width="40%">Log</th>
-                                <th width="20%">IP Address</th>
+                                <th width="25%">Type</th>
+                                <th width="50%">Log</th>
                                 <th width="20%">Date</th>
                             </tr>
                         </thead>
@@ -176,7 +175,6 @@
                                 <td><?= $i; ?></td>
                                 <td><?= $log['type']; ?></td>
                                 <td><?= $log['log']; ?></td>
-                                <td><?= $log['ip_address']; ?></td>
                                 <td><?= $log['date_created']; ?></td>
                             </tr>
                             <?php
