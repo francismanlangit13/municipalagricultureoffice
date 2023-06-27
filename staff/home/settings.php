@@ -152,7 +152,7 @@
                                 <th width="15%">Type</th>
                                 <th width="40%">Log</th>
                                 <th width="20%">IP Address</th>
-                                <th width="20%">IP Address</th>
+                                <th width="20%">Date</th>
                             </tr>
                         </thead>
                         <tbody>
