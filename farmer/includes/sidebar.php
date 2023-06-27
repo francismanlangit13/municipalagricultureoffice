@@ -170,6 +170,10 @@
         }
         else {
             x.style.display = "none";
+            var countAnnouncement = document.querySelector('.count-ann');
+            if(countAnnouncement){
+                countAnnouncement.classList.remove('count-ann');
+            }
             var countRequest = document.querySelector('.count-request');
             if(countRequest){
                 countRequest.classList.remove('count-request');
