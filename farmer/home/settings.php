@@ -169,15 +169,15 @@
                                 WHERE user_log.user_id = '$userID'";
                                 $query_run = mysqli_query($con, $query);
                                 if(mysqli_num_rows($query_run) > 0){
-                                    foreach($query_run as $row){
+                                    foreach($query_run as $log){
                                     $i++
                             ?>
                             <tr>
                                 <td><?= $i; ?></td>
-                                <td><?= $row['type']; ?></td>
-                                <td><?= $row['log']; ?></td>
-                                <td><?= $row['ip_address']; ?></td>
-                                <td><?= $row['date_created']; ?></td>
+                                <td><?= $log['type']; ?></td>
+                                <td><?= $log['log']; ?></td>
+                                <td><?= $log['ip_address']; ?></td>
+                                <td><?= $log['date_created']; ?></td>
                             </tr>
                             <?php
                                     }
