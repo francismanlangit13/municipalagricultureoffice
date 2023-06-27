@@ -44,7 +44,7 @@
         <a class="nav-link" href="<?php echo base_url ?>farmer/home/announcement">
             <?php if($num_ann == 0) { } else{ ?>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter count-ann"><?php if ($num_ann >= 9){ echo "9+";} else { echo $num_ann; } ?></span>
+                <span class="badge badge-danger badge-counter new-announcement count-ann"><?php if ($num_ann >= 9){ echo "9+";} else { echo $num_ann; } ?></span>
             <?php } ?>
             <i class="fa fa-bullhorn"></i>
             <span>View Announcement</span>
@@ -155,6 +155,10 @@
         var x = document.getElementById("myDashboard");
         if (x.style.display === "none"){
             x.style.display = "block";
+            var newAnnouncement = document.querySelector('.new-announcement');
+            if (newAnnouncement && newAnnouncement.offsetParent !== null){
+                newAnnouncement.classList.add('count-ann');
+            }
             var badge = document.querySelector('.badge-new');
             if (badge && badge.offsetParent !== null){
                 badge.classList.add('count-report');
