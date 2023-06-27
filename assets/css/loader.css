@@ -25,6 +25,9 @@
     .noprint{
         display: none;
     }
+    .noprint-scroll{
+      overflow-x: unset !important;
+    }
     @page {
         size: auto;
         margin: 0mm;
