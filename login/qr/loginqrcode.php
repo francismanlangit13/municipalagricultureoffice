@@ -2,7 +2,6 @@
 include('../../db_conn.php');
 
 	if(isset($_POST['qrcode_text'])){
-		$ip = $_SERVER['REMOTE_ADDR']; // get the user ip
 		function validate($data){
 			$data = trim($data);
 			$data = stripslashes($data);
@@ -26,7 +25,7 @@ include('../../db_conn.php');
 
 			$login_success = "Login";
 			$login_success_log = "success using QR Code";
-            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$login_success."','".$login_success_log."','$ip', '$date')");
+            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$login_success."','".$login_success_log."','$date')");
 
 			$_SESSION['auth'] = true;
 			$_SESSION['auth_role'] = "$role_as";

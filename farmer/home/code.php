@@ -395,7 +395,6 @@ if(isset($_POST["add_concern"])){
     }
 
 if(isset($_POST['update_account'])){
-    $ip = $_SERVER['REMOTE_ADDR']; // get the user ip
     $date = date;
     $user_id= $_POST['user_id'];
     $fname= $_POST['fname'];
@@ -411,7 +410,7 @@ if(isset($_POST['update_account'])){
 
         $cpassword_success = "Update account";
         $cpassword_success_log = "change password";
-        mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$cpassword_success."','".$cpassword_success_log."','$ip', '$date')");
+        mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$cpassword_success."','".$cpassword_success_log."','$date')");
     }
     if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileImage = $_FILES['image'];
@@ -438,7 +437,7 @@ if(isset($_POST['update_account'])){
 
                 $profile_success = "Update account";
                 $profile_success_log = "change profile";
-                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$profile_success."','".$profile_success_log."','$ip', '$date')");
+                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$profile_success."','".$profile_success_log."','$date')");
     
                 if($query_run){
                 $_SESSION['status'] = "Account updated sucessfully";
@@ -479,7 +478,7 @@ if(isset($_POST['update_account'])){
 
         $info_success = "Update account";
         $info_success_log = "update information";
-        mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$info_success."','".$info_success_log."','$ip', '$date')");
+        mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$info_success."','".$info_success_log."','$date')");
 
         if($query_run){
         $_SESSION['status'] = "Account updated sucessfully";

@@ -9,7 +9,6 @@
     require '../../assets/PHPMailer/src/SMTP.php';
 
     if(isset($_POST['forgot_btn'])){
-        $ip = $_SERVER['REMOTE_ADDR']; // get the user ip
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $check_mail = "SELECT * FROM user WHERE email = '$email' AND user_status_id = 1";
         $check_mail_run = mysqli_query($con, $check_mail);
@@ -23,7 +22,7 @@
             $date = date;
             $forgot_success = "Forgot password";
             $forgot_success_log = "success sent to user email";
-            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip', '$date')");
+            mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$date')");
 
             $expFormat = mktime(date("H"), date("i"), date("s"), date("m")  , date("d")+1, date("Y"));
             $expDate = date("Y-m-d H:i:s",$expFormat);
@@ -106,7 +105,6 @@
     }
 
     if(isset($_POST['changepass_btn'])){
-        $ip = $_SERVER['REMOTE_ADDR']; // get the user ip
         $password = $_POST["password"];
         $email = $_POST["email"];
         $curDate = date("Y-m-d H:i:s");
@@ -126,7 +124,7 @@
                 $date = date;
                 $forgot_success = "Reset password";
                 $forgot_success_log = "success";
-                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$ip', '$date')");
+                mysqli_query($con,"INSERT INTO user_log (user_id, type, log, ip_address, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$date')");
 
                 $_SESSION['status'] = "Password updated successfully";
                 $_SESSION['status_code'] = "success";
