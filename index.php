@@ -93,7 +93,8 @@
             <li><a class="nav-link scrollto" href="#about">About</a></li>
             <li><a class="nav-link scrollto " href="#portfolio">Pictures</a></li>
             <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-            <li><a class="nav-link scrollto" href="#team">About Us</a></li>
+            <li><a class="nav-link scrollto" href="#aboutus">About Us</a></li>
+            <li><a class="nav-link scrollto" href="#team">Team</a></li>
             <li><a class="nav-link " href="<?php echo base_url ?>login">LOGIN</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
@@ -202,107 +203,91 @@
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/1.jpg" class="img-fluid" alt="portfolio_1">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/1.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
+                  <a href="<?php echo base_url ?>assets/img/portfolio/1.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/1.jpg" class="img-fluid" alt="portfolio_1">
+                    </figure>
+                  </a>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/2.jpg" class="img-fluid" alt="portfolio_2">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
-                
+                  <a href="<?php echo base_url ?>assets/img/portfolio/2.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/2.jpg" class="img-fluid" alt="portfolio_2">
+                    </figure>
+                  </a>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/3.jpg" class="img-fluid" alt="portfolio_3">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
-                
+                  <a href="<?php echo base_url ?>assets/img/portfolio/3.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/3.jpg" class="img-fluid" alt="portfolio_3">
+                    </figure>
+                  </a>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/4.jpg" class="img-fluid" alt="portfolio_4">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
-                  
+                  <a href="<?php echo base_url ?>assets/img/portfolio/4.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/4.jpg" class="img-fluid" alt="portfolio_4">
+                    </figure>
+                  </a>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/5.jpg" class="img-fluid" alt="portfolio_5">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/5.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
+                  <a href="<?php echo base_url ?>assets/img/portfolio/5.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/5.jpg" class="img-fluid" alt="portfolio_5">
+                    </figure>
+                  </a>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/6.jpg" class="img-fluid" alt="portfolio_6">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/6.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
-                
+                  <a href="<?php echo base_url ?>assets/img/portfolio/6.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/6.jpg" class="img-fluid" alt="portfolio_6">
+                    </figure>
+                  </a>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/7.jpg" class="img-fluid" alt="portfolio_7">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/7.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
-              
+                  <a href="<?php echo base_url ?>assets/img/portfolio/7.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/7.jpg" class="img-fluid" alt="portfolio_7">
+                    </figure>
+                  </a>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/8.jpg" class="img-fluid" alt="portfolio_8">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/8.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
-                
+                  <a href="<?php echo base_url ?>assets/img/portfolio/8.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/8.jpg" class="img-fluid" alt="portfolio_8">
+                    </figure>
+                  </a>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
                 <div class="portfolio-wrap">
-                  <figure>
-                    <img src="<?php echo base_url ?>assets/img/portfolio/9.jpg" class="img-fluid" alt="portfolio_9">
-                    <a href="<?php echo base_url ?>assets/img/portfolio/9.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview"><i class="bx bx-show"></i></a>
-                  
-                  </figure>
-
-                
+                  <a href="<?php echo base_url ?>assets/img/portfolio/9.jpg" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="Preview">
+                    <figure>
+                      <img src="<?php echo base_url ?>assets/img/portfolio/9.jpg" class="img-fluid" alt="portfolio_9">
+                    </figure>
+                  </a>
                   </div>
                 </div>
               </div>
@@ -389,142 +374,181 @@
           </div>
         </section><!-- End Contact Section -->
 
+        <!-- ======= About Us Section ======= -->
+        <section id="aboutus" class="team">
+          <div class="container">
+
+            <div class="section-title">
+              <h2>About Us</h2>
+              <p>Introducing our municipal agriculture staff – cultivating a greener future for our community.</p>
+            </div>
+            <div class="row" style="justify-content:center;">
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <a href="<?php echo base_url ?>assets/img/teams/MALON_MARISSA.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: MARISSA MALON <br> Position: Municipal Agriculturist">
+                    <img src="<?php echo base_url ?>assets/img/teams/MALON_MARISSA.jpg" alt="MARISSA MALON">
+                  </a>
+                  <h4>MARISSA MALON</h4>
+                  <span>Municipal Agriculturist</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="justify-content:center;">
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <a href="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: CHERLIE PINO <br> Position: Agricultural Technologist/Corn Coordinator">
+                    <img class="" src="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" alt="CHERLIE PINO">
+                  </a>
+                  <h4>CHERLIE PINO</h4>
+                  <span>Agricultural Technologist/Corn Coordinator</span>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <a href="<?php echo base_url ?>assets/img/teams/GALBO_MARIEFE.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: MARIEFE GALBO <br> Position: Agricultural Technologist/Livestock Inspector">
+                    <img src="<?php echo base_url ?>assets/img/teams/GALBO_MARIEFE.jpg" alt="MARIEFE GALBO">
+                  </a>
+                  <h4>MARIEFE GALBO</h4>
+                  <span>Agricultural Technologist/Livestock Inspector</span>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <a href="<?php echo base_url ?>assets/img/teams/BARRIENTOS_LENDIE.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: LENDIE BARRIENTOS <br> Position: Agricultural Technologist/Rice Coordinator">
+                    <img src="<?php echo base_url ?>assets/img/teams/BARRIENTOS_LENDIE.jpg" alt="LENDIE BARRIENTOS">
+                  </a>
+                  <h4>LENDIE BARRIENTOS</h4>
+                  <span>Agricultural Technologist/Rice Coordinator</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="justify-content:center;">
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <a href="<?php echo base_url ?>assets/img/teams/MALALIS_JOHN_MARK.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: JOHN MARK MALALIS <br> Position: Farm Foreman/AT-Designate">
+                    <img src="<?php echo base_url ?>assets/img/teams/MALALIS_JOHN_MARK.jpg" alt="JOHN MARK MALALIS">
+                  </a>
+                  <h4>JOHN MARK MALALIS</h4>
+                  <span>Farm Foreman/AT-Designate</span>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <a href="<?php echo base_url ?>assets/img/teams/TABUZO_ROSHELLE_ANN.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: ROSHELLE ANN TABUZO <br> Position: Agriculturist I/HVCDP Coordinator">
+                    <img class="" src="<?php echo base_url ?>assets/img/teams/TABUZO_ROSHELLE_ANN.jpg" alt="ROSHELLE ANN TABUZO">
+                  </a>
+                  <h4>ROSHELLE ANN TABUZO</h4>
+                  <span>Agriculturist I/HVCDP Coordinator</span>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <a href="<?php echo base_url ?>assets/img/teams/BANQUE_MARY_JOY.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: MARY JOY BANQUE <br> Position: Agricultural Technologist/Special Projects">
+                    <img src="<?php echo base_url ?>assets/img/teams/BANQUE_MARY_JOY.jpg" alt="MARY JOY BANQUE">
+                  </a>
+                  <h4>MARY JOY BANQUE</h4>
+                  <span>Agricultural Technologist/Special Projects</span>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <a href="<?php echo base_url ?>assets/img/teams/PALANAS_JUVY.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: JUVY PALANAS <br> Position: Meat Inspector-Designate/VBAIT/JO">
+                    <img src="<?php echo base_url ?>assets/img/teams/PALANAS_JUVY.jpg" alt="JUVY PALANAS">
+                  </a>
+                  <h4>JUVY PALANAS</h4>
+                  <span>Meat Inspector-Designate/VBAIT/JO</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section><!-- End About Us Section -->
+
         <!-- ======= Team Section ======= -->
         <section id="team" class="team">
           <div class="container">
 
             <div class="section-title">
-              <h2>About Us</h2>
-              <p></p>
+              <h2>Team</h2>
+              <p>Meet our top-notch website development team</p>
             </div>
-            <div class="row" style="justify-content:center;">
+
+            <div class="row">
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/teams/MALON_MARISSA.jpg" alt="MARISSA MALON">
-                  <h4>MARISSA MALON</h4>
-                  <span>Municipal Agriculturist</span>
-                  <!-- <p>
+                  <a href="<?php echo base_url ?>assets/img/team/carlo.png" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: FRANCIS CARLO MANLANGIT <br> Role: Full Stack Web Developer">
+                    <img src="<?php echo base_url ?>assets/img/team/carlo.png" alt="">
+                  </a>
+                  <h4>FRANCIS CARLO MANLANGIT</h4>
+                  <span>Full Stack Web Developer</span>
+                  <p>
                   I can do all things through Christ who strengthen me.
-                  </p> -->
-                  <!-- <div class="social">
+                  </p>
+                  <div class="social">
                     <a href="https://www.facebook.com/fanzcarl13" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/franzcarl13" target="_blank"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.twitter.com/franzcarl13" target="_blank"><i class="bi bi-twitter"></i></a>
-                  </div> -->
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row" style="justify-content:center;">
+
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img class="" src="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" alt="CHERLIE PINO">
-                  <h4>CHERLIE PINO</h4>
-                  <span>Agricultural Technologist/Corn Coordinator</span>
-                  <!-- <p>
+                  <a href="<?php echo base_url ?>assets/img/team/balmadres.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: CHRISTINE MAE BALMADRES <br> Role: Quality Assurance">
+                    <img class="" src="<?php echo base_url ?>assets/img/team/balmadres.jpg" alt="">
+                  </a>
+                  <h4>CHRISTINE MAE BALMADRES</h4>
+                  <span>Quality Assurance</span>
+                  <p>
                     Commit to the LORD whatever you do, and your plans will succeed.
-                  </p> -->
-                  <!-- <div class="social">
+                  </p>
+                  <div class="social">
                     <a href="https://www.facebook.com/chrstnmea" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/tinnnniiiiiiiii" target="_blank"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.twitter.com/chrstnmeyh" target="_blank"><i class="bi bi-twitter"></i></a>
-                  </div> -->
+                  </div>
                 </div>
               </div>
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/teams/GALBO_MARIEFE.jpg" alt="MARIEFE GALBO">
-                  <h4>MARIEFE GALBO</h4>
-                  <span>Agricultural Technologist/Livestock Inspector</span>
-                  <!-- <p>
+                  <a href="<?php echo base_url ?>assets/img/team/cindy.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: CINDY SAPALLEDA <br> Role: Researcher">
+                    <img src="<?php echo base_url ?>assets/img/team/cindy.jpg" alt="">
+                  </a>
+                  <h4>CINDY SAPALLEDA</h4>
+                  <span>Researcher</span>
+                  <p>
                   Failure is not the opposite of success, it is part of success.
-                  </p> -->
-                  <!-- <div class="social">
+                  </p>
+                  <div class="social">
                     <a href="https://www.facebook.com/cindy.sapallida.58" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/cindybantilansapalleda" target="_blank"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.twitter.com/cindy" target="_blank"><i class="bi bi-twitter"></i></a>
-                  </div> -->
+                  </div>
                 </div>
               </div>
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/teams/BARRIENTOS_LENDIE.jpg" alt="LENDIE BARRIENTOS">
-                  <h4>LENDIE BARRIENTOS</h4>
-                  <span>Agricultural Technologist/Rice Coordinator</span>
-                  <!-- <p>
+                  <a href="<?php echo base_url ?>assets/img/team/yvesh.jpg" data-gallery="portfolioGallery" class="link-preview portfolio-lightbox" title="Name: YVESH LAURENT HEMOROZ <br> Role: System Designer">
+                    <img src="<?php echo base_url ?>assets/img/team/yvesh.jpg" alt="">
+                  </a>
+                  <h4>YVESH LAURENT HEMOROZ</h4>
+                  <span>System Designer</span>
+                  <p>
                   The road to success and the road to failure are almost the same.
-                  </p> -->
-                  <!-- <div class="social">
+                  </p>
+                  <div class="social">
                     <a href="https://www.facebook.com/yvesh211" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/yvesh_hemoroz" target="_blank"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.twitter.com/yvesh_21" target="_blank"><i class="bi bi-twitter"></i></a>
-                  </div> -->
-                </div>
-              </div>
-            </div>
-            <div class="row" style="justify-content:center;">
-              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/teams/MALALIS_JOHN_MARK.jpg" alt="JOHN MARK MALALIS">
-                  <h4>JOHN MARK MALALIS</h4>
-                  <span>Farm Foreman/AT-Designate</span>
-                  <!-- <p>
-                  I can do all things through Christ who strengthen me.
-                  </p> -->
-                  <!-- <div class="social">
-                    <a href="https://www.facebook.com/fanzcarl13" target="_blank"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.instagram.com/franzcarl13" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="https://www.twitter.com/franzcarl13" target="_blank"><i class="bi bi-twitter"></i></a>
-                  </div> -->
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                  <img class="" src="<?php echo base_url ?>assets/img/teams/TABUZO_ROSHELLE_ANN.jpg" alt="ROSHELLE ANN TABUZO">
-                  <h4>ROSHELLE ANN TABUZO</h4>
-                  <span>Agriculturist I/HVCDP Coordinator</span>
-                  <!-- <p>
-                    Commit to the LORD whatever you do, and your plans will succeed.
-                  </p> -->
-                  <!-- <div class="social">
-                    <a href="https://www.facebook.com/chrstnmea" target="_blank"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.instagram.com/tinnnniiiiiiiii" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="https://www.twitter.com/chrstnmeyh" target="_blank"><i class="bi bi-twitter"></i></a>
-                  </div> -->
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/teams/BANQUE_MARY_JOY.jpg" alt="MARY JOY BANQUE">
-                  <h4>MARY JOY BANQUE</h4>
-                  <span>Agricultural Technologist/Special Projects</span>
-                  <!-- <p>
-                  Failure is not the opposite of success, it is part of success.
-                  </p> -->
-                  <!-- <div class="social">
-                    <a href="https://www.facebook.com/cindy.sapallida.58" target="_blank"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.instagram.com/cindybantilansapalleda" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="https://www.twitter.com/cindy" target="_blank"><i class="bi bi-twitter"></i></a>
-                  </div> -->
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                  <img src="<?php echo base_url ?>assets/img/teams/PALANAS_JUVY.jpg" alt="JUVY PALANAS">
-                  <h4>JUVY PALANAS</h4>
-                  <span>Meat Inspector-Designate/VBAIT/JO</span>
-                  <!-- <p>
-                  The road to success and the road to failure are almost the same.
-                  </p> -->
-                  <!-- <div class="social">
-                    <a href="https://www.facebook.com/yvesh211" target="_blank"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.instagram.com/yvesh_hemoroz" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="https://www.twitter.com/yvesh_21" target="_blank"><i class="bi bi-twitter"></i></a>
-                  </div> -->
+                  </div>
                 </div>
               </div>
 
@@ -532,8 +556,6 @@
 
           </div>
         </section><!-- End Team Section -->
-
-
 
       </main>
     <!-- End #main -->
