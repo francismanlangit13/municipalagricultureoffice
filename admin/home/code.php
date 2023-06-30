@@ -1406,7 +1406,7 @@
   }
 
   if(isset($_POST['update_account'])){
-    $date = date;
+    $date = date('Y-m-d H:i:s');
     $user_id= $_POST['user_id'];
     $fname= $_POST['fname'];
     $mname= $_POST['mname'];
