@@ -19,7 +19,7 @@
             $fullname = $row['fname']; $row['lname']; $row['suffix'];
             $user_id = $row['user_id'];
 
-            $date = date;
+            $date = date('Y-m-d H:i:s');
             $forgot_success = "Forgot password";
             $forgot_success_log = "success sent to user email";
             mysqli_query($con,"INSERT INTO user_log (user_id, type, log, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$date')");
@@ -121,7 +121,7 @@
                 foreach($login_query_run as $data){
                     $user_id = $data['user_id'];
                 }
-                $date = date;
+                $date = date('Y-m-d H:i:s');
                 $forgot_success = "Reset password";
                 $forgot_success_log = "success";
                 mysqli_query($con,"INSERT INTO user_log (user_id, type, log, date) values('".$user_id."','".$forgot_success."','".$forgot_success_log."','$date')");

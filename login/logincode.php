@@ -16,7 +16,7 @@
                 $user_email = $data['email'];
             }
 
-            $date = date;
+            $date = date('Y-m-d H:i:s');
             $login_success = "Login";
             $login_success_log = "success using email and password";
             mysqli_query($con,"INSERT INTO user_log (user_id, type, log, date) values('".$user_id."','".$login_success."','".$login_success_log."','$date')");
@@ -55,7 +55,7 @@
                 foreach($login_error_run as $data){
                     $user_id = $data['user_id'];
                 }
-                $date = date;
+                $date = date('Y-m-d H:i:s');
                 $login_failed = "Login";
                 $login_failed_log = "failed";
                 mysqli_query($con,"INSERT INTO user_log (user_id, type, log, date) values('".$user_id."','".$login_failed."','".$login_failed_log."','$date')");
