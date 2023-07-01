@@ -45,6 +45,9 @@
     <!-- Loading CSS -->
     <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
 
+    <!-- Cookie CSS -->
+    <link href="<?php echo base_url ?>assets/css/cookie.css" rel="stylesheet">
+
     <!-- Template Main CSS File -->
     <link href="<?php echo base_url ?>assets/css/style-cookie.css" rel="stylesheet">
 
@@ -151,6 +154,19 @@
       </main>
     <!-- End #main -->
 
+    <!-- Cookie Consent -->
+    <div class="wrapper">
+      <img src="<?php echo base_url ?>assets/img/icons/cookie.png" alt="">
+      <div class="content">
+        <header>Cookies Consent</header>
+        <p>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href="cookie-policy">Cookie Policy</a></p>
+        <div class="buttons">
+          <button class="item">I understand</button>
+        </div>
+      </div>
+    </div>
+    <!-- End Cookie Consent -->
+
     <!-- ======= Footer ======= -->
       <footer id="footer">
 
@@ -181,6 +197,9 @@
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Cookie Consent -->
+    <script src="<?php echo base_url ?>assets/js/cookie.js"></script>
 
     <!-- Vendor JS Files -->
     <script src="<?php echo base_url ?>assets/vendor/purecounter/purecounter_vanilla.js"></script>
