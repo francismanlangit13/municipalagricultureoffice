@@ -92,13 +92,13 @@
         </div>
         <nav id="navbar" class="navbar order-last order-lg-0">
           <ul>
-            <li><a class="nav-link scrollto active" href="<?php echo base_url?>#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="<?php echo base_url?>#about">About</a></li>
-            <li><a class="nav-link scrollto " href="<?php echo base_url?>#portfolio">Pictures</a></li>
-            <li><a class="nav-link scrollto" href="<?php echo base_url?>#contact">Contact</a></li>
-            <li><a class="nav-link scrollto" href="<?php echo base_url?>#aboutus">About Us</a></li>
-            <li><a class="nav-link scrollto" href="<?php echo base_url?>#team">Team</a></li>
-            <li><a class="nav-link " href="<?php echo base_url ?>login">LOGIN</a></li>
+            <li><a class="nav-link" href="<?php echo base_url?>#hero">Home</a></li>
+            <li><a class="nav-link" href="<?php echo base_url?>#about">About</a></li>
+            <li><a class="nav-link" href="<?php echo base_url?>#portfolio">Pictures</a></li>
+            <li><a class="nav-link" href="<?php echo base_url?>#contact">Contact</a></li>
+            <li><a class="nav-link" href="<?php echo base_url?>#aboutus">About Us</a></li>
+            <li><a class="nav-link" href="<?php echo base_url?>#team">Team</a></li>
+            <li><a class="nav-link" href="<?php echo base_url ?>login">LOGIN</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
