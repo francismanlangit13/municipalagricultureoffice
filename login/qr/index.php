@@ -35,6 +35,9 @@
     <!-- Loading CSS -->
     <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
 
+    <!-- Cookie CSS -->
+    <link href="<?php echo base_url ?>assets/css/cookie.css" rel="stylesheet">
+
     <!-- Script QR Code scanner -->
     <script type="text/javascript" src="<?php echo base_url ?>assets/js/qrscanner/adapter.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url ?>assets/js/qrscanner/vue.min.js"></script>
@@ -113,6 +116,19 @@
       </div>
     </div>
 
+    <!-- Cookie Consent -->
+    <div class="wrapper">
+      <img src="<?php echo base_url ?>assets/img/icons/cookie.png" alt="">
+      <div class="content">
+        <header>Cookies Consent</header>
+        <p>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href="cookie-policy">Cookie Policy</a></p>
+        <div class="buttons">
+          <button class="item">I understand</button>
+        </div>
+      </div>
+    </div>
+    <!-- End Cookie Consent -->
+
     <script>
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
       Instascan.Camera.getCameras().then(function(cameras){
@@ -135,6 +151,10 @@
     <script>
       var base_url = "<?php echo base_url ?>"; // global location for javascript
     </script>
+
+    <!-- Cookie Consent -->
+    <script src="<?php echo base_url ?>assets/js/cookie.js"></script>
+    
     <!-- Image viewer slider -->
     <script src="<?php echo base_url ?>assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="<?php echo base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
