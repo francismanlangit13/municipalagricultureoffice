@@ -121,7 +121,7 @@
       <img src="<?php echo base_url ?>assets/img/icons/cookie.png" alt="">
       <div class="content">
         <header>Cookies Consent</header>
-        <p>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href="cookie-policy">Cookie Policy</a></p>
+        <p>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href="<?php echo base_url ?>cookie-policy">Cookie Policy</a></p>
         <div class="buttons">
           <button class="item">I understand</button>
         </div>
