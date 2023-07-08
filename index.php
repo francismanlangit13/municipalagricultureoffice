@@ -403,7 +403,7 @@
                     <img class="" src="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" alt="CHERLIE PINO">
                   </a>
                   <h4>CHERLIE PINO</h4>
-                  <span>Agricultural Technologist HVCC Coordinator/Fits ISS Coordinator</span>
+                  <span>HVCC Coordinator/Fits ISS Coordinator</span>
                 </div>
               </div>
 
