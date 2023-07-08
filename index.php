@@ -403,7 +403,7 @@
                     <img class="" src="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" alt="CHERLIE PINO">
                   </a>
                   <h4>CHERLIE PINO</h4>
-                  <span>Agricultural Technologist/Corn Coordinator</span>
+                  <span>Agricultural Technologist HVCC Coordinator/Fits ISS Coordinator</span>
                 </div>
               </div>
 
@@ -413,7 +413,7 @@
                     <img src="<?php echo base_url ?>assets/img/teams/GALBO_MARIEFE.jpg" alt="MARIEFE GALBO">
                   </a>
                   <h4>MARIEFE GALBO</h4>
-                  <span>Agricultural Technologist/Livestock Inspector</span>
+                  <span>Agricultural Technologist/Corn Coordinator</span>
                 </div>
               </div>
 
@@ -434,7 +434,7 @@
                     <img src="<?php echo base_url ?>assets/img/teams/MALALIS_JOHN_MARK.jpg" alt="JOHN MARK MALALIS">
                   </a>
                   <h4>JOHN MARK MALALIS</h4>
-                  <span>Farm Foreman/AT-Designate</span>
+                  <span>Agricultural Technologist/Livestock Coordinator</span>
                 </div>
               </div>
 
@@ -444,7 +444,7 @@
                     <img class="" src="<?php echo base_url ?>assets/img/teams/TABUZO_ROSHELLE_ANN.jpg" alt="ROSHELLE ANN TABUZO">
                   </a>
                   <h4>ROSHELLE ANN TABUZO</h4>
-                  <span>Agriculturist I/HVCDP Coordinator</span>
+                  <span>Fishery Coordinator/Agri basics Coordinator</span>
                 </div>
               </div>
 
@@ -454,7 +454,7 @@
                     <img src="<?php echo base_url ?>assets/img/teams/BANQUE_MARY_JOY.jpg" alt="MARY JOY BANQUE">
                   </a>
                   <h4>MARY JOY BANQUE</h4>
-                  <span>Agricultural Technologist/Special Projects</span>
+                  <span>Agricultural Technologist/Fishery Coordinator</span>
                 </div>
               </div>
 
@@ -464,7 +464,7 @@
                     <img src="<?php echo base_url ?>assets/img/teams/PALANAS_JUVY.jpg" alt="JUVY PALANAS">
                   </a>
                   <h4>JUVY PALANAS</h4>
-                  <span>Meat Inspector-Designate/VBAIT/JO</span>
+                  <span>Agricultural Technologist/Livestock Coordinator</span>
                 </div>
               </div>
 
