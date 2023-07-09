@@ -388,6 +388,13 @@
                 checkIfAllFieldsValid();
                 return;
             }
+
+            if (exp_date < '<?php echo date ?>') {
+                $('#exp_date-error').text('Product exipred please update expiration date').css('color', 'red');
+                $('#exp_date').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
             
             // Perform additional validation for exp_date if needed
             
@@ -395,6 +402,8 @@
             $('#exp_date').removeClass('is-invalid');
             checkIfAllFieldsValid();
         }
-        
+        // Call checkExpdate initially to perform the initial validation
+        checkExpdate();
+        setInterval(checkExpdate, 1000); // Call checkExpdate every 1000 milliseconds (1 second)
     });
 </script>

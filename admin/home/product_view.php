@@ -59,7 +59,11 @@
                         
                         <div class="col-md-6 mb-3">
                             <label for="">Expiration Date</label>
-                            <input disabled type="text" value="<?= $row['exp_date']; ?>" class="form-control">
+                            <?php if($row['exp_date'] < date) { ?>
+                                <input disabled type="text" value="<?= $row['exp_date']; ?> (Expired)" class="form-control is-invalid text-danger">
+                            <?php } else { ?>
+                                <input disabled type="text" value="<?= $row['exp_date']; ?>" class="form-control">
+                            <?php } ?>
                         </div>
 
                         <div class="col-md-6 mb-3">
