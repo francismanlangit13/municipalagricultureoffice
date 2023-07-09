@@ -126,6 +126,9 @@
 
     <!-- Cookie Consent -->
     <script src="<?php echo base_url ?>assets/js/cookie.js"></script>
+
+    <!-- Disable-key -->
+    <script src="<?php echo base_url ?>assets/js/disable-key.js"></script>
     
     <!-- Image viewer slider -->
     <script src="<?php echo base_url ?>assets/vendor/purecounter/purecounter_vanilla.js"></script>

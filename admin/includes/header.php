@@ -44,6 +44,9 @@
     <!-- Loading CSS -->
     <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
 
+    <!-- Cookie CSS -->
+    <link href="<?php echo base_url ?>assets/css/cookie.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">

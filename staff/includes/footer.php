@@ -4,6 +4,19 @@
             </div>
             <!-- End of Main Content -->
 
+            <!-- Cookie Consent -->
+            <div class="wrapper noprint">
+                <img src="<?php echo base_url ?>assets/img/icons/cookie.png" alt="">
+                <div class="content">
+                    <header>Cookies Consent</header>
+                    <p>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href="<?php echo base_url ?>cookie-policy">Cookie Policy</a></p>
+                    <div class="buttons">
+                    <button class="item">I understand</button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Cookie Consent -->
+
             <!-- Footer -->
             <footer class="sticky-footer bg-white shadow noprint">
                 <div class="container my-auto">
@@ -54,6 +67,12 @@
 
     <!-- Loading JS -->
     <script src="<?php echo base_url ?>assets/js/loader.js"></script>
+
+    <!-- Cookie Consent -->
+    <script src="<?php echo base_url ?>assets/js/cookie.js"></script>
+
+    <!-- Disable-key -->
+    <script src="<?php echo base_url ?>assets/js/disable-key.js"></script>
 
     <?php if (strpos($_SERVER['PHP_SELF'], 'home/settings.php') !== false){ ?>
         <!-- Show PASSWORD JS -->

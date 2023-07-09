@@ -65,6 +65,12 @@
                 header("Location: " . base_url . "login");
                 exit(0);
             }
+            else{
+                $_SESSION['status'] = "Invalid Email or Password";
+                $_SESSION['status_code'] = "error";
+                header("Location: " . base_url . "login");
+                exit(0);
+            }
         }
     }   
     else {
