@@ -399,7 +399,7 @@
             <div class="row" style="justify-content:center;">
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <a href="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: CHERLIE PINO <br> Position: Agricultural Technologist/Corn Coordinator">
+                  <a href="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: CHERLIE PINO <br> HVCC Coordinator/Fits ISS Coordinator">
                     <img class="" src="<?php echo base_url ?>assets/img/teams/PINO_CHERLIE.jpg" alt="CHERLIE PINO">
                   </a>
                   <h4>CHERLIE PINO</h4>
@@ -409,7 +409,7 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <a href="<?php echo base_url ?>assets/img/teams/GALBO_MARIEFE.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: MARIEFE GALBO <br> Position: Agricultural Technologist/Livestock Inspector">
+                  <a href="<?php echo base_url ?>assets/img/teams/GALBO_MARIEFE.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: MARIEFE GALBO <br> Position: Agricultural Technologist/Corn Coordinator">
                     <img src="<?php echo base_url ?>assets/img/teams/GALBO_MARIEFE.jpg" alt="MARIEFE GALBO">
                   </a>
                   <h4>MARIEFE GALBO</h4>
@@ -430,7 +430,7 @@
             <div class="row" style="justify-content:center;">
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <a href="<?php echo base_url ?>assets/img/teams/MALALIS_JOHN_MARK.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: JOHN MARK MALALIS <br> Position: Farm Foreman/AT-Designate">
+                  <a href="<?php echo base_url ?>assets/img/teams/MALALIS_JOHN_MARK.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: JOHN MARK MALALIS <br> Position: Agricultural Technologist/Livestock Coordinator">
                     <img src="<?php echo base_url ?>assets/img/teams/MALALIS_JOHN_MARK.jpg" alt="JOHN MARK MALALIS">
                   </a>
                   <h4>JOHN MARK MALALIS</h4>
@@ -440,7 +440,7 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <a href="<?php echo base_url ?>assets/img/teams/TABUZO_ROSHELLE_ANN.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: ROSHELLE ANN TABUZO <br> Position: Agriculturist I/HVCDP Coordinator">
+                  <a href="<?php echo base_url ?>assets/img/teams/TABUZO_ROSHELLE_ANN.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: ROSHELLE ANN TABUZO <br> Position: Fishery Coordinator/Agri basics Coordinator">
                     <img class="" src="<?php echo base_url ?>assets/img/teams/TABUZO_ROSHELLE_ANN.jpg" alt="ROSHELLE ANN TABUZO">
                   </a>
                   <h4>ROSHELLE ANN TABUZO</h4>
@@ -450,7 +450,7 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <a href="<?php echo base_url ?>assets/img/teams/BANQUE_MARY_JOY.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: MARY JOY BANQUE <br> Position: Agricultural Technologist/Special Projects">
+                  <a href="<?php echo base_url ?>assets/img/teams/BANQUE_MARY_JOY.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: MARY JOY BANQUE <br> Position: Agricultural Technologist/Fishery Coordinator">
                     <img src="<?php echo base_url ?>assets/img/teams/BANQUE_MARY_JOY.jpg" alt="MARY JOY BANQUE">
                   </a>
                   <h4>MARY JOY BANQUE</h4>
@@ -460,7 +460,7 @@
 
               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <a href="<?php echo base_url ?>assets/img/teams/PALANAS_JUVY.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: JUVY PALANAS <br> Position: Meat Inspector-Designate/VBAIT/JO">
+                  <a href="<?php echo base_url ?>assets/img/teams/PALANAS_JUVY.jpg" data-gallery="aboutGallery" class="link-preview portfolio-lightbox" title="Name: JUVY PALANAS <br> Position: Agricultural Technologist/Livestock Coordinator">
                     <img src="<?php echo base_url ?>assets/img/teams/PALANAS_JUVY.jpg" alt="JUVY PALANAS">
                   </a>
                   <h4>JUVY PALANAS</h4>
