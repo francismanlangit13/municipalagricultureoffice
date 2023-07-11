@@ -180,6 +180,7 @@
             <a href="cookie-policy">Cookie Policy</a>
             <a href="privacy-policy">Privacy Policy</a>
             <a href="website-terms-condition">Terms of Use</a>
+            <a href="sitemap">Sitemap</a>
           </div>
           <div class="social-links text-center text-md-right pt-3 pt-md-0">
             <a href="https://www.facebook.com/municipalagriculture.jimenez" aria-label="Visit Municipal Agriculture Office on Facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
