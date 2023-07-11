@@ -213,16 +213,16 @@
 
                 </div>
 
-                <label><b>&#11044; <a href="<?php echo base_url ?>#hero">Home</a></b></label>
+                <label><b>&#9679; <a href="<?php echo base_url ?>#hero">Home</a></b></label>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>#about">About</a></p>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>#portfolio">Pictures</a></p>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>#contact">Contact</a></p>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>#aboutus">About Us</a></p>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>#team">Team</a></p>
-                <label><b>&#11044; <a href="<?php echo base_url ?>login">Login</a></b></label>
+                <label><b>&#9679; <a href="<?php echo base_url ?>login">Login</a></b></label>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>login/qr">Login with QR Code</a></p>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>login/forgot">Forgot password</a></p>
-                <label><b>&#11044; The Municipal Agriculture Office</b></label>
+                <label><b>&#9679; The Municipal Agriculture Office</b></label>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>cookie-policy">Cookie Policy</a></p>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>privacy-policy">Privacy Policy</a></p>
                     <p style="margin-left:30px;">&#9675; <a href="<?php echo base_url ?>sitemap">Site Map</a></p>
