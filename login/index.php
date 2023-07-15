@@ -201,6 +201,7 @@
           // Clear error if email is valid
           $('#email-error').empty();
           $('#email').removeClass('is-invalid'); // Update selector to 'email'
+          $('#email').addClass('is-valid'); // Update selector to 'email'
           checkIfAllFieldsValid();
         }
 
@@ -227,6 +228,7 @@
           // Clear error if password is valid
           $('#password-error').empty();
           $('#password').removeClass('is-invalid'); // Update selector to 'password'
+          $('#password').addClass('is-valid'); // Update selector to 'password'
           checkIfAllFieldsValid();
         }
 

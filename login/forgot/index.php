@@ -181,6 +181,7 @@
           // Clear error if email is valid
           $('#email-error').empty();
           $('#email').removeClass('is-invalid'); // Update selector to 'email'
+          $('#email').addClass('is-valid'); // Update selector to 'email'
           checkIfAllFieldsValid();
         }
 
