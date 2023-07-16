@@ -48,53 +48,131 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1 d-none">
+            <li class="nav-item dropdown no-arrow mx-1">
+                <?php
+                    $total_notification = $num_expired + $num_announcement + $num_concern + $num_report + $num_request;
+
+                    $notifications = array();
+
+                    $product_sql = "SELECT *, DATE_FORMAT(product.exp_date, '%m-%d-%Y %h:%i:%s %p') as product_short_date FROM product WHERE product_status = '1' AND exp_date < NOW()";
+                    $product_sql_run = mysqli_query($con, $product_sql);
+
+                    while ($row_product_notifications = mysqli_fetch_assoc($product_sql_run)) {
+                        $notifications[] = array(
+                            'id' => $row_product_notifications['product_id'],
+                            'type' => 'product',
+                            'fulldate' => $row_product_notifications['product_short_date'],
+                            'message' => 'Product <b>' . $row_product_notifications['product_name'] . '</b> has expired.'
+                        );
+                    }
+
+                    $request_sql = "SELECT *, DATE_FORMAT(request.request_date, '%m-%d-%Y %h:%i:%s %p') as request_short_date FROM request INNER JOIN user ON user.user_id = request.user_id INNER JOIN product ON product.product_id = request.product_id WHERE status_id = '1' AND request_status = 1";
+                    $request_sql_run = mysqli_query($con, $request_sql);
+
+                    while ($row_request_notifications = mysqli_fetch_assoc($request_sql_run)) {
+                        $notifications[] = array(
+                            'id' => $row_request_notifications['request_id'],
+                            'type' => 'request',
+                            'fulldate' => $row_request_notifications['request_short_date'],
+                            'message' => 'User <b>' . $row_request_notifications['fname'] . ' ' . $row_request_notifications['mname'] . ' ' . $row_request_notifications['lname'] . ' ' . $row_request_notifications['suffix'] . '</b> has requested product <b>' . $row_request_notifications['product_name'] . '</b>.'
+                        );
+                    }
+
+                    $report_sql = "SELECT *, DATE_FORMAT(report.date_created, '%m-%d-%Y %h:%i:%s %p') as report_short_date FROM report INNER JOIN user ON user.user_id = report.user_id WHERE status_id = '1' AND report_status = 1";
+                    $report_sql_run = mysqli_query($con, $report_sql);
+
+                    while ($row_report_notifications = mysqli_fetch_assoc($report_sql_run)) {
+                        $notifications[] = array(
+                            'id' => $row_report_notifications['report_id'],
+                            'type' => 'report',
+                            'fulldate' => $row_report_notifications['report_short_date'],
+                            'message' => 'User <b>' . $row_report_notifications['fname'] . ' ' . $row_report_notifications['mname'] . ' ' . $row_report_notifications['lname'] . ' ' . $row_report_notifications['suffix'] . '</b> has submitted a report.'
+                        );
+                    }
+
+                    $concern_sql = "SELECT *, DATE_FORMAT(concern.date_created, '%m-%d-%Y %h:%i:%s %p') as concern_short_date FROM concern INNER JOIN user ON user.user_id = concern.user_id WHERE status_id = '1' AND concern_status = 1";
+                    $concern_sql_run = mysqli_query($con, $concern_sql);
+
+                    while ($row_concern_notifications = mysqli_fetch_assoc($concern_sql_run)) {
+                        $notifications[] = array(
+                            'id' => $row_concern_notifications['concern_id'],
+                            'type' => 'concern',
+                            'fulldate' => $row_concern_notifications['concern_short_date'],
+                            'message' => 'User <b>' . $row_concern_notifications['fname'] . ' ' . $row_concern_notifications['mname'] . ' ' . $row_concern_notifications['lname'] . ' ' . $row_concern_notifications['suffix'] . '</b> has submitted a concern.'
+                        );
+                    }
+
+                    // Extract the fulldate column from the notifications array
+                    $fulldates = array_column($notifications, 'fulldate');
+
+                    // Sort the notifications array in descending order based on fulldate
+                    array_multisort($fulldates, SORT_DESC, $notifications);
+                ?>
+
                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell fa-fw"></i>
-                    <!-- Counter - Alerts -->
-                    <span class="badge badge-danger badge-counter">3+</span>
+                    <!-- Counter - Notifications -->
+                    <span class="badge badge-danger badge-counter"><?php if ($total_notification >= 10){ echo "9+";} else { echo $total_notification; } ?></span>
                 </a>
-                <!-- Dropdown - Alerts -->
+
                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="alertsDropdown">
+                    aria-labelledby="alertsDropdown" style="height:60%; right:-410%;">
                     <h6 class="dropdown-header">
-                        Alerts Center
+                        Notifications Center
                     </h6>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="mr-3">
-                            <div class="icon-circle bg-primary">
-                                <i class="fas fa-file-alt text-white"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="small text-gray-500">December 12, 2019</div>
-                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                        </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="mr-3">
-                            <div class="icon-circle bg-success">
-                                <i class="fas fa-donate text-white"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="small text-gray-500">December 7, 2019</div>
-                            $290.29 has been deposited into your account!
-                        </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="mr-3">
-                            <div class="icon-circle bg-warning">
-                                <i class="fas fa-exclamation-triangle text-white"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="small text-gray-500">December 2, 2019</div>
-                            Spending Alert: We've noticed unusually high spending for your account.
-                        </div>
-                    </a>
-                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+
+                    <!-- Display the sorted notifications -->
+                    <div class="dropdown-list shadow animated--grow-in bg-white"
+                        aria-labelledby="alertsDropdown" style="position:fixed;overflow-y:auto;max-height:53%;">
+                        <?php foreach ($notifications as $notification): ?>
+                            <a class="dropdown-item d-flex align-items-center" href="<?php if ($notification['type'] == 'product'){ echo $notification['type']; ?>_update?id=<?= $notification['id']; } else{ echo $notification['type']; ?>_view?id=<?= $notification['id']; } ?>">
+                                <div class="mr-3">
+                                    <br>
+                                    <?php
+                                        $currentDate = date('Y-m-d H:i:s');
+                                        $notificationDate = $notification['fulldate'];
+                                        $iconClass = '';
+                                        switch ($notification['type']) {
+                                            case 'product':
+                                                $iconClass = 'fa-box';
+                                                break;
+                                            case 'request':
+                                                $iconClass = 'fa-archive';
+                                                break;
+                                            case 'report':
+                                                $iconClass = 'fa-pencil-square';
+                                                break;
+                                            case 'concern':
+                                                $iconClass = 'fa-comment';
+                                                break;
+                                            default:
+                                                $iconClass = '';
+                                                break;
+                                        }
+                                        $colorClass = '';
+                                        if ($notificationDate >= date('m-d-Y', strtotime('-2 days'))) {
+                                            $colorClass = 'bg-success';
+                                        } elseif ($notificationDate >= date('m-d-Y', strtotime('-5 days'))) {
+                                            $colorClass = 'bg-warning';
+                                        } elseif ($notificationDate >= date('m-d-Y', strtotime('-7 days'))) {
+                                            $colorClass = 'bg-info';
+                                        } else {
+                                            $colorClass = 'bg-danger';
+                                        }
+                                    ?>
+                                    <div class="icon-circle <?php echo $colorClass; ?>">
+                                        <i class="fas <?php echo $iconClass; ?> text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500"><?= $notification['fulldate']; ?></div>
+                                    <?= $notification['message']; ?>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                        <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a> -->
+                    </div>
                 </div>
             </li>
         
@@ -127,7 +205,7 @@
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="settings">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
+                        My Account
                     </a>
                     <div class="dropdown-divider"></div>
                     <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
@@ -164,11 +242,11 @@
     <div class="container-fluid">
 
 <style>
-    .nav-item.dropdown:hover .dropdown-menu{
+    /* .nav-item.dropdown:hover .dropdown-menu{
       display:block;
       margin-top: -10px;
       content: '\f107';
-    }
+    } */
     img#cimg{
       text-align: center;
       height: 2.3rem;

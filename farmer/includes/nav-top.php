@@ -47,12 +47,129 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <?php
+                    $user_id = $_SESSION['auth_user'] ['user_id'];
+                    $total_notification = $num_ann + $num_concern + $num_report + $num_request;
+
+                    $notifications = array();
+                    
+                    $request_sql = "SELECT *, DATE_FORMAT(request.request_updated, '%m-%d-%Y %h:%i:%s %p') as request_short_date FROM request INNER JOIN product ON product.product_id = request.product_id INNER JOIN status ON status.status_id = request.status_id WHERE request.user_id = '$user_id' AND request.status_id != '1' AND request.request_status = 1";
+                    $request_sql_run = mysqli_query($con, $request_sql);
+
+                    while ($row_request_notifications = mysqli_fetch_assoc($request_sql_run)) {
+                        $notifications[] = array(
+                            'id' => $row_request_notifications['request_id'],
+                            'type' => 'request',
+                            'fulldate' => $row_request_notifications['request_short_date'],
+                            'message' => 'Your request product <b>' . $row_request_notifications['product_name'] . '</b> has been <b>' . $row_request_notifications['status_name'] . '</b>.'
+                        );
+                    }
+
+                    $report_sql = "SELECT *, DATE_FORMAT(report.date_updated, '%m-%d-%Y %h:%i:%s %p') as report_short_date FROM report INNER JOIN status ON status.status_id = report.status_id WHERE report.user_id = '$user_id' AND report.status_id != '1' AND report_status = 1";
+                    $report_sql_run = mysqli_query($con, $report_sql);
+
+                    while ($row_report_notifications = mysqli_fetch_assoc($report_sql_run)) {
+                        $notifications[] = array(
+                            'id' => $row_report_notifications['report_id'],
+                            'type' => 'report',
+                            'fulldate' => $row_report_notifications['report_short_date'],
+                            'message' => 'Your submit report <b>' . $row_report_notifications['title'] . '</b> has been <b>' . $row_report_notifications['status_name'] . '</b>.'
+                        );
+                    }
+
+                    $concern_sql = "SELECT *, DATE_FORMAT(concern.date_updated, '%m-%d-%Y %h:%i:%s %p') as concern_short_date FROM concern INNER JOIN status ON status.status_id = concern.status_id WHERE concern.user_id = '$user_id' AND concern.status_id != '1' AND concern_status = 1";
+                    $concern_sql_run = mysqli_query($con, $concern_sql);
+
+                    while ($row_concern_notifications = mysqli_fetch_assoc($concern_sql_run)) {
+                        $notifications[] = array(
+                            'id' => $row_concern_notifications['concern_id'],
+                            'type' => 'concern',
+                            'fulldate' => $row_concern_notifications['concern_short_date'],
+                            'message' => 'Your submit concern <b>' . $row_concern_notifications['title'] . '</b> has been <b>' . $row_concern_notifications['status_name'] . '</b>.'
+                        );
+                    }
+
+                    // Extract the fulldate column from the notifications array
+                    $fulldates = array_column($notifications, 'fulldate');
+
+                    // Sort the notifications array in descending order based on fulldate
+                    array_multisort($fulldates, SORT_DESC, $notifications);
+                ?>
+
+                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <!-- Counter - Notifications -->
+                    <span class="badge badge-danger badge-counter"><?php if ($total_notification >= 10){ echo "9+";} else { echo $total_notification; } ?></span>
+                </a>
+
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    aria-labelledby="alertsDropdown" style="height:60%; right:-410%;">
+                    <h6 class="dropdown-header">
+                        Notifications Center
+                    </h6>
+
+                    <!-- Display the sorted notifications -->
+                    <div class="dropdown-list shadow animated--grow-in bg-white"
+                        aria-labelledby="alertsDropdown" style="position:fixed;overflow-y:auto;max-height:53%;">
+                        <?php foreach ($notifications as $notification): ?>
+                            <a class="dropdown-item d-flex align-items-center" href="<?php if ($notification['type'] == 'product'){ echo $notification['type']; ?>_update?id=<?= $notification['id']; } else{ echo $notification['type']; ?>_view?id=<?= $notification['id']; } ?>">
+                                <div class="mr-3">
+                                    <br>
+                                    <?php
+                                        $currentDate = date('Y-m-d H:i:s');
+                                        $notificationDate = $notification['fulldate'];
+                                        $iconClass = '';
+                                        switch ($notification['type']) {
+                                            case 'product':
+                                                $iconClass = 'fa-box';
+                                                break;
+                                            case 'request':
+                                                $iconClass = 'fa-archive';
+                                                break;
+                                            case 'report':
+                                                $iconClass = 'fa-pencil-square';
+                                                break;
+                                            case 'concern':
+                                                $iconClass = 'fa-comment';
+                                                break;
+                                            default:
+                                                $iconClass = '';
+                                                break;
+                                        }
+                                        $colorClass = '';
+                                        if ($notificationDate >= date('m-d-Y', strtotime('-2 days'))) {
+                                            $colorClass = 'bg-success';
+                                        } elseif ($notificationDate >= date('m-d-Y', strtotime('-5 days'))) {
+                                            $colorClass = 'bg-warning';
+                                        } elseif ($notificationDate >= date('m-d-Y', strtotime('-7 days'))) {
+                                            $colorClass = 'bg-info';
+                                        } else {
+                                            $colorClass = 'bg-danger';
+                                        }
+                                    ?>
+                                    <div class="icon-circle <?php echo $colorClass; ?>">
+                                        <i class="fas <?php echo $iconClass; ?> text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500"><?= $notification['fulldate']; ?></div>
+                                    <?= $notification['message']; ?>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                        <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a> -->
+                    </div>
+                </div>
+            </li>
         
             <!-- Nav Item - User Information -->
 
             <?php if(isset($_SESSION['auth_user']))  ?>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:6.8rem; margin-bottom: 1.6rem;">
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php
                         $userID = $_SESSION['auth_user'] ['user_id'];
                         $query = "SELECT * FROM user where user_id = $userID";
@@ -62,7 +179,7 @@
                         if($user){
                             while($row = mysqli_fetch_assoc($query_run)){
                     ?>
-                        <img id="cimg" class="img-fluid card-img-top" id="frame1" style="margin-top: 1.5rem;"
+                        <img id="cimg" class="img-fluid card-img-top" id="frame1"
                         src="
                             <?php
                                 if(isset($row['picture'])){
@@ -70,20 +187,20 @@
                                 } else { echo base_url . 'assets/img/system/no-image.png'; }
                             ?>
                         " alt="image">
-                        <span class="mr-2 d-lg-inline text-gray-600 small" style="margin-top: 1.8rem;"><?=$row['fname']?> <?=$row['mname']?> <?=$row['lname']?> <?=$row['suffix']?></span>
+                        <span class="mr-2 d-lg-inline text-gray-600 small"><?=$row['fname']?> <?=$row['mname']?> <?=$row['lname']?> <?=$row['suffix']?></span>
                     <?php } } ?>
                 </a>
                 <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="margin-top:-1.5rem; margin-right:1rem;">
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="settings">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
+                        My Account
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
-                    </a>
+                    </button>
                 </div>
             </li>
 
@@ -114,10 +231,10 @@
     <div class="container-fluid">
 
 <style>
-    .nav-item.dropdown:hover .dropdown-menu{
+    /* .nav-item.dropdown:hover .dropdown-menu{
       display:block;
       margin-top: -10px;
-    }
+    } */
     img#cimg{
       text-align: center;
       height: 2.3rem;
