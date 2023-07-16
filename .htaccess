@@ -1,4 +1,5 @@
 RewriteEngine On
+RewriteBase /
 
 # Remove trailing slash if it's not a directory
 RewriteCond %{REQUEST_FILENAME} !-d
