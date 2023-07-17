@@ -126,7 +126,7 @@
                     <div class="dropdown-list shadow animated--grow-in bg-white"
                         aria-labelledby="alertsDropdown" style="position:fixed;overflow-y:auto;max-height:53%;">
                         <?php foreach ($notifications as $notification): ?>
-                            <a class="dropdown-item d-flex align-items-center" href="<?php if ($notification['type'] == 'product'){ echo $notification['type']; ?>_update?id=<?= $notification['id']; } else{ echo $notification['type']; ?>_view?id=<?= $notification['id']; } ?>">
+                            <a class="dropdown-item d-flex align-items-center" href="<?php echo $notification['type']; ?>_update?id=<?= $notification['id']; ?>">
                                 <div class="mr-3">
                                     <br>
                                     <?php

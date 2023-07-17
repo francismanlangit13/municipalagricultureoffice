@@ -64,10 +64,17 @@
                             <td> 
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-md-12 mb-1" style="zoom:95%">
-                                        <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
-                                            <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
-                                            <span class="text ml-2 mr-2">View</span>
-                                        </a>
+                                        <?php if($row['status_id'] == 1){ ?>
+                                            <a href="report_update?id=<?=$row['report_id'];?>" class="btn btn-success btn-icon-split"> 
+                                                <span class="icon text-white-50"><i class="fas fa-save"></i></span>
+                                                <span class="text">Update</span>
+                                            </a>
+                                        <?php } else{ ?>
+                                            <!-- <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
+                                                <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                                <span class="text ml-2 mr-2">View</span>
+                                            </a> -->
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-1" style="zoom:103%;">
@@ -99,10 +106,17 @@
                             <td> 
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-md-12 mb-1" style="zoom:95%">
-                                        <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
-                                            <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
-                                            <span class="text ml-2 mr-2">View</span>
-                                        </a>
+                                        <?php if($row['status_id'] == 1){ ?>
+                                            <a href="report_update?id=<?=$row['report_id'];?>" class="btn btn-success btn-icon-split"> 
+                                                <span class="icon text-white-50"><i class="fas fa-save"></i></span>
+                                                <span class="text">Update</span>
+                                            </a>
+                                        <?php } else{ ?>
+                                            <!-- <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
+                                                <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                                <span class="text ml-2 mr-2">View</span>
+                                            </a> -->
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-1" style="zoom:103%;">
@@ -134,10 +148,17 @@
                             <td> 
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-md-12 mb-1" style="zoom:95%">
-                                        <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
-                                            <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
-                                            <span class="text ml-2 mr-2">View</span>
-                                        </a>
+                                        <?php if($row['status_id'] == 1){ ?>
+                                            <a href="report_update?id=<?=$row['report_id'];?>" class="btn btn-success btn-icon-split"> 
+                                                <span class="icon text-white-50"><i class="fas fa-save"></i></span>
+                                                <span class="text">Update</span>
+                                            </a>
+                                        <?php } else{ ?>
+                                            <!-- <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
+                                                <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                                <span class="text ml-2 mr-2">View</span>
+                                            </a> -->
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-1" style="zoom:103%;">
@@ -169,10 +190,17 @@
                             <td> 
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-md-12 mb-1" style="zoom:95%">
-                                        <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
-                                            <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
-                                            <span class="text ml-2 mr-2">View</span>
-                                        </a>
+                                        <?php if($row['status_id'] == 1){ ?>
+                                            <a href="report_update?id=<?=$row['report_id'];?>" class="btn btn-success btn-icon-split"> 
+                                                <span class="icon text-white-50"><i class="fas fa-save"></i></span>
+                                                <span class="text">Update</span>
+                                            </a>
+                                        <?php } else{ ?>
+                                            <!-- <a href="report_view?id=<?=$row['report_id'];?>" class="btn btn-info btn-icon-split"> 
+                                                <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
+                                                <span class="text ml-2 mr-2">View</span>
+                                            </a> -->
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-1" style="zoom:103%;">
