@@ -25,18 +25,14 @@
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item d-none dropdown no-arrow d-sm-none">
-                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-search fa-fw"></i>
                 </a>
                 <!-- Dropdown - Messages -->
-                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                    aria-labelledby="searchDropdown">
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                     <form class="form-inline mr-auto w-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search"
-                                aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -98,22 +94,21 @@
                     array_multisort($fulldates, SORT_DESC, $notifications);
                 ?>
 
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell fa-fw"></i>
-                    <!-- Counter - Notifications -->
-                    <span class="badge badge-danger badge-counter"><?php if ($total_notification >= 10){ echo "9+";} else { echo $total_notification; } ?></span>
+                    <?php if ($total_notification == 0){ } else{ ?>
+                        <!-- Counter - Notifications -->
+                        <span class="badge badge-danger badge-counter"><?php if ($total_notification >= 10){ echo "9+";} else { echo $total_notification; } ?></span>
+                    <?php } ?>
                 </a>
 
-                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="alertsDropdown" style="height:60%; right:-410%;">
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" style="height:60%; right:-410%;">
                     <h6 class="dropdown-header">
                         Notifications Center
                     </h6>
 
                     <!-- Display the sorted notifications -->
-                    <div class="dropdown-list shadow animated--grow-in bg-white"
-                        aria-labelledby="alertsDropdown" style="position:fixed;overflow-y:auto;max-height:53%;">
+                    <div class="dropdown-list shadow animated--grow-in bg-white" aria-labelledby="alertsDropdown" style="position:fixed;overflow-y:auto;max-height:53%;">
                         <?php if (count($notifications) > 0) { ?>
                             <?php foreach ($notifications as $notification): ?>
                                 <a class="dropdown-item d-flex align-items-center" href="<?php if ($notification['type'] == 'product'){ echo $notification['type']; ?>_update?id=<?= $notification['id']; } else{ echo $notification['type']; ?>_view?id=<?= $notification['id']; } ?>">
