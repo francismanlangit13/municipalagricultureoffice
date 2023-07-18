@@ -96,7 +96,7 @@
             <li><a class="nav-link scrollto" href="#about">About</a></li>
             <li><a class="nav-link scrollto" href="#portfolio">Pictures</a></li>
             <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-            <li><a class="nav-link scrollto" href="#aboutus">About Us</a></li>
+            <li><a class="nav-link scrollto" href="#staff">Staff</a></li>
             <li><a class="nav-link scrollto" href="#team">Team</a></li>
             <li><a class="nav-link" href="<?php echo base_url ?>login">LOGIN</a></li>
           </ul>
@@ -377,12 +377,12 @@
           </div>
         </section><!-- End Contact Section -->
 
-        <!-- ======= About Us Section ======= -->
-        <section id="aboutus" class="team">
+        <!-- ======= Staff Section ======= -->
+        <section id="staff" class="team">
           <div class="container">
 
             <div class="section-title">
-              <h2>About Us</h2>
+              <h2>Staff</h2>
               <p>Introducing our municipal agriculture staff – cultivating a greener future for our community.</p>
             </div>
             <div class="row" style="justify-content:center;">

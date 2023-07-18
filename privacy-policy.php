@@ -96,7 +96,7 @@
             <li><a class="nav-link" href="<?php echo base_url?>#about">About</a></li>
             <li><a class="nav-link" href="<?php echo base_url?>#portfolio">Pictures</a></li>
             <li><a class="nav-link" href="<?php echo base_url?>#contact">Contact</a></li>
-            <li><a class="nav-link" href="<?php echo base_url?>#aboutus">About Us</a></li>
+            <li><a class="nav-link" href="<?php echo base_url?>#staff">Staff</a></li>
             <li><a class="nav-link" href="<?php echo base_url?>#team">Team</a></li>
             <li><a class="nav-link" href="<?php echo base_url ?>login">LOGIN</a></li>
           </ul>
