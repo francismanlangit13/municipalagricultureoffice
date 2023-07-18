@@ -114,52 +114,56 @@
                     <!-- Display the sorted notifications -->
                     <div class="dropdown-list shadow animated--grow-in bg-white"
                         aria-labelledby="alertsDropdown" style="position:fixed;overflow-y:auto;max-height:53%;">
-                        <?php foreach ($notifications as $notification): ?>
-                            <a class="dropdown-item d-flex align-items-center" href="<?php if ($notification['type'] == 'product'){ echo $notification['type']; ?>_update?id=<?= $notification['id']; } else{ echo $notification['type']; ?>_view?id=<?= $notification['id']; } ?>">
-                                <div class="mr-3">
-                                    <br>
-                                    <?php
-                                        $currentDate = date('Y-m-d H:i:s');
-                                        $notificationDate = $notification['fulldate'];
-                                        $iconClass = '';
-                                        switch ($notification['type']) {
-                                            case 'product':
-                                                $iconClass = 'fa-box';
-                                                break;
-                                            case 'request':
-                                                $iconClass = 'fa-archive';
-                                                break;
-                                            case 'report':
-                                                $iconClass = 'fa-pencil-square';
-                                                break;
-                                            case 'concern':
-                                                $iconClass = 'fa-comment';
-                                                break;
-                                            default:
-                                                $iconClass = '';
-                                                break;
-                                        }
-                                        $colorClass = '';
-                                        if ($notificationDate >= date('m-d-Y', strtotime('-2 days'))) {
-                                            $colorClass = 'bg-success';
-                                        } elseif ($notificationDate >= date('m-d-Y', strtotime('-5 days'))) {
-                                            $colorClass = 'bg-warning';
-                                        } elseif ($notificationDate >= date('m-d-Y', strtotime('-7 days'))) {
-                                            $colorClass = 'bg-info';
-                                        } else {
-                                            $colorClass = 'bg-danger';
-                                        }
-                                    ?>
-                                    <div class="icon-circle <?php echo $colorClass; ?>">
-                                        <i class="fas <?php echo $iconClass; ?> text-white"></i>
+                        <?php if (count($notifications) > 0) { ?>
+                            <?php foreach ($notifications as $notification): ?>
+                                <a class="dropdown-item d-flex align-items-center" href="<?php if ($notification['type'] == 'product'){ echo $notification['type']; ?>_update?id=<?= $notification['id']; } else{ echo $notification['type']; ?>_view?id=<?= $notification['id']; } ?>">
+                                    <div class="mr-3">
+                                        <br>
+                                        <?php
+                                            $currentDate = date('Y-m-d H:i:s');
+                                            $notificationDate = $notification['fulldate'];
+                                            $iconClass = '';
+                                            switch ($notification['type']) {
+                                                case 'product':
+                                                    $iconClass = 'fa-box';
+                                                    break;
+                                                case 'request':
+                                                    $iconClass = 'fa-archive';
+                                                    break;
+                                                case 'report':
+                                                    $iconClass = 'fa-pencil-square';
+                                                    break;
+                                                case 'concern':
+                                                    $iconClass = 'fa-comment';
+                                                    break;
+                                                default:
+                                                    $iconClass = '';
+                                                    break;
+                                            }
+                                            $colorClass = '';
+                                            if ($notificationDate >= date('m-d-Y', strtotime('-2 days'))) {
+                                                $colorClass = 'bg-success';
+                                            } elseif ($notificationDate >= date('m-d-Y', strtotime('-5 days'))) {
+                                                $colorClass = 'bg-warning';
+                                            } elseif ($notificationDate >= date('m-d-Y', strtotime('-7 days'))) {
+                                                $colorClass = 'bg-info';
+                                            } else {
+                                                $colorClass = 'bg-danger';
+                                            }
+                                        ?>
+                                        <div class="icon-circle <?php echo $colorClass; ?>">
+                                            <i class="fas <?php echo $iconClass; ?> text-white"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500"><?= $notification['fulldate']; ?></div>
-                                    <?= $notification['message']; ?>
-                                </div>
-                            </a>
-                        <?php endforeach; ?>
+                                    <div>
+                                        <div class="small text-gray-500"><?= $notification['fulldate']; ?></div>
+                                        <?= $notification['message']; ?>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                            <?php } else { ?>
+                                <div class="dropdown-item text-center">No new notification.</div>
+                            <?php } ?>
                         <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a> -->
                     </div>
                 </div>
