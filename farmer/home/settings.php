@@ -88,7 +88,7 @@
                                         if(!empty($row['picture'])) {
                                             echo base_url . 'assets/img/users/' . $row['picture'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type'] == 1){ echo"ADMIN: ";} else{ echo"FARMER: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type_id'] == 1){ echo"ADMIN: ";} elseif($row['user_type_id'] == 2){ echo"STAFF: ";} else{ echo"FARMER: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
@@ -266,7 +266,7 @@
 
             if (email !== initialEmail) { // Check if email is different from the initial email
                 $.ajax({
-                    url: 'ajax1.php', // replace with the actual URL to check email
+                    url: 'ajax.php', // replace with the actual URL to check email
                     method: 'POST', // use the appropriate HTTP method
                     data: { email: email },
                     success: function(response) {

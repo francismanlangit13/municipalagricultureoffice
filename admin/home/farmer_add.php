@@ -97,7 +97,7 @@
                             <div class="form-group">
                                 <label for="address" class="required">Barangay</label>
                                 <select class="form-control" name="barangay" id="barangay" required>
-                                    <option value="" selected="true" disabled="disabled">Select Barangay</option>
+                                    <option value="" selected>Select Barangay</option>
                                     <option value="Adorable">Adorable</option>    
                                     <option value="Butuay">Butuay</option> 
                                     <option value="Carmen">Carmen</option> 
@@ -173,7 +173,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Civil Status</label>
                             <select id="civilstatus" name="civilstatus" required class="form-control">
-                                <option value="" selected="true" disabled="disabled">Select Civil Status</option>
+                                <option value="" selected>Select Civil Status</option>
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
                                 <option value="Widowed">Widowed</option>

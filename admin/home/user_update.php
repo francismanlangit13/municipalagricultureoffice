@@ -93,7 +93,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Civil Status</label>
                             <select id="civilstatus" name="civilstatus" required class="form-control">
-                                <option value="" selected="true" disabled="disabled">Select Civil Status</option>
+                                <option value="" selected>Select Civil Status</option>
                                 <option value="Single" <?= isset($row['civil_status']) && $row['civil_status'] == 'Single' ? 'selected' : '' ?>>Single</option>
                                 <option value="Married" <?= isset($row['civil_status']) && $row['civil_status'] == 'Married' ? 'selected' : '' ?>>Married</option>
                                 <option value="Widowed" <?= isset($row['civil_status']) && $row['civil_status'] == 'Widowed' ? 'selected' : '' ?>>Widowed</option>
@@ -117,10 +117,11 @@
                         <div class="col-md-2 mb-3">
                             <label for="" class="required">Role</label>
                             <select id="role" name="role" required class="form-control">
-                                <option value="" selected disabled>Select Role</option>
+                                <option value="" selected>Select Role</option>
                                 <option value="1" <?= isset($row['user_type_id']) && $row['user_type_id'] == '1' ? 'selected' : '' ?>>Admin</option>
                                 <option value="2" <?= isset($row['user_type_id']) && $row['user_type_id'] == '2' ? 'selected' : '' ?>>Staff</option>
                             </select>
+                            <div id="role-error"></div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <div style="margin-left:2rem;">
@@ -184,10 +185,11 @@
     $('#email-input').on('blur', debouncedCheckEmail);
     $('#phone-input').on('blur', debouncedCheckPhone);
     $('#email-input').on('input', debouncedCheckEmail); // Trigger on input change
-    $('#phone-input').on('input', debouncedCheckEmail); // Trigger on input change
+    $('#phone-input').on('input', debouncedCheckPhone); // Trigger on input change
 
     function checkEmail() {
         var email = $('#email-input').val();
+        var userEmailAddress = "<?php echo $row['email']; ?>"; // Display current user email
 
         // show error if email is empty
         if (email === '') {
@@ -206,31 +208,38 @@
             return;
         }
 
-        $.ajax({
-            url: 'ajax.php', // replace with the actual URL to check email
-            method: 'POST', // use the appropriate HTTP method
-            data: { email: email },
-            success: function(response) {
-                if (response.exists) {
-                    // disable submit button if email is taken
-                    $('#submit-btn').prop('disabled', true);
-                    $('#email-error').text('Email already taken').css('color', 'red');
-                    $('#email-input').addClass('is-invalid');
-                } else {
-                    $('#email-error').empty();
-                    $('#email-input').removeClass('is-invalid');
-                    // enable submit button if email is valid
-                    checkIfAllFieldsValid();
+        if (email !== userEmailAddress) { // Check if email is different from the initial email
+            $.ajax({
+                url: 'ajax.php', // replace with the actual URL to check email
+                method: 'POST', // use the appropriate HTTP method
+                data: { email: email },
+                success: function(response) {
+                    if (response.exists) {
+                        // disable submit button if email is taken
+                        $('#submit-btn').prop('disabled', true);
+                        $('#email-error').text('Email already taken').css('color', 'red');
+                        $('#email-input').addClass('is-invalid');
+                    } else {
+                        $('#email-error').empty();
+                        $('#email-input').removeClass('is-invalid');
+                        // enable submit button if email is valid
+                        checkIfAllFieldsValid();
+                    }
+                },
+                error: function() {
+                    $('#email-error').text('Error checking email');
                 }
-            },
-            error: function() {
-                $('#email-error').text('Error checking email');
-            }
-        });
+            });
+        } else {
+            $('#email-error').empty();
+            $('#email-input').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
     }
 
     function checkPhone() {
         var phone = $('#phone-input').val();
+        var userPhone = "<?php echo $row['phone']; ?>"; // Display current user phone
 
         // show error if phone number is empty
         if (phone === '') {
@@ -249,27 +258,33 @@
             return;
         }
 
-        $.ajax({
-            url: 'ajax.php', // replace with the actual URL to check phone
-            method: 'POST', // use the appropriate HTTP method
-            data: { phone: phone },
-            success: function(response) {
-                if (response.exists) {
-                    $('#phone-error').text('Phone number already taken').css('color', 'red');
-                    $('#phone-input').addClass('is-invalid');
-                    // disable submit button if phone number is taken
-                    $('#submit-btn').prop('disabled', true);
-                } else {
-                    $('#phone-error').empty();
-                    $('#phone-input').removeClass('is-invalid');
-                    // enable submit button if phone number is valid
-                    checkIfAllFieldsValid();
+        if (phone !== userPhone) { // Check if phone is different from the initial phone
+            $.ajax({
+                url: 'ajax.php', // replace with the actual URL to check phone
+                method: 'POST', // use the appropriate HTTP method
+                data: { phone: phone },
+                success: function(response) {
+                    if (response.exists) {
+                        $('#phone-error').text('Phone number already taken').css('color', 'red');
+                        $('#phone-input').addClass('is-invalid');
+                        // disable submit button if phone number is taken
+                        $('#submit-btn').prop('disabled', true);
+                    } else {
+                        $('#phone-error').empty();
+                        $('#phone-input').removeClass('is-invalid');
+                        // enable submit button if phone number is valid
+                        checkIfAllFieldsValid();
+                    }
+                },
+                error: function() {
+                    $('#phone-error').text('Error checking phone number');
                 }
-            },
-            error: function() {
-                $('#phone-error').text('Error checking phone number');
-            }
-        });
+            });
+        } else {
+            $('#phone-error').empty();
+            $('#phone-input').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
     }
 
     function checkIfAllFieldsValid() {
@@ -499,11 +514,12 @@
         }
 
         function checkRole() {
-            var role = $('#role').val()
+            var roleSelect = document.getElementById('role');
+            var role = roleSelect.value;
             
-            // show error if role is empty
-            if (!role || role.trim() === '') {
-                $('#role-error').text('Please select role').css('color', 'red');
+            // show error if the default option is selected
+            if (role === '' && roleSelect.selectedIndex !== 1) {
+                $('#role-error').text('Please select a role').css('color', 'red');
                 $('#role').addClass('is-invalid');
                 checkIfAllFieldsValid();
                 return;

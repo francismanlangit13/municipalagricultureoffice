@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="suffix">Suffix</label>
                                 <select class="form-control" id="suffix" name="suffix" required>
-                                    <option value="" selected disabled>Select Suffix</option>
+                                    <option value="" selected>Select Suffix</option>
                                     <option value="">None</option>
                                     <option value="Jr">Jr</option>
                                     <option value="Sr">Sr</option>
@@ -84,7 +84,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Civil Status</label>
                             <select id="civilstatus" name="civilstatus" required class="form-control">
-                                <option value="" selected="true" disabled="disabled">Select Civil Status</option>
+                                <option value="" selected>Select Civil Status</option>
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
                                 <option value="Widowed">Widowed</option>
@@ -108,7 +108,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="" class="required">Role</label>
                             <select id="role" name="role" required class="form-control">
-                                <option value="" selected disabled>Select Role</option>
+                                <option value="" selected>Select Role</option>
                                 <option value="1">Admin</option>
                                 <option value="2">Staff</option>
                             </select>

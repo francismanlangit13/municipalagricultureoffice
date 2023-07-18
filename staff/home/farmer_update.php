@@ -182,7 +182,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="required">Civil Status</label>
                             <select id="civilstatus" name="civilstatus" required class="form-control">
-                                <option value="" selected="true" disabled="disabled">Select Civil Status</option>
+                                <option value="" selected>Select Civil Status</option>
                                 <option value="Single" <?= isset($user['civil_status']) && $user['civil_status'] == 'Single' ? 'selected' : '' ?>>Single</option>
                                 <option value="Married" <?= isset($user['civil_status']) && $user['civil_status'] == 'Married' ? 'selected' : '' ?>>Married</option>
                                 <option value="Widowed" <?= isset($user['civil_status']) && $user['civil_status'] == 'Widowed' ? 'selected' : '' ?>>Widowed</option>
@@ -463,6 +463,7 @@
 
     function checkEmail() {
         var email = $('#email-input').val();
+        var userEmailAddress = "<?php echo $user['email']; ?>"; // Display current user email
 
         // show error if email is empty
         if (email === '') {
@@ -481,31 +482,38 @@
             return;
         }
 
-        $.ajax({
-            url: 'ajax.php', // replace with the actual URL to check email
-            method: 'POST', // use the appropriate HTTP method
-            data: { email: email },
-            success: function(response) {
-                if (response.exists) {
-                    // disable submit button if email is taken
-                    $('#submit-btn').prop('disabled', true);
-                    $('#email-error').text('Email already taken').css('color', 'red');
-                    $('#email-input').addClass('is-invalid');
-                } else {
-                    $('#email-error').empty();
-                    $('#email-input').removeClass('is-invalid');
-                    // enable submit button if email is valid
-                    checkIfAllFieldsValid();
+        if (email !== userEmailAddress) { // Check if email is different from the initial email
+            $.ajax({
+                url: 'ajax.php', // replace with the actual URL to check email
+                method: 'POST', // use the appropriate HTTP method
+                data: { email: email },
+                success: function(response) {
+                    if (response.exists) {
+                        // disable submit button if email is taken
+                        $('#submit-btn').prop('disabled', true);
+                        $('#email-error').text('Email already taken').css('color', 'red');
+                        $('#email-input').addClass('is-invalid');
+                    } else {
+                        $('#email-error').empty();
+                        $('#email-input').removeClass('is-invalid');
+                        // enable submit button if email is valid
+                        checkIfAllFieldsValid();
+                    }
+                },
+                error: function() {
+                    $('#email-error').text('Error checking email');
                 }
-            },
-            error: function() {
-                $('#email-error').text('Error checking email');
-            }
-        });
+            });
+        } else {
+            $('#email-error').empty();
+            $('#email-input').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
     }
 
     function checkPhone() {
         var phone = $('#phone-input').val();
+        var userPhone = "<?php echo $user['phone']; ?>"; // Display current user phone
 
         // show error if phone number is empty
         if (phone === '') {
@@ -524,31 +532,38 @@
             return;
         }
 
-        $.ajax({
-        url: 'ajax.php', // replace with the actual URL to check phone
-        method: 'POST', // use the appropriate HTTP method
-        data: { phone: phone },
-        success: function(response) {
-            if (response.exists) {
-                $('#phone-error').text('Phone number already taken').css('color', 'red');
-                $('#phone-input').addClass('is-invalid');
-                // disable submit button if phone number is taken
-                $('#submit-btn').prop('disabled', true);
-            } else {
-                $('#phone-error').empty();
-                $('#phone-input').removeClass('is-invalid');
-                // enable submit button if phone number is valid
-                checkIfAllFieldsValid();
-            }
-        },
-        error: function() {
-            $('#phone-error').text('Error checking phone number');
+        if (phone !== userPhone) { // Check if phone is different from the initial phone
+            $.ajax({
+                url: 'ajax.php', // replace with the actual URL to check phone
+                method: 'POST', // use the appropriate HTTP method
+                data: { phone: phone },
+                success: function(response) {
+                    if (response.exists) {
+                        $('#phone-error').text('Phone number already taken').css('color', 'red');
+                        $('#phone-input').addClass('is-invalid');
+                        // disable submit button if phone number is taken
+                        $('#submit-btn').prop('disabled', true);
+                    } else {
+                        $('#phone-error').empty();
+                        $('#phone-input').removeClass('is-invalid');
+                        // enable submit button if phone number is valid
+                        checkIfAllFieldsValid();
+                    }
+                },
+                error: function() {
+                    $('#phone-error').text('Error checking phone number');
+                }
+            });
+        } else {
+            $('#phone-error').empty();
+            $('#phone-input').removeClass('is-invalid');
+            checkIfAllFieldsValid();
         }
-        });
     }
 
     function checkRefNumber() {
         var reference_number = $('#reference_number-input').val();
+        var userReference_Number = "<?php echo $user['reference_number']; ?>"; // Display current user reference_number
 
         // show error if reference number is empty
         if (reference_number === '') {
@@ -567,27 +582,33 @@
             return;
         }
 
-        $.ajax({
-            url: 'ajax.php', // replace with the actual URL to check reference number
-            method: 'POST', // use the appropriate HTTP method
-            data: { reference_number: reference_number },
-            success: function(response) {
-                if (response.exists) {
-                    $('#reference_number-error').text('Reference number already taken').css('color', 'red');
-                    $('#reference_number-input').addClass('is-invalid');
-                    // disable submit button if reference number is taken
-                    $('#submit-btn').prop('disabled', true);
-                } else {
-                    $('#reference_number-error').empty();
-                    $('#reference_number-input').removeClass('is-invalid');
-                    // enable submit button if reference number is valid
-                    checkIfAllFieldsValid();
+        if (reference_number !== userReference_Number) { // Check if reference_number is different from the initial reference_number
+            $.ajax({
+                url: 'ajax.php', // replace with the actual URL to check reference number
+                method: 'POST', // use the appropriate HTTP method
+                data: { reference_number: reference_number },
+                success: function(response) {
+                    if (response.exists) {
+                        $('#reference_number-error').text('Reference number already taken').css('color', 'red');
+                        $('#reference_number-input').addClass('is-invalid');
+                        // disable submit button if reference number is taken
+                        $('#submit-btn').prop('disabled', true);
+                    } else {
+                        $('#reference_number-error').empty();
+                        $('#reference_number-input').removeClass('is-invalid');
+                        // enable submit button if reference number is valid
+                        checkIfAllFieldsValid();
+                    }
+                },
+                error: function() {
+                    $('#reference_number-error').text('Error checking reference number');
                 }
-            },
-            error: function() {
-                $('#reference_number-error').text('Error checking reference number');
-            }
-        });
+            });
+        } else {
+            $('#reference_number-error').empty();
+            $('#reference_number-input').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
     }
 
     function checkIfAllFieldsValid() {

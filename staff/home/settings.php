@@ -88,7 +88,7 @@
                                         if(!empty($row['picture'])) {
                                             echo base_url . 'assets/img/users/' . $row['picture'];
                                     } else { echo base_url . 'assets/img/system/no-image.png'; } }
-                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type'] == 1){ echo"ADMIN: ";} else{ echo"STAFF: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
+                                ?>" class="link-preview portfolio-lightbox" data-gallery="portfolioGallery" title="<?php if($row['user_type_id'] == 1){ echo"ADMIN: ";} elseif($row['user_type_id'] == 2){ echo"STAFF: ";} else{ echo"FARMER: ";} echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . ' ' . $row['suffix']; ?>">
                                 <img class="zoom img-fluid img-bordered-sm"
                                 src="
                                     <?php
