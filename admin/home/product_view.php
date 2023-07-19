@@ -66,6 +66,11 @@
                             <?php } ?>
                         </div>
 
+                        <div class="col-md-12 mb-3">
+                            <label for="description">Description</label>
+                            <textarea disabled placeholder="Enter Description" name="description" class="form-control" rows="5"><?= $row['product_description']; ?></textarea>
+                        </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="image">Product Image</label>
                             <div class="text-center">

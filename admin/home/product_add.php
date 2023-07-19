@@ -62,6 +62,12 @@
                             <div id="exp_date-error"></div>
                         </div>
 
+                        <div class="col-md-12 mb-3">
+                            <label for="description" class="required">Description</label>
+                            <textarea required placeholder="Enter Description" id="description" name="description" class="form-control" rows="5"></textarea>
+                            <div id="description-error"></div>
+                        </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="image" class="required">Product Image1</label>
                             <br>
@@ -154,21 +160,24 @@
         var debouncedCheckQuantity = _.debounce(checkQuantity, 500);
         var debouncedCheckCategory = _.debounce(checkCategory, 500);
         var debouncedCheckExpdate = _.debounce(checkExpdate, 500);
+        var debouncedCheckDescription = _.debounce(checkDescription, 500);
 
         // attach event listeners for each input field
         $('#pname').on('input', debouncedCheckProductname);
         $('#quantity').on('input', debouncedCheckQuantity);
         $('#category').on('input', debouncedCheckCategory);
         $('#exp_date').on('input', debouncedCheckExpdate);
+        $('#description').on('input', debouncedCheckDescription);
 
         $('#pname').on('blur', debouncedCheckProductname);
         $('#quantity').on('blur', debouncedCheckQuantity);
         $('#category').on('blur', debouncedCheckCategory);
         $('#exp_date').on('blur', debouncedCheckExpdate);
+        $('#description').on('blur', debouncedCheckDescription);
 
         function checkIfAllFieldsValid() {
             // check if all input fields are valid and enable submit button if so
-            if ($('#pname-error').is(':empty') && $('#quantity-error').is(':empty') && $('#category-error').is(':empty') && $('#exp_date-error').is(':empty')) {
+            if ($('#pname-error').is(':empty') && $('#quantity-error').is(':empty') && $('#category-error').is(':empty') && $('#exp_date-error').is(':empty') && $('#description-error').is(':empty')) {
                 $('#submit-btn').prop('disabled', false);
             } else {
                 $('#submit-btn').prop('disabled', true);
@@ -245,6 +254,24 @@
             
             $('#exp_date-error').empty();
             $('#exp_date').removeClass('is-invalid');
+            checkIfAllFieldsValid();
+        }
+
+        function checkDescription() {
+            var description = $('#description').val().trim();
+            
+            // show error if description is empty
+            if (description === '') {
+                $('#description-error').text('Please input product description').css('color', 'red');
+                $('#description').addClass('is-invalid');
+                checkIfAllFieldsValid();
+                return;
+            }
+            
+            // Perform additional validation for description if needed
+            
+            $('#description-error').empty();
+            $('#description').removeClass('is-invalid');
             checkIfAllFieldsValid();
         }
         

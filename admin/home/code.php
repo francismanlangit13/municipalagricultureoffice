@@ -847,6 +847,7 @@
             $quantity = $_POST['quantity'];
             $category = $_POST['category'];
             $exp_date = $_POST['exp_date'];
+            $description = $_POST['description'];
             $status = '1';
             
             $targetFile = $uploadDir . $fileName;
@@ -854,7 +855,7 @@
             $targetFile2 = $uploadDir . $fileName2;
             $targetFile3 = $uploadDir . $fileName3;
             if (move_uploaded_file($fileTmpname, $targetFile) && move_uploaded_file($fileTmpname1, $targetFile1) && move_uploaded_file($fileTmpname2, $targetFile2) && move_uploaded_file($fileTmpname3, $targetFile3)) {
-              $query = "INSERT INTO `product` (`product_name`, `photo`, `photo1`, `photo2`, `photo3`, `product_quantity`, `exp_date`, `product_category_id`, `product_status`) VALUES ('$name', '$fileName', '$fileName1', '$fileName2', '$fileName3', '$quantity', '$exp_date', '$category', '$status')";
+              $query = "INSERT INTO `product` (`product_name`, `product_description`, `photo`, `photo1`, `photo2`, `photo3`, `product_quantity`, `exp_date`, `product_category_id`, `product_status`) VALUES ('$name', '$description', '$fileName', '$fileName1', '$fileName2', '$fileName3', '$quantity', '$exp_date', '$category', '$status')";
               $query_run = mysqli_query($con, $query);
 
               if($query_run){
@@ -1069,9 +1070,10 @@
     $quantity = $_POST['quantity'];
     $category = $_POST['category'];
     $exp_date = $_POST['exp_date'];
+    $description = $_POST['description'];
     $status = $_POST['status'];
     
-    $query = "UPDATE `product` SET `product_name` = '$name', `product_quantity` = '$quantity', `exp_date` = '$exp_date', `product_category_id` = '$category', `product_status` = '$status' WHERE `product_id` = '$product_id'";
+    $query = "UPDATE `product` SET `product_name` = '$name', `product_description` = '$description', `product_quantity` = '$quantity', `exp_date` = '$exp_date', `product_category_id` = '$category', `product_status` = '$status' WHERE `product_id` = '$product_id'";
     $query_run = mysqli_query($con, $query);
 
     if($query_run){
