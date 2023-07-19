@@ -34,6 +34,13 @@
                             <h3 class="card-title text-center" style="font-size: 22px;"><?php echo $row['product_name']; ?></h3>
                             <p class="card-text text-center"> <?php echo $row['product_quantity'];?> PCS REMAINING</p>
                             <p class="card-text text-center"> <?php echo $row['category_name'];?> </p>
+                            <p class="card-text text-center">
+                                <?php
+                                    if($row['exp_date'] < date) {
+                                        echo "<span style='color:red'> (Expired)</span>"; 
+                                    }else{ }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </a>

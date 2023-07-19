@@ -4,8 +4,7 @@
 <?php
   if(isset($_GET['id'])){
   $id = $_GET['id'];
-  $sql = "SELECT
-  *
+  $sql = "SELECT *, DATE_FORMAT(product.exp_date, '%M-%d-%Y') as short_date, DATE_FORMAT(product.exp_date, '%m-%d-%Y') as short_date_exp
   FROM
   product
   INNER JOIN
@@ -122,6 +121,13 @@
                         }else{
                           echo "Unavailable<span> (Out of Stock)</span>";
                         }
+                      ?>
+                      <br>
+                      <b>Expiration Date: </b> <?= $row['short_date']; ?>
+                      <?php
+                        if($row['exp_date'] < date) {
+                          echo "<span style='color:red'> (Expired)</span>"; 
+                        }else{ }
                       ?>
                     <br><br>
                   </div>
