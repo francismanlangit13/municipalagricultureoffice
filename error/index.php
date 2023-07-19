@@ -81,9 +81,9 @@
                         <p class="lead text-gray-800 mb-5">Connection Timed Out</p>
                         <p class="text-gray-500 mb-0">It looks like you found a glitch in the connection...</p>
                         <p class="text-gray-500 mb-0">Possible problems</p>
-                        <p class="text-gray-500 mb-0">&#x2022; Database connection Error</p>
-                        <p class="text-gray-500 mb-0">&#x2022; Server configuration error</p>
-                        <p class="text-gray-500 mb-0">&#x2022; PHP error</p>
+                        <p class="text-gray-500 mb-0">&#x2022; Database connection error.</p>
+                        <p class="text-gray-500 mb-0">&#x2022; Server configuration error.</p>
+                        <p class="text-gray-500 mb-0">&#x2022; PHP error.</p>
                     </div>
 
                 </div>
