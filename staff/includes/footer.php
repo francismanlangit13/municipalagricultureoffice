@@ -23,10 +23,10 @@
                     <div class="copyright d-flex justify-content-between my-auto">
                         <span>Copyright &copy; 1996-<?php echo date('Y'); ?> Municipal Agriculture Office Jimenez</span>
                         <span>
-                            <a href="cookie-policy">Cookie Policy</a>
-                            <a href="privacy-policy">Privacy Policy</a>
-                            <a href="website-terms-condition">Terms of Use</a>
-                            <a href="sitemap">Sitemap</a>
+                            <a href="<?php echo base_url ?>cookie-policy">Cookie Policy</a>
+                            <a href="<?php echo base_url ?>privacy-policy">Privacy Policy</a>
+                            <a href="<?php echo base_url ?>website-terms-condition">Terms of Use</a>
+                            <a href="<?php echo base_url ?>sitemap">Sitemap</a>
                         </span>
                     </div>
                 </div>
