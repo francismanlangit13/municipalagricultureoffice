@@ -494,7 +494,7 @@
                   I can do all things through Christ who strengthen me.
                   </p>
                   <div class="social">
-                    <a href="https://www.facebook.com/fanzcarl13" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.facebook.com/itsfanzcarl" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/franzcarl13" target="_blank"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.twitter.com/franzcarl13" target="_blank"><i class="bi bi-twitter"></i></a>
                   </div>

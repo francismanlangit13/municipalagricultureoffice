@@ -20,8 +20,14 @@
             <!-- Footer -->
             <footer class="sticky-footer bg-white shadow noprint">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+                    <div class="copyright d-flex justify-content-between my-auto">
                         <span>Copyright &copy; 1996-<?php echo date('Y'); ?> Municipal Agriculture Office Jimenez</span>
+                        <span>
+                            <a href="cookie-policy">Cookie Policy</a>
+                            <a href="privacy-policy">Privacy Policy</a>
+                            <a href="website-terms-condition">Terms of Use</a>
+                            <a href="sitemap">Sitemap</a>
+                        </span>
                     </div>
                 </div>
             </footer>
