@@ -86,14 +86,6 @@
                                         <span class="text ml-2 mr-2">View</span>
                                     </a>
                                 </div>
-                                <div class="col-md-12 mb-1" style="zoom:103%;">
-                                    <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        <span class="text">Delete</span>
-                                    </button>
-                                </div>
                                 <?php 
                                     $date_timestamp = strtotime($row['request_date']);
                                     
@@ -120,7 +112,16 @@
                                             <span class="text">Delete</span>
                                         </button>
                                     </div>
-                                <?php } else { } ?>
+                                <?php } else { ?>
+                                    <div class="col-md-12 mb-1" style="zoom:103%;">
+                                        <button type="button" data-toggle="modal" value="<?=$row['request_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Delete</span>
+                                        </button>
+                                    </div>
+                                <?php } ?>
                                 <?php 
                                     $date_timestamp = strtotime($row['request_date']);
                                     
