@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 02, 2023 at 09:20 AM
+-- Generation Time: Jul 22, 2023 at 03:46 AM
 -- Server version: 10.3.22-MariaDB-log
 -- PHP Version: 7.2.33
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `announcement` (
-  `ann_id` int(15) NOT NULL,
+  `ann_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `ann_title` varchar(50) NOT NULL,
   `ann_body` text NOT NULL,
@@ -45,10 +45,10 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`ann_id`, `user_id`, `ann_title`, `ann_body`, `ann_status`, `ann_date`, `deleted_by`, `date_deleted`, `ann_deleted`) VALUES
-(3, 1, 'Annoucement to all farmers', 'Adunay kitay fertilizer diris office kung kinsa man mo kuha palihog og gamit sa system og request kamo sa product, daghang salamat...', 'Posted', '2023-04-24 18:35:18', '', '0000-00-00 00:00:00', 0),
+(3, 1, 'Annoucement to all farmers', 'Adunay kitay fertilizer diris office kung kinsa man mo kuha palihog og gamit sa system og request kamo sa product, daghang salamat...', 'Posted', '2023-05-15 01:47:41', 'Marissa Malon', '2023-07-14 22:28:25', 1),
 (5, 1, 'Pahibalo sa tanan farmers', 'Naay mo abot stock sa fertilizer karon April 27 2023 sa gusto og fertilizer request lang mo gamit sa atong system daghan salamat!', 'Posted', '2023-04-19 10:45:41', '', '0000-00-00 00:00:00', 0),
-(6, 1, 'Annoucement To all farmers', 'Naay potato seeds available sa office kung kinsa gusto pwede ramo mag request gamit sa system salamat!', 'Posted', '2023-04-22 17:41:59', '', '0000-00-00 00:00:00', 0),
-(8, 1, 'Announcement to all farmers', 'Karong April 27 2023 naay orientation sa barangay nacional didto ta magkita daghan salamat...', 'Posted', '2023-04-25 17:42:02', '', '0000-00-00 00:00:00', 0);
+(6, 1, 'Annoucement To all farmers', 'Naay potato seeds available sa office kung kinsa gusto pwede ramo mag request gamit sa system salamat!', 'Posted', '2023-04-23 17:41:59', '', '0000-00-00 00:00:00', 0),
+(8, 1, 'Announcement to all Farmers', 'Adunay kitay libre seeds diri sa office RAMGO Seeds sa gusto mag kuha request kamo gamit sa system daghang salamat.', 'Pending', '2023-07-20 18:37:43', '', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -57,8 +57,9 @@ INSERT INTO `announcement` (`ann_id`, `user_id`, `ann_title`, `ann_body`, `ann_s
 --
 
 CREATE TABLE `concern` (
-  `concern_id` int(15) NOT NULL,
-  `user_id` int(15) NOT NULL,
+  `concern_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `photo` varchar(255) NOT NULL,
   `photo1` varchar(255) NOT NULL,
@@ -80,8 +81,28 @@ CREATE TABLE `concern` (
 -- Dumping data for table `concern`
 --
 
-INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `date_deleted`, `deleted_by`, `person`, `status_id`, `concern_status`) VALUES
-(2, 4, 'NA GUBA AMONG TANOM!! PLEASE!!!', 'concern1_20230418_010207.jpeg', 'concern2_20230417_234723.jpeg', '', '', '', 'concern6_20230417_234723.mp4', 'AMBOT SA IMONG CONCERN!!!', '2023-04-24 01:00:00', '2023-04-22 23:12:30', '2023-04-23 01:18:23', 'User Admin', 'User Admin', 2, 1);
+INSERT INTO `concern` (`concern_id`, `user_id`, `title`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `date_deleted`, `deleted_by`, `person`, `status_id`, `concern_status`) VALUES
+(1, 9, 'Na guba ang tanom', 'na guba among tanom diri. sa taraka', 'concern1_20230720_133804.jpg', 'concern2_20230720_133804.jpg', 'concern3_20230720_133804.jpg', '', '', '', '', '2023-07-20 22:36:04', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(2, 9, 'Damage Corn Plants', 'Nangatumba akong tanon mga mais dri sa Barangay Carmen tungod sa kusog nga hangin gabie.', 'concern1_20230720_134043.jpeg', 'concern2_20230720_134043.jpeg', 'concern3_20230720_134043.jpeg', '', '', '', '', '2023-07-10 13:40:43', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 3, 1),
+(3, 11, 'Damage petchay plants', 'Nangadamage akong petchay kay gi insekto.', 'concern1_20230720_135048.jpeg', 'concern2_20230720_135048.jpeg', 'concern3_20230720_135048.jpeg', '', '', '', '', '2023-07-13 13:50:48', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 2, 1),
+(4, 13, 'G baha among katanoman', 'Need kog assistance ngayo kog tabang ninyo kay na wash out akong tanom sa ulan gahapon.', 'concern1_20230720_135245.jpg', 'concern2_20230720_135245.jpg', 'concern3_20230720_135245.jpg', '', '', '', '', '2023-07-16 13:52:45', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(5, 9, 'Eggplant damage', 'Maayong hapon mam maona ni ang akong tinanom nga talong apan gedugokan ug daghang mga pesticide sama sa mga ulod ug uban pang nangdapo ug nagkaon sa mga dahon sa mga talong.', 'concern1_20230720_140957.jpg', 'concern2_20230720_140957.jpg', 'concern3_20230720_140957.jpg', '', '', '', '', '2023-07-17 14:09:57', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(6, 16, 'Tree assistance', 'need kog assistance diri sa sibaroc kay na wash out akong g tanom nga cacao.', 'concern1_20230720_164955.jpeg', 'concern2_20230720_164955.jpeg', 'concern3_20230720_164955.jpeg', '', '', '', '', '2023-07-18 16:49:55', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(7, 17, 'Need cash assistance', 'na tumba ang akong g tanom 5 years need kog cash assistance.', 'concern1_20230720_165938.jpeg', 'concern2_20230720_165938.jpeg', 'concern3_20230720_165938.jpeg', '', '', '', '', '2023-07-19 16:59:38', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(8, 9, 'need kog pa assist diri sa macabayao', 'akong mga g tanom na bungkag na..', 'concern1_20230720_170936.jpeg', 'concern2_20230720_170936.jpeg', 'concern3_20230720_170936.jpeg', '', '', '', '', '2023-07-20 17:09:36', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_temp`
+--
+
+CREATE TABLE `password_reset_temp` (
+  `user_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `key` varchar(255) NOT NULL,
+  `expDate` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -90,14 +111,14 @@ INSERT INTO `concern` (`concern_id`, `user_id`, `message`, `photo`, `photo1`, `p
 --
 
 CREATE TABLE `product` (
-  `product_id` int(15) NOT NULL,
-  `product_name` varchar(50) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
   `product_description` varchar(255) NOT NULL,
   `photo` varchar(255) NOT NULL,
   `photo1` varchar(255) NOT NULL,
   `photo2` varchar(255) NOT NULL,
   `photo3` varchar(255) NOT NULL,
-  `product_quantity` int(15) NOT NULL,
+  `product_quantity` int(11) NOT NULL,
   `exp_date` date NOT NULL,
   `product_category_id` int(15) NOT NULL,
   `product_status` varchar(15) NOT NULL
@@ -108,8 +129,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_description`, `photo`, `photo1`, `photo2`, `photo3`, `product_quantity`, `exp_date`, `product_category_id`, `product_status`) VALUES
-(1, 'RAMGO UREA', 'Used for fertilizer products', 'product1_20230416_182626.jpg', 'product2_20230416_184820.jpeg', 'product3_20230416_182527.png', 'product4_20230416_182527.png', 18, '2023-04-30', 1, '1'),
-(2, 'RAMBOTAN', '', 'product1_20230420_150716.png', 'product2_20230420_150716.png', 'product3_20230420_150911.png', 'product4_20230420_150716.png', 50, '2023-04-30', 1, '2');
+(1, 'Home Grown', 'Used for Tomato, Vegetable, and Herb Fertilizer.', 'product1_20230719_083942.jpg', 'product2_20230719_083942.jpg', 'product3_20230719_083942.jpg', 'product4_20230719_083942.jpg', 100, '2023-12-12', 1, '1'),
+(2, 'Premium Gold', 'It is used for all kinds of upland and downland in this fertilizer.', 'product1_20230719_084114.jpg', 'product2_20230719_084114.jpg', 'product3_20230719_084114.jpg', 'product4_20230719_084114.jpg', 213, '2023-05-15', 1, '1'),
+(3, 'Natural Wonder', 'It is used for Fruit Tree only this fertilizer.', 'product1_20230719_084335.jpg', 'product2_20230719_084335.jpg', 'product3_20230719_084335.jpg', 'product4_20230719_084335.jpg', 0, '2024-07-05', 1, '2'),
+(4, 'Upo Tambuli', 'Upo Tambuli - is an herbaceous, annual climbing plant.', 'product1_20230719_091545.jpg', 'product2_20230719_091545.jpg', 'product3_20230719_091545.jpg', 'product4_20230719_091545.jpg', 57, '2025-07-16', 5, '1'),
+(5, 'Hybrid Cucumber Hera', 'Cucumbers (Cucumis sativus) are classified as naturally occurring vegetables, but some cucumber varieties are hybrids. Cucumber plants likely originated in India and were introduced into China.', 'product1_20230719_092625.jpg', 'product2_20230719_092625.jpg', 'product3_20230719_092625.jpg', 'product4_20230719_092625.jpg', 523, '2025-12-13', 5, '1');
 
 -- --------------------------------------------------------
 
@@ -119,7 +143,7 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_description`, `pho
 
 CREATE TABLE `product_category` (
   `product_category_id` int(11) NOT NULL,
-  `category_name` varchar(90) NOT NULL,
+  `category_name` varchar(255) NOT NULL,
   `category_description` varchar(255) NOT NULL,
   `product_category_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -132,7 +156,8 @@ INSERT INTO `product_category` (`product_category_id`, `category_name`, `categor
 (1, 'Fertilizer', 'Any material, organic or inorganic, natural or synthetic, which supplies one or more of the chemical elements required for the plant growth.', 1),
 (2, 'Seeds', 'It is an undeveloped plant embryo and food reserve enclosed in a protective outer covering called a seed coat.', 2),
 (3, 'Pesticide', 'Insecticides kill insects and other arthropods. Miticides (also called acaricides) kill mites that feed on plants and animals.', 1),
-(4, 'Equipments', 'Equipment, machinery, and repair parts manufactured for use on farms in connection with the production or preparation for market use of food resources.', 1);
+(4, 'Equipments', 'Equipment, machinery, and repair parts manufactured for use on farms in connection with the production or preparation for market use of food resources.', 1),
+(5, 'Seeds', 'Fertilized, matured ovule consisting of an embryonic plant together with a store of food, all surrounded by a protective coat.', 0);
 
 -- --------------------------------------------------------
 
@@ -143,6 +168,7 @@ INSERT INTO `product_category` (`product_category_id`, `category_name`, `categor
 CREATE TABLE `report` (
   `report_id` int(11) NOT NULL,
   `user_id` int(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `photo` varchar(255) NOT NULL,
   `photo1` varchar(255) NOT NULL,
@@ -164,14 +190,15 @@ CREATE TABLE `report` (
 -- Dumping data for table `report`
 --
 
-INSERT INTO `report` (`report_id`, `user_id`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `date_deleted`, `deleted_by`, `person`, `status_id`, `report_status`) VALUES
-(1, 4, 'AMBOT!!!', 'report1_20230417_124207.png', 'report2_20230417_124222.png', '', '', '', 'report6_20230417_124154.mp4', 'asdasdasdasddasd', '2023-04-16 14:32:19', '0000-00-00 00:00:00', '2023-04-22 22:22:18', 'User Admin', '', 3, 2),
-(2, 4, 'ambot oi', 'report1_20230416_223521.jpeg', 'report2_20230416_223521.jpeg', 'report3_20230416_223521.jpeg', 'report4_20230416_223521.jpeg', 'report5_20230416_223521.jpeg', 'report6_20230416_223522.mp4', '', '2023-04-16 14:35:22', '0000-00-00 00:00:00', '2023-04-22 22:24:31', 'User Admin', '', 1, 2),
-(3, 4, 'dkasdkjahdjkashdjkhdsd', 'report1_20230416_224358.jpeg', 'report2_20230416_224358.png', '', '', '', 'report6_20230416_224358.mp4', '', '2023-04-16 14:43:58', '0000-00-00 00:00:00', '2023-04-22 22:29:48', 'User Admin', '', 1, 2),
-(4, 4, 'askdjaskldjalkdjkld', 'report1_20230416_224715.jpg', 'report2_20230416_224715.png', '', '', '', 'report6_20230416_224715.mp4', 'BAHALA KA THESIS', '2023-04-24 21:47:15', '2023-04-22 23:00:26', '2023-04-22 23:03:32', 'User Admin', 'User Admin', 1, 1),
-(5, 4, 'sdfdsfsdfsdf', 'report1_20230416_224839.jpg', 'report2_20230416_224839.png', '', '', '', 'report6_20230416_224839.mp4', '', '2023-04-20 14:48:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
-(6, 4, 'wesdfsdfsdfdsff', 'report1_20230416_225101.jpg', 'report2_20230416_225101.jpg', '', '', '', 'report6_20230416_225101.mp4', '', '2023-04-16 14:51:01', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
-(7, 4, 'sadasdasdasd', 'report1_20230416_230005.png', 'report2_20230416_230005.jpg', '', '', '', 'report6_20230416_230005.mp4', 'sdasdasdd', '2023-04-16 15:00:05', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 3, 1);
+INSERT INTO `report` (`report_id`, `user_id`, `title`, `message`, `photo`, `photo1`, `photo2`, `photo3`, `photo4`, `video`, `reason`, `date_created`, `date_updated`, `date_deleted`, `deleted_by`, `person`, `status_id`, `report_status`) VALUES
+(1, 9, 'Update sa akong g tanom nga rice', 'mao ni akong update sa akong tanom hapit nani anihon Salamat kayo mao jimenez.', 'report1_20230720_134224.jpeg', 'report2_20230720_134224.jpeg', 'report3_20230720_134224.jpeg', '', '', '', '', '2023-07-20 22:31:24', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(2, 10, 'Update sa akong gitanom nga mais', 'Mao nani kahimtang sa akong gitanom nga mais, salamat sa Ginoo kay maayo ang pagtubo niini ug way insekto nga nakadaot niini.', 'report1_20230720_134439.jpeg', 'report2_20230720_134439.jpeg', 'report3_20230720_134439.jpeg', '', '', '', '', '2023-07-07 13:44:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 2, 1),
+(3, 9, 'Mao ni akong report sa g tanom nakong Ramgo Seeds', 'mao ni akong update sa tanom g kuha gkan ninyo Salamat kayo ni tubona siya og Salamat sa nindot nga panahon.', 'report1_20230720_134843.jpg', 'report2_20230720_134843.jpg', 'report3_20230720_134843.jpg', '', '', '', '', '2023-07-12 13:48:43', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 3, 1),
+(4, 11, 'update sa akong petchay plants', 'Mao mani update sa akong tanom nga petchay karon\r\n', 'report1_20230720_135155.jpeg', 'report2_20230720_135155.jpeg', 'report3_20230720_135155.jpeg', '', '', '', '', '2023-07-15 13:51:55', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(5, 15, 'Update sakong talong', 'Thanks god maayo ug bos ok na kaayo akng mga tanom makapang harvest nami ani.', 'report1_20230720_141730.jpg', 'report2_20230720_141730.jpeg', '', '', '', '', '', '2023-07-18 14:17:30', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(6, 9, 'Report for my output', 'Ni dako na siya ang akong g kuha nga tanom.', 'report1_20230720_164456.jpg', 'report2_20230720_164456.jpeg', 'report3_20230720_164456.jpg', '', '', '', '', '2023-07-19 16:44:56', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(7, 17, 'Akong report sa mangustan', 'Ni dako na akong g tanom nga mangustan sa 3 months. hapit nani mangunga', 'report1_20230720_165517.jpeg', 'report2_20230720_165517.jpeg', 'report3_20230720_165517.jpeg', '', '', '', '', '2023-07-20 16:55:17', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(8, 9, 'Report for the fertilizer progress', 'mao ni akong tanom dali na ni tubo kay g gamitan og fertilizer salamat kaayo mao jimenez.', 'report1_20230720_170742.jpeg', 'report2_20230720_170742.jpg', 'report3_20230720_170742.jpeg', '', '', '', '', '2023-07-20 17:07:42', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -180,10 +207,10 @@ INSERT INTO `report` (`report_id`, `user_id`, `message`, `photo`, `photo1`, `pho
 --
 
 CREATE TABLE `request` (
-  `request_id` int(15) NOT NULL,
-  `user_id` int(50) NOT NULL,
-  `product_id` int(15) NOT NULL,
-  `request_quantity` int(255) NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `request_quantity` int(11) NOT NULL,
   `description` text NOT NULL,
   `reason` varchar(255) NOT NULL,
   `request_date` datetime NOT NULL,
@@ -191,7 +218,7 @@ CREATE TABLE `request` (
   `date_deleted` datetime NOT NULL,
   `deleted_by` varchar(255) NOT NULL,
   `person` varchar(255) NOT NULL,
-  `status_id` int(50) NOT NULL,
+  `status_id` int(11) NOT NULL,
   `request_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -200,7 +227,13 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`request_id`, `user_id`, `product_id`, `request_quantity`, `description`, `reason`, `request_date`, `request_updated`, `date_deleted`, `deleted_by`, `person`, `status_id`, `request_status`) VALUES
-(3, 4, 1, 17, 'wesadasd', '', '2023-04-24 00:00:34', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1);
+(1, 9, 2, 10, 'Gamiton nako ning fertilizer sa akong g tanom nga okra.', '', '2023-07-20 22:27:19', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(2, 10, 4, 4, 'Mag tanom ko ani sa akong garden.', '', '2023-07-03 10:22:38', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 2, 1),
+(3, 9, 5, 5, 'Mangayo ko ani para e tanom nako sa kabukiran.', '', '2023-07-15 10:26:13', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 2, 1),
+(4, 9, 5, 3, 'Mag tanom ko ani sa akong backyard.', '', '2023-07-17 14:01:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(5, 16, 4, 6, 'Mangayo ko ani itanom nako sa upland nako diris sibaroc.', '', '2023-07-18 16:39:46', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(6, 9, 1, 2, 'Kuha ko ani duha lang para itanom namo ni darling diri sa sinara alto.', '', '2023-07-19 16:52:27', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1),
+(7, 18, 2, 17, 'Need kog fertilizer para sa upland nakong area.', '', '2023-07-20 17:04:53', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -238,7 +271,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `qrcode` varchar(255) NOT NULL,
-  `reference_number` varchar(15) NOT NULL,
+  `reference_number` varchar(19) NOT NULL,
   `picture` varchar(255) NOT NULL,
   `purok` varchar(255) NOT NULL,
   `street` varchar(255) NOT NULL,
@@ -278,19 +311,96 @@ CREATE TABLE `user` (
   `attending_nonformal` varchar(255) NOT NULL,
   `participated` varchar(255) NOT NULL,
   `other_agri_youth_specify` varchar(255) NOT NULL,
-  `user_type` int(10) NOT NULL,
-  `user_status` int(10) NOT NULL
+  `user_type_id` int(11) NOT NULL,
+  `user_status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `email`, `password`, `qrcode`, `reference_number`, `picture`, `purok`, `street`, `barangay`, `municipality`, `province`, `region`, `phone`, `religion`, `birthday`, `birthplace`, `civil_status`, `pwd`, `4ps`, `ig`, `ig_specify`, `govid`, `govid_specify`, `farmersassoc`, `farmersassoc_specify`, `livelihood`, `rice`, `corn`, `other_crops_specify`, `livestock`, `livestock_specify`, `poultry`, `poultry_specify`, `owner`, `land`, `planting`, `cultivation`, `harvesting`, `other_farmworker_specify`, `part_of_farming`, `attending_formal`, `attending_nonformal`, `participated`, `other_agri_youth_specify`, `user_type`, `user_status`) VALUES
-(1, 'User', '', 'Admin', '', 'Male', 'admin@gmail.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230416_133835.jpg', '', '', '', '', '', '', '09816208309', '', '2000-11-13', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1),
-(4, 'User', '', 'Farmer', '', 'Male', 'franzcarl13@yahoo.com', 'c20e6c573ea8e9b197d665a7f2a41882', '00020101021127600012com.p2pqrpay0111USMEPHM2XXX020899964403041301566281770015204601653036085802PH5913GRACE N AMBAG6007JIMENEZ6304D502', '123456789101112', 'user_20230416_193834.jpg', '5', 'Villamor', 'Gata', 'Jimenez', 'Misamis Occidental', '10', '09457664949', 'Catholic', '2000-12-11', 'Pakil, Laguna', 'Single', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmer', 'Rice', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1),
-(5, 'User', '', 'Staff', '', 'Male', 'staff@gmail.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230418_170052.png', '', '', '', '', '', '', '09673044680', 'Catholic', '2000-11-13', 'Catholic', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1),
-(6, 'Francis Carlo', 'Abcede', 'Manlangit', '', 'Male', 'franzcarl13@gmail.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230420_144327.png', '', '', '', '', '', '', '09171234794', '5555555', '2000-11-13', '4444444', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1);
+INSERT INTO `user` (`user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `email`, `password`, `qrcode`, `reference_number`, `picture`, `purok`, `street`, `barangay`, `municipality`, `province`, `region`, `phone`, `religion`, `birthday`, `birthplace`, `civil_status`, `pwd`, `4ps`, `ig`, `ig_specify`, `govid`, `govid_specify`, `farmersassoc`, `farmersassoc_specify`, `livelihood`, `rice`, `corn`, `other_crops_specify`, `livestock`, `livestock_specify`, `poultry`, `poultry_specify`, `owner`, `land`, `planting`, `cultivation`, `harvesting`, `other_farmworker_specify`, `part_of_farming`, `attending_formal`, `attending_nonformal`, `participated`, `other_agri_youth_specify`, `user_type_id`, `user_status_id`) VALUES
+(1, 'Marissa', '', 'Malon', '', 'Male', 'franzcarl13@yahoo.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230719_092931.jpg', '', '', '', '', '', '', '09457664949', 'Catholic', '2000-11-13', 'Pakil, Laguna', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1),
+(2, 'CHERLIE Cherlie', '', 'Pino', '', 'Female', 'pino28@gmail.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230718_164147.jpg', '', '', '', '', '', '', '09196374602', 'Catholic', '1995-06-15', 'Butuay, Jimenez, Misamis Occidental', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1),
+(3, 'Mariefe', 'G', 'Galbo', '', 'Female', 'mariefebarrientos135@yahoo.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230718_164520.jpg', '', '', '', '', '', '', '09475883531', 'Roman Catholic', '1996-02-18', 'Nacional, Jimenez, Misamis Occidental', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 1),
+(4, 'Lendie', '', 'Barrientos', '', 'Female', 'lendi24@gmail.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230718_164941.jpg', '', '', '', '', '', '', '09375837563', 'Grace Gospel Church', '1998-05-24', 'Gango, Ozamiz, Misamis Occidental', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 1),
+(5, 'John Mark', '', 'Malalis', '', 'Male', 'john.mark78@yahoo.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230718_165403.jpg', '', '', '', '', '', '', '09324635661', 'United Church Of Christ In The Philippines', '1989-08-29', 'Punta, Panaon, Misamis Occidental', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 1),
+(6, 'Roshelle Ann', '', 'Tabuzo', '', 'Female', 'roshelleann15@yahoo.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230718_165738.jpg', '', '', '', '', '', '', '09357267824', 'Assembly of God', '1998-06-05', 'Mialem, Jimenez, Misamis Occidental', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 1),
+(7, 'Marry Joy', '', 'Banque', '', 'Female', 'marryjoy.banque42@yahoo.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230718_170129.jpg', '', '', '', '', '', '', '09682643748', 'Iglesia Filipina Independiente', '1997-11-19', 'Santa Cruz, Jimenez, Misamis Occidental', 'Single', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 1),
+(8, 'Juvy', '', 'Palanas', '', 'Male', 'palanas24@gmail.com', '0192023a7bbd73250516f069df18b500', '', '', 'user_20230718_170400.jpg', '', '', '', '', '', '', '09238798474', 'Roman Catholic', '1972-10-11', 'Cagay-anon, Jimenez, Misamis Occidental', 'Married', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 1),
+(9, 'Ronald', 'G', 'Galindo', '', 'Male', 'ronald.galindo11@yahoo.com', '0192023a7bbd73250516f069df18b500', '00020101021127600012com.p2pqrpay0111USMEPHM2XXX020899964403041301566281770015204601653036085802PH5913GRACE N AMBAG6007JIMENEZ6304D502', '10-42-07-019-000001', 'user_20230718_173452.jpg', '5', 'Julyet Street', 'Palilan', 'Jimenez', 'Misamis Occidental', '10', '09347689447', 'Roman Catholic', '1975-09-14', 'Gata, Jimenez, Misamis Occidental', 'Married', 'Yes', 'Yes', 'No', '', 'No', '', 'No', '', 'Farmer', 'Rice', 'Corn', 'Banana, Mango, Papaya', 'Livestock', 'Baboy, Chicken, Pato, Goat', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1),
+(10, 'Karl', 'D', 'Cuadra', '', 'Male', 'karl.cuadra143@gmail.com', '0192023a7bbd73250516f069df18b500', '', '10-42-07-019-000002', 'user_20230718_174238.jpg', '1', 'Yungkoi Street', 'Nacional', 'Jimenez', 'Misamis Occidental', '10', '09254789579', 'Grace Gospel Church', '1999-07-17', 'Nacional, Jimenez, Misamis Occidental', 'Single', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmer', 'Rice', '', 'Mango, Banana', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1),
+(11, 'Jham', 'H', 'Maghuyop', 'II', 'Female', 'maghuyop.jham17@yahoo.com', '0192023a7bbd73250516f069df18b500', '', '10-42-07-019-000003', 'user_20230718_174919.jpg', '6', 'Jero Street', 'Carmen', 'Jimenez', 'Misamis Occidental', '10', '09323478957', 'Roman Catholic', '1996-12-14', 'Carmen, Jimenez, Misamis Occidental', 'Single', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmworker', '', '', '', '', '', '', '', 'Owner', '', 'Planting', '', 'Harvesting', '', '', '', '', '', '', 3, 1),
+(12, 'Kim August', 'J', 'Apao', '', 'Male', 'kimoyapao54@gmail.com', '0192023a7bbd73250516f069df18b500', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000004', 'user_20230718_175353.jpg', '3', 'Jojo Street', 'Gata', 'Jimenez', 'Misamis Occidental', '10', '09257856783', 'Catholic', '1995-04-14', 'Sampaloc, Manila', 'Single', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmworker', '', '', '', '', '', '', '', '', 'Land Preparation', '', 'Cultivation', 'Harvesting', '', '', '', '', '', '', 3, 1),
+(13, 'Abel', 'S', 'Gomonit', 'Jr', 'Male', 'gomonitabel@gmail.com', '0192023a7bbd73250516f069df18b500', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000005', 'user_20230719_140727.jpg', '4', 'Villamor', 'Gata', 'Jimenez', 'Misamis Occidental', '10', '09374635874', 'Roman Catholic', '1991-02-03', 'Gango, Ozamiz, Misamis Occidental', 'Married', 'No', 'Yes', 'No', '', 'No', '', 'No', '', 'Agri Youth', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Part of a farming household', 'Attending/Attended formal agri-fishery related course', 'Attending/Attended non-formal agri-fishery related course', '', '', 3, 1),
+(14, 'Kier', '', 'Patac', '', 'Male', 'kier.patac@yahoo.com', '0192023a7bbd73250516f069df18b500', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000006', 'user_20230719_143025.jpg', '2', 'Fundado', 'San Isidro', 'Jimenez', 'Misamis Occidental', '10', '09346745676', 'Catholic', '1993-04-18', 'Delapaz, Sinacaban, Misamis Occidental', 'Married', 'Yes', 'No', 'No', '', 'No', '', 'No', '', 'Farmworker', '', '', '', '', '', '', '', 'Owner', 'Land Preparation', 'Planting', '', '', '', '', '', '', '', '', 3, 1),
+(15, 'Stephanie', '', 'Capada', '', 'Female', 'stephanie.capada@gmail.com', '0192023a7bbd73250516f069df18b500', '', '10-42-07-019-000007', 'user_20230719_143445.jpg', '6', 'Albaro Street', 'Carmen', 'Jimenez', 'Misamis Occidental', '10', '09573447392', 'Catholic', '1983-08-18', 'Aloran, Misamis Occidental', 'Married', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmer', 'Rice', 'Corn', 'Banana, Papaya', 'Livestock', 'Chicken', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1),
+(16, 'John Mark', '', 'Ebarat', '', 'Male', 'johnmark.ebarat@gmail.com', '0192023a7bbd73250516f069df18b500', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000008', 'user_20230719_144025.jpg', '3', 'Harayo Street', 'Rizal', 'Jimenez', 'Misamis Occidental', '10', '09236387463', 'Catholic', '1990-05-16', 'Delapaz, Tudela, Misamis Occidental', 'Married', 'Yes', 'Yes', 'No', '', 'No', '', 'No', '', 'Agri Youth', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Part of a farming household', '', 'Attending/Attended non-formal agri-fishery related course', 'Participated in any agricultural activity/program', '', 3, 1),
+(17, 'Jenmar', '', 'Masin', 'IV', 'Male', 'jenmar.masin@gmail.com', '0192023a7bbd73250516f069df18b500', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000009', 'user_20230719_144548.png', '1', 'Labadas Street', 'Guintomoyan', 'Jimenez', 'Misamis Occidental', '10', '09237648372', 'Roman Catholic', '1992-02-27', 'Nacional, Jimenez, Misamis Occidental', 'Married', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Agri Youth', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Part of a farming household', 'Attending/Attended formal agri-fishery related course', '', '', '', 3, 1),
+(18, 'Andrew Campbell', '', 'Campbell', '', 'Male', 'andrew@gmail.com', '0192023a7bbd73250516f069df18b500', '', '10-42-07-019-000010', 'user_20230719_144945.jpg', '3', 'Tigdok Street', 'Malibacsan', 'Jimenez', 'Misamis Occidental', '10', '09234385748', 'Roman Catholic', '1987-03-21', 'Carmen, Jimenez, Misamis Occidental', 'Married', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmer', 'Rice', '', 'Banana, Cacao, Star apple', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1),
+(19, 'Abigail', '', 'Damason', 'II', 'Female', 'abigail.damason@yahoo.com', '0192023a7bbd73250516f069df18b500', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000011', 'user_20230719_145359.jpg', '5', 'Tonyo Street', 'Matugas Bajo', 'Jimenez', 'Misamis Occidental', '10', '09273687467', 'Roman Catholic', '1995-01-16', 'Lupagan, Clarin, Misamis Occidental', 'Married', 'No', 'Yes', 'No', '', 'No', '', 'No', '', 'Agri Youth', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Part of a farming household', '', 'Attending/Attended non-formal agri-fishery related course', 'Participated in any agricultural activity/program', '', 3, 1),
+(20, 'Rennie', '', 'Gordon', '', 'Male', 'rennie.gordon@yahoo.com', 'b38532f4bf0736c23d72246a5549520e', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000012', 'user_20230719_145843.jpg', '1', 'Kanisa Street', 'Gata', 'Jimenez', 'Misamis Occidental', '10', '09237584598', 'Roman Catholic', '1997-07-17', 'Palilan, Jimenez, Misamis Occidental', 'Married', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmworker', '', '', '', '', '', '', '', 'Owner', '', 'Planting', '', '', '', '', '', '', '', '', 3, 1),
+(21, 'Lisa', '', 'Gamayao', 'IV', 'Female', 'gamayao.lisa@gmail.com', '148705579939c64632db96774122e5cb', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000013', 'user_20230719_150150.jpg', '5', 'Bagas Street', 'Santa Cruz', 'Jimenez', 'Misamis Occidental', '10', '09232478236', 'Roman Catholic', '1998-02-17', 'Naga, Jimenez, Misamis Occidental', 'Single', 'Yes', 'No', 'No', '', 'No', '', 'No', '', 'Farmworker', '', '', '', '', '', '', '', '', 'Land Preparation', '', '', 'Harvesting', '', '', '', '', '', '', 3, 1),
+(22, 'Jeffry', '', 'Cabalog', '', 'Male', 'jeffry.cabalog@yahoo.com', 'd848fc54e9cd0335cfaa32223ddbeb1c', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000014', 'user_20230719_150923.jpg', '4', 'Gaza Street', 'Sibaroc', 'Jimenez', 'Misamis Occidental', '10', '09237683783', 'Roman Catholic', '1992-09-17', 'Santa Cruz, Jimenez, Misamis Occidental', 'Married', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Agri Youth', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Part of a farming household', '', 'Attending/Attended non-formal agri-fishery related course', '', '', 3, 1),
+(23, 'Marisa', '', 'Maghanoy', '', 'Female', 'francismanlangit13@gmail.com', 'e9684a32808efcbc9a9944aa36c0a6a7', 'http://app.lb-link.cn/router/down.html', '10-42-07-019-000015', 'user_20230719_151931.jpg', '3', 'Hardo Street', 'Matugas Bajo', 'Jimenez', 'Misamis Occidental', '10', '09236837638', 'Roman Catholic', '1997-10-13', 'Rizal, Jimenez, Misamis Occidental', 'Married', 'No', 'No', 'No', '', 'No', '', 'No', '', 'Farmer', '', 'Corn', 'Banana, Papaya, Rambutan', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_log`
+--
+
+CREATE TABLE `user_log` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `log` varchar(255) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_log`
+--
+
+INSERT INTO `user_log` (`id`, `user_id`, `type`, `log`, `date`) VALUES
+(1, 1, 'Login', 'success using email and password', '2023-07-18 14:50:15'),
+(2, 1, 'Login', 'success using email and password', '2023-07-19 08:31:23'),
+(3, 1, 'Update account', 'change password', '2023-07-19 08:33:46'),
+(4, 1, 'Update account', 'update information', '2023-07-19 08:33:46'),
+(5, 1, 'Update account', 'change profile', '2023-07-19 09:29:31'),
+(6, 9, 'Login', 'success using email and password', '2023-07-19 09:31:09'),
+(7, 10, 'Login', 'success using email and password', '2023-07-19 10:21:34'),
+(8, 11, 'Login', 'success using email and password', '2023-07-19 10:24:44'),
+(9, 1, 'Login', 'success using email and password', '2023-07-19 11:45:48'),
+(10, 1, 'Login', 'success using email and password', '2023-07-19 14:00:10'),
+(11, 1, 'Login', 'success using email and password', '2023-07-20 13:29:20'),
+(12, 10, 'Login', 'success using email and password', '2023-07-20 13:30:26'),
+(13, 12, 'Login', 'success using email and password', '2023-07-20 13:31:26'),
+(14, 10, 'Login', 'success using email and password', '2023-07-20 13:37:24'),
+(15, 10, 'Login', 'success using email and password', '2023-07-20 13:37:24'),
+(16, 13, 'Login', 'success using email and password', '2023-07-20 13:44:06'),
+(17, 11, 'Login', 'success using email and password', '2023-07-20 13:49:14'),
+(18, 15, 'Login', 'success using email and password', '2023-07-20 13:59:11'),
+(19, 12, 'Login', 'success using email and password', '2023-07-20 13:59:44'),
+(20, 10, 'Login', 'success using email and password', '2023-07-20 14:11:01'),
+(21, 15, 'Login', 'success using email and password', '2023-07-20 14:12:42'),
+(22, 15, 'Login', 'success using email and password', '2023-07-20 14:12:42'),
+(23, 16, 'Login', 'success using email and password', '2023-07-20 16:38:04'),
+(24, 17, 'Login', 'success using email and password', '2023-07-20 16:51:17'),
+(25, 18, 'Login', 'success using email and password', '2023-07-20 17:01:03'),
+(26, 1, 'Login', 'success using email and password', '2023-07-20 17:10:28'),
+(27, 1, 'Login', 'success using email and password', '2023-07-20 19:55:37'),
+(28, 1, 'Login', 'success using email and password', '2023-07-20 20:24:26'),
+(29, 3, 'Login', 'success using email and password', '2023-07-20 21:47:44'),
+(30, 9, 'Login', 'success using email and password', '2023-07-20 22:06:30'),
+(31, 1, 'Login', 'success using email and password', '2023-07-21 00:29:33'),
+(32, 3, 'Login', 'success using email and password', '2023-07-21 01:06:07'),
+(33, 9, 'Login', 'success using email and password', '2023-07-21 01:27:32'),
+(34, 1, 'Login', 'success using email and password', '2023-07-22 07:48:07'),
+(35, 23, 'Login', 'success using QR Code', '2023-07-22 08:27:13'),
+(36, 23, 'Login', 'success using QR Code', '2023-07-22 08:28:01'),
+(37, 23, 'Login', 'success using QR Code', '2023-07-22 08:28:35'),
+(38, 9, 'Login', 'success using QR Code', '2023-07-22 08:30:40');
 
 -- --------------------------------------------------------
 
@@ -300,7 +410,7 @@ INSERT INTO `user` (`user_id`, `fname`, `mname`, `lname`, `suffix`, `gender`, `e
 
 CREATE TABLE `user_status` (
   `user_status_id` int(11) NOT NULL,
-  `user_status_name` varchar(100) NOT NULL
+  `user_status_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -319,15 +429,15 @@ INSERT INTO `user_status` (`user_status_id`, `user_status_name`) VALUES
 --
 
 CREATE TABLE `user_type` (
-  `user_id` int(20) NOT NULL,
-  `user_name` varchar(100) NOT NULL
+  `user_type_id` int(11) NOT NULL,
+  `user_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_type`
 --
 
-INSERT INTO `user_type` (`user_id`, `user_name`) VALUES
+INSERT INTO `user_type` (`user_type_id`, `user_name`) VALUES
 (1, 'Admin'),
 (2, 'Staff'),
 (3, 'Farmer');
@@ -350,6 +460,12 @@ ALTER TABLE `concern`
   ADD PRIMARY KEY (`concern_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `status_id` (`status_id`) USING BTREE;
+
+--
+-- Indexes for table `password_reset_temp`
+--
+ALTER TABLE `password_reset_temp`
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `product`
@@ -392,8 +508,15 @@ ALTER TABLE `status`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `user_type` (`user_type`,`user_status`),
-  ADD KEY `user_status` (`user_status`);
+  ADD KEY `user_type` (`user_type_id`,`user_status_id`),
+  ADD KEY `user_status` (`user_status_id`);
+
+--
+-- Indexes for table `user_log`
+--
+ALTER TABLE `user_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `user_status`
@@ -405,7 +528,7 @@ ALTER TABLE `user_status`
 -- Indexes for table `user_type`
 --
 ALTER TABLE `user_type`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_type_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -415,37 +538,37 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `ann_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ann_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `concern`
 --
 ALTER TABLE `concern`
-  MODIFY `concern_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `concern_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `product_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `product_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `request_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -457,7 +580,13 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `user_log`
+--
+ALTER TABLE `user_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `user_status`
@@ -469,7 +598,7 @@ ALTER TABLE `user_status`
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -487,6 +616,12 @@ ALTER TABLE `announcement`
 ALTER TABLE `concern`
   ADD CONSTRAINT `concern_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `concern_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`);
+
+--
+-- Constraints for table `password_reset_temp`
+--
+ALTER TABLE `password_reset_temp`
+  ADD CONSTRAINT `password_reset_temp_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `product`
@@ -513,8 +648,14 @@ ALTER TABLE `request`
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_type`) REFERENCES `user_type` (`user_id`),
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`user_status`) REFERENCES `user_status` (`user_status_id`);
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_type_id`) REFERENCES `user_type` (`user_type_id`),
+  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`user_status_id`) REFERENCES `user_status` (`user_status_id`);
+
+--
+-- Constraints for table `user_log`
+--
+ALTER TABLE `user_log`
+  ADD CONSTRAINT `user_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
