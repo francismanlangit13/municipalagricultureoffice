@@ -109,19 +109,21 @@
                   <input type="hidden" name="email" value = "<?php echo $email; ?>"/>
                   <div class="form-group first">
                     <label for="password">New Password</label>
-                    <input type="password" name="password" class="form-control" minlength="8" placeholder="New Password" id="password">
+                    <input type="password" name="password" class="form-control" minlength="8" placeholder="New Password" id="password" required>
                     <a href="javascript:void(0)"  style="position: relative; top: -2.5rem; left: 87%; cursor: pointer; color: lightgray;">
                       <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword">
                     </a>
+                    <div id="password-error" style="margin-top:-23px;"></div>
                   </div>
                   <div class="form-group first">
                     <label for="password1">Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control" minlength="8" placeholder="Confirm Password" id="password1">
+                    <input type="password" name="confirm_password" class="form-control" minlength="8" placeholder="Confirm Password" id="password1" required>
                     <a href="javascript:void(0)"  style="position: relative; top: -2.5rem; left: 87%; cursor: pointer; color: lightgray;">
                       <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="21rem" id="togglePassword1">
                     </a>
+                    <div id="password1-error" style="margin-top:-23px;"></div>
                   </div>
-                  <button type="submit" name="changepass_btn" class="btn btn-block btn-success">Update Password</button>
+                  <button type="submit" id="submit-btn" name="changepass_btn" class="btn btn-block btn-success">Update Password</button>
                   <br>
                   <span class="ml-auto"><a href="<?php echo base_url ?>"><u>Click here to Homepage</u></a></span> 
                 </form>
@@ -169,6 +171,7 @@
       <!-- Loading JS -->
       <script src="<?php echo base_url ?>assets/js/loader.js"></script>
       <script src="<?php echo base_url ?>assets/js/showpass.js"></script>
+      <script src="<?php echo base_url ?>assets/js/underscore-min.js"></script>
       <!-- Serverstatus JS -->
       <script src="<?php echo base_url ?>assets/js/serverstatus.js"></script>
     </body>
@@ -199,4 +202,91 @@
   // Add event listeners to the password fields
   passwordInput.addEventListener('input', checkPasswords);
   confirmPasswordInput.addEventListener('input', checkPasswords);
+</script>
+<script>
+  $(document).ready(function() {
+    // disable submit button by default
+    //$('#submit-btn').prop('disabled', true);
+
+    // debounce functions for each input field
+    var debouncedCheckPassword = _.debounce(checkPassword, 500);
+    var debouncedCheckCPassword = _.debounce(checkCPassword, 500);
+
+    // attach event listeners for each input field
+    $('#password').on('input', debouncedCheckPassword);
+    $('#password').on('focusout', checkPassword); // Add focusout event listener
+    $('#password').on('blur', debouncedCheckPassword); // Trigger on input change
+    $('#password1').on('input', debouncedCheckCPassword);
+    $('#password1').on('focusout', checkCPassword); // Add focusout event listener
+    $('#password1').on('blur', debouncedCheckCPassword); // Trigger on input change
+
+    function checkPassword() {
+      var password = $('#password').val();
+
+      // show error if password is empty
+      if (password === '') {
+        $('#password-error').text('Please input password').css('color', 'red');
+        $('#password').addClass('is-invalid'); // Update selector to 'password'
+        $('#submit-btn').prop('disabled', true);
+        return;
+      }
+
+      // check if password format is valid
+      var passwordPattern = /^.{8,}$/i;
+      if (!passwordPattern.test(password)) {
+        $('#password-error').text('At least 8 minimum characters').css('color', 'red');
+        $('#password').addClass('is-invalid'); // Update selector to 'password'
+        $('#submit-btn').prop('disabled', true);
+        return;
+      }
+
+      // Clear error if password is valid
+      $('#password-error').empty();
+      $('#password').removeClass('is-invalid'); // Update selector to 'password'
+      $('#password').addClass('is-valid'); // Update selector to 'password'
+      checkIfAllFieldsValid();
+    }
+
+    function checkCPassword() {
+      var password = $('#password').val();
+      var password1 = $('#password1').val();
+
+      // show error if password1 is empty
+      if (password1 === '') {
+        $('#password1-error').text('Please input confirm password').css('color', 'red');
+        $('#password1').addClass('is-invalid'); // Update selector to 'password'
+        $('#submit-btn').prop('disabled', true);
+        return;
+      }
+
+      // check if password1 format is valid
+      var passwordCPattern = /^.{8,}$/i;
+      if (!passwordCPattern.test(password1)) {
+        $('#password1-error').text('At least 8 minimum characters').css('color', 'red');
+        $('#password1').addClass('is-invalid'); // Update selector to 'password'
+        $('#submit-btn').prop('disabled', true);
+        return;
+      }
+
+      if (password != password1) {
+        $('#password1-error').text('Password does not match').css('color', 'red');
+        $('#password1').addClass('is-invalid'); // Update selector to 'password'
+        $('#submit-btn').prop('disabled', true);
+        return;
+      }
+
+      // Clear error if password1 is valid
+      $('#password1-error').empty();
+      $('#password1').removeClass('is-invalid'); // Update selector to 'password'
+      $('#password1').addClass('is-valid'); // Update selector to 'password'
+      checkIfAllFieldsValid();
+    }
+
+    function checkIfAllFieldsValid() {
+      // check if all input fields are valid and enable submit button if so
+      if ($('#password-error').is(':empty') && $('#password1-error').is(':empty')) {
+        $('#submit-btn').prop('disabled', false);
+      }
+    }
+  });
 </script>
