@@ -1,6 +1,7 @@
 <?php
     include('../includes/header.php');
 ?>
+
 <style>
     .search {
         width: 100%;
@@ -38,8 +39,8 @@
 </style>
 
 <ol class="breadcrumb mb-4">    
-  <li class="breadcrumb-item">Dashboard</li>
-  <li class="breadcrumb-item">View Product</li>
+    <li class="breadcrumb-item">Dashboard</li>
+    <li class="breadcrumb-item">View Product</li>
 </ol>
 <h2 class="text-center mb-3">PRODUCT</h2>
 <div class="wrap mb-3">
@@ -52,9 +53,9 @@
 </div>
 <div class="row"> 
     <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="card-group">
+        <div class="card-group" id="productList">
             <?php
-                $query = "SELECT
+            $query = "SELECT
                 *
                 FROM
                 product
@@ -63,24 +64,24 @@
                 ON 
                 product.product_category_id = product_category.product_category_id
                 WHERE product_status = 1";
-                $query_run = mysqli_query($con, $query);
-                $product = mysqli_num_rows($query_run) > 0;
-                if($product){
-                    while($row = mysqli_fetch_assoc($query_run)){
+            $query_run = mysqli_query($con, $query);
+            $product = mysqli_num_rows($query_run) > 0;
+            if ($product) {
+                while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
             <div class="col-12 col-md-6 col-lg-3 mb-4 target">
                 <a href="product_view?id=<?=$row['product_id'];?>" style="text-decoration:none; color:black;">
                     <div class="card h-100">
-                        <img class="img-fluid card-img-top" src="<?php echo base_url ?>assets/img/products/<?php echo $row['photo'];?>"  alt="user-avatar" style= "height:250px; width: 100%; object-fit: cover;">
+                        <img class="img-fluid card-img-top" src="<?php echo base_url ?>assets/img/products/<?php echo $row['photo'];?>"  alt="user-avatar" style="height:250px; width: 100%; object-fit: cover;">
                         <div class="card-body">
                             <h3 class="card-title text-center" style="font-size: 22px;"><?php echo $row['product_name']; ?></h3>
                             <p class="card-text text-center"> <?php echo $row['product_quantity'];?> PCS REMAINING</p>
                             <p class="card-text text-center"> <?php echo $row['category_name'];?> </p>
                             <p class="card-text text-center">
                                 <?php
-                                    if($row['exp_date'] < date) {
+                                    if ($row['exp_date'] < date) {
                                         echo "<span style='color:red'> (Expired)</span>"; 
-                                    }else{ }
+                                    } else { }
                                 ?>
                             </p>
                         </div>
@@ -88,12 +89,14 @@
                 </a>
             </div>
             <?php
-                    }
                 }
-                else{
-                    echo "Nothing to View";
-                }
+            } else {
+                echo "Nothing to View";
+            }
             ?>
+        </div>
+        <div class="col-12 text-center mt-5" id="noResults" style="display: none;">
+            <h3>No results found</h3>
         </div>
     </div>
 </div>
@@ -105,13 +108,23 @@
         var input = document.getElementById("Search");
         var filter = input.value.toLowerCase();
         var nodes = document.getElementsByClassName('target');
+        var resultsFound = false;
 
         for (i = 0; i < nodes.length; i++) {
-            if (nodes[i].innerText.toLowerCase().includes(filter)) {
+            var productName = nodes[i].querySelector('.card-title').innerText.toLowerCase();
+            if (productName.includes(filter)) {
                 nodes[i].style.display = "block";
+                resultsFound = true;
             } else {
                 nodes[i].style.display = "none";
             }
+        }
+
+        var noResultsMsg = document.getElementById("noResults");
+        if (resultsFound) {
+            noResultsMsg.style.display = "none";
+        } else {
+            noResultsMsg.style.display = "block";
         }
     }
 </script>
