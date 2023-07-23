@@ -117,8 +117,8 @@
         if ($query1 && $query2 > 0) {
             $user_query = "SELECT * FROM user WHERE `email`='".$email."'";
             $user_query_run = mysqli_query($con, $user_query);
-            if(mysqli_num_rows($login_query_run) > 0){
-                foreach($login_query_run as $data){
+            if(mysqli_num_rows($user_query_run) > 0){
+                foreach($user_query_run as $data){
                     $user_id = $data['user_id'];
                 }
                 $date = date('Y-m-d H:i:s');
