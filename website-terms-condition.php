@@ -140,16 +140,16 @@
     <!-- End #main -->
 
     <!-- Cookie Consent -->
-    <div class="wrapper">
+    <!-- <div class="wrapper">
       <img src="<?php echo base_url ?>assets/img/icons/cookie.png" alt="">
       <div class="content">
         <header>Cookies Consent</header>
-        <p>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href="<?php echo base_url ?>cookie-policy">Cookie Policy</a></p>
+        <p>Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href="<?php echo base_url ?>cookie-policy">Cookie Policy</a>. For information on how we protect your privacy, please read our <a href="<?php echo base_url ?>privacy-policy">Privacy Policy</a>.</p>
         <div class="buttons">
-          <button class="item">I understand</button>
+          <button class="item">I accept</button>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- End Cookie Consent -->
 
     <!-- ======= Footer ======= -->
