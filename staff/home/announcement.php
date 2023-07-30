@@ -57,20 +57,20 @@
                         </td>
                         <td> 
                             <div class="row d-flex justify-content-center">
-                                <div class="col-md-12 mb-1" style="zoom:95%">
+                                <div class="col-md-12 mb-1" style="zoom:97%">
                                     <a href="announcement_view?id=<?=$row['ann_id'];?>" class="btn btn-info btn-icon-split"> 
                                         <span class="icon text-white-50"><i class="fas fa-eye"></i></span>
                                         <span class="text ml-2 mr-2">View</span>
                                     </a>
                                 </div>
                                 <?php if ($row['ann_status'] != 'Posted'){ ?>
-                                    <div class="col-md-12 mb-1">
+                                    <div class="col-md-12 mb-1" style="zoom:97%">
                                         <a href="announcement_update?id=<?=$row['ann_id'];?>" class="btn btn-success btn-icon-split"> 
                                             <span class="icon text-white-50"><i class="fas fa-save"></i></span>
                                             <span class="text">Update</span>
                                         </a>
                                     </div>
-                                    <div class="col-md-12 mb-1">
+                                    <div class="col-md-12 mb-1" style="zoom:97%">
                                         <button type="submit" data-toggle="modal" value="<?=$row['ann_id']; ?>" data-target="#exampleModalPublish" onclick="publishModal(this)" class="btn btn-warning btn-icon-split" href="#">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-paper-plane"></i>
@@ -79,16 +79,6 @@
                                         </button>
                                     </div>
                                 <?php } ?>
-                                <!-- <div class="col-md-12 mb-1">
-                                    <form action="code.php" method="POST" style="zoom:105%;">
-                                        <button type="submit" name="ann_delete" value="<?=$row['ann_id']; ?>" class="btn btn-danger btn-icon-split" href="#">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">Delete</span>
-                                        </button> 
-                                    </form>
-                                </div> -->
                                 <div class="col-md-12 mb-1" style="zoom:103%;">
                                     <button type="button" data-toggle="modal" value="<?=$row['ann_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
                                         <span class="icon text-white-50">

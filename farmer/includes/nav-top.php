@@ -50,6 +50,23 @@
                     $total_notification = $num_ann + $num_concern + $num_report + $num_request;
 
                     $notifications = array();
+
+                    $announcement_sql = "SELECT *, DATE_FORMAT(announcement.ann_date, '%m-%d-%Y %h:%i:%s %p') as announcement_short_date 
+                        FROM announcement 
+                        INNER JOIN user ON user.user_id = announcement.user_id 
+                        WHERE ann_date BETWEEN DATE_SUB(NOW(), INTERVAL 3 DAY) AND NOW()
+                        AND ann_deleted != '1' 
+                        AND ann_status = 'Posted'";
+                    $announcement_sql_run = mysqli_query($con, $announcement_sql);
+
+                    while ($row_announcement_notifications = mysqli_fetch_assoc($announcement_sql_run)) {
+                        $notifications[] = array(
+                            'id' => $row_announcement_notifications['ann_id'],
+                            'type' => 'announcement',
+                            'fulldate' => $row_announcement_notifications['announcement_short_date'],
+                            'message' => 'You have new announcement from <b>' . $row_announcement_notifications['fname'] . ' ' . $row_announcement_notifications['mname'] . ' ' . $row_announcement_notifications['lname'] . ' ' . $row_announcement_notifications['suffix'] .'</b>.'
+                        );
+                    }
                     
                     $request_sql = "SELECT *, DATE_FORMAT(request.request_updated, '%m-%d-%Y %h:%i:%s %p') as request_short_date FROM request INNER JOIN product ON product.product_id = request.product_id INNER JOIN status ON status.status_id = request.status_id WHERE request.user_id = '$user_id' AND request.status_id != '1' AND request.request_status = 1";
                     $request_sql_run = mysqli_query($con, $request_sql);
@@ -119,6 +136,9 @@
                                             $notificationDate = $notification['fulldate'];
                                             $iconClass = '';
                                             switch ($notification['type']) {
+                                                case 'announcement':
+                                                    $iconClass = 'fa-bullhorn';
+                                                    break;
                                                 case 'product':
                                                     $iconClass = 'fa-box';
                                                     break;
@@ -167,7 +187,7 @@
             <!-- Nav Item - User Information -->
 
             <?php if(isset($_SESSION['auth_user']))  ?>
-            <li class="nav-item dropdown ">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php
                         $userID = $_SESSION['auth_user'] ['user_id'];
@@ -234,6 +254,9 @@
       display:block;
       margin-top: -10px;
     } */
+    .topbar .nav-item.dropdown .dropdown-toggle::after {
+        height: 35%;
+    }
     img#cimg{
       text-align: center;
       height: 2.3rem;

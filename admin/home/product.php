@@ -104,22 +104,11 @@
                                     </a>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <a href="product_update?id=<?=$row['product_id'];?>" class="btn btn-success btn-icon-split"> 
+                                    <a href="product_update?id=<?=$row['product_id'];?>" class="btn btn-success btn-icon-split" style="zoom:97%"> 
                                         <span class="icon text-white-50"><i class="fas fa-save"></i></span>
                                         <span class="text">Update</span>
                                     </a>
                                 </div>
-                                <!-- <div class="col-md-12 mb-1">
-                                    <form action="code.php" method="POST" style="zoom:105%;">
-                                    <input type="text" name="oldimage" value="<?= $row['photo']; ?>" hidden>
-                                        <button type="submit" name="del_product" value="<?=$row['product_id'];?>" class="btn btn-danger btn-icon-split" href="#">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">Delete</span>
-                                        </button> 
-                                    </form>
-                                </div> -->
                                 <div class="col-md-12 mb-1" style="zoom:103%;">
                                     <button type="button" data-toggle="modal" value="<?=$row['product_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
                                         <span class="icon text-white-50">

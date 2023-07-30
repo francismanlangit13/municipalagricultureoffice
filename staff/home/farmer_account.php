@@ -119,21 +119,11 @@
                                     </a>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <a href="farmer_update?id=<?=$row['user_id'];?>" class="btn btn-success btn-icon-split"> 
+                                    <a href="farmer_update?id=<?=$row['user_id'];?>" class="btn btn-success btn-icon-split" style="zoom:97%"> 
                                         <span class="icon text-white-50"><i class="fas fa-save"></i></span>
                                         <span class="text">Update</span>
                                     </a>
                                 </div>
-                                <!-- <div class="col-md-12 mb-1">
-                                    <form action="code.php" method="POST" style="zoom:105%;">  
-                                        <button type="submit" name="farmer_delete" value="<?=$row['user_id']; ?>" class="btn btn-danger btn-icon-split" href="#">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">Delete</span>
-                                        </button> 
-                                    </form>
-                                </div> -->
                                 <div class="col-md-12 mb-1" style="zoom:103%;">
                                     <button type="button" data-toggle="modal" value="<?=$row['user_id']; ?>" data-target="#exampleModalDelete" onclick="deleteModal(this)" class="btn btn-danger btn-icon-split">
                                         <span class="icon text-white-50">

@@ -81,7 +81,7 @@
                             </td>
                             <td> 
                                 <div class="row d-flex justify-content-center">
-                                    <div class="col-md-12 mb-1" style="zoom:95%">
+                                    <div class="col-md-12 mb-1" style="zoom:97%">
                                         <?php if($row['status_id'] == 1){ ?>
                                             <a href="request_update?id=<?=$row['request_id'];?>" class="btn btn-success btn-icon-split"> 
                                                 <span class="icon text-white-50"><i class="fas fa-save"></i></span>
@@ -124,7 +124,7 @@
                             </td>
                             <td> 
                                 <div class="row d-flex justify-content-center">
-                                    <div class="col-md-12 mb-1" style="zoom:95%">
+                                    <div class="col-md-12 mb-1" style="zoom:97%">
                                         <?php if($row['status_id'] == 1){ ?>
                                             <a href="request_update?id=<?=$row['request_id'];?>" class="btn btn-success btn-icon-split"> 
                                                 <span class="icon text-white-50"><i class="fas fa-save"></i></span>
@@ -167,7 +167,7 @@
                             </td>
                             <td> 
                                 <div class="row d-flex justify-content-center">
-                                    <div class="col-md-12 mb-1" style="zoom:95%">
+                                    <div class="col-md-12 mb-1" style="zoom:97%">
                                         <?php if($row['status_id'] == 1){ ?>
                                             <a href="request_update?id=<?=$row['request_id'];?>" class="btn btn-success btn-icon-split"> 
                                                 <span class="icon text-white-50"><i class="fas fa-save"></i></span>
@@ -210,7 +210,7 @@
                             </td>
                             <td> 
                                 <div class="row d-flex justify-content-center">
-                                    <div class="col-md-12 mb-1" style="zoom:95%">
+                                    <div class="col-md-12 mb-1" style="zoom:97%">
                                         <?php if($row['status_id'] == 1){ ?>
                                             <a href="request_update?id=<?=$row['request_id'];?>" class="btn btn-success btn-icon-split"> 
                                                 <span class="icon text-white-50"><i class="fas fa-save"></i></span>
