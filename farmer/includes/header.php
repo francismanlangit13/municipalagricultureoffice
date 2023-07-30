@@ -50,7 +50,7 @@
 
 <body id="page-top">
     <!-- Loading Screen -->
-    <div id="loading">
+    <div class="noprint-scroll" id="loading">
         <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />
     </div>
     <div id="connectionAlert" class="alert"></div>

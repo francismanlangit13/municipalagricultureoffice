@@ -8,7 +8,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0">Dashboard</h1>
         </div>
 
         <!-- Content Row -->
@@ -21,7 +21,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Account (Farmer)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 font-weight-bold">
                                     <?php
                                         $sql = "SELECT* FROM user WHERE user_status_id = 1 && user_type_id = 3";
                                         $sql_run = mysqli_query($con, $sql);
@@ -49,7 +49,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">REQUEST</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 font-weight-bold">
                                     <?php
                                         $request = "SELECT * FROM `request`
                                         WHERE
@@ -82,7 +82,7 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">TOTAL CATEGORY</div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold">
                                             <?php
                                                 $total_category = "SELECT
                                                 product_category.*
@@ -115,7 +115,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">TOTAL PRODUCT</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 font-weight-bold">
                                     <?php
                                         $total_product = "SELECT
                                         product.*

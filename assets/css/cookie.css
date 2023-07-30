@@ -45,6 +45,7 @@ a {
 .content header{
   font-size: 25px;
   font-weight: 600;
+  color: black !important;
 }
 .content{
   margin-top: 10px;

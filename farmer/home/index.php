@@ -5,8 +5,9 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <!-- Page Heading -->
+        <br>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>      
+            <h1 class="h3 mb-0">Dashboard</h1>      
         </div>
         <!-- Content Row -->
         <div class="row">
@@ -18,7 +19,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Request SENT</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"> 
+                                <div class="h5 mb-0 font-weight-bold"> 
                                     <?php
                                         if(isset($_SESSION['auth_user'])) 
                                         $currentUSER = $_SESSION['auth_user']['user_id'];
@@ -47,7 +48,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Report SENT</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 font-weight-bold">
                                     <?php
                                         if(isset($_SESSION['auth_user'])) 
                                         $currentUSER = $_SESSION['auth_user']['user_id'];
@@ -78,7 +79,7 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">TOTAL CONCERN SENT</div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold">
                                             <?php
                                                 if(isset($_SESSION['auth_user'])) 
                                                 $currentUSER = $_SESSION['auth_user']['user_id'];    
@@ -110,7 +111,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">TOTAL ANNOUNCEMENT</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 font-weight-bold">
                                     <?php
                                         $total_product = "SELECT `ann_id` FROM announcement";
                                         $total_product_query_run = mysqli_query($con, $total_product);

@@ -266,7 +266,7 @@
 
             if (email !== initialEmail) { // Check if email is different from the initial email
                 $.ajax({
-                    url: 'ajax.php', // replace with the actual URL to check email
+                    url: 'ajax1.php', // replace with the actual URL to check email
                     method: 'POST', // use the appropriate HTTP method
                     data: { email: email },
                     success: function(response) {

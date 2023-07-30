@@ -3,7 +3,7 @@
  <div id="content-wrapper" class="d-flex flex-column noprint-scroll">
 
 <!-- Main Content -->
-<div id="content">
+<div class="noprint-scroll" id="content">
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -216,6 +216,11 @@
                         My Account
                     </a>
                     <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" onclick="toggleMode()">
+                        <i class="fas fa-moon fa-sm fa-fw mr-2 text-gray-400"></i>
+                        <span id="darkModeText">Dark Mode</span>
+                    </button>
+                    <div class="dropdown-divider"></div>
                     <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
@@ -226,6 +231,7 @@
         </ul>
 
     </nav>
+    <br>
     <!-- End of Topbar -->
 
     <!-- Modal -->
@@ -307,4 +313,50 @@
        xhr.open("GET", "../includes/server_time.php", true); // Change "server_time.php" to the actual path of your PHP file
        xhr.send();
     }, 1000);
+</script>
+
+<script>
+    // Function to set the mode (dark/light) and save it to localStorage
+    function setMode(mode) {
+        var elements = document.querySelectorAll("nav, footer, section, .modal-content, .noprint-scroll, .breadcrumb, .container-fluid, .card, .card-header");
+        var nav = document.querySelector("nav");
+        var footer = document.querySelector("footer");
+        var darkModeButton = document.getElementById("darkModeText");
+        
+        elements.forEach(function(element) {
+            element.classList.remove("bg-white");
+            element.classList.toggle("dark-mode", mode === 'dark');
+            element.classList.toggle("light-mode", mode === 'light');
+        });
+        
+        if (mode === 'dark') {
+            nav.classList.remove("bg-white");
+            footer.classList.remove("bg-white");
+            darkModeButton.textContent = "Light Mode";
+        } else {
+            nav.classList.add("bg-white");
+            footer.classList.add("bg-white");
+            darkModeButton.textContent = "Dark Mode";
+        }
+        
+        localStorage.setItem('mode', mode);
+    }
+
+    // Function to toggle the mode and update the button text
+    function toggleMode() {
+        var nav = document.querySelector("nav");
+        if (nav.classList.contains('dark-mode')) {
+            setMode('light');
+        } else {
+            setMode('dark');
+        }
+    }
+
+    // Check if the mode is saved in localStorage and apply it on page load
+    document.addEventListener("DOMContentLoaded", function() {
+        var savedMode = localStorage.getItem('mode');
+        if (savedMode) {
+            setMode(savedMode);
+        }
+    });
 </script>
