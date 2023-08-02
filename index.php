@@ -524,7 +524,7 @@
                   <a href="<?php echo base_url ?>assets/img/team/cindy.jpg" data-gallery="teamGallery" class="link-preview portfolio-lightbox" title="Name: CINDY SAPALLEDA <br> Role: Researcher">
                     <img src="<?php echo base_url ?>assets/img/team/cindy.jpg" alt="">
                   </a>
-                  <h4>CINDY SAPALLEDA</h4>
+                  <h4>CINDY SAPALLIDA</h4>
                   <span>Researcher</span>
                   <p>
                   Failure is not the opposite of success, it is part of success.

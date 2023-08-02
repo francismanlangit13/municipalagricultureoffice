@@ -238,7 +238,7 @@
         <!-- End #main -->
 
         <!-- Cookie Consent -->
-        <div class="wrapper">
+        <!-- <div class="wrapper">
             <img src="<?php echo base_url ?>assets/img/icons/cookie.png" alt="">
             <div class="content">
                 <header>Cookies Consent</header>
@@ -247,7 +247,7 @@
                     <button class="item">I accept</button>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- End Cookie Consent -->
 
         <!-- ======= Footer ======= -->
