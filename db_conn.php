@@ -26,7 +26,7 @@
         if(mysqli_num_rows($check_connection_query_run) > 0){
             // Dead code.
         } else {
-            header("Location: " . base_url . "checkconnection");
+            header("Location: " . base_url . "auth");
             die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
         }
         // connection successful

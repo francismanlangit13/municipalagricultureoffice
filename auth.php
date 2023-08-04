@@ -18,6 +18,9 @@
         <link rel="shortcut icon" href="<?php echo base_url ?>assets/img/system/favicon.png" type="image/x-icon">
         <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url ?>assets/img/system/favicon.png">
         <link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url ?>assets/img/system/favicon.png">
+
+        <!-- Loading CSS -->
+        <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
     </head>
     <style>
         body {
@@ -53,6 +56,10 @@
         }
     </style>
     <body>
+        <!-- Loading Screen -->
+        <div id="loading">
+            <img id="loading-image" src="<?php echo base_url ?>assets/img/system/loading.gif" alt="Loading" />
+        </div>
         <div class="pt-5">
             <h1 class="text-center">Municipal Agriculture Office | System</h1>
             <div class="container">
@@ -63,6 +70,9 @@
                                 <div class="form-group required">
                                     <label class="d-flex flex-row align-items-center" for="password"> Enter password to access this system.</label>
                                     <input type="password" class="form-control" id="password" name="password" value="" required>
+                                    <a href="javascript:void(0)"  style="position: relative; top: -1.8rem; left: 87%; cursor: pointer; color: lightgray;">
+                                        <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="1%" id="togglePassword">
+                                    </a>
                                 </div>
                                 <div class="form-group pt-1">
                                     <button class="btn btn-primary btn-block" type="submit">Unlock System</button>
@@ -77,4 +87,15 @@
             </div>
         </div>
     </body>
+    <script>
+      var base_url = "<?php echo base_url ?>"; // global location for javascript
+    </script>
+    <!-- Disable-key -->
+    <script src="<?php echo base_url ?>assets/js/disable-key.js"></script>
+    <!-- Loading JS -->
+    <script src="<?php echo base_url ?>assets/js/loader.js"></script>
+    <script src="<?php echo base_url ?>assets/js/underscore-min.js"></script>
+    <!-- Serverstatus JS -->
+    <script src="<?php echo base_url ?>assets/js/serverstatus.js"></script>
+    <script src="<?php echo base_url ?>assets/js/showpass-login.js"></script>
 </html>
