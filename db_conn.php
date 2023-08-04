@@ -19,15 +19,13 @@
     $check_connection_query_run = mysqli_query($con, $check_connection);
 
     if($con->connect_error){
-        // connection failed, redirect to 
         header("Location: " . base_url . "error");
         die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
     }
     else{
         if(mysqli_num_rows($check_connection_query_run) > 0){
-            // authenticated with correct secretkey.
+            // Dead code.
         } else {
-            // not authenticated with correct secretkey.
             header("Location: " . base_url . "checkconnection");
             die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
         }
