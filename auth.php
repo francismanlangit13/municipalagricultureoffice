@@ -21,6 +21,11 @@
 
         <!-- Loading CSS -->
         <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <style>
         body {
@@ -68,7 +73,11 @@
                         <div class="card card-body">
                             <form action="secretkeycode.php" method="post" data-parsley-validate="" data-parsley-errors-messages-disabled="true" _lpchecked="1">
                                 <div class="form-group required">
-                                    <label class="d-flex flex-row align-items-center" for="password"> Enter password to access this system.</label>
+                                    <label class="d-flex flex-row align-items-center" for="password"> Enter password to access this system.
+                                        <button type="button" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
+                                            Need help?
+                                        </button>
+                                    </label>
                                     <input type="password" class="form-control" id="password" name="password" value="" required>
                                     <a href="javascript:void(0)"  style="position: relative; top: -1.8rem; left: 87%; cursor: pointer; color: lightgray;">
                                         <img alt="show password icon" src="<?php echo base_url ?>assets/img/icons/eye-close.png" width="25rem" height="1%" id="togglePassword">
@@ -86,6 +95,23 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Confirm to logout?
+                    </div>
+                    <div class="modal-body"> Are you sure you want to logout?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="code.php" method="POST">
+                            <button type="submit" name="logout_btn" class="btn btn-danger">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
     <script>
       var base_url = "<?php echo base_url ?>"; // global location for javascript
@@ -98,4 +124,7 @@
     <!-- Serverstatus JS -->
     <script src="<?php echo base_url ?>assets/js/serverstatus.js"></script>
     <script src="<?php echo base_url ?>assets/js/showpass-login.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="<?php echo base_url ?>assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>
