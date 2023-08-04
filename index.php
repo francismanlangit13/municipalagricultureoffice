@@ -636,6 +636,9 @@
       var base_url = "<?php echo base_url ?>"; // Global base_url in javascript
     </script>
 
+    <script src="<?php echo base_url ?>assets/js/sweetalert.js"></script>
+    <?php include ('message.php'); ?>
+
   </body>
 
 </html>

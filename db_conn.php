@@ -1,6 +1,8 @@
 <?php
     if(!defined('DB_SERVER')){
         include("initialize.php");
+        $secretkey_file = 'server8771649cba77a699.txt';
+        $secretkey = file_get_contents($secretkey_file);
     }
 ?>
 <?php
@@ -9,8 +11,12 @@
     $username = DB_USERNAME;
     $password = DB_PASSWORD;
     $database = DB_NAME;
+    $md5_hash = md5($secretkey);
+    $encode_key = sha1($md5_hash);
 
     $con = new mysqli($host, $username, $password, $database);
+    $check_connection = "SELECT * FROM auth WHERE decode_key = '$encode_key'";
+    $check_connection_query_run = mysqli_query($con, $check_connection);
 
     if($con->connect_error){
         // connection failed, redirect to 
@@ -18,6 +24,13 @@
         die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
     }
     else{
+        if(mysqli_num_rows($check_connection_query_run) > 0){
+            // authenticated with correct secretkey.
+        } else {
+            // not authenticated with correct secretkey.
+            header("Location: " . base_url . "checkconnection");
+            die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
+        }
         // connection successful
     }
 ?>
