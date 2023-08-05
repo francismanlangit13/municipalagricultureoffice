@@ -1,28 +1,34 @@
 <?php
     if(!defined('DB_SERVER')){
         include("initialize.php");
-        $secretkey_file = base_url . 'server8771649cba77a699.txt';
+        $secretkey_file = base_url . 'web.conf';
         $secretkey = file_get_contents($secretkey_file);
     }
-
+?>
+<?php
     // DB connection parameters
     $host = DB_SERVER;
     $username = DB_USERNAME;
     $password = DB_PASSWORD;
     $database = DB_NAME;
-
-    $con = @new mysqli($host, $username, $password, $database);
     $md5_hash = md5($secretkey);
     $encode_key = sha1($md5_hash);
+
+    $con = new mysqli($host, $username, $password, $database);
     $check_connection = "SELECT * FROM auth WHERE decode_key = '$encode_key'";
     $check_connection_query_run = mysqli_query($con, $check_connection);
 
-    if(mysqli_num_rows($check_connection_query_run) > 0){
-        
-        header("Location: " . base_url . "");
+    if($con->connect_error){
+        header("Location: " . base_url . "error");
         die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
-    } else {
-        // Dead code.
+    }
+    else{
+        if(mysqli_num_rows($check_connection_query_run) > 0){
+            header("Location: " . base_url . "");
+            die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
+        } else {
+            // Dead code.
+        }
     }
 ?>
 <! DOCTYPE html>
@@ -147,4 +153,6 @@
     <!-- Serverstatus JS -->
     <script src="<?php echo base_url ?>assets/js/serverstatus.js"></script>
     <script src="<?php echo base_url ?>assets/js/showpass-login.js"></script>
+    <?php include ('message.php'); ?>
+    <script src="<?php echo base_url ?>assets/js/sweetalert.js"></script>
 </html>

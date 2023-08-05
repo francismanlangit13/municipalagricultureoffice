@@ -1,6 +1,6 @@
 <?php
     if(!defined('DB_SERVER')){
-        include("../initialize.php");
+        include("initialize.php");
     }
 
     // DB connection parameters

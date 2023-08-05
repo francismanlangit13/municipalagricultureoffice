@@ -1,7 +1,7 @@
 <?php
     if(!defined('DB_SERVER')){
         include("initialize.php");
-        $secretkey_file = base_url . 'server8771649cba77a699.txt';
+        $secretkey_file = base_url . 'web.conf';
         $secretkey = file_get_contents($secretkey_file);
     }
 ?>
