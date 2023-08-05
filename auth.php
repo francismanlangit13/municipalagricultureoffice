@@ -1,5 +1,29 @@
 <?php
-    include ('initialize.php');
+    if(!defined('DB_SERVER')){
+        include("initialize.php");
+        $secretkey_file = base_url . 'server8771649cba77a699.txt';
+        $secretkey = file_get_contents($secretkey_file);
+    }
+
+    // DB connection parameters
+    $host = DB_SERVER;
+    $username = DB_USERNAME;
+    $password = DB_PASSWORD;
+    $database = DB_NAME;
+
+    $con = @new mysqli($host, $username, $password, $database);
+    $md5_hash = md5($secretkey);
+    $encode_key = sha1($md5_hash);
+    $check_connection = "SELECT * FROM auth WHERE decode_key = '$encode_key'";
+    $check_connection_query_run = mysqli_query($con, $check_connection);
+
+    if(mysqli_num_rows($check_connection_query_run) > 0){
+        
+        header("Location: " . base_url . "");
+        die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
+    } else {
+        // Dead code.
+    }
 ?>
 <! DOCTYPE html>
 <html lang="en">
@@ -22,10 +46,9 @@
         <!-- Loading CSS -->
         <link href="<?php echo base_url ?>assets/css/loader.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="<?php echo base_url ?>assets/vendor/jquery/jquery.min.js"></script>
+        <script src="<?php echo base_url ?>assets/js/bootstrap.bundle.min.js"></script>
     </head>
     <style>
         body {
@@ -73,10 +96,10 @@
                         <div class="card card-body">
                             <form action="secretkeycode.php" method="post" data-parsley-validate="" data-parsley-errors-messages-disabled="true" _lpchecked="1">
                                 <div class="form-group required">
-                                    <label class="d-flex flex-row align-items-center" for="password"> Enter password to access this system.
-                                        <button type="button" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
+                                    <label class="d-flex flex-row align-items-center" style="font-size:13px" for="password"> Enter password to access this system.
+                                        <a class="ml-auto border-link small-xl" href="#" data-toggle="modal" data-target="#exampleModal">
                                             Need help?
-                                        </button>
+                                        </a>
                                     </label>
                                     <input type="password" class="form-control" id="password" name="password" value="" required>
                                     <a href="javascript:void(0)"  style="position: relative; top: -1.8rem; left: 87%; cursor: pointer; color: lightgray;">
@@ -100,14 +123,14 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        Confirm to logout?
+                        <b>Help Guide</b>
                     </div>
-                    <div class="modal-body"> Are you sure you want to logout?</div>
+                    <div class="modal-body"><b>Why I'm getting this?</b>
+                        <br><br>
+                        <p style="text-align: justify;">The system requires a one-time password for access as an additional layer of security, helping to ensure that only authorized user with the proper authentication can gain entry and protect this system from unauthorized access.</p>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <form action="code.php" method="POST">
-                            <button type="submit" name="logout_btn" class="btn btn-danger">Logout</button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -124,7 +147,4 @@
     <!-- Serverstatus JS -->
     <script src="<?php echo base_url ?>assets/js/serverstatus.js"></script>
     <script src="<?php echo base_url ?>assets/js/showpass-login.js"></script>
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo base_url ?>assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo base_url ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>

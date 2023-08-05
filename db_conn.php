@@ -1,7 +1,7 @@
 <?php
     if(!defined('DB_SERVER')){
         include("initialize.php");
-        $secretkey_file = 'server8771649cba77a699.txt';
+        $secretkey_file = base_url . 'server8771649cba77a699.txt';
         $secretkey = file_get_contents($secretkey_file);
     }
 ?>
@@ -29,6 +29,5 @@
             header("Location: " . base_url . "auth");
             die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
         }
-        // connection successful
     }
 ?>
